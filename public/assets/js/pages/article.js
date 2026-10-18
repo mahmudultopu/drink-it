@@ -1,7 +1,7 @@
 import { $, html, raw, esc, icon, fmtDate, toast, initReveal } from '../ui.js';
 import { Store } from '../store.js';
 import { api } from '../api.js';
-import { bannerHtml, crumbs } from '../sections.js';
+import { crumbs } from '../sections.js';
 import { blogCard } from '../blog-card.js';
 
 export async function init() {
@@ -19,8 +19,8 @@ export async function init() {
   document.title = `${p.title} – Drink it`;
   const url = encodeURIComponent(location.href);
   const tags = [...new Set(Store.posts.map((x) => x.tag))];
-  root.innerHTML = String(html`<section class="banner">${bannerHtml({ title: p.title, text: p.excerpt })}</section>
-  ${crumbs([{ label: 'Home', href: '/' }, { label: 'News', href: '/blogs/news' }, { label: p.title }])}
+  root.innerHTML =
+    String(html`${crumbs([{ label: 'Home', href: '/' }, { label: 'News', href: '/blogs/news' }, { label: p.title }])}
   <div class="article">
     <article>
       <div class="article__hero"><img src="${p.image}" alt="" width="960" height="540"></div>

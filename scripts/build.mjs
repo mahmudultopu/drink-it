@@ -58,6 +58,12 @@ for (const p of products) {
     pack6: `${base}-pack6.webp`,
     pack12: `${base}-pack12.webp`,
     pack24: `${base}-pack24.webp`,
+    // small copies of the pack photos for swatches and cart lines (made by scripts/render/derive.mjs)
+    small: {
+      pack6: `${base}-pack6-sm.webp`,
+      pack12: `${base}-pack12-sm.webp`,
+      pack24: `${base}-pack24-sm.webp`,
+    },
   };
   if (!fs.existsSync(path.join(productsDir, `${p.handle}.webp`))) missing.push(p.handle);
   delete p.render; // renderer-only settings

@@ -86,6 +86,13 @@ const CANONICAL_ORIGIN = (() => {
 
 // ---------------------------------------------------------------- responses
 
+/** Headers every response carries, whatever it is. */
+export const BASE_HEADERS = {
+  'X-Content-Type-Options': 'nosniff',
+  'Cross-Origin-Resource-Policy': 'same-origin',
+  ...(SECURE ? { 'Strict-Transport-Security': 'max-age=63072000; includeSubDomains' } : {}),
+};
+
 /**
  * Send a JSON response. API responses are never cached and must not be sniffed as anything else. Image and font
  * URLs in the payload get their content hash appended, like the ones in the pages (see assets.js).
@@ -95,7 +102,7 @@ export function json(res, status, obj, headers = {}) {
   res.writeHead(status, {
     'Content-Type': 'application/json; charset=utf-8',
     'Cache-Control': 'no-store',
-    'X-Content-Type-Options': 'nosniff',
+    ...BASE_HEADERS,
     'Content-Length': Buffer.byteLength(body),
     ...headers,
   });

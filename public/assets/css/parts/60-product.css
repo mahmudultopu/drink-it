@@ -352,7 +352,7 @@
   margin-bottom: 18px;
   flex-wrap: wrap;
 }
-.timeline-head h3 {
+.timeline-head h2 {
   font: 400 20px var(--font-heading);
 }
 .timeline-head .select {
@@ -535,7 +535,7 @@
 }
 .taste__tile:nth-child(3n + 2) {
   background: var(--hill-mid);
-  color: var(--green-dark);
+  color: #06301f; /* darker than --green-dark: 5.8:1 on the mid green instead of 3.9:1 */
 }
 .taste__tile:nth-child(3n) {
   background: var(--green);
@@ -631,7 +631,7 @@
   font-style: normal;
   color: var(--green);
 }
-.review h4 {
+.review h3 {
   font: 500 17px var(--font-body);
 }
 .rform {

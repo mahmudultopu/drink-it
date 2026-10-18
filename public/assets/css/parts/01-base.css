@@ -20,7 +20,7 @@
   --success: #3ed660;
   --warn: #ee9441;
   --danger: #c0182f;
-  --whatsapp: #25d366;
+  --whatsapp: #0d7f56; /* darker than WhatsApp's own green so white text on it reads at 5:1 */
 
   --font-heading: 'Young Serif', 'Taka Serif', Georgia, 'Times New Roman', serif;
   --font-body: 'DM Sans', 'Taka Sans', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;

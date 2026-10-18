@@ -313,7 +313,7 @@
   align-self: start;
 }
 .cd > div:last-of-type b {
-  color: #f00;
+  color: #c40000; /* the ticking seconds; 5.1:1 on the lime panel */
 }
 .cd--lg {
   padding: 14px 20px;
@@ -368,12 +368,13 @@
   opacity: 0;
   transform: scale(0.94) rotate(-4deg);
 }
-.pcard__media:hover .pcard__img--main,
-.pcard:focus-within .pcard__img--main {
+/* the swap only happens once the extra photo has loaded (card.js adds .has-hover) */
+.pcard.has-hover .pcard__media:hover .pcard__img--main,
+.pcard.has-hover:focus-within .pcard__img--main {
   opacity: 0;
 }
-.pcard__media:hover .pcard__img--hover,
-.pcard:focus-within .pcard__img--hover {
+.pcard.has-hover .pcard__media:hover .pcard__img--hover,
+.pcard.has-hover:focus-within .pcard__img--hover {
   opacity: 1;
   transform: none;
 }
@@ -814,16 +815,24 @@ input[type='search']::-webkit-search-decoration {
   justify-content: center;
   gap: 8px;
 }
+/* 24 px touch target around a 12 px dot */
 .dots button {
-  width: 12px;
-  height: 12px;
+  position: relative;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+.dots button::before {
+  content: '';
+  position: absolute;
+  inset: 4px;
   border-radius: 50%;
   border: 2px solid var(--teal);
-  background: transparent;
-  padding: 0;
   transition: background-color 0.2s;
 }
-.dots button.is-active {
+.dots button.is-active::before {
   background: var(--teal);
 }
 

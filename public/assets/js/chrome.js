@@ -51,7 +51,9 @@ function initStickyHeader() {
   header = $('[data-site-header]');
   spacer = $('[data-header-spacer]');
   if (!header) return;
-  measureHeader();
+  // Measuring forces a layout, so it waits until the page has loaded (or the visitor first scrolls) instead of
+  // happening in the middle of start-up, when the DOM is still being filled in.
+  let measured = false;
   window.addEventListener(
     'resize',
     debounce(() => {
@@ -59,7 +61,6 @@ function initStickyHeader() {
       window.dispatchEvent(new Event('scroll'));
     }, 150),
   );
-  window.addEventListener('load', measureHeader);
   let ticking = false;
   const update = () => {
     ticking = false;
@@ -84,6 +85,10 @@ function initStickyHeader() {
   window.addEventListener(
     'scroll',
     () => {
+      if (!measured) {
+        measured = true;
+        measureHeader();
+      }
       if (!ticking) {
         ticking = true;
         requestAnimationFrame(update);
@@ -91,7 +96,11 @@ function initStickyHeader() {
     },
     { passive: true },
   );
-  update();
+  window.addEventListener('load', () => {
+    measured = true;
+    measureHeader();
+    update();
+  });
 
   // keyboard / touch support for mega menus
   $$('.menu > li').forEach((li) => {
@@ -203,7 +212,7 @@ function makeDrawer(id, { side = 'right', label, cls = '', content }) {
 function cartLineHtml(l) {
   const { product: p, pack, qty } = l;
   return html`<li class="cline" data-handle="${p.handle}" data-pack="${pack.id}">
-    <a class="cline__img" href="/products/${p.handle}" style="--tile:${p.tile}"><img src="${pack.id === 'single' ? p.images.thumb : p.images[pack.id] || p.images.thumb}" alt="${p.title}" width="80" height="80"></a>
+    <a class="cline__img" href="/products/${p.handle}" style="--tile:${p.tile}"><img src="${Store.packImage(p, pack.id)}" alt="${p.title}" width="80" height="80"></a>
     <div class="cline__body">
       <a class="cline__title" href="/products/${p.handle}">${p.title}</a>
       <div class="cline__pack">${pack.label}${pack.qty > 1 ? ` · ${pack.qty} cans` : ''}</div>
@@ -477,7 +486,7 @@ function initPopup() {
           </form>
           <p class="nl-modal__msg" data-popup-msg aria-live="polite"></p>
         </div>
-        <div class="nl-modal__art"><img src="/assets/img/scenes/hero-2.webp" alt="" loading="lazy"></div>
+        <div class="nl-modal__art"><img src="/assets/img/scenes/hero-2-564.webp" alt="" loading="lazy" width="564" height="605"></div>
       </div>`);
     document.body.append(modal);
     requestAnimationFrame(() => modal.classList.add('is-open'));

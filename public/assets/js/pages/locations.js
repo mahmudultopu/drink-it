@@ -1,15 +1,8 @@
 import { $, html, money, initReveal } from '../ui.js';
 import { Store } from '../store.js';
-import { bannerHtml } from '../sections.js';
 
 export function init() {
   const d = Store.site.delivery;
-  $('[data-loc-banner]').innerHTML = String(
-    bannerHtml({
-      title: 'Delivery Areas',
-      text: `We deliver to every district in Bangladesh. Delivery is free on orders above ${money(d.freeOver)}, and cartons are packed to arrive without a dent.`,
-    }),
-  );
   const zone = d.dhakaZone || ['Dhaka', 'Gazipur', 'Narayanganj'];
   $('[data-areas]').innerHTML = String(
     html`${Object.entries(Store.site.divisions).map(([name, districts]) => {

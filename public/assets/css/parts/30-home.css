@@ -465,7 +465,8 @@
   flex: 0 0 39px;
   height: 100%;
   border-radius: 20px;
-  background-image: url('/assets/img/scenes/strips.webp');
+  background-image: url('/assets/img/scenes/strips-1400.webp');
+  background-image: image-set(url('/assets/img/scenes/strips-1400.webp') 1x, url('/assets/img/scenes/strips.webp') 2x);
   background-repeat: no-repeat;
   background-size: var(--box-w, 1400px) auto;
   background-position: calc(var(--x, 0px) + var(--pan)) center;

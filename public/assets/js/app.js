@@ -55,6 +55,7 @@ async function main() {
     boot = await bootstrap();
   } catch (err) {
     showLoadError(err);
+    document.documentElement.classList.add('is-ready');
     return;
   }
   Store.init(boot);

@@ -72,6 +72,33 @@
 .banner__panel .btn {
   margin-top: 6px;
 }
+.banner__panel p:empty {
+  display: none;
+}
+/* The banner text is part of the server-rendered HTML, so it slides in with CSS alone. The scroll-reveal script would
+   keep it invisible until JavaScript had run. */
+.banner__panel {
+  animation: banner-in 0.8s ease-in-out both;
+}
+@keyframes banner-in {
+  from {
+    opacity: 0;
+    transform: translateX(48px);
+  }
+}
+@media (max-width: 989px) {
+  @keyframes banner-in {
+    from {
+      opacity: 0;
+      transform: translateY(26px);
+    }
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .banner__panel {
+    animation: none;
+  }
+}
 
 /* ---------- CTA banner ---------- */
 .cta {
@@ -171,6 +198,26 @@
   margin-right: 4px;
 }
 
+/* Rows above the product grid are filled in by script. Until they arrive they hold roughly the height they will
+   have, so the grid and everything below it does not jump down when they do. */
+.ctiles:empty {
+  min-height: 328px;
+}
+.tagrow:empty {
+  min-height: 60px;
+}
+.crumbs-slot:empty {
+  min-height: 58px;
+}
+@media (max-width: 989px) {
+  .ctiles:empty {
+    min-height: 232px;
+  }
+  .tagrow:empty {
+    min-height: 152px;
+  }
+}
+
 .clayout {
   display: grid;
   grid-template-columns: 280px minmax(0, 1fr);
@@ -237,8 +284,8 @@
 .fcheck input {
   appearance: none;
   flex: none;
-  width: 17px;
-  height: 17px;
+  width: 24px;
+  height: 24px;
   border: 1.5px solid rgba(32, 13, 7, 0.55);
   border-radius: 4px;
   background: #fff;
@@ -252,8 +299,8 @@
 }
 .fcheck input:checked::after {
   content: '';
-  width: 9px;
-  height: 5px;
+  width: 12px;
+  height: 7px;
   border: solid var(--lime-text);
   border-width: 0 0 2px 2px;
   transform: rotate(-45deg) translate(1px, -1px);
@@ -261,7 +308,7 @@
 .fcheck em {
   margin-left: auto;
   font-style: normal;
-  opacity: 0.55;
+  color: var(--muted); /* solid colour: an opacity here dropped the contrast below 4.5:1 */
   font-size: 13px;
 }
 .fcheck.is-disabled {
@@ -349,6 +396,10 @@
 .filters__apply {
   display: none;
   margin-top: 22px;
+}
+/* the grid is filled by script; until then it holds a screenful of space so the page below does not jump */
+.cgrid:empty {
+  min-height: 100vh;
 }
 .cgrid {
   display: grid;

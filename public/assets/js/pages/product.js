@@ -103,7 +103,9 @@ export async function init() {
   const site = Store.site;
   const col = Store.collections.find((c) => p.collections.includes(c.handle));
   const state = { pack: 'single', qty: 1, gallery: 0, zone: localStorage.getItem('drinkit.zone') || 'dhaka' };
-  const images = GALLERY.map(([k, label]) => ({ k, label, src: p.images[k] })).filter((i) => i.src);
+  // each view has a full-size photo for the main stage and a small copy for its thumbnail button
+  const thumbOf = (k) => p.images.small?.[k] || (k === 'single' ? p.images.thumb : p.images.card);
+  const images = GALLERY.map(([k, label]) => ({ k, label, src: p.images[k], thumb: thumbOf(k) })).filter((i) => i.src);
 
   root.innerHTML = String(html`
 <div class="pdp">
@@ -116,7 +118,7 @@ export async function init() {
         <img data-g-main src="${images[0].src}" alt="${p.title}" width="640" height="620" fetchpriority="high">
         <button class="gallery__nav gallery__nav--next" type="button" aria-label="Next image" data-g-next>${icon('arrow-right')}</button>
       </div>
-      <div class="gallery__thumbs" role="tablist">${images.map((im, i) => html`<button class="gallery__thumb${i === 0 ? ' is-active' : ''}" type="button" role="tab" data-g-thumb="${i}" aria-label="${im.label}"><img src="${im.src}" alt="" loading="lazy" width="84" height="84"></button>`)}</div>
+      <div class="gallery__thumbs" role="tablist">${images.map((im, i) => html`<button class="gallery__thumb${i === 0 ? ' is-active' : ''}" type="button" role="tab" data-g-thumb="${i}" aria-label="${im.label}"><img src="${im.thumb}" alt="" loading="lazy" width="84" height="84"></button>`)}</div>
     </div>
 
     <div class="pdp__info" data-info>
@@ -132,7 +134,7 @@ export async function init() {
           pk,
         ) => html`<button class="pack${pk.id === 'single' ? ' is-active' : ''}" type="button" role="radio" aria-checked="${String(pk.id === 'single')}" data-pack="${pk.id}" ${pk.available ? '' : 'disabled'}>
         ${pk.qty > 1 && pk.compareAt > pk.price ? html`<span class="pack__save">Save ${discountPct(pk.price, pk.compareAt)}%</span>` : ''}
-        <span class="pack__img" style="--tile:${p.tile}"><img src="${pk.id === 'single' ? p.images.thumb : p.images[pk.id]}" alt="" loading="lazy"></span>
+        <span class="pack__img" style="--tile:${p.tile}"><img src="${Store.packImage(p, pk.id)}" alt="" loading="lazy" width="70" height="70"></span>
         <span><b>${pk.label}</b><small>${pk.qty > 1 ? `${pk.qty} cans · ${money(Math.round((pk.price / pk.qty) * 10) / 10)}/can` : p.canMl + ' ml can'}</small><span class="price">${money(pk.price)}</span></span>
       </button>`,
       )}</div>
@@ -194,7 +196,7 @@ export async function init() {
     <div style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn" type="submit"><span>Submit review</span></button><button class="btn btn--ghost" type="button" data-rform-toggle>Cancel</button></div>
     <div class="form-note" data-rform-msg hidden></div>
   </form>
-  <div class="rlist">${revs.reviews.map((r) => html`<article class="review"><div class="review__top">${stars(r.rating, 'stars--sm')}<span class="review__who"><i>${(r.name || '?')[0]}</i>${r.name}</span><time datetime="${r.createdAt}">${fmtDate(r.createdAt)}</time></div>${r.title ? html`<h4>${r.title}</h4>` : ''}<p>${r.body}</p></article>`)}</div>
+  <div class="rlist">${revs.reviews.map((r) => html`<article class="review"><div class="review__top">${stars(r.rating, 'stars--sm')}<span class="review__who"><i>${(r.name || '?')[0]}</i>${r.name}</span><time datetime="${r.createdAt}">${fmtDate(r.createdAt)}</time></div>${r.title ? html`<h3>${r.title}</h3>` : ''}<p>${r.body}</p></article>`)}</div>
 </section>
 
 <section class="sec sec--green-top" style="padding-top:70px">
@@ -213,7 +215,7 @@ export async function init() {
 <div data-recent></div>
 <div data-cta></div>
 
-<div class="stickybar" data-stickybar aria-hidden="true">
+<div class="stickybar" data-stickybar inert>
   <span class="stickybar__img" style="--tile:${p.tile}"><img src="${p.images.thumb}" alt="" width="54" height="54"></span>
   <div class="stickybar__info"><b>${p.title}</b><span class="price" data-sticky-price></span></div>
   <button class="btn" type="button" data-sticky-add><span>Add to cart</span></button>
@@ -249,7 +251,7 @@ export async function init() {
     q('[data-sticky-price]').innerHTML = String(
       html`${money(pk.price)}${pk.compareAt > pk.price ? raw(` <s>${money(pk.compareAt)}</s>`) : ''}`,
     );
-    $$('[data-pack]', root).forEach((b) => {
+    $$('.pack[data-pack]', root).forEach((b) => {
       const on = b.dataset.pack === pk.id;
       b.classList.toggle('is-active', on);
       b.setAttribute('aria-checked', on);
@@ -366,7 +368,7 @@ export async function init() {
   function renderTimeline() {
     const e = estimate(site, state.zone);
     q('[data-timeline]').innerHTML =
-      String(html`<div class="timeline-head"><h3>Delivery estimate</h3><select class="select" data-zone aria-label="Delivery area"><option value="dhaka" ${state.zone === 'dhaka' ? 'selected' : ''}>Dhaka city</option><option value="outside" ${state.zone === 'outside' ? 'selected' : ''}>Rest of Bangladesh</option></select></div>
+      String(html`<div class="timeline-head"><h2>Delivery estimate</h2><select class="select" data-zone aria-label="Delivery area"><option value="dhaka" ${state.zone === 'dhaka' ? 'selected' : ''}>Dhaka city</option><option value="outside" ${state.zone === 'outside' ? 'selected' : ''}>Rest of Bangladesh</option></select></div>
       <div class="timeline">
         <div class="tstep"><span class="tstep__dot">${icon('cart')}</span><small>${short(e.today)}</small><span>Order Placed</span></div>
         <div class="tstep"><span class="tstep__dot">${icon('truck')}</span><small>${range(e.start, e.shipEnd)}</small><span>Order Shipped</span></div>
@@ -443,13 +445,14 @@ export async function init() {
       const on = !en.isIntersecting && en.boundingClientRect.top < 0 && !dismissed;
       bar.classList.toggle('is-on', on);
       document.body.classList.toggle('has-stickybar', on);
-      bar.setAttribute('aria-hidden', String(!on));
+      bar.inert = !on;
     },
     { threshold: 0 },
   ).observe(target);
   q('[data-sticky-close]').addEventListener('click', () => {
     dismissed = true;
     bar.classList.remove('is-on');
+    bar.inert = true;
     document.body.classList.remove('has-stickybar');
   });
 

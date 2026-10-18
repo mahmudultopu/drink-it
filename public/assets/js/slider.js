@@ -80,6 +80,18 @@ export function initHero(root = document.querySelector('[data-hero]'), { autopla
   });
   go(i);
   start();
+
+  // Photos of slides that are not showing yet (marked data-src) are fetched once the page has loaded, so they do not
+  // compete with the first slide for bandwidth.
+  const loadLaterImages = () =>
+    $$('img[data-src]', root).forEach((img) => {
+      if (img.dataset.srcset) img.srcset = img.dataset.srcset;
+      img.src = img.dataset.src;
+      img.removeAttribute('data-src');
+    });
+  if (document.readyState === 'complete') loadLaterImages();
+  else window.addEventListener('load', loadLaterImages, { once: true });
+
   return { go, next, stop };
 }
 

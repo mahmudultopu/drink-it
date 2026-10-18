@@ -161,7 +161,11 @@ describe('assets from a build', () => {
 
   it('give the catalogue fingerprinted image URLs, but leave free text alone', async () => {
     const catalogue = JSON.parse((await get('/api/catalogue', { 'accept-encoding': 'identity' })).body);
-    for (const url of Object.values(catalogue.products[0].images)) assert.match(url, /\?v=[0-9a-f]{10}$/, url);
+    const urls = Object.values(catalogue.products[0].images).flatMap((v) =>
+      typeof v === 'string' ? [v] : Object.values(v),
+    );
+    assert.ok(urls.length >= 8, 'single, card, thumb, angle, three packs and their small copies');
+    for (const url of urls) assert.match(url, /\?v=[0-9a-f]{10}$/, url);
     const review = await fetch(`${server.base}/api/reviews`, {
       method: 'POST',
       headers: { 'content-type': 'application/json' },

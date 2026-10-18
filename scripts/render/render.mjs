@@ -14,6 +14,7 @@ import { fileURLToPath } from 'node:url';
 import puppeteer from 'puppeteer-core';
 import sharp from 'sharp';
 import { cutout, frame, packFromCutout, INBOX_EXT } from './ingest.mjs';
+import { derivePackThumbs, deriveScenes } from './derive.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
 const MIME = {
@@ -218,8 +219,12 @@ if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.me
       );
     }
     console.log(`products done in ${((Date.now() - t0) / 1000).toFixed(0)}s`);
+    console.log(`small pack thumbnails written: ${await derivePackThumbs()}`);
   }
-  if (cmd === 'scenes' || cmd === 'all') await buildScenes(r, cmd === 'all' ? [] : args);
+  if (cmd === 'scenes' || cmd === 'all') {
+    await buildScenes(r, cmd === 'all' ? [] : args);
+    console.log(`scene sizes written: ${await deriveScenes()}`);
+  }
 
   if (cmd === 'label') {
     const [design, kind = 'slim'] = args;

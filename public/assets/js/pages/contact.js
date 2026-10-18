@@ -1,14 +1,8 @@
 import { $, $$, initReveal } from '../ui.js';
 import { api } from '../api.js';
-import { bannerHtml, accordionHtml } from '../sections.js';
+import { accordionHtml } from '../sections.js';
 
 export async function init() {
-  $('[data-contact-banner]').innerHTML = String(
-    bannerHtml({
-      title: 'Contact Us',
-      text: 'Have questions, feedback, or just want to say hello? We’re always happy to hear from you! Reach out to us anytime — our team is here to help with orders, delivery, bulk events or anything else you need.',
-    }),
-  );
   const form = $('[data-contact-form]');
   form.addEventListener('submit', async (e) => {
     e.preventDefault();

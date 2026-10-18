@@ -1,6 +1,6 @@
 // Home page (layout 1): hero slider, collection rows with hover-can, product grids, featured can,
 // pop-art strips, reviews marquee and blog cards.
-import { $, $$, html, money, stars, icon, initReveal, startCountdowns } from '../ui.js';
+import { $, html, money, stars, icon, initReveal, startCountdowns } from '../ui.js';
 import { Store } from '../store.js';
 import { renderGrid } from '../card.js';
 import { initHero } from '../slider.js';
@@ -102,7 +102,7 @@ function collectionRows() {
       const minPrice = Math.min(...inCol.map((p) => p.price));
       const minMl = Math.min(...inCol.map((p) => p.canMl));
       return html`<a class="crow" href="/collections/${c.handle}" data-can="${lead?.images.angle}">
-      ${lead ? html`<img class="crow__img" src="${lead.images.single}" alt="" loading="lazy">` : ''}
+      ${lead ? html`<img class="crow__img" src="${lead.images.card}" alt="" loading="lazy" width="380" height="570">` : ''}
       <span class="crow__title">${c.title}</span>
       <span class="crow__spec"><span>Min Size:</span><b>${minMl} ml</b></span>
       <span class="crow__spec crow__spec--end"><span>Start at:</span><b>${money(minPrice)}</b></span>
@@ -194,8 +194,11 @@ export function strips() {
   const box = $('[data-strips-box]');
   const bars = $('[data-strips-bars]');
   if (!box) return;
+  let builtFor = 0;
   const build = () => {
     const w = box.clientWidth;
+    if (w === builtFor) return; // the resize observer reports the initial size too
+    builtFor = w;
     const n = Math.ceil((w + 13) / 52);
     bars.innerHTML = Array.from(
       { length: n },
@@ -203,12 +206,27 @@ export function strips() {
     ).join('');
     box.style.setProperty('--box-w', Math.max(w + 200, 1400) + 'px');
   };
-  build();
-  let t;
-  new ResizeObserver(() => {
-    clearTimeout(t);
-    t = setTimeout(build, 120);
-  }).observe(box);
+  // The bars share one large background image, so build them (and measure the box) only when the section is
+  // about to scroll into view instead of during start-up.
+  const start = () => {
+    build();
+    let t;
+    new ResizeObserver(() => {
+      clearTimeout(t);
+      t = setTimeout(build, 120);
+    }).observe(box);
+  };
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (!entries.some((e) => e.isIntersecting)) return;
+        io.disconnect();
+        start();
+      },
+      { rootMargin: '500px 0px' },
+    );
+    io.observe(box);
+  } else start();
   const btn = $('[data-strips-toggle]');
   btn.addEventListener('click', () => {
     const paused = box.classList.toggle('is-paused');
@@ -249,11 +267,6 @@ export async function init() {
   strips();
   reviews();
   blog();
-  // hero cans (arch)
-  $$('[data-hero-can]').forEach((img) => {
-    const p = Store.get(img.dataset.heroCan);
-    if (p) img.src = p.images.single;
-  });
   startCountdowns();
   initReveal();
 }

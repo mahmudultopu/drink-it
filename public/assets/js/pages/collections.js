@@ -1,15 +1,9 @@
 import { $, html, money, initReveal } from '../ui.js';
 import { Store } from '../store.js';
 import { api } from '../api.js';
-import { bannerHtml, accordionHtml } from '../sections.js';
+import { accordionHtml } from '../sections.js';
 
 export async function init() {
-  $('[data-collections-banner]').innerHTML = String(
-    bannerHtml({
-      title: 'Collections',
-      text: 'Discover every can in the Drink it store — cola classics, citrus fizz, energy boosters, zero-sugar picks and imported favourites. Find your favourite and dive into a world of fizzy fun!',
-    }),
-  );
   const cols = Store.collections; // six tiles, two rows of three, like the reference theme
   $('[data-cindex]').innerHTML = String(
     html`${cols.map((c) => {

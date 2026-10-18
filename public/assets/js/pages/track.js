@@ -1,16 +1,9 @@
 import { $ } from '../ui.js';
 import { Store } from '../store.js';
 import { api } from '../api.js';
-import { bannerHtml } from '../sections.js';
 import { orderCard } from '../order-view.js';
 
 export function init() {
-  $('[data-track-banner]').innerHTML = String(
-    bannerHtml({
-      title: 'Track Order',
-      text: 'Follow your cans from our packing table to your door. All you need is your order number and phone number.',
-    }),
-  );
   const form = $('[data-track-form]');
   const out = $('[data-track-result]');
   const err = $('[data-track-error]');

@@ -10,7 +10,7 @@ export function priceHtml(pk) {
 function swatchesHtml(packs, currentId, p) {
   return html`<div class="swatches" role="group" aria-label="Pack size">${packs.map(
     (x) =>
-      html`<button class="swatch${x.id === currentId ? ' is-active' : ''}" type="button" data-swatch="${x.id}" title="${x.label}" aria-label="${x.label}" aria-pressed="${String(x.id === currentId)}"><img src="${p.images[x.id] || p.images.single}" alt="" loading="lazy"></button>`,
+      html`<button class="swatch${x.id === currentId ? ' is-active' : ''}" type="button" data-swatch="${x.id}" title="${x.label}" aria-label="${x.label}" aria-pressed="${String(x.id === currentId)}"><img src="${Store.packImage(p, x.id)}" alt="" loading="lazy" width="36" height="36"></button>`,
   )}</div>`;
 }
 
@@ -24,8 +24,7 @@ export function productCard(p, { pack = 'single', eager = false, swatches = true
   return html`<article class="pcard${soldOut ? ' pcard--soldout' : ''}" data-handle="${p.handle}" data-pack="${pk.id}">
   <div class="pcard__media" style="--tile:${p.tile}">
     <a class="pcard__link" href="/products/${p.handle}" aria-label="${p.title}">
-      <img class="pcard__img pcard__img--main" src="${pk.id === 'single' ? p.images.card : p.images[pk.id] || p.images.card}" alt="${p.title}" ${raw(eager ? 'fetchpriority="high"' : 'loading="lazy"')} width="300" height="300">
-      <img class="pcard__img pcard__img--hover" src="${p.images.angle}" alt="" aria-hidden="true" loading="lazy" width="300" height="300">
+      <img class="pcard__img pcard__img--main" src="${Store.packImage(p, pk.id, 'card')}" alt="${p.title}" ${raw(eager ? 'fetchpriority="high"' : 'loading="lazy"')} width="300" height="300">
     </a>
     <div class="pcard__badges">${p.stock <= 0 ? raw('<span class="badge" data-badge>Sold out</span>') : disc ? raw(`<span class="badge" data-badge>-${disc}%</span>`) : ''}${p.badges.includes('new') && p.stock > 0 ? raw('<span class="badge badge--crimson">New</span>') : ''}</div>
     <div class="pcard__tools">
@@ -42,6 +41,27 @@ export function productCard(p, { pack = 'single', eager = false, swatches = true
     ${swatches && packs.length > 1 ? swatchesHtml(packs, pk.id, p) : ''}
   </div>
 </article>`;
+}
+
+/**
+ * The alternate-angle photo is only fetched once someone points at (or tabs into) a card, so a grid of 30 cards does
+ * not download 30 pictures that most visitors never see. The swap in CSS waits for the picture, via .has-hover.
+ */
+function addHoverImage(card) {
+  const link = card.querySelector('.pcard__link');
+  const product = Store.get(card.dataset.handle);
+  if (!link || !product || card.dataset.hoverImage) return;
+  card.dataset.hoverImage = '1';
+  const img = document.createElement('img');
+  img.className = 'pcard__img pcard__img--hover';
+  img.alt = '';
+  img.setAttribute('aria-hidden', 'true');
+  img.width = 300;
+  img.height = 300;
+  img.decoding = 'async';
+  img.addEventListener('load', () => card.classList.add('has-hover'), { once: true });
+  img.src = product.images.angle;
+  link.append(img);
 }
 
 /** Render a list of products into a grid element. */
@@ -61,7 +81,7 @@ function selectPack(card, packId) {
     b.setAttribute('aria-pressed', on);
   });
   const img = card.querySelector('.pcard__img--main');
-  img.src = pk.id === 'single' ? p.images.card : p.images[pk.id] || p.images.card;
+  img.src = Store.packImage(p, pk.id, 'card');
   card.querySelector('[data-price]').innerHTML = String(priceHtml(pk));
   const disc = discountPct(pk.price, pk.compareAt);
   const b = card.querySelector('[data-badge]');
@@ -134,6 +154,14 @@ export function bindCards() {
         );
     }
   });
+  // Touch screens have no hover, so only a mouse or the keyboard triggers the extra photo.
+  const reveal = (e) => {
+    if (e.type === 'pointerover' && e.pointerType !== 'mouse') return;
+    const card = e.target.closest?.('.pcard[data-handle]');
+    if (card) addHoverImage(card);
+  };
+  document.addEventListener('pointerover', reveal, { passive: true });
+  document.addEventListener('focusin', reveal);
   Store.on('wish', () => syncCards());
   Store.on('compare', () => syncCards());
 }

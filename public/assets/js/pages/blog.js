@@ -1,15 +1,9 @@
 import { $, html, raw, esc, initReveal } from '../ui.js';
 import { Store } from '../store.js';
-import { bannerHtml, crumbs } from '../sections.js';
+import { crumbs } from '../sections.js';
 import { blogCard } from '../blog-card.js';
 
 export function init() {
-  $('[data-blog-banner]').innerHTML = String(
-    bannerHtml({
-      title: 'Our Blogs',
-      text: 'Welcome to the Drink it blog — your go-to destination for everything cold, fizzy and refreshing. Party plans, can hacks, flavour guides and behind-the-scenes stories, all bubbling up here.',
-    }),
-  );
   $('[data-crumbs]').innerHTML = String(crumbs([{ label: 'Home', href: '/' }, { label: 'News' }]));
   const sp = new URLSearchParams(location.search);
   const tag = sp.get('tag') || '';

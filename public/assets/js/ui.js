@@ -45,6 +45,19 @@ export function stars(rating, cls = '') {
   );
 }
 
+/**
+ * URL of the narrower copy of a scene image (made by scripts/render/derive.mjs), e.g. blog-1.webp -> blog-1-480.webp.
+ * A ?v= fingerprint on the original is kept: the copy is derived from it, so it changes exactly when the copy does.
+ */
+export function sized(url, width) {
+  const [file, query] = url.split('?');
+  return `${file.replace(/\.webp$/, `-${width}.webp`)}${query ? `?${query}` : ''}`;
+}
+
+/** `srcset` value for a scene image: its derived widths plus the original, whose width is `fullWidth`. */
+export const srcset = (url, widths, fullWidth) =>
+  [...widths.map((w) => `${sized(url, w)} ${w}w`), `${url} ${fullWidth}w`].join(', ');
+
 export const discountPct = (price, compare) =>
   compare && compare > price ? Math.round((1 - price / compare) * 100) : 0;
 

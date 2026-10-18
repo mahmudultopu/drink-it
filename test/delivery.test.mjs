@@ -153,3 +153,79 @@ describe('static assets', () => {
     assert.equal(res.headers['cache-control'], 'no-cache');
   });
 });
+
+describe('server-rendered page content', () => {
+  it('puts the banner heading and text into the HTML of content pages', async () => {
+    const res = await rawRequest(server.base, '/pages/about-us');
+    assert.match(res.body, /<h1>About Us<\/h1>/);
+    assert.match(res.body, /<title>About Us – Drink it<\/title>/);
+    assert.match(res.body, /<a class="btn btn--lime" href="\/collections">Shop by Categories<\/a>/);
+    assert.match(res.body, /<img src="\/assets\/img\/scenes\/banner-cans-1068\.webp"[^>]*fetchpriority="high"/);
+  });
+
+  it('takes collection, article and policy banners from the catalogue data', async () => {
+    const collection = await rawRequest(server.base, '/collections/cola-classics');
+    assert.match(collection.body, /<h1>Cola Classics<\/h1>/);
+    assert.match(collection.body, /<title>Cola Classics – Drink it<\/title>/);
+
+    const all = await rawRequest(server.base, '/collections/all');
+    assert.match(all.body, /<h1>All Cans<\/h1>/);
+
+    const { posts } = JSON.parse((await rawRequest(server.base, '/api/catalogue')).body);
+    const article = await rawRequest(server.base, `/blogs/news/${posts[0].handle}`);
+    assert.ok(article.body.includes(`<h1>${posts[0].title.replace(/&/g, '&amp;')}</h1>`), posts[0].title);
+
+    const policy = await rawRequest(server.base, '/pages/shipping-policy');
+    assert.match(policy.body, /<h1>Shipping Policy<\/h1>/);
+    assert.match(policy.body, /Last updated/);
+  });
+
+  it('formats configuration values used in page text', async () => {
+    const res = await rawRequest(server.base, '/pages/our-locations');
+    assert.match(res.body, /Delivery is free on orders above ৳1,500/);
+  });
+
+  it('leaves the banner empty for unknown handles instead of inventing content', async () => {
+    for (const url of ['/collections/no-such-collection', '/blogs/news/no-such-article', '/products/no-such-drink']) {
+      const res = await rawRequest(server.base, url);
+      assert.equal(res.status, 200, url);
+      assert.doesNotMatch(res.body, /rel="canonical"/, url);
+    }
+    const collection = await rawRequest(server.base, '/collections/no-such-collection');
+    assert.match(collection.body, /<h1><\/h1>/);
+  });
+
+  it('starts fetching the main product photo before any script runs', async () => {
+    const res = await rawRequest(server.base, '/products/coca-cola-original-250ml-can');
+    assert.match(
+      res.body,
+      /<link rel="preload" as="image" href="\/assets\/img\/products\/coca-cola-original-250ml-can\.webp" fetchpriority="high">/,
+    );
+  });
+
+  it('gives every storefront page a title of its own', async () => {
+    const expected = {
+      '/cart': 'Your Cart',
+      '/checkout': 'Checkout',
+      '/wishlist': 'Your Wishlist',
+      '/search': 'Search',
+      '/account/login': 'Log in or Register',
+      '/pages/faq': 'FAQ’s',
+    };
+    for (const [url, title] of Object.entries(expected)) {
+      const res = await rawRequest(server.base, url);
+      assert.ok(res.body.includes(`<title>${title} – Drink it</title>`), `${url} -> ${title}`);
+    }
+  });
+
+  it('does not leak the page header comment into the output', async () => {
+    const res = await rawRequest(server.base, '/pages/contact');
+    assert.doesNotMatch(res.body, /<!--page/);
+    assert.ok(res.body.trimStart().startsWith('<!doctype html>'));
+  });
+
+  it('rejects tags and quotes in a page title by escaping them', async () => {
+    const res = await rawRequest(server.base, '/pages/contact');
+    assert.doesNotMatch(res.body, /<h1>[^<]*[<>"][^<]*<\/h1>/);
+  });
+});

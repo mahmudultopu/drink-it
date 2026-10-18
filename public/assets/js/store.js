@@ -68,6 +68,15 @@ export const Store = {
   pack(product, id) {
     return product.packs.find((p) => p.id === id) || product.packs[0];
   },
+  /**
+   * Photo of a product in a given pack. The default size is for small slots (cart lines, option pickers): the single
+   * can's thumbnail, or the small copy of a pack photo. 'card' gives the larger version used on product cards.
+   */
+  packImage(product, packId, size = 'thumb') {
+    const { images } = product;
+    if (packId === 'single') return size === 'card' ? images.card : images.thumb;
+    return (size === 'card' ? images[packId] : images.small?.[packId] || images[packId]) || images.card;
+  },
 
   // ---------- cart ----------
   cartItems() {

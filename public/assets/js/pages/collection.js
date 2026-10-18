@@ -3,7 +3,7 @@
 import { $, $$, html, raw, esc, money, icon, lockScroll, debounce } from '../ui.js';
 import { Store } from '../store.js';
 import { productCard } from '../card.js';
-import { bannerHtml, crumbs } from '../sections.js';
+import { crumbs } from '../sections.js';
 import { startCountdowns, initReveal } from '../ui.js';
 
 const PAGE_SIZE = 24;
@@ -38,7 +38,11 @@ export function init() {
   document.title = `${title} – Drink it`;
 
   // ---------- banner, tiles, tags, crumbs ----------
-  $('[data-collection-banner]').innerHTML = String(bannerHtml({ title, text: blurb }));
+  // The server rendered the banner for the collection itself; a brand filter in the URL changes its wording.
+  if (brand) {
+    $('.banner h1').textContent = title;
+    $('.banner p').textContent = blurb;
+  }
   $('[data-crumbs]').innerHTML = String(
     crumbs([{ label: 'Home', href: '/' }, { label: 'Collections', href: '/collections' }, { label: title }]),
   );
