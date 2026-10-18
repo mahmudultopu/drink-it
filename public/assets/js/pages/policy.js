@@ -8,6 +8,7 @@ export async function init() {
     const { page } = await api('/pages/' + handle);
     document.title = `${page.title} – Drink it`;
     $('[data-policy-banner]').innerHTML = String(bannerHtml({ title: page.title, text: 'Last updated October 2026.' }));
+    // trusted: policy text is authored by the shop in data/pages.json, never by visitors
     $('[data-policy-body]').innerHTML = page.body || '';
   } catch {
     $('[data-policy-banner]').innerHTML = String(bannerHtml({ title: 'Page not found', text: '' }));

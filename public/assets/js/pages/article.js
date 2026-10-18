@@ -25,7 +25,7 @@ export async function init() {
     <article>
       <div class="article__hero"><img src="${p.image}" alt="" width="960" height="540"></div>
       <div class="article__meta"><span class="pill">${p.tag}</span><span>${fmtDate(p.date, { day: 'numeric', month: 'long', year: 'numeric' })}</span><span>${p.read} min read</span></div>
-      <div class="rte">${raw(p.body)}</div>
+      <div class="rte">${raw(p.body) /* trusted: article HTML is authored by the shop in data/posts.json, never by visitors */}</div>
       <div class="article__foot">
         <div class="author"><span class="author__avatar">${p.author.name[0]}</span><div><b>${p.author.role}</b>${p.author.name}</div></div>
         <div class="sharebtns"><span>Share this blog</span>

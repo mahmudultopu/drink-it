@@ -6,6 +6,14 @@ export function priceHtml(pk) {
   return html`<span class="price">${money(pk.price)}${pk.compareAt > pk.price ? raw(`<s>${money(pk.compareAt)}</s>`) : ''}</span>`;
 }
 
+/** Pack-size buttons shown under a card. Built with html`` so catalogue values are escaped. */
+function swatchesHtml(packs, currentId, p) {
+  return html`<div class="swatches" role="group" aria-label="Pack size">${packs.map(
+    (x) =>
+      html`<button class="swatch${x.id === currentId ? ' is-active' : ''}" type="button" data-swatch="${x.id}" title="${x.label}" aria-label="${x.label}" aria-pressed="${String(x.id === currentId)}"><img src="${p.images[x.id] || p.images.single}" alt="" loading="lazy"></button>`,
+  )}</div>`;
+}
+
 export function productCard(p, { pack = 'single', eager = false, swatches = true } = {}) {
   const pk = Store.pack(p, pack);
   const soldOut = p.stock <= 0 || !pk.available;
@@ -31,7 +39,7 @@ export function productCard(p, { pack = 'single', eager = false, swatches = true
     ${p.reviewCount ? stars(p.rating) : ''}
     <h3 class="pcard__title"><a href="/products/${p.handle}">${p.title}</a></h3>
     <div data-price>${priceHtml(pk)}</div>
-    ${swatches && packs.length > 1 ? raw(`<div class="swatches" role="group" aria-label="Pack size">${packs.map((x) => `<button class="swatch${x.id === pk.id ? ' is-active' : ''}" type="button" data-swatch="${x.id}" title="${x.label}" aria-label="${x.label}" aria-pressed="${x.id === pk.id}"><img src="${p.images[x.id] || p.images.single}" alt="" loading="lazy"></button>`).join('')}</div>`) : ''}
+    ${swatches && packs.length > 1 ? swatchesHtml(packs, pk.id, p) : ''}
   </div>
 </article>`;
 }

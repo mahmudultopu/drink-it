@@ -117,7 +117,7 @@ function fillMenus() {
   const cols = Store.collections;
   $$('[data-menu-collections]').forEach((ul) => {
     ul.innerHTML = String(
-      html`${cols.map((c) => raw(`<li><a href="/collections/${c.handle}">${esc(c.title)}</a></li>`))}<li><a href="/collections/all">All cans</a></li>`,
+      html`${cols.map((c) => raw(`<li><a href="/collections/${esc(c.handle)}">${esc(c.title)}</a></li>`))}<li><a href="/collections/all">All cans</a></li>`,
     );
   });
   const brands = Store.brands().slice(0, 9);
@@ -301,7 +301,7 @@ function initMobileMenu() {
       <div class="drawer__body"><nav aria-label="Mobile"><ul>
         <li><details><summary>Home ${icon('chev-down')}</summary><ul><li><a href="/">Home – Default</a></li><li><a href="/home-2">Home V2</a></li></ul></details></li>
         <li><a href="/collections">Collections</a></li>
-        <li><details><summary>Shop ${icon('chev-down')}</summary><ul>${cols.map((c) => raw(`<li><a href="/collections/${c.handle}">${esc(c.title)}</a></li>`))}<li><a href="/collections/all">All cans</a></li></ul></details></li>
+        <li><details><summary>Shop ${icon('chev-down')}</summary><ul>${cols.map((c) => raw(`<li><a href="/collections/${esc(c.handle)}">${esc(c.title)}</a></li>`))}<li><a href="/collections/all">All cans</a></li></ul></details></li>
         <li><details><summary>Brands ${icon('chev-down')}</summary><ul>${brands.map((b) => raw(`<li><a href="/collections/all?brand=${esc(b.handle)}">${esc(b.name)}</a></li>`))}</ul></details></li>
         <li><details><summary>Pages ${icon('chev-down')}</summary><ul><li><a href="/pages/about-us">About Us</a></li><li><a href="/pages/faq">FAQ’s</a></li><li><a href="/pages/our-locations">Delivery Areas</a></li><li><a href="/track">Track Order</a></li><li><a href="/pages/contact">Contact us</a></li></ul></details></li>
         <li><a href="/blogs/news">Blog</a></li>

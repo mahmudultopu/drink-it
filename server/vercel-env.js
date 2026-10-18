@@ -13,6 +13,15 @@ import { fileURLToPath } from 'node:url';
 process.env.DRINKIT_SECURE_COOKIES ??= '1';
 process.env.DRINKIT_TRUST_PROXY ??= '1';
 
+// Without a stable signing key every cold start (and every parallel instance) would sign cookies with a different
+// one, silently logging customers out. Say so in the function logs rather than failing the request.
+if (!process.env.DRINKIT_SECRET) {
+  console.warn(
+    '[config] DRINKIT_SECRET is not set: sessions will not survive a cold start. ' +
+      'Set DRINKIT_SECRET (and DRINKIT_ADMIN_PASSWORD) in the Vercel project settings.',
+  );
+}
+
 if (!process.env.DRINKIT_DATA_DIR) {
   const seed = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', 'data');
   const dir = path.join(os.tmpdir(), 'drink-it-data');

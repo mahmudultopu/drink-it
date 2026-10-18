@@ -4,7 +4,7 @@ import path from 'node:path';
 import zlib from 'node:zlib';
 import crypto from 'node:crypto';
 import { ROOT, site, products, collections, posts, pages } from './db.js';
-import { MIME, COMPRESSIBLE, esc, publicOrigin } from './util.js';
+import { MIME, COMPRESSIBLE, SECURE, esc, publicOrigin } from './util.js';
 
 const PUBLIC = path.join(ROOT, 'public'); // static assets only (CSS parts, JS, fonts, images)
 const VIEWS = path.join(ROOT, 'views'); // page templates, expanded by the server before they are sent
@@ -35,25 +35,41 @@ const PAGE_ROUTES = [
   [/^\/admin\/?$/, 'admin.html'],
 ];
 
+// Content-Security-Policy: everything is served from our own origin, so nothing else is allowed to run or load.
+//  - No inline scripts at all. Inline `style="..."` attributes are allowed (the templates position decorative
+//    elements with them) but <style> blocks are not.
+//  - frame-ancestors 'none' stops the site being embedded in other pages (clickjacking).
 const CSP = [
   "default-src 'self'",
   "img-src 'self' data: blob:",
-  "style-src 'self' 'unsafe-inline'",
+  "style-src 'self'",
+  "style-src-attr 'unsafe-inline'",
   "script-src 'self'",
   "font-src 'self'",
   "connect-src 'self'",
+  "manifest-src 'self'",
   "base-uri 'self'",
   "form-action 'self'",
-  "frame-ancestors 'self'",
+  "frame-ancestors 'none'",
   "object-src 'none'",
+  ...(SECURE ? ['upgrade-insecure-requests'] : []),
 ].join('; ');
 
-const SECURITY = {
-  'Content-Security-Policy': CSP,
+// Headers sent with every response (pages, assets and the API alike).
+const BASE_HEADERS = {
   'X-Content-Type-Options': 'nosniff',
+  'Cross-Origin-Resource-Policy': 'same-origin',
+  ...(SECURE ? { 'Strict-Transport-Security': 'max-age=63072000; includeSubDomains' } : {}),
+};
+
+// Extra headers for HTML documents.
+const SECURITY = {
+  ...BASE_HEADERS,
+  'Content-Security-Policy': CSP,
   'Referrer-Policy': 'strict-origin-when-cross-origin',
-  'X-Frame-Options': 'SAMEORIGIN',
-  'Permissions-Policy': 'camera=(), microphone=(), geolocation=()',
+  'X-Frame-Options': 'DENY',
+  'Cross-Origin-Opener-Policy': 'same-origin',
+  'Permissions-Policy': 'camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()',
 };
 
 // ---------- tiny caches ----------
@@ -100,10 +116,11 @@ ${image ? `<meta property="og:image" content="${esc(image)}">` : ''}
 ${url ? `<link rel="canonical" href="${esc(url)}">` : ''}`;
 }
 
+/** Title, description and social-card tags for the page at `pathname` (already percent-decoded by the caller). */
 function metaFor(pathname) {
   let m;
   if ((m = pathname.match(/^\/products\/([^/]+)/))) {
-    const p = products.get().find((x) => x.handle === decodeURIComponent(m[1]));
+    const p = products.get().find((x) => x.handle === m[1]);
     if (p)
       return metaTags({
         title: p.title,
@@ -112,13 +129,14 @@ function metaFor(pathname) {
         type: 'product',
       });
   } else if ((m = pathname.match(/^\/collections\/([^/]+)/))) {
-    const c = collections.get().find((x) => x.handle === decodeURIComponent(m[1]));
+    const c = collections.get().find((x) => x.handle === m[1]);
     if (c) return metaTags({ title: c.title, description: c.blurb });
   } else if ((m = pathname.match(/^\/blogs\/news\/([^/]+)/))) {
-    const p = posts.get().find((x) => x.handle === decodeURIComponent(m[1]));
+    const p = posts.get().find((x) => x.handle === m[1]);
     if (p) return metaTags({ title: p.title, description: p.excerpt, image: p.image, type: 'article' });
   } else if ((m = pathname.match(/^\/pages\/([^/]+)/))) {
-    const p = pages.get()[m[1]];
+    const all = pages.get();
+    const p = Object.hasOwn(all, m[1]) ? all[m[1]] : null;
     if (p) return metaTags({ title: p.title, description: p.intro });
   }
   return metaTags({});
@@ -154,7 +172,7 @@ function cssBundle() {
 }
 
 function send(req, res, status, buf, gz, type, extra = {}) {
-  const headers = { 'Content-Type': type, Vary: 'Accept-Encoding', ...extra };
+  const headers = { 'Content-Type': type, Vary: 'Accept-Encoding', ...BASE_HEADERS, ...extra };
   const acceptsGzip = /\bgzip\b/.test(req.headers['accept-encoding'] || '');
   let body = buf;
   if (gz && acceptsGzip) {
@@ -209,8 +227,11 @@ function sendHtml(req, res, name, pathname, status = 200) {
   }
   const html = fill(raw, { meta: metaFor(pathname) });
   const buf = Buffer.from(html);
+  const isAdmin = name === 'admin.html';
   send(req, res, status, buf, buf.length > 800 ? zlib.gzipSync(buf) : null, MIME['.html'], {
-    'Cache-Control': 'no-cache',
+    // the dashboard shell must never be cached or indexed
+    'Cache-Control': isAdmin ? 'no-store' : 'no-cache',
+    ...(isAdmin ? { 'X-Robots-Tag': 'noindex, nofollow' } : {}),
     ...SECURITY,
   });
   return true;
@@ -244,8 +265,9 @@ export function handleStatic(req, res, url) {
   } catch {
     pathname = '';
   }
-  if (!pathname || pathname.includes('\0') || pathname.includes('..')) {
-    res.writeHead(400);
+  // Reject anything that could climb out of public/: parent segments, NUL bytes, backslashes and drive letters.
+  if (!pathname || pathname.includes('\0') || pathname.includes('..') || /[\\:]/.test(pathname)) {
+    res.writeHead(400, { 'Content-Type': 'text/plain; charset=utf-8' });
     return res.end('Bad request');
   }
 
