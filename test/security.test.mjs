@@ -29,7 +29,11 @@ describe('response headers', () => {
     assert.equal(res.status, 200);
     const csp = res.headers.get('content-security-policy');
     assert.match(csp, /default-src 'self'/);
-    assert.match(csp, /script-src 'self'(;|$)/, 'scripts must come from our own origin only');
+    assert.match(
+      csp,
+      /script-src 'self' 'sha256-[A-Za-z0-9+/=]+'(;|$)/,
+      'only our own scripts and the pre-paint snippet',
+    );
     assert.match(csp, /frame-ancestors 'none'/);
     assert.match(csp, /object-src 'none'/);
     assert.doesNotMatch(csp, /script-src[^;]*unsafe-inline/);
@@ -51,10 +55,12 @@ describe('response headers', () => {
     assert.match(res.headers.get('x-robots-tag'), /noindex/);
   });
 
-  it('never caches API responses', async () => {
-    const res = await anonymous().get('/api/bootstrap');
-    assert.equal(res.headers.get('cache-control'), 'no-store');
-    assert.equal(res.headers.get('x-content-type-options'), 'nosniff');
+  it('never caches per-visitor API responses', async () => {
+    for (const url of ['/api/me', '/api/orders/lookup?number=x&phone=y', '/api/activity']) {
+      const res = await anonymous().get(url);
+      assert.equal(res.headers.get('cache-control'), 'no-store', url);
+      assert.equal(res.headers.get('x-content-type-options'), 'nosniff', url);
+    }
   });
 });
 

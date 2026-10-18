@@ -36,13 +36,19 @@ const adminClient = async () => {
 
 describe('catalogue', () => {
   it('serves the storefront data without internal fields', async () => {
-    const res = await visitor().get('/api/bootstrap');
+    const res = await visitor().get('/api/catalogue');
     assert.equal(res.status, 200);
     assert.ok(res.body.products.length > 20);
     assert.ok(res.body.collections.length > 3);
-    assert.equal(res.body.user, null);
+    assert.equal(res.body.user, undefined, 'the catalogue is shared between visitors, so it carries no visitor data');
     assert.doesNotMatch(JSON.stringify(res.body), /passwordHash|adminNote/);
     for (const p of res.body.posts) assert.equal(p.body, undefined, 'article bodies are fetched on demand');
+  });
+
+  it('reports no customer to an anonymous visitor', async () => {
+    const res = await visitor().get('/api/me');
+    assert.equal(res.status, 200);
+    assert.deepEqual(res.body, { user: null });
   });
 
   it('returns product detail and 404s for unknown handles', async () => {

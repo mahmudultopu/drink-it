@@ -1,13 +1,13 @@
 // Product serialisation for the storefront (cards vs. full detail) + review statistics.
 import { products, reviews, collections } from './db.js';
 
+// Review statistics per product, rebuilt whenever the reviews table is saved.
 let statsCache = null;
-export function invalidateStats() {
-  statsCache = null;
-}
+let statsStamp = '';
 
 function stats() {
-  if (!statsCache) {
+  if (!statsCache || statsStamp !== reviews.stamp()) {
+    statsStamp = reviews.stamp();
     statsCache = new Map();
     for (const r of reviews.all()) {
       if (!r.approved) continue;

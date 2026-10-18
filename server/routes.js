@@ -6,7 +6,7 @@
 // body of non-GET requests. Handlers answer with json() or throw an HttpError; the dispatcher at the bottom of this file
 // turns errors into responses.
 import crypto from 'node:crypto';
-import { site, products, posts, faq, pages, orders, users, reviews, subscribers, messages } from './db.js';
+import { site, products, collections, posts, faq, pages, orders, users, reviews, subscribers, messages } from './db.js';
 import {
   HttpError,
   json,
@@ -33,13 +33,16 @@ import {
   adminVersion,
   MAX_PASSWORD_LENGTH,
 } from './auth.js';
-import { allCards, toDetail, findProduct, collectionList, invalidateStats, ratingFor } from './catalog.js';
+import { allCards, toDetail, findProduct, collectionList, ratingFor } from './catalog.js';
+import { Payload, sendPayload } from './encode.js';
+import { versionJson } from './assets.js';
 import { quote, placeOrder, publicOrder, findOrderForCustomer, setStatus, STATUSES, STATUS_LABEL } from './orders.js';
 
 const SESSION_COOKIE = cookieName('di_session');
 const ADMIN_COOKIE = cookieName('di_admin');
 const THIRTY_DAYS = 30 * 24 * 3600;
 const ADMIN_SESSION_SECONDS = 12 * 3600;
+const JSON_TYPE = 'application/json; charset=utf-8';
 
 // ---------------------------------------------------------------- routing table
 
@@ -123,14 +126,32 @@ const publicSite = () => {
     : s;
 };
 
-route('GET', '/api/bootstrap', (ctx) => {
-  json(ctx.res, 200, {
-    site: publicSite(),
-    collections: collectionList(),
-    products: allCards(),
-    posts: posts.get().map(({ body: _body, ...p }) => p),
-    user: publicUser(ctx.user),
-  });
+// The catalogue is identical for every visitor, so it is built once, compressed once and shared with browsers and
+// CDNs. It is rebuilt when its data changes, and at least once a minute so expired deals drop out.
+// Browsers keep it for 30 s and then revalidate (a cheap 304); shared caches keep it for a minute. Vercel's CDN may also
+// serve a slightly older copy while it fetches a fresh one, which keeps cold starts out of the visitor's way.
+const CATALOGUE_CACHE = {
+  'Cache-Control': 'public, max-age=30, s-maxage=60',
+  'Vercel-CDN-Cache-Control': 'max-age=60, stale-while-revalidate=600',
+};
+let catalogue = { key: '', payload: null };
+
+function cataloguePayload() {
+  const key = `${[site, products, collections, posts, reviews].map((t) => t.stamp()).join('|')}|${Math.floor(Date.now() / 60_000)}`;
+  if (catalogue.key !== key) {
+    const data = {
+      site: publicSite(),
+      collections: collectionList(),
+      products: allCards(),
+      posts: posts.get().map(({ body: _body, ...p }) => p), // article text is fetched when an article is opened
+    };
+    catalogue = { key, payload: new Payload(JSON.stringify(versionJson(data)), JSON_TYPE) };
+  }
+  return catalogue.payload;
+}
+
+route('GET', '/api/catalogue', (ctx) => {
+  sendPayload(ctx.req, ctx.res, cataloguePayload(), { ...CATALOGUE_CACHE, 'X-Content-Type-Options': 'nosniff' });
 });
 
 route('GET', '/api/products/:handle', (ctx) => {
@@ -643,13 +664,11 @@ route('PATCH', '/api/admin/reviews/:id', (ctx) => {
   if (!r) throw new HttpError(404, 'Review not found');
   r.approved = !!ctx.body.approved;
   reviews.save();
-  invalidateStats();
   json(ctx.res, 200, { ok: true });
 });
 route('DELETE', '/api/admin/reviews/:id', (ctx) => {
   needAdmin(ctx);
   reviews.remove((r) => r.id === ctx.params.id);
-  invalidateStats();
   json(ctx.res, 200, { ok: true });
 });
 route('GET', '/api/admin/messages', (ctx) => {

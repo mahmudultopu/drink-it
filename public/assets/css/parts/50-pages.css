@@ -565,3 +565,12 @@
     flex-wrap: wrap;
   }
 }
+
+/* Shown instead of the page when the catalogue cannot be loaded (see app.js) */
+.load-error {
+  padding: 80px 20px;
+  text-align: center;
+}
+.load-error .btn {
+  margin-top: 12px;
+}

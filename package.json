@@ -27,6 +27,7 @@
   },
   "scripts": {
     "start": "node server.js",
+    "build": "node scripts/build-assets.mjs",
     "test": "node --test",
     "lint": "eslint .",
     "format": "prettier --write .",

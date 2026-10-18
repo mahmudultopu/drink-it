@@ -8,7 +8,7 @@ import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
+export const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
 
 export const ADMIN_PASSWORD = 'test-admin-passphrase-2026';
 
@@ -44,6 +44,7 @@ export async function startServer(env = {}) {
       HOST: '127.0.0.1',
       DRINKIT_DATA_DIR: dataDir,
       DRINKIT_SECRET: 'test-secret-'.padEnd(48, 'x'),
+      DRINKIT_ASSETS: 'source', // exercise the readable sources whether or not `npm run build` has been run
       DRINKIT_TRUST_PROXY: '1', // the tests act as a proxy: each Client below reports its own visitor address
       DRINKIT_ADMIN_PASSWORD: ADMIN_PASSWORD,
       ...env,
@@ -134,18 +135,20 @@ export class Client {
 }
 
 /**
- * Send a request with the path exactly as given. fetch() normalises "/../" and "%2e%2e" away before sending, so
- * path traversal probes have to bypass it.
+ * Send a request with the path and headers exactly as given, and return the body as raw bytes. fetch() normalises
+ * "/../" and "%2e%2e" away and decompresses responses before handing them back, so path traversal probes and
+ * content-encoding checks have to bypass it.
  */
-export function rawRequest(base, rawPath, { method = 'GET' } = {}) {
+export function rawRequest(base, rawPath, { method = 'GET', headers = {} } = {}) {
   const { hostname, port } = new URL(base);
   return new Promise((resolve, reject) => {
-    const req = http.request({ hostname, port, path: rawPath, method }, (res) => {
+    const req = http.request({ hostname, port, path: rawPath, method, headers }, (res) => {
       const chunks = [];
       res.on('data', (c) => chunks.push(c));
-      res.on('end', () =>
-        resolve({ status: res.statusCode, headers: res.headers, body: Buffer.concat(chunks).toString() }),
-      );
+      res.on('end', () => {
+        const bytes = Buffer.concat(chunks);
+        resolve({ status: res.statusCode, headers: res.headers, bytes, body: bytes.toString() });
+      });
     });
     req.on('error', reject);
     req.end();

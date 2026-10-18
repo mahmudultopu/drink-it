@@ -2,6 +2,7 @@
 // client addresses, rate limiting and input sanitising.
 import crypto from 'node:crypto';
 import net from 'node:net';
+import { versionJson } from './assets.js';
 
 /**
  * An error that maps directly onto an HTTP response.
@@ -85,9 +86,12 @@ const CANONICAL_ORIGIN = (() => {
 
 // ---------------------------------------------------------------- responses
 
-/** Send a JSON response. API responses are never cached and must not be sniffed as anything else. */
+/**
+ * Send a JSON response. API responses are never cached and must not be sniffed as anything else. Image and font
+ * URLs in the payload get their content hash appended, like the ones in the pages (see assets.js).
+ */
 export function json(res, status, obj, headers = {}) {
-  const body = JSON.stringify(obj);
+  const body = JSON.stringify(versionJson(obj));
   res.writeHead(status, {
     'Content-Type': 'application/json; charset=utf-8',
     'Cache-Control': 'no-store',

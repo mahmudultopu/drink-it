@@ -27,8 +27,14 @@ export async function api(path, { method = 'GET', body } = {}) {
 }
 
 let bootPromise;
-/** Site config + catalogue, fetched once per page load. */
+/**
+ * Everything a page needs before it can render, fetched once per page load: the shared catalogue (cacheable, and
+ * preloaded by the page head) and the logged-in customer (per visitor, never cached). A failing /me call only means
+ * "not logged in" - it must not stop the shop from loading.
+ */
 export function bootstrap() {
-  bootPromise = bootPromise || api('/bootstrap');
+  bootPromise ||= Promise.all([api('/catalogue'), api('/me').catch(() => ({ user: null }))]).then(
+    ([catalogue, me]) => ({ ...catalogue, user: me.user }),
+  );
   return bootPromise;
 }

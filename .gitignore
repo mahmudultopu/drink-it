@@ -17,3 +17,6 @@ data/secret.key
 Thumbs.db
 # renderer scratch output
 scripts/render/out/
+
+# production asset build (npm run build)
+public/assets/dist/

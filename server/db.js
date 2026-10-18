@@ -52,7 +52,13 @@ class WatchedJson {
     this.file = path.join(DATA_DIR, name);
     this.fallback = fallback;
     this.mtime = 0;
+    this.rev = 0;
     this.value = fallback;
+  }
+  /** Changes whenever the contents change (on disk or through save()); used to invalidate derived caches. */
+  stamp() {
+    this.get();
+    return `${this.mtime}.${this.rev}`;
   }
   get() {
     let m = 0;
@@ -69,6 +75,7 @@ class WatchedJson {
   }
   save(value) {
     this.value = value;
+    this.rev++;
     writeJsonAtomic(this.file, value);
     try {
       this.mtime = fs.statSync(this.file).mtimeMs;
@@ -82,14 +89,20 @@ class WatchedJson {
 class Table {
   constructor(name, fallback = []) {
     this.file = path.join(DATA_DIR, name);
+    this.rev = 0;
     this.rows = readFileJson(this.file, fallback);
     if (!fs.existsSync(this.file)) writeJsonAtomic(this.file, this.rows);
   }
   all() {
     return this.rows;
   }
+  /** Changes on every save(); used to invalidate derived caches. */
+  stamp() {
+    return String(this.rev);
+  }
   /** Persist the current rows; call after mutating a record in place. */
   save() {
+    this.rev++;
     writeJsonAtomic(this.file, this.rows);
   }
   add(row) {
