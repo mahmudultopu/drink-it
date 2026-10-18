@@ -1,5 +1,8 @@
 # Drink it — Bangladesh's cold-can store
 
+**Live preview:** <https://drink-it-drab.vercel.app> — a demo deployment on Vercel. Browse, add to cart and check out,
+but orders are not saved there (see [Deploy](#deploy)).
+
 Drink it is a complete online store for canned cold drinks in Bangladesh — Coca-Cola, Pepsi, Sprite, 7UP, Fanta,
 Mirinda, Mountain Dew, Mojo, Clemon, Speed, Royal Tiger, Red Bull, Monster, imported cans and more. Customers buy
 **from the Drink it website itself**: they pick singles, 6-packs, 12-packs or cartons of 24, check out with
