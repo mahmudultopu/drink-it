@@ -25,7 +25,8 @@ On the **first run** the console prints a random admin password once. Forgot it 
 
 Other settings (environment variables): `PORT` (default 3000), `HOST` (default `127.0.0.1`; use `0.0.0.0` to open
 the store from your phone on the same Wi-Fi), `DRINKIT_SECURE_COOKIES=1` (when served over HTTPS),
-`DRINKIT_TRUST_PROXY=1` (when behind a reverse proxy).
+`DRINKIT_TRUST_PROXY=1` (when behind a reverse proxy), `DRINKIT_DATA_DIR` (where the JSON data lives; default
+`data/`) and `DRINKIT_SECRET` (cookie-signing key; by default one is generated into `data/secret.key`).
 
 ## Before you go live — replace the placeholders
 
@@ -46,10 +47,10 @@ Coupons live in `data/coupons.json` (`WELCOME50`, `DRINKIT10`, `FREESHIP`).
 
 ## What's inside
 
-**Storefront** (`public/`): home (two layouts), collections + filters/sorting, product page (gallery, pack picker,
-delivery estimate, reviews), cart drawer + cart page, checkout, order confirmation, order tracking, accounts,
-wishlist, compare, search, blog, about, contact, FAQ, delivery areas, policies, 404. Fully responsive with a mobile
-tab bar.
+**Storefront** (page templates in `views/`, CSS / JS / fonts / images in `public/assets/`): home (two layouts),
+collections + filters/sorting, product page (gallery, pack picker, delivery estimate, reviews), cart drawer + cart
+page, checkout, order confirmation, order tracking, accounts, wishlist, compare, search, blog, about, contact, FAQ,
+delivery areas, policies, 404. Fully responsive with a mobile tab bar.
 
 **Server** (`server.js`, `server/`): zero-dependency Node server. JSON API, static hosting with gzip, order pricing
 re-checked on the server (client prices are never trusted), stock reservation, accounts (scrypt-hashed passwords,
@@ -78,6 +79,26 @@ Existing customer reviews are never overwritten.
 To use real product photos instead of the illustrated cans, drop images into `public/assets/img/` and change the
 `images` paths in `data/products.json`.
 
+## Deploy
+
+**On a server with a persistent disk** (a VPS, Railway/Render with a disk, your own PC…): run `npm start` behind
+HTTPS and set `PORT`, `DRINKIT_SECURE_COOKIES=1` and `DRINKIT_TRUST_PROXY=1`. Orders, accounts and reviews are saved
+in `data/` — back that folder up. This is the setup to use for a shop that takes real orders.
+
+**On Vercel (preview only).** Import the repo as-is: `vercel.json` serves `public/assets/` from the CDN and sends
+everything else to the serverless function in `api/index.js`, which runs the same handlers as `server.js`. A
+serverless function has no persistent disk, so there the store starts from the catalogue in `data/` and keeps
+whatever is written at run time (orders, accounts, reviews, stock changes) in `/tmp` — it is **lost on a cold start
+and not shared between instances**. The site says so in its announcement bar. Use it to show the store off; for real
+orders use a host with a disk, or swap the storage in `server/db.js` for a database.
+
+Environment variables for Vercel (Project → Settings → Environment Variables):
+
+| Variable | Purpose |
+| --- | --- |
+| `DRINKIT_ADMIN_PASSWORD` | Turns on the `/admin` login (it stays closed on Vercel until you set this). |
+| `DRINKIT_SECRET` | Any long random string; keeps login cookies valid across server instances. |
+
 ## Notes & limits
 
 * **Payments:** cash on delivery works out of the box. bKash / Nagad / Rocket use the common "Send Money + TrxID"
@@ -89,8 +110,8 @@ To use real product photos instead of the illustrated cans, drop images into `pu
   testimonials on the home page and the crew names on the About page are placeholders — replace them with real ones
   (home-page testimonials: `public/assets/js/pages/home.js`).
   Brand names are used only to describe products for sale; the can illustrations are original artwork.
-* **Hosting:** the server keeps data in local files, so host it on a machine with a persistent disk (a VPS, Railway/
-  Render with a disk, etc.), not a read-only serverless platform.
+* **Hosting:** the server keeps data in local files, so a shop that takes real orders needs a machine with a
+  persistent disk (see *Deploy* above); serverless platforms such as Vercel are fine for previews only.
 
 ## Credits
 

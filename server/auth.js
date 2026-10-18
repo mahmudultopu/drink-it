@@ -6,11 +6,15 @@ import { secretFile, adminFile, writeJsonAtomic } from './db.js';
 let SECRET;
 function secret() {
   if (!SECRET) {
-    try {
-      SECRET = fs.readFileSync(secretFile, 'utf8').trim();
-    } catch {
-      SECRET = crypto.randomBytes(32).toString('hex');
-      fs.writeFileSync(secretFile, SECRET, { mode: 0o600 });
+    if (process.env.DRINKIT_SECRET) {
+      SECRET = process.env.DRINKIT_SECRET; // one signing key shared by every server instance
+    } else {
+      try {
+        SECRET = fs.readFileSync(secretFile, 'utf8').trim();
+      } catch {
+        SECRET = crypto.randomBytes(32).toString('hex');
+        fs.writeFileSync(secretFile, SECRET, { mode: 0o600 });
+      }
     }
   }
   return SECRET;

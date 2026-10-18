@@ -4,9 +4,10 @@ import path from 'node:path';
 import zlib from 'node:zlib';
 import crypto from 'node:crypto';
 import { ROOT, site, products, collections, posts, pages } from './db.js';
-import { MIME, COMPRESSIBLE, esc } from './util.js';
+import { MIME, COMPRESSIBLE, esc, publicOrigin } from './util.js';
 
-const PUBLIC = path.join(ROOT, 'public');
+const PUBLIC = path.join(ROOT, 'public'); // static assets only (CSS parts, JS, fonts, images)
+const VIEWS = path.join(ROOT, 'views'); // page templates, expanded by the server before they are sent
 const PARTIALS = path.join(ROOT, 'partials');
 
 const PAGE_ROUTES = [
@@ -161,7 +162,7 @@ function sendFile(req, res, file, status = 200) {
 }
 
 function sendHtml(req, res, name, pathname, status = 200) {
-  const file = path.join(PUBLIC, name);
+  const file = path.join(VIEWS, name);
   let raw;
   try { raw = fs.readFileSync(file, 'utf8'); } catch { return false; }
   const html = fill(raw, { meta: metaFor(pathname) });
@@ -170,8 +171,7 @@ function sendHtml(req, res, name, pathname, status = 200) {
   return true;
 }
 
-function sitemap(host) {
-  const base = `http://${host}`;
+function sitemap(base) {
   const urls = ['/', '/collections', '/blogs/news', '/pages/about-us', '/pages/contact', '/pages/faq', '/pages/our-locations', '/track']
     .concat(collections.get().map((c) => `/collections/${c.handle}`))
     .concat(products.get().map((p) => `/products/${p.handle}`))
@@ -201,11 +201,11 @@ export function handleStatic(req, res, url) {
     return res.end();
   }
   if (pathname === '/robots.txt') {
-    const body = Buffer.from(`User-agent: *\nAllow: /\nDisallow: /admin\nDisallow: /api/\nSitemap: http://${req.headers.host}/sitemap.xml\n`);
+    const body = Buffer.from(`User-agent: *\nAllow: /\nDisallow: /admin\nDisallow: /api/\nSitemap: ${publicOrigin(req)}/sitemap.xml\n`);
     return send(req, res, 200, body, null, MIME['.txt']);
   }
   if (pathname === '/sitemap.xml') {
-    const body = Buffer.from(sitemap(req.headers.host));
+    const body = Buffer.from(sitemap(publicOrigin(req)));
     return send(req, res, 200, body, null, MIME['.xml']);
   }
 

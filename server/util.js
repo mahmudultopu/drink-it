@@ -50,9 +50,16 @@ export async function readJson(req, limit = 200_000) {
     if (size > limit) throw new HttpError(413, 'Request body too large');
     chunks.push(chunk);
   }
-  if (!size) return {};
+  let text = size ? Buffer.concat(chunks).toString('utf8') : '';
+  if (!size && req.body != null) {
+    // Hosting runtimes such as Vercel may have drained the stream and parsed the body already.
+    const b = req.body;
+    text = typeof b === 'string' ? b : Buffer.isBuffer(b) ? b.toString('utf8') : JSON.stringify(b);
+    if (text.length > limit) throw new HttpError(413, 'Request body too large');
+  }
+  if (!text) return {};
   try {
-    const parsed = JSON.parse(Buffer.concat(chunks).toString('utf8'));
+    const parsed = JSON.parse(text);
     if (parsed === null || typeof parsed !== 'object') throw new Error('not an object');
     return parsed;
   } catch {
@@ -84,6 +91,12 @@ export function setCookie(res, name, value, { maxAge, httpOnly = true, sameSite 
   if (maxAge !== undefined) parts.push(`Max-Age=${maxAge}`);
   const prev = res.getHeader('Set-Cookie');
   res.setHeader('Set-Cookie', prev ? [].concat(prev, parts.join('; ')) : parts.join('; '));
+}
+
+/** Scheme + host as the visitor sees it (needs DRINKIT_TRUST_PROXY=1 to believe X-Forwarded-Proto). */
+export function publicOrigin(req) {
+  const proto = TRUST_PROXY && String(req.headers['x-forwarded-proto'] || '').split(',')[0].trim() === 'https' ? 'https' : 'http';
+  return `${proto}://${req.headers.host}`;
 }
 
 export function clientIp(req) {

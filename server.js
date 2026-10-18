@@ -1,11 +1,8 @@
 // Drink it — zero-dependency Node server: storefront pages, JSON API and admin dashboard.
 // Start:  npm start   (or double-click start.bat)      Open: http://localhost:3000
 import http from 'node:http';
-import { URL } from 'node:url';
-import { handleApi } from './server/routes.js';
-import { handleStatic, notFound } from './server/static.js';
+import { handleRequest } from './server/app.js';
 import { ensureAdmin } from './server/auth.js';
-import { clientIp } from './server/util.js';
 import './server/db.js';
 
 const PORT = Number(process.env.PORT) || 3000;
@@ -17,23 +14,7 @@ if (process.argv.includes('--reset-admin')) {
   process.exit(0);
 }
 
-const server = http.createServer((req, res) => {
-  const ip = clientIp(req);
-  let url;
-  try {
-    url = new URL(req.url, `http://${req.headers.host || 'localhost'}`);
-  } catch {
-    res.writeHead(400);
-    return res.end('Bad request');
-  }
-  if (url.pathname.startsWith('/api/')) return void handleApi(req, res, url, ip);
-  try {
-    handleStatic(req, res, url);
-  } catch (e) {
-    console.error('Static error:', e);
-    if (!res.headersSent) notFound(req, res);
-  }
-});
+const server = http.createServer(handleRequest);
 
 server.on('clientError', (err, socket) => socket.end('HTTP/1.1 400 Bad Request\r\n\r\n'));
 

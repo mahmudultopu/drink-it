@@ -32,10 +32,18 @@ function limit(ctx, key, max, windowMs, msg = 'Too many requests. Please try aga
 const needUser = (ctx) => { if (!ctx.user) throw new HttpError(401, 'Please log in first.'); };
 const needAdmin = (ctx) => { if (!ctx.admin) throw new HttpError(401, 'Admin login required.'); };
 
+// When the data folder is throw-away storage (see server/vercel-env.js) say so on every page, so nobody
+// mistakes a preview deployment for a shop that really takes orders.
+const PREVIEW_NOTICE = 'Preview site — orders placed here are not saved or delivered.';
+const publicSite = () => {
+  const s = site.get();
+  return process.env.DRINKIT_EPHEMERAL === '1' ? { ...s, announcements: [PREVIEW_NOTICE, ...(s.announcements || [])] } : s;
+};
+
 // ---------------------------------------------------------------- public catalogue
 route('GET', '/api/bootstrap', (ctx) => {
   json(ctx.res, 200, {
-    site: site.get(),
+    site: publicSite(),
     collections: collectionList(),
     products: allCards(),
     posts: posts.get().map(({ body, ...p }) => p),
