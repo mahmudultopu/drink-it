@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en" class="no-js" data-layout="1" data-force-layout="1">
+<head>
+<!--@head-->
+</head>
+<body data-page="home" class="page-home">
+<!--@header-->
+
+<!-- HERO SLIDER -->
+<section class="hero" data-hero aria-roledescription="carousel" aria-label="Featured offers">
+  <div class="hero__stack">
+    <article class="hero__slide is-active" role="group" aria-roledescription="slide" aria-label="1 of 2">
+      <div class="hero__media"><img src="/assets/img/scenes/hero-1.svg" alt="Ice-cold cans of Coca-Cola, Sprite, Fanta, Mountain Dew and Pepsi with ice and a splash" width="1128" height="1210" fetchpriority="high"></div>
+      <div class="hero__panel">
+        <div class="hero__copy" data-reveal="left">
+          <h1>Chill Your Day with Drink it</h1>
+          <a class="btn btn--crimson" href="/collections">Shop by Collections</a>
+        </div>
+        <div class="hero__art" data-reveal="zoom">
+          <div class="hero__arch"><img data-hero-can="coca-cola-original-250ml-can" alt="Coca-Cola can" loading="eager"></div>
+          <img class="hero__badge" src="/assets/img/shapes/badge-ice.svg" alt="" width="226" height="226">
+        </div>
+      </div>
+    </article>
+    <article class="hero__slide hero__slide--rev" role="group" aria-roledescription="slide" aria-label="2 of 2">
+      <div class="hero__media"><img src="/assets/img/scenes/hero-2.svg" alt="Orange and citrus cans surrounded by ice and orange slices" width="1128" height="1210"></div>
+      <div class="hero__panel">
+        <div class="hero__copy">
+          <h2 class="hero__h">Every Cold Can, One Click Away</h2>
+          <a class="btn btn--lime" href="/collections/all?sort=best">Shop Best Sellers</a>
+        </div>
+        <div class="hero__art">
+          <div class="hero__arch"><img data-hero-can="fanta-orange-250ml-can" alt="Fanta Orange can" loading="lazy"></div>
+          <img class="hero__badge" src="/assets/img/shapes/badge-heart.svg" alt="" width="226" height="226">
+        </div>
+      </div>
+    </article>
+  </div>
+  <button class="arrow-btn hero__arrow hero__arrow--prev" type="button" aria-label="Previous slide" data-hero-prev><svg viewBox="0 0 24 24"><use href="/assets/img/icons.svg#arrow-left"/></svg></button>
+  <button class="arrow-btn hero__arrow hero__arrow--next" type="button" aria-label="Next slide" data-hero-next><svg viewBox="0 0 24 24"><use href="/assets/img/icons.svg#arrow-right"/></svg></button>
+  <div class="dots hero__dots" data-hero-dots></div>
+</section>
+
+<!-- COLLECTION LIST -->
+<section class="sec sec--collections">
+  <div class="sec-head" data-reveal="up">
+    <p class="eyebrow">Find Your Flavor</p>
+    <h2>Explore Every Can,<br>Made to Refresh</h2>
+  </div>
+  <div class="crows" data-collection-rows></div>
+  <div class="center sec__cta"><a class="btn" href="/collections">View All Collections</a></div>
+</section>
+
+<!-- BEST PICKS -->
+<section class="sec sec--green-top">
+  <div class="hills" role="presentation"></div>
+  <div class="sec-green on-dark">
+    <div class="sec-head" data-reveal="up">
+      <p class="eyebrow">Our Best Picks</p>
+      <h2>Shop Refreshing Drinks Loved by Everyone</h2>
+    </div>
+    <div class="pgrid pgrid--green" data-grid="picks"></div>
+    <a class="viewall" href="/collections/all">View All</a>
+  </div>
+</section>
+
+<!-- FEATURED CAN SLIDER -->
+<section class="sec sec--featured torn-top wave-bottom" style="--torn: var(--lime)" data-featured>
+  <div class="featured__grid">
+    <div class="featured__left">
+      <div>
+        <p class="eyebrow eyebrow--ink" data-feat="eyebrow">Award-Winning Flavor</p>
+        <h2 class="featured__title" data-feat="title">Coca-Cola — Pure Cola Fizz</h2>
+      </div>
+      <a class="btn" href="#" data-feat="link">Shop Now</a>
+    </div>
+    <div class="featured__center">
+      <div class="featured__stage">
+        <button class="arrow-btn arrow-btn--outline featured__prev" type="button" aria-label="Previous can" data-feat-prev><svg viewBox="0 0 24 24"><use href="/assets/img/icons.svg#arrow-left"/></svg></button>
+        <img class="featured__can" data-feat="image" alt="" width="294" height="560">
+        <button class="arrow-btn arrow-btn--outline featured__next" type="button" aria-label="Next can" data-feat-next><svg viewBox="0 0 24 24"><use href="/assets/img/icons.svg#arrow-right"/></svg></button>
+      </div>
+      <div class="featured__count"><span data-feat="count">01 / 03</span><strong data-feat="name">Coca-Cola</strong></div>
+    </div>
+    <dl class="featured__stats">
+      <div><dt>Serve at</dt><dd data-feat="temp">4–6 °C</dd></div>
+      <div><dt>Colour</dt><dd data-feat="color">Ruby Red</dd></div>
+      <div><dt>Energy</dt><dd data-feat="cal">42 kcal / 100 ml</dd></div>
+      <div><dt>Flavor</dt><dd data-feat="flavor">Classic Cola</dd></div>
+    </dl>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="sec sec--about">
+  <div class="about">
+    <div class="about__card" data-reveal="right">
+      <div class="about__blob"><img src="/assets/img/scenes/about-scene.svg" alt="Colourful cans on a sunny yellow background" width="1140" height="960" loading="lazy"><img class="about__badge" src="/assets/img/shapes/badge-ice.svg" alt="" width="150" height="150" loading="lazy"></div>
+      <p class="eyebrow eyebrow--lime">Our Story</p>
+      <h3>Refreshing Moments, One Drink at a Time</h3>
+    </div>
+    <div class="about__text" data-reveal="left">
+      <p class="eyebrow">Who We Are</p>
+      <h2 class="about__title">Bringing Every Cold Can to Your Door</h2>
+      <p class="about__lead">Discover Our Online Shop</p>
+      <a class="btn btn--lime" href="/pages/about-us">About Us</a>
+    </div>
+  </div>
+</section>
+
+<!-- VIDEO-STYLE STRIPES -->
+<section class="sec sec--strips" data-strips>
+  <div class="strips" data-strips-box aria-label="A colourful parade of cold cans">
+    <div class="strips__bars" data-strips-bars></div>
+    <button class="strips__play" type="button" aria-label="Pause animation" data-strips-toggle><img src="/assets/img/shapes/play-badge.svg" alt="" width="126" height="126"></button>
+  </div>
+</section>
+
+<!-- TOP FAVORITES -->
+<section class="sec sec--green-top sec--favorites">
+  <div class="hills" role="presentation"></div>
+  <div class="sec-green on-dark">
+    <div class="sec-head" data-reveal="up">
+      <p class="eyebrow">Top Favorites</p>
+      <h2>Best-Selling Cans Everyone’s Talking About</h2>
+    </div>
+    <div class="pgrid pgrid--green" data-grid="top"></div>
+    <a class="viewall" href="/collections/all?sort=best">View All</a>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="sec sec--services torn-top wave-bottom" style="--torn: var(--lime)">
+  <div class="services">
+    <div class="service" data-reveal="up">
+      <svg viewBox="0 0 24 24"><use href="/assets/img/icons.svg#truck"/></svg>
+      <h3>Free Delivery for orders over ৳1,500</h3>
+    </div>
+    <div class="service" data-reveal="up">
+      <svg viewBox="0 0 24 24"><use href="/assets/img/icons.svg#headset"/></svg>
+      <h3>Friendly Support, 9 AM to 11 PM Every Day</h3>
+    </div>
+    <div class="service" data-reveal="up">
+      <svg viewBox="0 0 24 24"><use href="/assets/img/icons.svg#wallet"/></svg>
+      <h3>Pay with bKash, Nagad, Rocket or Cash on Delivery</h3>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="sec sec--reviews">
+  <div class="sec-head" data-reveal="up">
+    <p class="eyebrow">Loved by Customers</p>
+    <h2>What Drink Lovers Say About Drink it</h2>
+  </div>
+  <div class="reels" data-reviews></div>
+</section>
+
+<!-- BLOG -->
+<section class="sec sec--blog">
+  <div class="sec-head" data-reveal="up">
+    <p class="eyebrow">From the Drink it Journal</p>
+    <h2>Fresh Sips, Tips &amp; Tasty Stories</h2>
+  </div>
+  <div class="blog-grid" data-blog-grid></div>
+  <div class="center sec__cta"><a class="btn" href="/blogs/news">View All Blog</a></div>
+</section>
+
+<!--@footer-->
+<!--@scripts-->
+</body>
+</html>

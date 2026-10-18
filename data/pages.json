@@ -1,0 +1,22 @@
+{
+ "about-us": {
+  "title": "About Us",
+  "intro": "Drink it is Bangladesh’s online store for every cold can — one place to shop all your favourite brands, delivered to your door."
+ },
+ "shipping-policy": {
+  "title": "Shipping Policy",
+  "body": "\n<h2>Delivery areas</h2>\n<p>We deliver to all 64 districts of Bangladesh. Delivery inside Dhaka division is quickest; other divisions may take a little longer depending on the courier route.</p>\n<h2>Delivery charges</h2>\n<ul>\n<li>Inside Dhaka: ৳60</li>\n<li>Outside Dhaka: ৳120</li>\n<li>Free delivery on orders above ৳1,500 (before coupons).</li>\n</ul>\n<h2>Delivery times</h2>\n<ul>\n<li>Dhaka: 1–2 working days</li>\n<li>Other divisions: 3–5 working days</li>\n</ul>\n<p>Orders placed before 3:00 PM (Bangladesh time) are processed the same day. Delivery times are estimates and may vary during public holidays, severe weather or high demand.</p>\n<h2>Receiving your order</h2>\n<p>Please check your order while the delivery person is present. If a carton is damaged, tell the delivery person and message us within 24 hours with photos.</p>"
+ },
+ "refund-policy": {
+  "title": "Refund Policy",
+  "body": "\n<h2>Damaged or wrong items</h2>\n<p>If a can arrives dented, leaking or different from what you ordered, contact us within 24 hours of delivery with your order number and a clear photo. We will replace the item or refund its value.</p>\n<h2>Change of mind</h2>\n<p>For food-safety reasons we cannot accept returns of opened or used cans. Unopened cartons in original condition may be returned within 3 days of delivery at the customer’s cost.</p>\n<h2>Refund method</h2>\n<p>Refunds are sent to the original payment method (bKash, Nagad or Rocket) within 3–5 working days after approval. For cash on delivery orders we refund to your mobile wallet.</p>"
+ },
+ "privacy-policy": {
+  "title": "Privacy Policy",
+  "body": "\n<h2>What we collect</h2>\n<p>When you place an order or create an account we collect your name, phone number, email (optional), delivery address and order details. We use this only to process and deliver your order and to contact you about it.</p>\n<h2>How we use it</h2>\n<ul>\n<li>To confirm, pack and deliver your order.</li>\n<li>To send order updates and, if you subscribe, occasional offers.</li>\n<li>To improve our store and prevent fraud.</li>\n</ul>\n<h2>Sharing</h2>\n<p>We share your name, phone number and address with our delivery partners so they can reach you. We never sell your data.</p>\n<h2>Your choices</h2>\n<p>You can ask us to update or delete your information at any time by contacting us.</p>"
+ },
+ "terms-condition": {
+  "title": "Terms & Conditions",
+  "body": "\n<h2>Using this website</h2>\n<p>By placing an order you agree that the details you provide are accurate and that you are legally able to make the purchase.</p>\n<h2>Prices and stock</h2>\n<p>All prices are in Bangladeshi Taka (৳) and include applicable taxes. Prices and availability may change without notice. If an item becomes unavailable after you order, we will contact you and offer a replacement or refund.</p>\n<h2>Product information</h2>\n<p>Product images are illustrations; the can design you receive may differ slightly because manufacturers update their packaging. Check the can label for ingredients, allergens and best-before dates.</p>\n<h2>Brand names</h2>\n<p>Brand names and trademarks belong to their respective owners. Drink it is an independent retailer and is not affiliated with the brands it sells.</p>\n<h2>Contact</h2>\n<p>Questions about these terms? Contact us using the details on our Contact page.</p>"
+ }
+}

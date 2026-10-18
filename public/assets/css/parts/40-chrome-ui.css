@@ -1,0 +1,85 @@
+/* ==========================================================================
+   Chrome UI: cart drawer, search modal, newsletter popup, activity toast
+   ========================================================================== */
+
+/* ---------- cart drawer / cart lines (shared with the cart page) ---------- */
+.clines { display: grid; }
+.cline { display: grid; grid-template-columns: 80px minmax(0, 1fr) 38px; gap: 14px; padding: 16px 0; border-bottom: 1px solid var(--line); align-items: start; }
+.cline:first-child { padding-top: 0; }
+.cline__img { display: flex; align-items: center; justify-content: center; width: 80px; height: 80px; padding: 6px; border-radius: 10px; background: var(--tile, #f5f5e6); overflow: hidden; }
+.cline__img img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; }
+.cline__title { display: block; font: 400 18px/1.3 var(--font-heading); }
+.cline__title:hover { text-decoration: underline; text-underline-offset: 3px; }
+.cline__pack { margin: 2px 0 10px; font-size: 14px; color: var(--muted); }
+.cline__row { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.cline__total { font: 500 18px/1 var(--font-heading); }
+.cline__rm { width: 36px; height: 36px; color: var(--muted); }
+.cline__rm:hover { color: var(--danger); background: rgba(192, 24, 47, 0.08); }
+.cline__rm svg { width: 18px; height: 18px; }
+.cart-empty { display: grid; justify-items: center; gap: 12px; padding: 50px 10px; text-align: center; }
+.cart-empty img { width: 110px; }
+.cart-empty h3 { font-size: 28px; }
+.cart-empty p { color: var(--muted); max-width: 280px; }
+.freebar p { margin-bottom: 8px; font-size: 15px; }
+.freebar__track { height: 9px; overflow: hidden; border-radius: 6px; background: rgba(17, 112, 75, 0.15); }
+.freebar__track span { display: block; height: 100%; border-radius: 6px; background: var(--green); transition: width 0.4s var(--ease); }
+.cart-sub { display: flex; justify-content: space-between; align-items: baseline; margin: 16px 0 2px; font-size: 20px; }
+.cart-sub b { font: 500 24px var(--font-heading); }
+.cart-note { margin-bottom: 14px; font-size: 13px; color: var(--muted); }
+.cart-actions { display: grid; gap: 10px; }
+
+/* ---------- search ---------- */
+.search-modal { align-items: start; padding: 0; }
+.search-modal .modal__backdrop { background: rgba(32, 13, 7, 0.5); }
+.search-modal__panel { position: relative; width: 100%; max-height: 92vh; overflow: auto; padding: 26px max(20px, 9vw) 34px; background: #fff; border-radius: 0 0 22px 22px; transform: translateY(-24px); transition: transform 0.35s var(--ease); box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2); }
+.search-modal.is-open .search-modal__panel { transform: none; }
+.search-form { display: flex; align-items: center; gap: 14px; padding: 6px 0 8px; border-bottom: 2px solid var(--green); }
+.search-form > svg { flex: none; width: 28px; height: 28px; fill: none; stroke: var(--green); stroke-width: 1.8; stroke-linecap: round; }
+.search-form input { flex: 1; min-width: 0; border: 0; background: none; outline: none; font: 400 clamp(22px, 3vw, 32px) / 1.3 var(--font-heading); color: var(--ink); }
+.search-form input::placeholder { color: rgba(32, 13, 7, 0.4); }
+.search-results { display: grid; gap: 16px; margin-top: 22px; }
+.sres__chips { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.sres__chips > span { font-weight: 600; margin-right: 4px; }
+.sres__head { display: flex; align-items: center; justify-content: space-between; }
+.sres__head h3 { font-size: 26px; }
+.link-btn { text-decoration: underline; text-underline-offset: 3px; font-weight: 500; }
+.sres__list { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 330px), 1fr)); gap: 4px 20px; }
+.sres { display: grid; grid-template-columns: 60px minmax(0, 1fr) auto; gap: 14px; align-items: center; padding: 8px; border-radius: 12px; transition: background-color 0.2s; }
+.sres:hover { background: var(--cream); }
+.sres__img { display: flex; align-items: center; justify-content: center; width: 60px; height: 60px; padding: 4px; border-radius: 10px; background: var(--tile, #f5f5e6); overflow: hidden; }
+.sres__img img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; }
+.sres__body b { display: block; font: 400 18px/1.3 var(--font-heading); }
+.sres__body small { color: var(--muted); }
+.sres__none { padding: 18px 0; color: var(--muted); }
+.sres__all { margin-top: 8px; }
+
+/* ---------- newsletter popup ---------- */
+.nl-modal__panel { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); width: min(864px, 100%); overflow: hidden; border-radius: 12px; }
+.nl-modal__form { display: grid; align-content: center; gap: 16px; padding: 70px 36px 50px; text-align: center; }
+.nl-modal__form h2 { font-size: 42px; }
+.nl-modal__form p { font-size: 17px; }
+.nl-modal__form form { display: grid; gap: 14px; }
+.nl-modal__msg { min-height: 24px; font-size: 15px; font-weight: 600; color: var(--green); }
+.nl-modal__art { min-height: 440px; background: #e9f7d8; }
+.nl-modal__art img { width: 100%; height: 100%; object-fit: cover; }
+
+/* ---------- activity toast ---------- */
+.activity { position: fixed; left: 18px; bottom: 22px; z-index: 290; display: flex; align-items: center; gap: 12px; max-width: min(360px, calc(100% - 36px)); padding: 10px 12px 10px 10px; border-radius: 16px; background: #fff; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.18); animation: toastIn 0.5s var(--ease); }
+.activity__img { display: flex; align-items: center; justify-content: center; flex: none; width: 64px; height: 64px; padding: 5px; border-radius: 12px; background: var(--tile, #f5f5e6); overflow: hidden; }
+.activity__img img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; }
+.activity small { display: block; font-size: 12px; color: var(--muted); }
+.activity b { display: block; font: 400 17px/1.25 var(--font-heading); }
+.activity em { font-size: 13px; font-style: normal; color: var(--muted); }
+.activity button { align-self: flex-start; width: 24px; height: 24px; display: grid; place-items: center; color: var(--muted); }
+.activity button svg { width: 16px; height: 16px; stroke: currentColor; stroke-width: 2; fill: none; }
+
+@media (max-width: 989px) {
+  .activity { bottom: 80px; }
+}
+@media (max-width: 749px) {
+  .nl-modal__panel { grid-template-columns: minmax(0, 1fr); }
+  .nl-modal__art { display: none; }
+  .nl-modal__form { padding: 56px 22px 34px; }
+  .nl-modal__form h2 { font-size: 34px; }
+  .search-modal__panel { padding: 18px 16px 24px; }
+}

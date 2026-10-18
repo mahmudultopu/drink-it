@@ -1,0 +1,135 @@
+[
+ {
+  "handle": "cola-classics",
+  "title": "Cola Classics",
+  "tagline": "Bold, dark & fizzy",
+  "blurb": "Every cola can we stock — from the global icons to Bangladesh’s own favourites. Deep caramel flavour, sharp bubbles, served ice-cold.",
+  "count": 13,
+  "minPrice": 35,
+  "minMl": 250,
+  "lead": "mojo-cola-250ml-can",
+  "tint": "#f8ede8",
+  "products": [
+   "coca-cola-original-250ml-can",
+   "coke-zero-sugar-250ml-can",
+   "pepsi-250ml-can",
+   "pepsi-black-250ml-can",
+   "mojo-cola-250ml-can",
+   "mojo-cola-330ml-can",
+   "mojo-zero-250ml-can",
+   "naga-mojo-250ml-can",
+   "rc-cola-250ml-can",
+   "houston-soft-drink-250ml-can",
+   "pepsi-imported-330ml-can",
+   "coca-cola-imported-330ml-can",
+   "dr-pepper-355ml-can"
+  ]
+ },
+ {
+  "handle": "citrus-fizz",
+  "title": "Citrus Fizz",
+  "tagline": "Zesty, bright & crisp",
+  "blurb": "Lemon-lime, orange and citrus-kick cans for the days when you want something light, sparkling and sharp.",
+  "count": 11,
+  "minPrice": 40,
+  "minMl": 250,
+  "lead": "clemon-mojito-250ml-can",
+  "tint": "#f0f8ee",
+  "products": [
+   "sprite-250ml-can",
+   "7up-250ml-can",
+   "mirinda-orange-250ml-can",
+   "fanta-orange-250ml-can",
+   "mountain-dew-250ml-can",
+   "clemon-lemon-soda-250ml-can",
+   "clemon-mojito-250ml-can",
+   "sprite-imported-320ml-can",
+   "fanta-orange-imported-330ml-can",
+   "7up-imported-330ml-can",
+   "mountain-dew-imported-330ml-can"
+  ]
+ },
+ {
+  "handle": "energy-rush",
+  "title": "Energy Rush",
+  "tagline": "Charge up fast",
+  "blurb": "Energy drink cans for long study nights, gym sessions and road trips. Local favourites and imported names side by side.",
+  "count": 7,
+  "minPrice": 30,
+  "minMl": 250,
+  "lead": "red-bull-sugarfree-250ml-can",
+  "tint": "#fbf9f5",
+  "products": [
+   "mountain-dew-250ml-can",
+   "speed-energy-drink-250ml-can",
+   "royal-tiger-energy-250ml-can",
+   "red-bull-energy-drink-250ml-can",
+   "red-bull-sugarfree-250ml-can",
+   "monster-energy-green-500ml-can",
+   "monster-ultra-white-500ml-can"
+  ]
+ },
+ {
+  "handle": "zero-sugar",
+  "title": "Zero Sugar",
+  "tagline": "All the fizz, no sugar",
+  "blurb": "Zero-sugar and sugar-free cans — the same bold taste without the sugar. Perfect for keeping it light.",
+  "count": 5,
+  "minPrice": 50,
+  "minMl": 250,
+  "lead": "red-bull-sugarfree-250ml-can",
+  "tint": "#fbf9f5",
+  "products": [
+   "coke-zero-sugar-250ml-can",
+   "pepsi-black-250ml-can",
+   "mojo-zero-250ml-can",
+   "red-bull-sugarfree-250ml-can",
+   "monster-ultra-white-500ml-can"
+  ]
+ },
+ {
+  "handle": "imported-cans",
+  "title": "Imported Cans",
+  "tagline": "Taste the world",
+  "blurb": "Hard-to-find imported cans: 330 ml classics, ginger ale, tonic and more — brought in for Bangladesh’s soda lovers.",
+  "count": 16,
+  "minPrice": 120,
+  "minMl": 240,
+  "lead": "red-bull-sugarfree-250ml-can",
+  "tint": "#fbf9f5",
+  "products": [
+   "red-bull-energy-drink-250ml-can",
+   "red-bull-sugarfree-250ml-can",
+   "monster-energy-green-500ml-can",
+   "monster-ultra-white-500ml-can",
+   "pepsi-imported-330ml-can",
+   "sprite-imported-320ml-can",
+   "coca-cola-imported-330ml-can",
+   "fanta-orange-imported-330ml-can",
+   "7up-imported-330ml-can",
+   "mountain-dew-imported-330ml-can",
+   "dr-pepper-355ml-can",
+   "schweppes-ginger-ale-330ml-can",
+   "schweppes-tonic-water-330ml-can",
+   "rani-float-grape-240ml-can",
+   "rani-float-orange-240ml-can",
+   "rani-float-mango-240ml-can"
+  ]
+ },
+ {
+  "handle": "fruity-picks",
+  "title": "Fruity Picks",
+  "tagline": "Juicy fruit-drink cans",
+  "blurb": "Fruit-flavoured drink cans with real fruit character — grape, orange and mango for sweet, easy sipping.",
+  "count": 3,
+  "minPrice": 120,
+  "minMl": 240,
+  "lead": "rani-float-orange-240ml-can",
+  "tint": "#fef5e9",
+  "products": [
+   "rani-float-grape-240ml-can",
+   "rani-float-orange-240ml-can",
+   "rani-float-mango-240ml-can"
+  ]
+ }
+]

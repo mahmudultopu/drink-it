@@ -1,0 +1,17 @@
+node_modules/
+# runtime data written by the server (back these up instead of committing them)
+data/orders.json
+data/users.json
+data/subscribers.json
+data/messages.json
+data/admin.json
+data/secret.key
+*.tmp
+*.log
+# local env files and Vercel link metadata
+.env
+.env.*
+.vercel/
+# OS / editor noise
+.DS_Store
+Thumbs.db

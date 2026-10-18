@@ -1,0 +1,215 @@
+// Catalogue source for Drink it. `npm run build:catalog` turns this into data/*.json and the can artwork.
+// Prices are indicative (BDT, per single can) and based on recent Bangladeshi retail listings — edit freely.
+// Brand names are used only to describe the products we sell; the can artwork is original illustration.
+
+export const PACKS = [
+  { id: 'single', label: 'Single can', qty: 1, discount: 0 },
+  { id: 'pack6', label: '6-pack', qty: 6, discount: 0.05 },
+  { id: 'pack12', label: '12-pack', qty: 12, discount: 0.08 },
+  { id: 'pack24', label: 'Carton of 24', qty: 24, discount: 0.1 },
+];
+
+export const COLLECTIONS = [
+  { handle: 'cola-classics', title: 'Cola Classics', tagline: 'Bold, dark & fizzy', blurb: 'Every cola can we stock — from the global icons to Bangladesh’s own favourites. Deep caramel flavour, sharp bubbles, served ice-cold.' },
+  { handle: 'citrus-fizz', title: 'Citrus Fizz', tagline: 'Zesty, bright & crisp', blurb: 'Lemon-lime, orange and citrus-kick cans for the days when you want something light, sparkling and sharp.' },
+  { handle: 'energy-rush', title: 'Energy Rush', tagline: 'Charge up fast', blurb: 'Energy drink cans for long study nights, gym sessions and road trips. Local favourites and imported names side by side.' },
+  { handle: 'zero-sugar', title: 'Zero Sugar', tagline: 'All the fizz, no sugar', blurb: 'Zero-sugar and sugar-free cans — the same bold taste without the sugar. Perfect for keeping it light.' },
+  { handle: 'imported-cans', title: 'Imported Cans', tagline: 'Taste the world', blurb: 'Hard-to-find imported cans: 330 ml classics, ginger ale, tonic and more — brought in for Bangladesh’s soda lovers.' },
+  { handle: 'fruity-picks', title: 'Fruity Picks', tagline: 'Juicy fruit-drink cans', blurb: 'Fruit-flavoured drink cans with real fruit character — grape, orange and mango for sweet, easy sipping.' },
+];
+
+// ---- brand presets (colours + typography for the illustrated cans) ----
+const B = {
+  coke: { body: '#E4202D', body2: '#A8101B', ink: '#ffffff', accent: '#FFD2D6', font: 'Poppins-ExtraBold', icon: 'cola', band: 'wave' },
+  cokezero: { body: '#161616', body2: '#000000', ink: '#ffffff', accent: '#E4202D', font: 'Poppins-ExtraBold', icon: 'zero', band: 'stripe' },
+  pepsi: { body: '#1456B8', body2: '#0B3A82', ink: '#ffffff', accent: '#8EBBFF', font: 'Poppins-ExtraBold', icon: 'cola', band: 'wave' },
+  pepsiblack: { body: '#0B0B0D', body2: '#000000', ink: '#ffffff', accent: '#2F7BFF', font: 'Poppins-ExtraBold', icon: 'zero', band: 'stripe' },
+  sprite: { body: '#0B9A47', body2: '#066B30', ink: '#ffffff', accent: '#D6F25A', font: 'LilitaOne-Regular', icon: 'lime', band: 'dots' },
+  sevenup: { body: '#25A84A', body2: '#157A33', ink: '#ffffff', accent: '#FF4B5C', font: 'Righteous-Regular', icon: 'lemon', band: 'stripe' },
+  mirinda: { body: '#F26B0F', body2: '#C24A00', ink: '#ffffff', accent: '#FFD166', font: 'Righteous-Regular', icon: 'orange', band: 'slash' },
+  fanta: { body: '#FF9A00', body2: '#E06C00', ink: '#ffffff', accent: '#7BD3FF', font: 'LilitaOne-Regular', icon: 'orange', band: 'dots' },
+  dew: { body: '#6DBE2E', body2: '#3B8F1A', ink: '#ffffff', accent: '#E6FF6B', font: 'Anton-Regular', icon: 'bolt', band: 'slash' },
+  mojo: { body: '#9C1B1B', body2: '#5E0E0E', ink: '#ffffff', accent: '#FFC857', font: 'LilitaOne-Regular', icon: 'cola', band: 'wave' },
+  mojozero: { body: '#2A2A2A', body2: '#0A0A0A', ink: '#ffffff', accent: '#FFC857', font: 'LilitaOne-Regular', icon: 'zero', band: 'stripe' },
+  naga: { body: '#C4161C', body2: '#7A0A0F', ink: '#ffffff', accent: '#FFB300', font: 'LilitaOne-Regular', icon: 'chili', band: 'slash' },
+  clemon: { body: '#F4D80B', body2: '#D8B800', ink: '#14532D', accent: '#2E9E3A', font: 'LilitaOne-Regular', icon: 'lemon', band: 'dots' },
+  clemonmojito: { body: '#2BB673', body2: '#168A52', ink: '#ffffff', accent: '#E7FFD0', font: 'LilitaOne-Regular', icon: 'mojito', band: 'wave' },
+  houston: { body: '#5B2CB8', body2: '#3A1B80', ink: '#ffffff', accent: '#FFD166', font: 'Righteous-Regular', icon: 'cola', band: 'slash' },
+  rc: { body: '#B3122A', body2: '#780B1C', ink: '#ffffff', accent: '#7DB6FF', font: 'Righteous-Regular', icon: 'cola', band: 'stripe' },
+  speed: { body: '#D3151F', body2: '#8E0D14', ink: '#ffffff', accent: '#FFD400', font: 'Anton-Regular', icon: 'bolt', band: 'slash' },
+  tiger: { body: '#F59E0B', body2: '#C26D00', ink: '#1F1300', accent: '#1F1300', font: 'Anton-Regular', icon: 'bolt', band: 'stripe' },
+  redbull: { body: '#1B3A8C', body2: '#0F2562', ink: '#ffffff', accent: '#E4202D', font: 'Anton-Regular', icon: 'bolt', band: 'slash' },
+  redbullsf: { body: '#C5CCD6', body2: '#8E98A6', ink: '#12306E', accent: '#12306E', font: 'Anton-Regular', icon: 'bolt', band: 'slash' },
+  monster: { body: '#0E0E0E', body2: '#000000', ink: '#7CFF3A', accent: '#7CFF3A', font: 'Anton-Regular', icon: 'bolt', band: 'slash' },
+  monsterwhite: { body: '#F2F2F2', body2: '#C9CCD1', ink: '#1E1E1E', accent: '#7C8189', font: 'Anton-Regular', icon: 'bolt', band: 'slash' },
+  drpepper: { body: '#7A1226', body2: '#4E0A18', ink: '#ffffff', accent: '#FFB3C0', font: 'Poppins-ExtraBold', icon: 'cherry', band: 'wave' },
+  gingerale: { body: '#2D6A4F', body2: '#1B4332', ink: '#ffffff', accent: '#E9C46A', font: 'Poppins-ExtraBold', icon: 'ginger', band: 'stripe' },
+  tonic: { body: '#1D4E89', body2: '#12335C', ink: '#ffffff', accent: '#BFE0FF', font: 'Poppins-ExtraBold', icon: 'cola', band: 'wave' },
+  rani: { body: '#7B3FA0', body2: '#552B72', ink: '#ffffff', accent: '#E6C7FF', font: 'LilitaOne-Regular', icon: 'grape', band: 'dots' },
+};
+
+// brand "family" used for Shop-by-Brand pages
+const FAMILY = {
+  coke: 'Coca-Cola', cokezero: 'Coca-Cola', pepsi: 'Pepsi', pepsiblack: 'Pepsi', sprite: 'Sprite', sevenup: '7UP', mirinda: 'Mirinda',
+  fanta: 'Fanta', dew: 'Mountain Dew', mojo: 'Mojo', mojozero: 'Mojo', naga: 'Mojo', clemon: 'Clemon', clemonmojito: 'Clemon',
+  houston: 'Houston', rc: 'RC Cola', speed: 'Speed', tiger: 'Royal Tiger', redbull: 'Red Bull', redbullsf: 'Red Bull',
+  monster: 'Monster', monsterwhite: 'Monster', drpepper: 'Dr Pepper', gingerale: 'Schweppes', tonic: 'Schweppes', rani: 'Rani Float',
+};
+
+// compact product table (one row per single-can SKU). t = display title; wm = wordmark printed on the can.
+const RAW = [
+  // ---- Cola Classics (local) ----
+  { k: 'coke', t: 'Coca-Cola Original', wm: 'Coca-Cola', variant: 'Original Taste', ml: 250, price: 70, stock: 640, cols: ['cola-classics'], type: 'Cola', badge: ['REGULAR', 'sugar'], hot: true, notes: 'The world’s favourite cola in a handy 250 ml can.' },
+  { k: 'cokezero', t: 'Coke Zero Sugar', wm: 'Coke Zero', variant: 'Zero Sugar', ml: 250, price: 70, stock: 410, cols: ['cola-classics', 'zero-sugar'], type: 'Cola', sugar: 'Zero', badge: ['ZERO', 'sugar'], notes: 'Real Coca-Cola taste with zero sugar.' },
+  { k: 'pepsi', t: 'Pepsi', wm: 'Pepsi', variant: 'Original Cola', ml: 250, price: 70, stock: 520, cols: ['cola-classics'], type: 'Cola', badge: ['REGULAR', 'sugar'], hot: true, notes: 'Bold, refreshing cola with a sweeter bite.' },
+  { k: 'pepsiblack', t: 'Pepsi Black', wm: 'Pepsi Black', variant: 'Zero Sugar', ml: 250, price: 70, stock: 300, cols: ['cola-classics', 'zero-sugar'], type: 'Cola', sugar: 'Zero', badge: ['ZERO', 'sugar'], notes: 'Maximum Pepsi taste, zero sugar.' },
+  { k: 'mojo', t: 'Mojo Cola', wm: 'Mojo', variant: 'Cola', ml: 250, price: 40, stock: 880, cols: ['cola-classics'], type: 'Cola', badge: ['LOCAL', 'favourite'], hot: true, notes: 'A homegrown Bangladeshi cola with a loyal following.' },
+  { k: 'mojo', t: 'Mojo Cola (330 ml)', wm: 'Mojo', variant: 'Cola', ml: 330, price: 60, stock: 360, cols: ['cola-classics'], type: 'Cola', kind: 'std', badge: ['LOCAL', 'favourite'], notes: 'Mojo’s bigger 330 ml can for longer sips.' },
+  { k: 'mojozero', fam: 'mojo', t: 'Mojo Zero', wm: 'Mojo Zero', variant: 'Zero Sugar', ml: 250, price: 50, stock: 270, cols: ['cola-classics', 'zero-sugar'], type: 'Cola', sugar: 'Zero', badge: ['ZERO', 'sugar'], notes: 'The Mojo cola taste, sugar-free.' },
+  { k: 'naga', t: 'Naga Mojo', wm: 'Naga Mojo', variant: 'Spicy Cola', ml: 250, price: 50, stock: 190, cols: ['cola-classics'], type: 'Cola', badge: ['SPICY', 'edition'], isNew: true, notes: 'A fiery Naga-inspired twist on a Bangladeshi cola.' },
+  { k: 'rc', t: 'RC Cola', wm: 'RC Cola', variant: 'Original Cola', ml: 250, price: 35, stock: 330, cols: ['cola-classics'], type: 'Cola', badge: ['CLASSIC', 'cola'], notes: 'A classic cola with a smooth, easy-drinking taste.' },
+  { k: 'houston', t: 'Houston Soft Drink', wm: 'Houston', variant: 'Soft Drink', ml: 250, price: 40, stock: 230, cols: ['cola-classics'], type: 'Cola', badge: ['LOCAL', 'brand'], notes: 'A pocket-friendly local soft drink can.' },
+
+  // ---- Citrus Fizz (local) ----
+  { k: 'sprite', t: 'Sprite', wm: 'Sprite', variant: 'Lemon-Lime', ml: 250, price: 65, compareAt: 70, stock: 590, cols: ['citrus-fizz'], type: 'Lemon-Lime', badge: ['CLEAR', 'crisp'], hot: true, deal: '2026-12-31T23:59:59+06:00', notes: 'Crisp, clean lemon-lime sparkle with no caffeine.' },
+  { k: 'sevenup', t: '7UP', wm: '7UP', variant: 'Lemon-Lime', ml: 250, price: 70, stock: 450, cols: ['citrus-fizz'], type: 'Lemon-Lime', badge: ['CLEAR', 'lemon-lime'], notes: 'Light, bubbly lemon-lime refreshment.' },
+  { k: 'mirinda', t: 'Mirinda Orange', wm: 'Mirinda', variant: 'Orange', ml: 250, price: 70, stock: 380, cols: ['citrus-fizz'], type: 'Orange', badge: ['FRUITY', 'orange'], notes: 'Sweet, bubbly orange fizz.' },
+  { k: 'fanta', t: 'Fanta Orange', wm: 'Fanta', variant: 'Orange', ml: 250, price: 65, compareAt: 70, stock: 510, cols: ['citrus-fizz'], type: 'Orange', badge: ['FRUITY', 'fizz'], deal: '2026-12-31T23:59:59+06:00', notes: 'Bright, juicy orange flavour with playful bubbles.' },
+  { k: 'dew', t: 'Mountain Dew', wm: 'Mountain Dew', variant: 'Citrus Kick', ml: 250, price: 70, stock: 340, cols: ['citrus-fizz', 'energy-rush'], type: 'Citrus', badge: ['CITRUS', 'kick'], notes: 'Bold citrus flavour with an extra kick.' },
+  { k: 'clemon', t: 'Clemon Lemon Soda', wm: 'Clemon', variant: 'Lemon Soda', ml: 250, price: 40, stock: 560, cols: ['citrus-fizz'], type: 'Lemon-Lime', badge: ['LEMON', 'soda'], hot: true, notes: 'Tangy lemon soda that tastes like a summer afternoon.' },
+  { k: 'clemonmojito', t: 'Clemon Mojito', wm: 'Clemon Mojito', variant: 'Mint & Lime', ml: 250, price: 50, stock: 310, cols: ['citrus-fizz'], type: 'Mojito', badge: ['MINT', 'lime'], isNew: true, deal: '2026-12-31T23:59:59+06:00', notes: 'Cool mint and lime in a sparkling mojito-style can.' },
+
+  // ---- Energy Rush ----
+  { k: 'speed', t: 'Speed Energy Drink', wm: 'Speed', variant: 'Energy Drink', ml: 250, price: 50, stock: 420, cols: ['energy-rush'], type: 'Energy', caffeine: true, badge: ['ENERGY', 'boost'], hot: true, notes: 'A home-grown energy drink for long days and late nights.' },
+  { k: 'tiger', t: 'Royal Tiger Energy', wm: 'Royal Tiger', variant: 'Energy Drink', ml: 250, price: 30, stock: 60, cols: ['energy-rush'], type: 'Energy', caffeine: true, badge: ['ENERGY', 'local'], notes: 'An affordable carbonated energy drink with a bold taste.' },
+  { k: 'redbull', t: 'Red Bull Energy Drink', wm: 'Red Bull', variant: 'Energy Drink', ml: 250, price: 180, stock: 140, cols: ['energy-rush', 'imported-cans'], type: 'Energy', caffeine: true, origin: 'Imported', badge: ['ENERGY', 'imported'], notes: 'The original imported energy drink in a slim 250 ml can.' },
+  { k: 'redbullsf', t: 'Red Bull Sugarfree', wm: 'Red Bull', variant: 'Sugarfree', ml: 250, price: 190, stock: 0, cols: ['energy-rush', 'zero-sugar', 'imported-cans'], type: 'Energy', caffeine: true, sugar: 'Zero', origin: 'Imported', badge: ['SUGARFREE', 'imported'], notes: 'All the lift, without the sugar.' },
+  { k: 'monster', t: 'Monster Energy Green', wm: 'Monster Energy', variant: 'Green Original', ml: 500, price: 380, stock: 70, cols: ['energy-rush', 'imported-cans'], type: 'Energy', caffeine: true, origin: 'Imported', kind: 'tall', badge: ['ENERGY', 'imported'], notes: 'A big 500 ml imported energy can for serious refuelling.' },
+  { k: 'monsterwhite', t: 'Monster Ultra White', wm: 'Monster Ultra', variant: 'White Zero', ml: 500, price: 390, stock: 45, cols: ['energy-rush', 'zero-sugar', 'imported-cans'], type: 'Energy', caffeine: true, sugar: 'Zero', origin: 'Imported', kind: 'tall', badge: ['ZERO', 'imported'], notes: 'Light, crisp and zero sugar in a 500 ml imported can.' },
+
+  // ---- Imported 330 ml classics ----
+  { k: 'pepsi', t: 'Pepsi Imported (330 ml)', wm: 'Pepsi', variant: 'Imported', ml: 330, price: 300, stock: 110, cols: ['cola-classics', 'imported-cans'], type: 'Cola', origin: 'Imported', kind: 'std', badge: ['IMPORTED', 'cola'], notes: 'The imported full-size Pepsi can soda lovers look for.' },
+  { k: 'sprite', t: 'Sprite Imported (320 ml)', wm: 'Sprite', variant: 'Imported', ml: 320, price: 349, stock: 85, cols: ['citrus-fizz', 'imported-cans'], type: 'Lemon-Lime', origin: 'Imported', kind: 'std', badge: ['IMPORTED', 'lemon-lime'], notes: 'Imported Sprite in a full-size 320 ml can.' },
+  { k: 'coke', t: 'Coca-Cola Imported (330 ml)', wm: 'Coca-Cola', variant: 'Imported', ml: 330, price: 320, stock: 95, cols: ['cola-classics', 'imported-cans'], type: 'Cola', origin: 'Imported', kind: 'std', badge: ['IMPORTED', 'classic'], notes: 'Full-size imported Coca-Cola, 330 ml.' },
+  { k: 'fanta', t: 'Fanta Orange Imported (330 ml)', wm: 'Fanta', variant: 'Orange Imported', ml: 330, price: 320, stock: 75, cols: ['citrus-fizz', 'imported-cans'], type: 'Orange', origin: 'Imported', kind: 'std', badge: ['IMPORTED', 'orange'], notes: 'Imported Fanta Orange in a 330 ml can.' },
+  { k: 'sevenup', t: '7UP Imported (330 ml)', wm: '7UP', variant: 'Imported', ml: 330, price: 300, stock: 80, cols: ['citrus-fizz', 'imported-cans'], type: 'Lemon-Lime', origin: 'Imported', kind: 'std', badge: ['IMPORTED', 'lemon-lime'], notes: 'Imported 7UP, crisp and clear in 330 ml.' },
+  { k: 'dew', t: 'Mountain Dew Imported (330 ml)', wm: 'Mountain Dew', variant: 'Imported', ml: 330, price: 320, stock: 65, cols: ['citrus-fizz', 'imported-cans'], type: 'Citrus', origin: 'Imported', kind: 'std', badge: ['IMPORTED', 'citrus'], isNew: true, notes: 'Imported Mountain Dew with that citrus kick, 330 ml.' },
+  { k: 'drpepper', t: 'Dr Pepper', wm: 'Dr Pepper', variant: 'Imported', ml: 355, price: 390, stock: 55, cols: ['cola-classics', 'imported-cans'], type: 'Cola', origin: 'Imported', kind: 'std', badge: ['IMPORTED', 'USA'], isNew: true, notes: 'A unique spiced soda with a cult following.' },
+  { k: 'gingerale', t: 'Schweppes Ginger Ale', wm: 'Schweppes', variant: 'Ginger Ale', ml: 330, price: 290, stock: 60, cols: ['imported-cans'], type: 'Ginger', origin: 'Imported', kind: 'std', badge: ['IMPORTED', 'ginger'], notes: 'Sparkling ginger ale — brilliant on its own or with ice and lime.' },
+  { k: 'tonic', t: 'Schweppes Tonic Water', wm: 'Schweppes', variant: 'Tonic Water', ml: 330, price: 290, stock: 50, cols: ['imported-cans'], type: 'Tonic', origin: 'Imported', kind: 'std', badge: ['IMPORTED', 'tonic'], notes: 'Crisp, bitter-sweet tonic water for mixers and mocktails.' },
+
+  // ---- Fruity Picks ----
+  { k: 'rani', t: 'Rani Float Grape', wm: 'Rani Float', variant: 'Grape', ml: 240, price: 120, stock: 130, cols: ['fruity-picks', 'imported-cans'], type: 'Fruit', origin: 'Imported', badge: ['FRUIT', 'pieces'], notes: 'Grape juice drink with soft fruit pieces to chew on.' },
+  { k: 'rani', t: 'Rani Float Orange', wm: 'Rani Float', variant: 'Orange', ml: 240, price: 120, stock: 120, cols: ['fruity-picks', 'imported-cans'], type: 'Fruit', origin: 'Imported', icon: 'orange', art: { body: '#F5841F', body2: '#CF5F0A', accent: '#FFE2B8' }, badge: ['FRUIT', 'pieces'], notes: 'Orange juice drink with soft pulp pieces.' },
+  { k: 'rani', t: 'Rani Float Mango', wm: 'Rani Float', variant: 'Mango', ml: 240, price: 120, stock: 150, cols: ['fruity-picks', 'imported-cans'], type: 'Fruit', origin: 'Imported', icon: 'mango', art: { body: '#F2A900', body2: '#C98300', accent: '#FFE49A', ink: '#3A2500' }, badge: ['FRUIT', 'pieces'], hot: true, notes: 'Sweet mango drink with juicy fruit bits.' },
+];
+
+// ---- generic copy by drink type (factual, non-medical) ----
+const TASTE = {
+  Cola: [['Flavor', 'Caramel, spice and a touch of vanilla.'], ['Fizz', 'Sharp, lively bubbles from the first sip.'], ['Texture', 'Smooth, syrupy-light body.'], ['Energy', 'A gentle lift of caffeine.'], ['Vibrance', 'Deep amber-brown colour.'], ['Coolness', 'Best served around 4 °C.']],
+  'Lemon-Lime': [['Flavor', 'Crisp lemon and lime, never heavy.'], ['Fizz', 'Fine, clean bubbles.'], ['Texture', 'Light and clear on the palate.'], ['Energy', 'Refreshment without the heaviness.'], ['Vibrance', 'Bright, sparkling clarity.'], ['Coolness', 'Wonderful ice-cold with a lime wedge.']],
+  Orange: [['Flavor', 'Sweet, juicy orange with a citrus zing.'], ['Fizz', 'Playful, bouncy bubbles.'], ['Texture', 'Soft and smooth.'], ['Energy', 'Fun and caffeine-free.'], ['Vibrance', 'Sunny orange colour.'], ['Coolness', 'Chill well for peak taste.']],
+  Citrus: [['Flavor', 'Bold citrus with an extra punch.'], ['Fizz', 'Energetic bubbles.'], ['Texture', 'Bright and zesty.'], ['Energy', 'Made to wake you up.'], ['Vibrance', 'Electric lime-green colour.'], ['Coolness', 'Serve over ice.']],
+  Mojito: [['Flavor', 'Cool mint meets fresh lime.'], ['Fizz', 'Light, sparkling bubbles.'], ['Texture', 'Silky and clean.'], ['Energy', 'Caffeine-free and breezy.'], ['Vibrance', 'Fresh green sparkle.'], ['Coolness', 'Extra cooling when chilled.']],
+  Energy: [['Flavor', 'Sweet-tart with a bright, fruity edge.'], ['Fizz', 'Lively carbonation.'], ['Texture', 'Smooth with a clean finish.'], ['Energy', 'Built for a quick boost.'], ['Vibrance', 'Bold and electric.'], ['Coolness', 'Always best ice-cold.']],
+  Ginger: [['Flavor', 'Warm ginger with a gentle spice.'], ['Fizz', 'Fine, elegant bubbles.'], ['Texture', 'Crisp and dry.'], ['Energy', 'Caffeine-free.'], ['Vibrance', 'Pale golden colour.'], ['Coolness', 'Lovely over ice with lime.']],
+  Tonic: [['Flavor', 'Bittersweet citrus character.'], ['Fizz', 'Fine, champagne-like bubbles.'], ['Texture', 'Dry and crisp.'], ['Energy', 'Caffeine-free.'], ['Vibrance', 'Crystal-clear sparkle.'], ['Coolness', 'Great as a mixer.']],
+  Fruit: [['Flavor', 'Juicy, sweet fruit character.'], ['Fizz', 'Smooth and still — no bubbles.'], ['Texture', 'Soft fruit pieces to chew.'], ['Energy', 'Naturally sweet pick-me-up.'], ['Vibrance', 'Rich fruit colour.'], ['Coolness', 'Delicious well-chilled.']],
+};
+const STATS = ['Fizz', 'Chill', 'Flavor', 'Kick', 'Crave'];
+
+function hash(str) {
+  let h = 2166136261;
+  for (let i = 0; i < str.length; i++) { h ^= str.charCodeAt(i); h = Math.imul(h, 16777619); }
+  return h >>> 0;
+}
+export const slug = (s) => s.toLowerCase().replace(/&/g, 'and').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+
+export function buildProducts() {
+  const seen = new Set();
+  return RAW.map((r, i) => {
+    const preset = B[r.k];
+    const kind = r.kind || (r.ml <= 250 ? 'slim' : 'std');
+    const handle = slug(`${r.t} ${r.ml}ml can`.replace(/\(\d+ ml\)/, ''));
+    if (seen.has(handle)) throw new Error('duplicate handle ' + handle);
+    seen.add(handle);
+    const art = {
+      ...preset,
+      ...(r.icon ? { icon: r.icon } : {}),
+      ...(r.art || {}),
+      brand: r.wm,
+      variant: r.variant,
+      size: `${r.ml} mL`,
+      kind,
+      badge: r.badge,
+    };
+    const h = hash(handle);
+    const packs = PACKS.map((p) => {
+      const gross = r.price * p.qty;
+      const price = Math.round(gross * (1 - p.discount));
+      return { id: p.id, label: p.label, qty: p.qty, discount: p.discount, price, compareAt: p.qty > 1 ? gross : r.compareAt || 0 };
+    });
+    const caffeine = !!(r.caffeine || r.type === 'Cola' || r.type === 'Citrus');
+    const sugar = r.sugar || 'Regular';
+    const origin = r.origin || 'Local';
+    const fam = FAMILY[r.fam || r.k];
+    return {
+      id: 'DI' + String(i + 1).padStart(3, '0'),
+      handle,
+      title: r.t,
+      brand: fam,
+      brandHandle: slug(fam),
+      variant: r.variant,
+      type: r.type,
+      canMl: r.ml,
+      sugar,
+      caffeine,
+      origin,
+      price: r.price,
+      compareAt: r.compareAt || 0,
+      stock: r.stock,
+      collections: r.cols,
+      badges: [r.isNew ? 'new' : null, r.hot ? 'best' : null].filter(Boolean),
+      short: r.notes,
+      dealEndsAt: r.deal || null,
+      art,
+      packs,
+      sold: 40 + (h % 900),
+      createdAt: `2026-0${1 + (h % 9)}-${String(1 + (h % 27)).padStart(2, '0')}`,
+      taste: TASTE[r.type].map(([k, v]) => ({ k, v })),
+      meter: STATS.map((k, j) => ({ k, v: 84 + ((h >> (j * 3)) % 15) })),
+      long: longCopy(r, origin),
+      why: whyCopy(sugar),
+      details: [
+        { k: 'Brand', v: fam },
+        { k: 'Flavor', v: r.variant },
+        { k: 'Can size', v: `${r.ml} ml` },
+        { k: 'Sugar', v: sugar === 'Zero' ? 'Zero sugar' : 'Regular (see can label)' },
+        { k: 'Caffeine', v: caffeine ? 'Contains caffeine' : 'Caffeine-free' },
+        { k: 'Origin', v: origin === 'Imported' ? 'Imported' : 'Bottled in Bangladesh' },
+        { k: 'Serve', v: 'Chilled, around 4 °C' },
+        { k: 'Shelf life', v: 'Best-before date printed on the can' },
+      ],
+    };
+  });
+}
+
+function longCopy(r, origin) {
+  const name = r.t;
+  return [
+    `${r.notes} Delivered sealed in its original ${r.ml} ml can, ${name} is made for sharing, snacking and beating the heat — ${origin === 'Imported' ? 'an imported pick for people who like something a little different' : 'a familiar favourite that always hits the spot'}.`,
+    'Chill it for a few hours, pour it over ice or drink straight from the can. It pairs brilliantly with biryani, burgers, fuchka, kebab rolls, pizza and every kind of adda — and it is the easiest way to keep a party, iftar table or office fridge stocked.',
+    'At Drink it you buy straight from our own online store: choose a single can, a 6-pack, a 12-pack or a full carton of 24, pay with bKash, Nagad, Rocket, card or cash on delivery, and we bring the cans to your door. One store, every brand, no running around.',
+  ];
+}
+
+function whyCopy(sugar) {
+  return [
+    '**Bold, recognisable taste** that never lets you down — every can, every time.',
+    '**Easy to stock up:** save up to 10% when you pick a 6-pack, 12-pack or carton.',
+    sugar === 'Zero' ? '**Zero sugar** — all the flavour without the sugar.' : '**Classic sweetness** — full-flavoured and satisfying.',
+    '**Sealed and genuine:** cans arrive factory-sealed with the best-before date on the base.',
+    '**Party-ready:** perfect for iftar, birthdays, picnics, offices and late-night study sessions.',
+    '**Order your way:** bKash, Nagad, Rocket, card or cash on delivery.',
+  ];
+}

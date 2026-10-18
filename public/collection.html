@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en" class="no-js" data-layout="1">
+<head>
+<!--@head-->
+</head>
+<body data-page="collection" class="page-collection">
+<!--@header-->
+
+<section class="banner" data-collection-banner></section>
+<div class="ctiles" data-ctiles aria-label="Collections"></div>
+<div class="tagrow" data-tagrow></div>
+<div class="crumbs-slot" data-crumbs></div>
+
+<div class="clayout">
+  <aside class="filters" id="filters" data-filters aria-label="Filters"></aside>
+  <section aria-label="Products">
+    <div class="ctoolbar">
+      <div class="ctoolbar__left">
+        <button class="btn btn--sm btn--ghost filter-toggle" type="button" data-filter-open><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><use href="/assets/img/icons.svg#filter"/></svg><span>Filters</span></button>
+        <span class="ctoolbar__count" data-count aria-live="polite"></span>
+      </div>
+      <div class="ctoolbar__right">
+        <label class="sr-only" for="sort">Sort by</label>
+        <select class="select" id="sort" data-sort>
+          <option value="featured">Featured</option>
+          <option value="best">Best selling</option>
+          <option value="price-asc">Price, low to high</option>
+          <option value="price-desc">Price, high to low</option>
+          <option value="title-asc">Alphabetically, A–Z</option>
+          <option value="new">Date, new to old</option>
+        </select>
+        <div class="views" role="group" aria-label="Grid size">
+          <button type="button" data-view="2" aria-label="2 columns"><svg viewBox="0 0 24 24"><use href="/assets/img/icons.svg#grid-2"/></svg></button>
+          <button type="button" data-view="3" aria-label="3 columns" class="is-active"><svg viewBox="0 0 24 24"><use href="/assets/img/icons.svg#grid-3"/></svg></button>
+          <button type="button" data-view="4" aria-label="4 columns"><svg viewBox="0 0 24 24"><use href="/assets/img/icons.svg#grid-4"/></svg></button>
+          <button type="button" data-view="list" aria-label="List view"><svg viewBox="0 0 24 24"><use href="/assets/img/icons.svg#list-view"/></svg></button>
+        </div>
+      </div>
+    </div>
+    <div class="cgrid" data-grid></div>
+    <div class="loadmore"><button class="btn" type="button" data-more hidden>Show more cans</button></div>
+  </section>
+</div>
+
+<div data-cta></div>
+<!--@footer-->
+<!--@scripts-->
+</body>
+</html>

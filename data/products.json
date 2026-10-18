@@ -1,0 +1,6274 @@
+[
+ {
+  "id": "DI001",
+  "handle": "coca-cola-original-250ml-can",
+  "title": "Coca-Cola Original",
+  "brand": "Coca-Cola",
+  "brandHandle": "coca-cola",
+  "variant": "Original Taste",
+  "type": "Cola",
+  "canMl": 250,
+  "sugar": "Regular",
+  "caffeine": true,
+  "origin": "Local",
+  "price": 70,
+  "compareAt": 0,
+  "stock": 640,
+  "collections": [
+   "cola-classics"
+  ],
+  "badges": [
+   "best"
+  ],
+  "short": "The world’s favourite cola in a handy 250 ml can.",
+  "dealEndsAt": null,
+  "art": {
+   "body": "#E4202D",
+   "body2": "#A8101B",
+   "ink": "#ffffff",
+   "accent": "#FFD2D6",
+   "font": "Poppins-ExtraBold",
+   "icon": "cola",
+   "band": "wave",
+   "brand": "Coca-Cola",
+   "variant": "Original Taste",
+   "size": "250 mL",
+   "kind": "slim",
+   "badge": [
+    "REGULAR",
+    "sugar"
+   ]
+  },
+  "packs": [
+   {
+    "id": "single",
+    "label": "Single can",
+    "qty": 1,
+    "discount": 0,
+    "price": 70,
+    "compareAt": 0
+   },
+   {
+    "id": "pack6",
+    "label": "6-pack",
+    "qty": 6,
+    "discount": 0.05,
+    "price": 399,
+    "compareAt": 420
+   },
+   {
+    "id": "pack12",
+    "label": "12-pack",
+    "qty": 12,
+    "discount": 0.08,
+    "price": 773,
+    "compareAt": 840
+   },
+   {
+    "id": "pack24",
+    "label": "Carton of 24",
+    "qty": 24,
+    "discount": 0.1,
+    "price": 1512,
+    "compareAt": 1680
+   }
+  ],
+  "sold": 329,
+  "createdAt": "2026-02-02",
+  "taste": [
+   {
+    "k": "Flavor",
+    "v": "Caramel, spice and a touch of vanilla."
+   },
+   {
+    "k": "Fizz",
+    "v": "Sharp, lively bubbles from the first sip."
+   },
+   {
+    "k": "Texture",
+    "v": "Smooth, syrupy-light body."
+   },
+   {
+    "k": "Energy",
+    "v": "A gentle lift of caffeine."
+   },
+   {
+    "k": "Vibrance",
+    "v": "Deep amber-brown colour."
+   },
+   {
+    "k": "Coolness",
+    "v": "Best served around 4 °C."
+   }
+  ],
+  "meter": [
+   {
+    "k": "Fizz",
+    "v": 72
+   },
+   {
+    "k": "Chill",
+    "v": 80
+   },
+   {
+    "k": "Flavor",
+    "v": 81
+   },
+   {
+    "k": "Kick",
+    "v": 74
+   },
+   {
+    "k": "Crave",
+    "v": 73
+   }
+  ],
+  "long": [
+   "The world’s favourite cola in a handy 250 ml can. Delivered sealed in its original 250 ml can, Coca-Cola Original is made for sharing, snacking and beating the heat — a familiar favourite that always hits the spot.",
+   "Chill it for a few hours, pour it over ice or drink straight from the can. It pairs brilliantly with biryani, burgers, fuchka, kebab rolls, pizza and every kind of adda — and it is the easiest way to keep a party, iftar table or office fridge stocked.",
+   "At Drink it you buy straight from our own online store: choose a single can, a 6-pack, a 12-pack or a full carton of 24, pay with bKash, Nagad, Rocket, card or cash on delivery, and we bring the cans to your door. One store, every brand, no running around."
+  ],
+  "why": [
+   "**Bold, recognisable taste** that never lets you down — every can, every time.",
+   "**Easy to stock up:** save up to 10% when you pick a 6-pack, 12-pack or carton.",
+   "**Classic sweetness** — full-flavoured and satisfying.",
+   "**Sealed and genuine:** cans arrive factory-sealed with the best-before date on the base.",
+   "**Party-ready:** perfect for iftar, birthdays, picnics, offices and late-night study sessions.",
+   "**Order your way:** bKash, Nagad, Rocket, card or cash on delivery."
+  ],
+  "details": [
+   {
+    "k": "Brand",
+    "v": "Coca-Cola"
+   },
+   {
+    "k": "Flavor",
+    "v": "Original Taste"
+   },
+   {
+    "k": "Can size",
+    "v": "250 ml"
+   },
+   {
+    "k": "Sugar",
+    "v": "Regular (see can label)"
+   },
+   {
+    "k": "Caffeine",
+    "v": "Contains caffeine"
+   },
+   {
+    "k": "Origin",
+    "v": "Bottled in Bangladesh"
+   },
+   {
+    "k": "Serve",
+    "v": "Chilled, around 4 °C"
+   },
+   {
+    "k": "Shelf life",
+    "v": "Best-before date printed on the can"
+   }
+  ],
+  "tile": "#fdeee9",
+  "images": {
+   "single": "/assets/img/cans/coca-cola-original-250ml-can.svg",
+   "angle": "/assets/img/cans/coca-cola-original-250ml-can-angle.svg",
+   "pack6": "/assets/img/cans/coca-cola-original-250ml-can-pack6.svg",
+   "pack12": "/assets/img/cans/coca-cola-original-250ml-can-pack12.svg",
+   "pack24": "/assets/img/cans/coca-cola-original-250ml-can-pack24.svg"
+  }
+ },
+ {
+  "id": "DI002",
+  "handle": "coke-zero-sugar-250ml-can",
+  "title": "Coke Zero Sugar",
+  "brand": "Coca-Cola",
+  "brandHandle": "coca-cola",
+  "variant": "Zero Sugar",
+  "type": "Cola",
+  "canMl": 250,
+  "sugar": "Zero",
+  "caffeine": true,
+  "origin": "Local",
+  "price": 70,
+  "compareAt": 0,
+  "stock": 410,
+  "collections": [
+   "cola-classics",
+   "zero-sugar"
+  ],
+  "badges": [],
+  "short": "Real Coca-Cola taste with zero sugar.",
+  "dealEndsAt": null,
+  "art": {
+   "body": "#161616",
+   "body2": "#000000",
+   "ink": "#ffffff",
+   "accent": "#E4202D",
+   "font": "Poppins-ExtraBold",
+   "icon": "zero",
+   "band": "stripe",
+   "brand": "Coke Zero",
+   "variant": "Zero Sugar",
+   "size": "250 mL",
+   "kind": "slim",
+   "badge": [
+    "ZERO",
+    "sugar"
+   ]
+  },
+  "packs": [
+   {
+    "id": "single",
+    "label": "Single can",
+    "qty": 1,
+    "discount": 0,
+    "price": 70,
+    "compareAt": 0
+   },
+   {
+    "id": "pack6",
+    "label": "6-pack",
+    "qty": 6,
+    "discount": 0.05,
+    "price": 399,
+    "compareAt": 420
+   },
+   {
+    "id": "pack12",
+    "label": "12-pack",
+    "qty": 12,
+    "discount": 0.08,
+    "price": 773,
+    "compareAt": 840
+   },
+   {
+    "id": "pack24",
+    "label": "Carton of 24",
+    "qty": 24,
+    "discount": 0.1,
+    "price": 1512,
+    "compareAt": 1680
+   }
+  ],
+  "sold": 571,
+  "createdAt": "2026-01-10",
+  "taste": [
+   {
+    "k": "Flavor",
+    "v": "Caramel, spice and a touch of vanilla."
+   },
+   {
+    "k": "Fizz",
+    "v": "Sharp, lively bubbles from the first sip."
+   },
+   {
+    "k": "Texture",
+    "v": "Smooth, syrupy-light body."
+   },
+   {
+    "k": "Energy",
+    "v": "A gentle lift of caffeine."
+   },
+   {
+    "k": "Vibrance",
+    "v": "Deep amber-brown colour."
+   },
+   {
+    "k": "Coolness",
+    "v": "Best served around 4 °C."
+   }
+  ],
+  "meter": [
+   {
+    "k": "Fizz",
+    "v": 90
+   },
+   {
+    "k": "Chill",
+    "v": 90
+   },
+   {
+    "k": "Flavor",
+    "v": 92
+   },
+   {
+    "k": "Kick",
+    "v": 94
+   },
+   {
+    "k": "Crave",
+    "v": 87
+   }
+  ],
+  "long": [
+   "Real Coca-Cola taste with zero sugar. Delivered sealed in its original 250 ml can, Coke Zero Sugar is made for sharing, snacking and beating the heat — a familiar favourite that always hits the spot.",
+   "Chill it for a few hours, pour it over ice or drink straight from the can. It pairs brilliantly with biryani, burgers, fuchka, kebab rolls, pizza and every kind of adda — and it is the easiest way to keep a party, iftar table or office fridge stocked.",
+   "At Drink it you buy straight from our own online store: choose a single can, a 6-pack, a 12-pack or a full carton of 24, pay with bKash, Nagad, Rocket, card or cash on delivery, and we bring the cans to your door. One store, every brand, no running around."
+  ],
+  "why": [
+   "**Bold, recognisable taste** that never lets you down — every can, every time.",
+   "**Easy to stock up:** save up to 10% when you pick a 6-pack, 12-pack or carton.",
+   "**Zero sugar** — all the flavour without the sugar.",
+   "**Sealed and genuine:** cans arrive factory-sealed with the best-before date on the base.",
+   "**Party-ready:** perfect for iftar, birthdays, picnics, offices and late-night study sessions.",
+   "**Order your way:** bKash, Nagad, Rocket, card or cash on delivery."
+  ],
+  "details": [
+   {
+    "k": "Brand",
+    "v": "Coca-Cola"
+   },
+   {
+    "k": "Flavor",
+    "v": "Zero Sugar"
+   },
+   {
+    "k": "Can size",
+    "v": "250 ml"
+   },
+   {
+    "k": "Sugar",
+    "v": "Zero sugar"
+   },
+   {
+    "k": "Caffeine",
+    "v": "Contains caffeine"
+   },
+   {
+    "k": "Origin",
+    "v": "Bottled in Bangladesh"
+   },
+   {
+    "k": "Serve",
+    "v": "Chilled, around 4 °C"
+   },
+   {
+    "k": "Shelf life",
+    "v": "Best-before date printed on the can"
+   }
+  ],
+  "tile": "#fbf0ec",
+  "images": {
+   "single": "/assets/img/cans/coke-zero-sugar-250ml-can.svg",
+   "angle": "/assets/img/cans/coke-zero-sugar-250ml-can-angle.svg",
+   "pack6": "/assets/img/cans/coke-zero-sugar-250ml-can-pack6.svg",
+   "pack12": "/assets/img/cans/coke-zero-sugar-250ml-can-pack12.svg",
+   "pack24": "/assets/img/cans/coke-zero-sugar-250ml-can-pack24.svg"
+  }
+ },
+ {
+  "id": "DI003",
+  "handle": "pepsi-250ml-can",
+  "title": "Pepsi",
+  "brand": "Pepsi",
+  "brandHandle": "pepsi",
+  "variant": "Original Cola",
+  "type": "Cola",
+  "canMl": 250,
+  "sugar": "Regular",
+  "caffeine": true,
+  "origin": "Local",
+  "price": 70,
+  "compareAt": 0,
+  "stock": 520,
+  "collections": [
+   "cola-classics"
+  ],
+  "badges": [
+   "best"
+  ],
+  "short": "Bold, refreshing cola with a sweeter bite.",
+  "dealEndsAt": null,
+  "art": {
+   "body": "#1456B8",
+   "body2": "#0B3A82",
+   "ink": "#ffffff",
+   "accent": "#8EBBFF",
+   "font": "Poppins-ExtraBold",
+   "icon": "cola",
+   "band": "wave",
+   "brand": "Pepsi",
+   "variant": "Original Cola",
+   "size": "250 mL",
+   "kind": "slim",
+   "badge": [
+    "REGULAR",
+    "sugar"
+   ]
+  },
+  "packs": [
+   {
+    "id": "single",
+    "label": "Single can",
+    "qty": 1,
+    "discount": 0,
+    "price": 70,
+    "compareAt": 0
+   },
+   {
+    "id": "pack6",
+    "label": "6-pack",
+    "qty": 6,
+    "discount": 0.05,
+    "price": 399,
+    "compareAt": 420
+   },
+   {
+    "id": "pack12",
+    "label": "12-pack",
+    "qty": 12,
+    "discount": 0.08,
+    "price": 773,
+    "compareAt": 840
+   },
+   {
+    "id": "pack24",
+    "label": "Carton of 24",
+    "qty": 24,
+    "discount": 0.1,
+    "price": 1512,
+    "compareAt": 1680
+   }
+  ],
+  "sold": 250,
+  "createdAt": "2026-04-22",
+  "taste": [
+   {
+    "k": "Flavor",
+    "v": "Caramel, spice and a touch of vanilla."
+   },
+   {
+    "k": "Fizz",
+    "v": "Sharp, lively bubbles from the first sip."
+   },
+   {
+    "k": "Texture",
+    "v": "Smooth, syrupy-light body."
+   },
+   {
+    "k": "Energy",
+    "v": "A gentle lift of caffeine."
+   },
+   {
+    "k": "Vibrance",
+    "v": "Deep amber-brown colour."
+   },
+   {
+    "k": "Coolness",
+    "v": "Best served around 4 °C."
+   }
+  ],
+  "meter": [
+   {
+    "k": "Fizz",
+    "v": 84
+   },
+   {
+    "k": "Chill",
+    "v": 95
+   },
+   {
+    "k": "Flavor",
+    "v": 94
+   },
+   {
+    "k": "Kick",
+    "v": 96
+   },
+   {
+    "k": "Crave",
+    "v": 89
+   }
+  ],
+  "long": [
+   "Bold, refreshing cola with a sweeter bite. Delivered sealed in its original 250 ml can, Pepsi is made for sharing, snacking and beating the heat — a familiar favourite that always hits the spot.",
+   "Chill it for a few hours, pour it over ice or drink straight from the can. It pairs brilliantly with biryani, burgers, fuchka, kebab rolls, pizza and every kind of adda — and it is the easiest way to keep a party, iftar table or office fridge stocked.",
+   "At Drink it you buy straight from our own online store: choose a single can, a 6-pack, a 12-pack or a full carton of 24, pay with bKash, Nagad, Rocket, card or cash on delivery, and we bring the cans to your door. One store, every brand, no running around."
+  ],
+  "why": [
+   "**Bold, recognisable taste** that never lets you down — every can, every time.",
+   "**Easy to stock up:** save up to 10% when you pick a 6-pack, 12-pack or carton.",
+   "**Classic sweetness** — full-flavoured and satisfying.",
+   "**Sealed and genuine:** cans arrive factory-sealed with the best-before date on the base.",
+   "**Party-ready:** perfect for iftar, birthdays, picnics, offices and late-night study sessions.",
+   "**Order your way:** bKash, Nagad, Rocket, card or cash on delivery."
+  ],
+  "details": [
+   {
+    "k": "Brand",
+    "v": "Pepsi"
+   },
+   {
+    "k": "Flavor",
+    "v": "Original Cola"
+   },
+   {
+    "k": "Can size",
+    "v": "250 ml"
+   },
+   {
+    "k": "Sugar",
+    "v": "Regular (see can label)"
+   },
+   {
+    "k": "Caffeine",
+    "v": "Contains caffeine"
+   },
+   {
+    "k": "Origin",
+    "v": "Bottled in Bangladesh"
+   },
+   {
+    "k": "Serve",
+    "v": "Chilled, around 4 °C"
+   },
+   {
+    "k": "Shelf life",
+    "v": "Best-before date printed on the can"
+   }
+  ],
+  "tile": "#eff1f3",
+  "images": {
+   "single": "/assets/img/cans/pepsi-250ml-can.svg",
+   "angle": "/assets/img/cans/pepsi-250ml-can-angle.svg",
+   "pack6": "/assets/img/cans/pepsi-250ml-can-pack6.svg",
+   "pack12": "/assets/img/cans/pepsi-250ml-can-pack12.svg",
+   "pack24": "/assets/img/cans/pepsi-250ml-can-pack24.svg"
+  }
+ },
+ {
+  "id": "DI004",
+  "handle": "pepsi-black-250ml-can",
+  "title": "Pepsi Black",
+  "brand": "Pepsi",
+  "brandHandle": "pepsi",
+  "variant": "Zero Sugar",
+  "type": "Cola",
+  "canMl": 250,
+  "sugar": "Zero",
+  "caffeine": true,
+  "origin": "Local",
+  "price": 70,
+  "compareAt": 0,
+  "stock": 300,
+  "collections": [
+   "cola-classics",
+   "zero-sugar"
+  ],
+  "badges": [],
+  "short": "Maximum Pepsi taste, zero sugar.",
+  "dealEndsAt": null,
+  "art": {
+   "body": "#0B0B0D",
+   "body2": "#000000",
+   "ink": "#ffffff",
+   "accent": "#2F7BFF",
+   "font": "Poppins-ExtraBold",
+   "icon": "zero",
+   "band": "stripe",
+   "brand": "Pepsi Black",
+   "variant": "Zero Sugar",
+   "size": "250 mL",
+   "kind": "slim",
+   "badge": [
+    "ZERO",
+    "sugar"
+   ]
+  },
+  "packs": [
+   {
+    "id": "single",
+    "label": "Single can",
+    "qty": 1,
+    "discount": 0,
+    "price": 70,
+    "compareAt": 0
+   },
+   {
+    "id": "pack6",
+    "label": "6-pack",
+    "qty": 6,
+    "discount": 0.05,
+    "price": 399,
+    "compareAt": 420
+   },
+   {
+    "id": "pack12",
+    "label": "12-pack",
+    "qty": 12,
+    "discount": 0.08,
+    "price": 773,
+    "compareAt": 840
+   },
+   {
+    "id": "pack24",
+    "label": "Carton of 24",
+    "qty": 24,
+    "discount": 0.1,
+    "price": 1512,
+    "compareAt": 1680
+   }
+  ],
+  "sold": 796,
+  "createdAt": "2026-01-19",
+  "taste": [
+   {
+    "k": "Flavor",
+    "v": "Caramel, spice and a touch of vanilla."
+   },
+   {
+    "k": "Fizz",
+    "v": "Sharp, lively bubbles from the first sip."
+   },
+   {
+    "k": "Texture",
+    "v": "Smooth, syrupy-light body."
+   },
+   {
+    "k": "Energy",
+    "v": "A gentle lift of caffeine."
+   },
+   {
+    "k": "Vibrance",
+    "v": "Deep amber-brown colour."
+   },
+   {
+    "k": "Coolness",
+    "v": "Best served around 4 °C."
+   }
+  ],
+  "meter": [
+   {
+    "k": "Fizz",
+    "v": 74
+   },
+   {
+    "k": "Chill",
+    "v": 79
+   },
+   {
+    "k": "Flavor",
+    "v": 75
+   },
+   {
+    "k": "Kick",
+    "v": 75
+   },
+   {
+    "k": "Crave",
+    "v": 75
+   }
+  ],
+  "long": [
+   "Maximum Pepsi taste, zero sugar. Delivered sealed in its original 250 ml can, Pepsi Black is made for sharing, snacking and beating the heat — a familiar favourite that always hits the spot.",
+   "Chill it for a few hours, pour it over ice or drink straight from the can. It pairs brilliantly with biryani, burgers, fuchka, kebab rolls, pizza and every kind of adda — and it is the easiest way to keep a party, iftar table or office fridge stocked.",
+   "At Drink it you buy straight from our own online store: choose a single can, a 6-pack, a 12-pack or a full carton of 24, pay with bKash, Nagad, Rocket, card or cash on delivery, and we bring the cans to your door. One store, every brand, no running around."
+  ],
+  "why": [
+   "**Bold, recognisable taste** that never lets you down — every can, every time.",
+   "**Easy to stock up:** save up to 10% when you pick a 6-pack, 12-pack or carton.",
+   "**Zero sugar** — all the flavour without the sugar.",
+   "**Sealed and genuine:** cans arrive factory-sealed with the best-before date on the base.",
+   "**Party-ready:** perfect for iftar, birthdays, picnics, offices and late-night study sessions.",
+   "**Order your way:** bKash, Nagad, Rocket, card or cash on delivery."
+  ],
+  "details": [
+   {
+    "k": "Brand",
+    "v": "Pepsi"
+   },
+   {
+    "k": "Flavor",
+    "v": "Zero Sugar"
+   },
+   {
+    "k": "Can size",
+    "v": "250 ml"
+   },
+   {
+    "k": "Sugar",
+    "v": "Zero sugar"
+   },
+   {
+    "k": "Caffeine",
+    "v": "Contains caffeine"
+   },
+   {
+    "k": "Origin",
+    "v": "Bottled in Bangladesh"
+   },
+   {
+    "k": "Serve",
+    "v": "Chilled, around 4 °C"
+   },
+   {
+    "k": "Shelf life",
+    "v": "Best-before date printed on the can"
+   }
+  ],
+  "tile": "#f3f4f5",
+  "images": {
+   "single": "/assets/img/cans/pepsi-black-250ml-can.svg",
+   "angle": "/assets/img/cans/pepsi-black-250ml-can-angle.svg",
+   "pack6": "/assets/img/cans/pepsi-black-250ml-can-pack6.svg",
+   "pack12": "/assets/img/cans/pepsi-black-250ml-can-pack12.svg",
+   "pack24": "/assets/img/cans/pepsi-black-250ml-can-pack24.svg"
+  }
+ },
+ {
+  "id": "DI005",
+  "handle": "mojo-cola-250ml-can",
+  "title": "Mojo Cola",
+  "brand": "Mojo",
+  "brandHandle": "mojo",
+  "variant": "Cola",
+  "type": "Cola",
+  "canMl": 250,
+  "sugar": "Regular",
+  "caffeine": true,
+  "origin": "Local",
+  "price": 40,
+  "compareAt": 0,
+  "stock": 880,
+  "collections": [
+   "cola-classics"
+  ],
+  "badges": [
+   "best"
+  ],
+  "short": "A homegrown Bangladeshi cola with a loyal following.",
+  "dealEndsAt": null,
+  "art": {
+   "body": "#9C1B1B",
+   "body2": "#5E0E0E",
+   "ink": "#ffffff",
+   "accent": "#FFC857",
+   "font": "LilitaOne-Regular",
+   "icon": "cola",
+   "band": "wave",
+   "brand": "Mojo",
+   "variant": "Cola",
+   "size": "250 mL",
+   "kind": "slim",
+   "badge": [
+    "LOCAL",
+    "favourite"
+   ]
+  },
+  "packs": [
+   {
+    "id": "single",
+    "label": "Single can",
+    "qty": 1,
+    "discount": 0,
+    "price": 40,
+    "compareAt": 0
+   },
+   {
+    "id": "pack6",
+    "label": "6-pack",
+    "qty": 6,
+    "discount": 0.05,
+    "price": 228,
+    "compareAt": 240
+   },
+   {
+    "id": "pack12",
+    "label": "12-pack",
+    "qty": 12,
+    "discount": 0.08,
+    "price": 442,
+    "compareAt": 480
+   },
+   {
+    "id": "pack24",
+    "label": "Carton of 24",
+    "qty": 24,
+    "discount": 0.1,
+    "price": 864,
+    "compareAt": 960
+   }
+  ],
+  "sold": 896,
+  "createdAt": "2026-02-02",
+  "taste": [
+   {
+    "k": "Flavor",
+    "v": "Caramel, spice and a touch of vanilla."
+   },
+   {
+    "k": "Fizz",
+    "v": "Sharp, lively bubbles from the first sip."
+   },
+   {
+    "k": "Texture",
+    "v": "Smooth, syrupy-light body."
+   },
+   {
+    "k": "Energy",
+    "v": "A gentle lift of caffeine."
+   },
+   {
+    "k": "Vibrance",
+    "v": "Deep amber-brown colour."
+   },
+   {
+    "k": "Coolness",
+    "v": "Best served around 4 °C."
+   }
+  ],
+  "meter": [
+   {
+    "k": "Fizz",
+    "v": 84
+   },
+   {
+    "k": "Chill",
+    "v": 76
+   },
+   {
+    "k": "Flavor",
+    "v": 75
+   },
+   {
+    "k": "Kick",
+    "v": 79
+   },
+   {
+    "k": "Crave",
+    "v": 72
+   }
+  ],
+  "long": [
+   "A homegrown Bangladeshi cola with a loyal following. Delivered sealed in its original 250 ml can, Mojo Cola is made for sharing, snacking and beating the heat — a familiar favourite that always hits the spot.",
+   "Chill it for a few hours, pour it over ice or drink straight from the can. It pairs brilliantly with biryani, burgers, fuchka, kebab rolls, pizza and every kind of adda — and it is the easiest way to keep a party, iftar table or office fridge stocked.",
+   "At Drink it you buy straight from our own online store: choose a single can, a 6-pack, a 12-pack or a full carton of 24, pay with bKash, Nagad, Rocket, card or cash on delivery, and we bring the cans to your door. One store, every brand, no running around."
+  ],
+  "why": [
+   "**Bold, recognisable taste** that never lets you down — every can, every time.",
+   "**Easy to stock up:** save up to 10% when you pick a 6-pack, 12-pack or carton.",
+   "**Classic sweetness** — full-flavoured and satisfying.",
+   "**Sealed and genuine:** cans arrive factory-sealed with the best-before date on the base.",
+   "**Party-ready:** perfect for iftar, birthdays, picnics, offices and late-night study sessions.",
+   "**Order your way:** bKash, Nagad, Rocket, card or cash on delivery."
+  ],
+  "details": [
+   {
+    "k": "Brand",
+    "v": "Mojo"
+   },
+   {
+    "k": "Flavor",
+    "v": "Cola"
+   },
+   {
+    "k": "Can size",
+    "v": "250 ml"
+   },
+   {
+    "k": "Sugar",
+    "v": "Regular (see can label)"
+   },
+   {
+    "k": "Caffeine",
+    "v": "Contains caffeine"
+   },
+   {
+    "k": "Origin",
+    "v": "Bottled in Bangladesh"
+   },
+   {
+    "k": "Serve",
+    "v": "Chilled, around 4 °C"
+   },
+   {
+    "k": "Shelf life",
+    "v": "Best-before date printed on the can"
+   }
+  ],
+  "tile": "#f8ede8",
+  "images": {
+   "single": "/assets/img/cans/mojo-cola-250ml-can.svg",
+   "angle": "/assets/img/cans/mojo-cola-250ml-can-angle.svg",
+   "pack6": "/assets/img/cans/mojo-cola-250ml-can-pack6.svg",
+   "pack12": "/assets/img/cans/mojo-cola-250ml-can-pack12.svg",
+   "pack24": "/assets/img/cans/mojo-cola-250ml-can-pack24.svg"
+  }
+ },
+ {
+  "id": "DI006",
+  "handle": "mojo-cola-330ml-can",
+  "title": "Mojo Cola (330 ml)",
+  "brand": "Mojo",
+  "brandHandle": "mojo",
+  "variant": "Cola",
+  "type": "Cola",
+  "canMl": 330,
+  "sugar": "Regular",
+  "caffeine": true,
+  "origin": "Local",
+  "price": 60,
+  "compareAt": 0,
+  "stock": 360,
+  "collections": [
+   "cola-classics"
+  ],
+  "badges": [],
+  "short": "Mojo’s bigger 330 ml can for longer sips.",
+  "dealEndsAt": null,
+  "art": {
+   "body": "#9C1B1B",
+   "body2": "#5E0E0E",
+   "ink": "#ffffff",
+   "accent": "#FFC857",
+   "font": "LilitaOne-Regular",
+   "icon": "cola",
+   "band": "wave",
+   "brand": "Mojo",
+   "variant": "Cola",
+   "size": "330 mL",
+   "kind": "std",
+   "badge": [
+    "LOCAL",
+    "favourite"
+   ]
+  },
+  "packs": [
+   {
+    "id": "single",
+    "label": "Single can",
+    "qty": 1,
+    "discount": 0,
+    "price": 60,
+    "compareAt": 0
+   },
+   {
+    "id": "pack6",
+    "label": "6-pack",
+    "qty": 6,
+    "discount": 0.05,
+    "price": 342,
+    "compareAt": 360
+   },
+   {
+    "id": "pack12",
+    "label": "12-pack",
+    "qty": 12,
+    "discount": 0.08,
+    "price": 662,
+    "compareAt": 720
+   },
+   {
+    "id": "pack24",
+    "label": "Carton of 24",
+    "qty": 24,
+    "discount": 0.1,
+    "price": 1296,
+    "compareAt": 1440
+   }
+  ],
+  "sold": 801,
+  "createdAt": "2026-06-24",
+  "taste": [
+   {
+    "k": "Flavor",
+    "v": "Caramel, spice and a touch of vanilla."
+   },
+   {
+    "k": "Fizz",
+    "v": "Sharp, lively bubbles from the first sip."
+   },
+   {
+    "k": "Texture",
+    "v": "Smooth, syrupy-light body."
+   },
+   {
+    "k": "Energy",
+    "v": "A gentle lift of caffeine."
+   },
+   {
+    "k": "Vibrance",
+    "v": "Deep amber-brown colour."
+   },
+   {
+    "k": "Coolness",
+    "v": "Best served around 4 °C."
+   }
+  ],
+  "meter": [
+   {
+    "k": "Fizz",
+    "v": 95
+   },
+   {
+    "k": "Chill",
+    "v": 96
+   },
+   {
+    "k": "Flavor",
+    "v": 89
+   },
+   {
+    "k": "Kick",
+    "v": 90
+   },
+   {
+    "k": "Crave",
+    "v": 94
+   }
+  ],
+  "long": [
+   "Mojo’s bigger 330 ml can for longer sips. Delivered sealed in its original 330 ml can, Mojo Cola (330 ml) is made for sharing, snacking and beating the heat — a familiar favourite that always hits the spot.",
+   "Chill it for a few hours, pour it over ice or drink straight from the can. It pairs brilliantly with biryani, burgers, fuchka, kebab rolls, pizza and every kind of adda — and it is the easiest way to keep a party, iftar table or office fridge stocked.",
+   "At Drink it you buy straight from our own online store: choose a single can, a 6-pack, a 12-pack or a full carton of 24, pay with bKash, Nagad, Rocket, card or cash on delivery, and we bring the cans to your door. One store, every brand, no running around."
+  ],
+  "why": [
+   "**Bold, recognisable taste** that never lets you down — every can, every time.",
+   "**Easy to stock up:** save up to 10% when you pick a 6-pack, 12-pack or carton.",
+   "**Classic sweetness** — full-flavoured and satisfying.",
+   "**Sealed and genuine:** cans arrive factory-sealed with the best-before date on the base.",
+   "**Party-ready:** perfect for iftar, birthdays, picnics, offices and late-night study sessions.",
+   "**Order your way:** bKash, Nagad, Rocket, card or cash on delivery."
+  ],
+  "details": [
+   {
+    "k": "Brand",
+    "v": "Mojo"
+   },
+   {
+    "k": "Flavor",
+    "v": "Cola"
+   },
+   {
+    "k": "Can size",
+    "v": "330 ml"
+   },
+   {
+    "k": "Sugar",
+    "v": "Regular (see can label)"
+   },
+   {
+    "k": "Caffeine",
+    "v": "Contains caffeine"
+   },
+   {
+    "k": "Origin",
+    "v": "Bottled in Bangladesh"
+   },
+   {
+    "k": "Serve",
+    "v": "Chilled, around 4 °C"
+   },
+   {
+    "k": "Shelf life",
+    "v": "Best-before date printed on the can"
+   }
+  ],
+  "tile": "#f8ede8",
+  "images": {
+   "single": "/assets/img/cans/mojo-cola-330ml-can.svg",
+   "angle": "/assets/img/cans/mojo-cola-330ml-can-angle.svg",
+   "pack6": "/assets/img/cans/mojo-cola-330ml-can-pack6.svg",
+   "pack12": "/assets/img/cans/mojo-cola-330ml-can-pack12.svg",
+   "pack24": "/assets/img/cans/mojo-cola-330ml-can-pack24.svg"
+  }
+ },
+ {
+  "id": "DI007",
+  "handle": "mojo-zero-250ml-can",
+  "title": "Mojo Zero",
+  "brand": "Mojo",
+  "brandHandle": "mojo",
+  "variant": "Zero Sugar",
+  "type": "Cola",
+  "canMl": 250,
+  "sugar": "Zero",
+  "caffeine": true,
+  "origin": "Local",
+  "price": 50,
+  "compareAt": 0,
+  "stock": 270,
+  "collections": [
+   "cola-classics",
+   "zero-sugar"
+  ],
+  "badges": [],
+  "short": "The Mojo cola taste, sugar-free.",
+  "dealEndsAt": null,
+  "art": {
+   "body": "#2A2A2A",
+   "body2": "#0A0A0A",
+   "ink": "#ffffff",
+   "accent": "#FFC857",
+   "font": "LilitaOne-Regular",
+   "icon": "zero",
+   "band": "stripe",
+   "brand": "Mojo Zero",
+   "variant": "Zero Sugar",
+   "size": "250 mL",
+   "kind": "slim",
+   "badge": [
+    "ZERO",
+    "sugar"
+   ]
+  },
+  "packs": [
+   {
+    "id": "single",
+    "label": "Single can",
+    "qty": 1,
+    "discount": 0,
+    "price": 50,
+    "compareAt": 0
+   },
+   {
+    "id": "pack6",
+    "label": "6-pack",
+    "qty": 6,
+    "discount": 0.05,
+    "price": 285,
+    "compareAt": 300
+   },
+   {
+    "id": "pack12",
+    "label": "12-pack",
+    "qty": 12,
+    "discount": 0.08,
+    "price": 552,
+    "compareAt": 600
+   },
+   {
+    "id": "pack24",
+    "label": "Carton of 24",
+    "qty": 24,
+    "discount": 0.1,
+    "price": 1080,
+    "compareAt": 1200
+   }
+  ],
+  "sold": 171,
+  "createdAt": "2026-06-06",
+  "taste": [
+   {
+    "k": "Flavor",
+    "v": "Caramel, spice and a touch of vanilla."
+   },
+   {
+    "k": "Fizz",
+    "v": "Sharp, lively bubbles from the first sip."
+   },
+   {
+    "k": "Texture",
+    "v": "Smooth, syrupy-light body."
+   },
+   {
+    "k": "Energy",
+    "v": "A gentle lift of caffeine."
+   },
+   {
+    "k": "Vibrance",
+    "v": "Deep amber-brown colour."
+   },
+   {
+    "k": "Coolness",
+    "v": "Best served around 4 °C."
+   }
+  ],
+  "meter": [
+   {
+    "k": "Fizz",
+    "v": 79
+   },
+   {
+    "k": "Chill",
+    "v": 83
+   },
+   {
+    "k": "Flavor",
+    "v": 78
+   },
+   {
+    "k": "Kick",
+    "v": 77
+   },
+   {
+    "k": "Crave",
+    "v": 81
+   }
+  ],
+  "long": [
+   "The Mojo cola taste, sugar-free. Delivered sealed in its original 250 ml can, Mojo Zero is made for sharing, snacking and beating the heat — a familiar favourite that always hits the spot.",
+   "Chill it for a few hours, pour it over ice or drink straight from the can. It pairs brilliantly with biryani, burgers, fuchka, kebab rolls, pizza and every kind of adda — and it is the easiest way to keep a party, iftar table or office fridge stocked.",
+   "At Drink it you buy straight from our own online store: choose a single can, a 6-pack, a 12-pack or a full carton of 24, pay with bKash, Nagad, Rocket, card or cash on delivery, and we bring the cans to your door. One store, every brand, no running around."
+  ],
+  "why": [
+   "**Bold, recognisable taste** that never lets you down — every can, every time.",
+   "**Easy to stock up:** save up to 10% when you pick a 6-pack, 12-pack or carton.",
+   "**Zero sugar** — all the flavour without the sugar.",
+   "**Sealed and genuine:** cans arrive factory-sealed with the best-before date on the base.",
+   "**Party-ready:** perfect for iftar, birthdays, picnics, offices and late-night study sessions.",
+   "**Order your way:** bKash, Nagad, Rocket, card or cash on delivery."
+  ],
+  "details": [
+   {
+    "k": "Brand",
+    "v": "Mojo"
+   },
+   {
+    "k": "Flavor",
+    "v": "Zero Sugar"
+   },
+   {
+    "k": "Can size",
+    "v": "250 ml"
+   },
+   {
+    "k": "Sugar",
+    "v": "Zero sugar"
+   },
+   {
+    "k": "Caffeine",
+    "v": "Contains caffeine"
+   },
+   {
+    "k": "Origin",
+    "v": "Bottled in Bangladesh"
+   },
+   {
+    "k": "Serve",
+    "v": "Chilled, around 4 °C"
+   },
+   {
+    "k": "Shelf life",
+    "v": "Best-before date printed on the can"
+   }
+  ],
+  "tile": "#f0eee9",
+  "images": {
+   "single": "/assets/img/cans/mojo-zero-250ml-can.svg",
+   "angle": "/assets/img/cans/mojo-zero-250ml-can-angle.svg",
+   "pack6": "/assets/img/cans/mojo-zero-250ml-can-pack6.svg",
+   "pack12": "/assets/img/cans/mojo-zero-250ml-can-pack12.svg",
+   "pack24": "/assets/img/cans/mojo-zero-250ml-can-pack24.svg"
+  }
+ },
+ {
+  "id": "DI008",
+  "handle": "naga-mojo-250ml-can",
+  "title": "Naga Mojo",
+  "brand": "Mojo",
+  "brandHandle": "mojo",
+  "variant": "Spicy Cola",
+  "type": "Cola",
+  "canMl": 250,
+  "sugar": "Regular",
+  "caffeine": true,
+  "origin": "Local",
+  "price": 50,
+  "compareAt": 0,
+  "stock": 190,
+  "collections": [
+   "cola-classics"
+  ],
+  "badges": [
+   "new"
+  ],
+  "short": "A fiery Naga-inspired twist on a Bangladeshi cola.",
+  "dealEndsAt": null,
+  "art": {
+   "body": "#C4161C",
+   "body2": "#7A0A0F",
+   "ink": "#ffffff",
+   "accent": "#FFB300",
+   "font": "LilitaOne-Regular",
+   "icon": "chili",
+   "band": "slash",
+   "brand": "Naga Mojo",
+   "variant": "Spicy Cola",
+   "size": "250 mL",
+   "kind": "slim",
+   "badge": [
+    "SPICY",
+    "edition"
+   ]
+  },
+  "packs": [
+   {
+    "id": "single",
+    "label": "Single can",
+    "qty": 1,
+    "discount": 0,
+    "price": 50,
+    "compareAt": 0
+   },
+   {
+    "id": "pack6",
+    "label": "6-pack",
+    "qty": 6,
+    "discount": 0.05,
+    "price": 285,
+    "compareAt": 300
+   },
+   {
+    "id": "pack12",
+    "label": "12-pack",
+    "qty": 12,
+    "discount": 0.08,
+    "price": 552,
+    "compareAt": 600
+   },
+   {
+    "id": "pack24",
+    "label": "Carton of 24",
+    "qty": 24,
+    "discount": 0.1,
+    "price": 1080,
+    "compareAt": 1200
+   }
+  ],
+  "sold": 624,
+  "createdAt": "2026-09-18",
+  "taste": [
+   {
+    "k": "Flavor",
+    "v": "Caramel, spice and a touch of vanilla."
+   },
+   {
+    "k": "Fizz",
+    "v": "Sharp, lively bubbles from the first sip."
+   },
+   {
+    "k": "Texture",
+    "v": "Smooth, syrupy-light body."
+   },
+   {
+    "k": "Energy",
+    "v": "A gentle lift of caffeine."
+   },
+   {
+    "k": "Vibrance",
+    "v": "Deep amber-brown colour."
+   },
+   {
+    "k": "Coolness",
+    "v": "Best served around 4 °C."
+   }
+  ],
+  "meter": [
+   {
+    "k": "Fizz",
+    "v": 98
+   },
+   {
+    "k": "Chill",
+    "v": 97
+   },
+   {
+    "k": "Flavor",
+    "v": 96
+   },
+   {
+    "k": "Kick",
+    "v": 89
+   },
+   {
+    "k": "Crave",
+    "v": 92
+   }
+  ],
+  "long": [
+   "A fiery Naga-inspired twist on a Bangladeshi cola. Delivered sealed in its original 250 ml can, Naga Mojo is made for sharing, snacking and beating the heat — a familiar favourite that always hits the spot.",
+   "Chill it for a few hours, pour it over ice or drink straight from the can. It pairs brilliantly with biryani, burgers, fuchka, kebab rolls, pizza and every kind of adda — and it is the easiest way to keep a party, iftar table or office fridge stocked.",
+   "At Drink it you buy straight from our own online store: choose a single can, a 6-pack, a 12-pack or a full carton of 24, pay with bKash, Nagad, Rocket, card or cash on delivery, and we bring the cans to your door. One store, every brand, no running around."
+  ],
+  "why": [
+   "**Bold, recognisable taste** that never lets you down — every can, every time.",
+   "**Easy to stock up:** save up to 10% when you pick a 6-pack, 12-pack or carton.",
+   "**Classic sweetness** — full-flavoured and satisfying.",
+   "**Sealed and genuine:** cans arrive factory-sealed with the best-before date on the base.",
+   "**Party-ready:** perfect for iftar, birthdays, picnics, offices and late-night study sessions.",
+   "**Order your way:** bKash, Nagad, Rocket, card or cash on delivery."
+  ],
+  "details": [
+   {
+    "k": "Brand",
+    "v": "Mojo"
+   },
+   {
+    "k": "Flavor",
+    "v": "Spicy Cola"
+   },
+   {
+    "k": "Can size",
+    "v": "250 ml"
+   },
+   {
+    "k": "Sugar",
+    "v": "Regular (see can label)"
+   },
+   {
+    "k": "Caffeine",
+    "v": "Contains caffeine"
+   },
+   {
+    "k": "Origin",
+    "v": "Bottled in Bangladesh"
+   },
+   {
+    "k": "Serve",
+    "v": "Chilled, around 4 °C"
+   },
+   {
+    "k": "Shelf life",
+    "v": "Best-before date printed on the can"
+   }
+  ],
+  "tile": "#fbede8",
+  "images": {
+   "single": "/assets/img/cans/naga-mojo-250ml-can.svg",
+   "angle": "/assets/img/cans/naga-mojo-250ml-can-angle.svg",
+   "pack6": "/assets/img/cans/naga-mojo-250ml-can-pack6.svg",
+   "pack12": "/assets/img/cans/naga-mojo-250ml-can-pack12.svg",
+   "pack24": "/assets/img/cans/naga-mojo-250ml-can-pack24.svg"
+  }
+ },
+ {
+  "id": "DI009",
+  "handle": "rc-cola-250ml-can",
+  "title": "RC Cola",
+  "brand": "RC Cola",
+  "brandHandle": "rc-cola",
+  "variant": "Original Cola",
+  "type": "Cola",
+  "canMl": 250,
+  "sugar": "Regular",
+  "caffeine": true,
+  "origin": "Local",
+  "price": 35,
+  "compareAt": 0,
+  "stock": 330,
+  "collections": [
+   "cola-classics"
+  ],
+  "badges": [],
+  "short": "A classic cola with a smooth, easy-drinking taste.",
+  "dealEndsAt": null,
+  "art": {
+   "body": "#B3122A",
+   "body2": "#780B1C",
+   "ink": "#ffffff",
+   "accent": "#7DB6FF",
+   "font": "Righteous-Regular",
+   "icon": "cola",
+   "band": "stripe",
+   "brand": "RC Cola",
+   "variant": "Original Cola",
+   "size": "250 mL",
+   "kind": "slim",
+   "badge": [
+    "CLASSIC",
+    "cola"
+   ]
+  },
+  "packs": [
+   {
+    "id": "single",
+    "label": "Single can",
+    "qty": 1,
+    "discount": 0,
+    "price": 35,
+    "compareAt": 0
+   },
+   {
+    "id": "pack6",
+    "label": "6-pack",
+    "qty": 6,
+    "discount": 0.05,
+    "price": 200,
+    "compareAt": 210
+   },
+   {
+    "id": "pack12",
+    "label": "12-pack",
+    "qty": 12,
+    "discount": 0.08,
+    "price": 386,
+    "compareAt": 420
+   },
+   {
+    "id": "pack24",
+    "label": "Carton of 24",
+    "qty": 24,
+    "discount": 0.1,
+    "price": 756,
+    "compareAt": 840
+   }
+  ],
+  "sold": 892,
+  "createdAt": "2026-07-25",
+  "taste": [
+   {
+    "k": "Flavor",
+    "v": "Caramel, spice and a touch of vanilla."
+   },
+   {
+    "k": "Fizz",
+    "v": "Sharp, lively bubbles from the first sip."
+   },
+   {
+    "k": "Texture",
+    "v": "Smooth, syrupy-light body."
+   },
+   {
+    "k": "Energy",
+    "v": "A gentle lift of caffeine."
+   },
+   {
+    "k": "Vibrance",
+    "v": "Deep amber-brown colour."
+   },
+   {
+    "k": "Coolness",
+    "v": "Best served around 4 °C."
+   }
+  ],
+  "meter": [
+   {
+    "k": "Fizz",
+    "v": 96
+   },
+   {
+    "k": "Chill",
+    "v": 93
+   },
+   {
+    "k": "Flavor",
+    "v": 90
+   },
+   {
+    "k": "Kick",
+    "v": 84
+   },
+   {
+    "k": "Crave",
+    "v": 87
+   }
+  ],
+  "long": [
+   "A classic cola with a smooth, easy-drinking taste. Delivered sealed in its original 250 ml can, RC Cola is made for sharing, snacking and beating the heat — a familiar favourite that always hits the spot.",
+   "Chill it for a few hours, pour it over ice or drink straight from the can. It pairs brilliantly with biryani, burgers, fuchka, kebab rolls, pizza and every kind of adda — and it is the easiest way to keep a party, iftar table or office fridge stocked.",
+   "At Drink it you buy straight from our own online store: choose a single can, a 6-pack, a 12-pack or a full carton of 24, pay with bKash, Nagad, Rocket, card or cash on delivery, and we bring the cans to your door. One store, every brand, no running around."
+  ],
+  "why": [
+   "**Bold, recognisable taste** that never lets you down — every can, every time.",
+   "**Easy to stock up:** save up to 10% when you pick a 6-pack, 12-pack or carton.",
+   "**Classic sweetness** — full-flavoured and satisfying.",
+   "**Sealed and genuine:** cans arrive factory-sealed with the best-before date on the base.",
+   "**Party-ready:** perfect for iftar, birthdays, picnics, offices and late-night study sessions.",
+   "**Order your way:** bKash, Nagad, Rocket, card or cash on delivery."
+  ],
+  "details": [
+   {
+    "k": "Brand",
+    "v": "RC Cola"
+   },
+   {
+    "k": "Flavor",
+    "v": "Original Cola"
+   },
+   {
+    "k": "Can size",
+    "v": "250 ml"
+   },
+   {
+    "k": "Sugar",
+    "v": "Regular (see can label)"
+   },
+   {
+    "k": "Caffeine",
+    "v": "Contains caffeine"
+   },
+   {
+    "k": "Origin",
+    "v": "Bottled in Bangladesh"
+   },
+   {
+    "k": "Serve",
+    "v": "Chilled, around 4 °C"
+   },
+   {
+    "k": "Shelf life",
+    "v": "Best-before date printed on the can"
+   }
+  ],
+  "tile": "#f9ece9",
+  "images": {
+   "single": "/assets/img/cans/rc-cola-250ml-can.svg",
+   "angle": "/assets/img/cans/rc-cola-250ml-can-angle.svg",
+   "pack6": "/assets/img/cans/rc-cola-250ml-can-pack6.svg",
+   "pack12": "/assets/img/cans/rc-cola-250ml-can-pack12.svg",
+   "pack24": "/assets/img/cans/rc-cola-250ml-can-pack24.svg"
+  }
+ },
+ {
+  "id": "DI010",
+  "handle": "houston-soft-drink-250ml-can",
+  "title": "Houston Soft Drink",
+  "brand": "Houston",
+  "brandHandle": "houston",
+  "variant": "Soft Drink",
+  "type": "Cola",
+  "canMl": 250,
+  "sugar": "Regular",
+  "caffeine": true,
+  "origin": "Local",
+  "price": 40,
+  "compareAt": 0,
+  "stock": 230,
+  "collections": [
+   "cola-classics"
+  ],
+  "badges": [],
+  "short": "A pocket-friendly local soft drink can.",
+  "dealEndsAt": null,
+  "art": {
+   "body": "#5B2CB8",
+   "body2": "#3A1B80",
+   "ink": "#ffffff",
+   "accent": "#FFD166",
+   "font": "Righteous-Regular",
+   "icon": "cola",
+   "band": "slash",
+   "brand": "Houston",
+   "variant": "Soft Drink",
+   "size": "250 mL",
+   "kind": "slim",
+   "badge": [
+    "LOCAL",
+    "brand"
+   ]
+  },
+  "packs": [
+   {
+    "id": "single",
+    "label": "Single can",
+    "qty": 1,
+    "discount": 0,
+    "price": 40,
+    "compareAt": 0
+   },
+   {
+    "id": "pack6",
+    "label": "6-pack",
+    "qty": 6,
+    "discount": 0.05,
+    "price": 228,
+    "compareAt": 240
+   },
+   {
+    "id": "pack12",
+    "label": "12-pack",
+    "qty": 12,
+    "discount": 0.08,
+    "price": 442,
+    "compareAt": 480
+   },
+   {
+    "id": "pack24",
+    "label": "Carton of 24",
+    "qty": 24,
+    "discount": 0.1,
+    "price": 864,
+    "compareAt": 960
+   }
+  ],
+  "sold": 631,
+  "createdAt": "2026-07-07",
+  "taste": [
+   {
+    "k": "Flavor",
+    "v": "Caramel, spice and a touch of vanilla."
+   },
+   {
+    "k": "Fizz",
+    "v": "Sharp, lively bubbles from the first sip."
+   },
+   {
+    "k": "Texture",
+    "v": "Smooth, syrupy-light body."
+   },
+   {
+    "k": "Energy",
+    "v": "A gentle lift of caffeine."
+   },
+   {
+    "k": "Vibrance",
+    "v": "Deep amber-brown colour."
+   },
+   {
+    "k": "Coolness",
+    "v": "Best served around 4 °C."
+   }
+  ],
+  "meter": [
+   {
+    "k": "Fizz",
+    "v": 74
+   },
+   {
+    "k": "Chill",
+    "v": 73
+   },
+   {
+    "k": "Flavor",
+    "v": 75
+   },
+   {
+    "k": "Kick",
+    "v": 71
+   },
+   {
+    "k": "Crave",
+    "v": 80
+   }
+  ],
+  "long": [
+   "A pocket-friendly local soft drink can. Delivered sealed in its original 250 ml can, Houston Soft Drink is made for sharing, snacking and beating the heat — a familiar favourite that always hits the spot.",
+   "Chill it for a few hours, pour it over ice or drink straight from the can. It pairs brilliantly with biryani, burgers, fuchka, kebab rolls, pizza and every kind of adda — and it is the easiest way to keep a party, iftar table or office fridge stocked.",
+   "At Drink it you buy straight from our own online store: choose a single can, a 6-pack, a 12-pack or a full carton of 24, pay with bKash, Nagad, Rocket, card or cash on delivery, and we bring the cans to your door. One store, every brand, no running around."
+  ],
+  "why": [
+   "**Bold, recognisable taste** that never lets you down — every can, every time.",
+   "**Easy to stock up:** save up to 10% when you pick a 6-pack, 12-pack or carton.",
+   "**Classic sweetness** — full-flavoured and satisfying.",
+   "**Sealed and genuine:** cans arrive factory-sealed with the best-before date on the base.",
+   "**Party-ready:** perfect for iftar, birthdays, picnics, offices and late-night study sessions.",
+   "**Order your way:** bKash, Nagad, Rocket, card or cash on delivery."
+  ],
+  "details": [
+   {
+    "k": "Brand",
+    "v": "Houston"
+   },
+   {
+    "k": "Flavor",
+    "v": "Soft Drink"
+   },
+   {
+    "k": "Can size",
+    "v": "250 ml"
+   },
+   {
+    "k": "Sugar",
+    "v": "Regular (see can label)"
+   },
+   {
+    "k": "Caffeine",
+    "v": "Contains caffeine"
+   },
+   {
+    "k": "Origin",
+    "v": "Bottled in Bangladesh"
+   },
+   {
+    "k": "Serve",
+    "v": "Chilled, around 4 °C"
+   },
+   {
+    "k": "Shelf life",
+    "v": "Best-before date printed on the can"
+   }
+  ],
+  "tile": "#f4eef3",
+  "images": {
+   "single": "/assets/img/cans/houston-soft-drink-250ml-can.svg",
+   "angle": "/assets/img/cans/houston-soft-drink-250ml-can-angle.svg",
+   "pack6": "/assets/img/cans/houston-soft-drink-250ml-can-pack6.svg",
+   "pack12": "/assets/img/cans/houston-soft-drink-250ml-can-pack12.svg",
+   "pack24": "/assets/img/cans/houston-soft-drink-250ml-can-pack24.svg"
+  }
+ },
+ {
+  "id": "DI011",
+  "handle": "sprite-250ml-can",
+  "title": "Sprite",
+  "brand": "Sprite",
+  "brandHandle": "sprite",
+  "variant": "Lemon-Lime",
+  "type": "Lemon-Lime",
+  "canMl": 250,
+  "sugar": "Regular",
+  "caffeine": false,
+  "origin": "Local",
+  "price": 65,
+  "compareAt": 70,
+  "stock": 590,
+  "collections": [
+   "citrus-fizz"
+  ],
+  "badges": [
+   "best"
+  ],
+  "short": "Crisp, clean lemon-lime sparkle with no caffeine.",
+  "dealEndsAt": "2026-12-31T23:59:59+06:00",
+  "art": {
+   "body": "#0B9A47",
+   "body2": "#066B30",
+   "ink": "#ffffff",
+   "accent": "#D6F25A",
+   "font": "LilitaOne-Regular",
+   "icon": "lime",
+   "band": "dots",
+   "brand": "Sprite",
+   "variant": "Lemon-Lime",
+   "size": "250 mL",
+   "kind": "slim",
+   "badge": [
+    "CLEAR",
+    "crisp"
+   ]
+  },
+  "packs": [
+   {
+    "id": "single",
+    "label": "Single can",
+    "qty": 1,
+    "discount": 0,
+    "price": 65,
+    "compareAt": 70
+   },
+   {
+    "id": "pack6",
+    "label": "6-pack",
+    "qty": 6,
+    "discount": 0.05,
+    "price": 371,
+    "compareAt": 390
+   },
+   {
+    "id": "pack12",
+    "label": "12-pack",
+    "qty": 12,
+    "discount": 0.08,
+    "price": 718,
+    "compareAt": 780
+   },
+   {
+    "id": "pack24",
+    "label": "Carton of 24",
+    "qty": 24,
+    "discount": 0.1,
+    "price": 1404,
+    "compareAt": 1560
+   }
+  ],
+  "sold": 460,
+  "createdAt": "2026-07-25",
+  "taste": [
+   {
+    "k": "Flavor",
+    "v": "Crisp lemon and lime, never heavy."
+   },
+   {
+    "k": "Fizz",
+    "v": "Fine, clean bubbles."
+   },
+   {
+    "k": "Texture",
+    "v": "Light and clear on the palate."
+   },
+   {
+    "k": "Energy",
+    "v": "Refreshment without the heaviness."
+   },
+   {
+    "k": "Vibrance",
+    "v": "Bright, sparkling clarity."
+   },
+   {
+    "k": "Coolness",
+    "v": "Wonderful ice-cold with a lime wedge."
+   }
+  ],
+  "meter": [
+   {
+    "k": "Fizz",
+    "v": 84
+   },
+   {
+    "k": "Chill",
+    "v": 91
+   },
+   {
+    "k": "Flavor",
+    "v": 98
+   },
+   {
+    "k": "Kick",
+    "v": 93
+   },
+   {
+    "k": "Crave",
+    "v": 98
+   }
+  ],
+  "long": [
+   "Crisp, clean lemon-lime sparkle with no caffeine. Delivered sealed in its original 250 ml can, Sprite is made for sharing, snacking and beating the heat — a familiar favourite that always hits the spot.",
+   "Chill it for a few hours, pour it over ice or drink straight from the can. It pairs brilliantly with biryani, burgers, fuchka, kebab rolls, pizza and every kind of adda — and it is the easiest way to keep a party, iftar table or office fridge stocked.",
+   "At Drink it you buy straight from our own online store: choose a single can, a 6-pack, a 12-pack or a full carton of 24, pay with bKash, Nagad, Rocket, card or cash on delivery, and we bring the cans to your door. One store, every brand, no running around."
+  ],
+  "why": [
+   "**Bold, recognisable taste** that never lets you down — every can, every time.",
+   "**Easy to stock up:** save up to 10% when you pick a 6-pack, 12-pack or carton.",
+   "**Classic sweetness** — full-flavoured and satisfying.",
+   "**Sealed and genuine:** cans arrive factory-sealed with the best-before date on the base.",
+   "**Party-ready:** perfect for iftar, birthdays, picnics, offices and late-night study sessions.",
+   "**Order your way:** bKash, Nagad, Rocket, card or cash on delivery."
+  ],
+  "details": [
+   {
+    "k": "Brand",
+    "v": "Sprite"
+   },
+   {
+    "k": "Flavor",
+    "v": "Lemon-Lime"
+   },
+   {
+    "k": "Can size",
+    "v": "250 ml"
+   },
+   {
+    "k": "Sugar",
+    "v": "Regular (see can label)"
+   },
+   {
+    "k": "Caffeine",
+    "v": "Caffeine-free"
+   },
+   {
+    "k": "Origin",
+    "v": "Bottled in Bangladesh"
+   },
+   {
+    "k": "Serve",
+    "v": "Chilled, around 4 °C"
+   },
+   {
+    "k": "Shelf life",
+    "v": "Best-before date printed on the can"
+   }
+  ],
+  "tile": "#eef6ec",
+  "images": {
+   "single": "/assets/img/cans/sprite-250ml-can.svg",
+   "angle": "/assets/img/cans/sprite-250ml-can-angle.svg",
+   "pack6": "/assets/img/cans/sprite-250ml-can-pack6.svg",
+   "pack12": "/assets/img/cans/sprite-250ml-can-pack12.svg",
+   "pack24": "/assets/img/cans/sprite-250ml-can-pack24.svg"
+  }
+ },
+ {
+  "id": "DI012",
+  "handle": "7up-250ml-can",
+  "title": "7UP",
+  "brand": "7UP",
+  "brandHandle": "7up",
+  "variant": "Lemon-Lime",
+  "type": "Lemon-Lime",
+  "canMl": 250,
+  "sugar": "Regular",
+  "caffeine": false,
+  "origin": "Local",
+  "price": 70,
+  "compareAt": 0,
+  "stock": 450,
+  "collections": [
+   "citrus-fizz"
+  ],
+  "badges": [],
+  "short": "Light, bubbly lemon-lime refreshment.",
+  "dealEndsAt": null,
+  "art": {
+   "body": "#25A84A",
+   "body2": "#157A33",
+   "ink": "#ffffff",
+   "accent": "#FF4B5C",
+   "font": "Righteous-Regular",
+   "icon": "lemon",
+   "band": "stripe",
+   "brand": "7UP",
+   "variant": "Lemon-Lime",
+   "size": "250 mL",
+   "kind": "slim",
+   "badge": [
+    "CLEAR",
+    "lemon-lime"
+   ]
+  },
+  "packs": [
+   {
+    "id": "single",
+    "label": "Single can",
+    "qty": 1,
+    "discount": 0,
+    "price": 70,
+    "compareAt": 0
+   },
+   {
+    "id": "pack6",
+    "label": "6-pack",
+    "qty": 6,
+    "discount": 0.05,
+    "price": 399,
+    "compareAt": 420
+   },
+   {
+    "id": "pack12",
+    "label": "12-pack",
+    "qty": 12,
+    "discount": 0.08,
+    "price": 773,
+    "compareAt": 840
+   },
+   {
+    "id": "pack24",
+    "label": "Carton of 24",
+    "qty": 24,
+    "discount": 0.1,
+    "price": 1512,
+    "compareAt": 1680
+   }
+  ],
+  "sold": 427,
+  "createdAt": "2026-01-19",
+  "taste": [
+   {
+    "k": "Flavor",
+    "v": "Crisp lemon and lime, never heavy."
+   },
+   {
+    "k": "Fizz",
+    "v": "Fine, clean bubbles."
+   },
+   {
+    "k": "Texture",
+    "v": "Light and clear on the palate."
+   },
+   {
+    "k": "Energy",
+    "v": "Refreshment without the heaviness."
+   },
+   {
+    "k": "Vibrance",
+    "v": "Bright, sparkling clarity."
+   },
+   {
+    "k": "Coolness",
+    "v": "Wonderful ice-cold with a lime wedge."
+   }
+  ],
+  "meter": [
+   {
+    "k": "Fizz",
+    "v": 80
+   },
+   {
+    "k": "Chill",
+    "v": 77
+   },
+   {
+    "k": "Flavor",
+    "v": 83
+   },
+   {
+    "k": "Kick",
+    "v": 83
+   },
+   {
+    "k": "Crave",
+    "v": 74
+   }
+  ],
+  "long": [
+   "Light, bubbly lemon-lime refreshment. Delivered sealed in its original 250 ml can, 7UP is made for sharing, snacking and beating the heat — a familiar favourite that always hits the spot.",
+   "Chill it for a few hours, pour it over ice or drink straight from the can. It pairs brilliantly with biryani, burgers, fuchka, kebab rolls, pizza and every kind of adda — and it is the easiest way to keep a party, iftar table or office fridge stocked.",
+   "At Drink it you buy straight from our own online store: choose a single can, a 6-pack, a 12-pack or a full carton of 24, pay with bKash, Nagad, Rocket, card or cash on delivery, and we bring the cans to your door. One store, every brand, no running around."
+  ],
+  "why": [
+   "**Bold, recognisable taste** that never lets you down — every can, every time.",
+   "**Easy to stock up:** save up to 10% when you pick a 6-pack, 12-pack or carton.",
+   "**Classic sweetness** — full-flavoured and satisfying.",
+   "**Sealed and genuine:** cans arrive factory-sealed with the best-before date on the base.",
+   "**Party-ready:** perfect for iftar, birthdays, picnics, offices and late-night study sessions.",
+   "**Order your way:** bKash, Nagad, Rocket, card or cash on delivery."
+  ],
+  "details": [
+   {
+    "k": "Brand",
+    "v": "7UP"
+   },
+   {
+    "k": "Flavor",
+    "v": "Lemon-Lime"
+   },
+   {
+    "k": "Can size",
+    "v": "250 ml"
+   },
+   {
+    "k": "Sugar",
+    "v": "Regular (see can label)"
+   },
+   {
+    "k": "Caffeine",
+    "v": "Caffeine-free"
+   },
+   {
+    "k": "Origin",
+    "v": "Bottled in Bangladesh"
+   },
+   {
+    "k": "Serve",
+    "v": "Chilled, around 4 °C"
+   },
+   {
+    "k": "Shelf life",
+    "v": "Best-before date printed on the can"
+   }
+  ],
+  "tile": "#f0f7ec",
+  "images": {
+   "single": "/assets/img/cans/7up-250ml-can.svg",
+   "angle": "/assets/img/cans/7up-250ml-can-angle.svg",
+   "pack6": "/assets/img/cans/7up-250ml-can-pack6.svg",
+   "pack12": "/assets/img/cans/7up-250ml-can-pack12.svg",
+   "pack24": "/assets/img/cans/7up-250ml-can-pack24.svg"
+  }
+ },
+ {
+  "id": "DI013",
+  "handle": "mirinda-orange-250ml-can",
+  "title": "Mirinda Orange",
+  "brand": "Mirinda",
+  "brandHandle": "mirinda",
+  "variant": "Orange",
+  "type": "Orange",
+  "canMl": 250,
+  "sugar": "Regular",
+  "caffeine": false,
+  "origin": "Local",
+  "price": 70,
+  "compareAt": 0,
+  "stock": 380,
+  "collections": [
+   "citrus-fizz"
+  ],
+  "badges": [],
+  "short": "Sweet, bubbly orange fizz.",
+  "dealEndsAt": null,
+  "art": {
+   "body": "#F26B0F",
+   "body2": "#C24A00",
+   "ink": "#ffffff",
+   "accent": "#FFD166",
+   "font": "Righteous-Regular",
+   "icon": "orange",
+   "band": "slash",
+   "brand": "Mirinda",
+   "variant": "Orange",
+   "size": "250 mL",
+   "kind": "slim",
+   "badge": [
+    "FRUITY",
+    "orange"
+   ]
+  },
+  "packs": [
+   {
+    "id": "single",
+    "label": "Single can",
+    "qty": 1,
+    "discount": 0,
+    "price": 70,
+    "compareAt": 0
+   },
+   {
+    "id": "pack6",
+    "label": "6-pack",
+    "qty": 6,
+    "discount": 0.05,
+    "price": 399,
+    "compareAt": 420
+   },
+   {
+    "id": "pack12",
+    "label": "12-pack",
+    "qty": 12,
+    "discount": 0.08,
+    "price": 773,
+    "compareAt": 840
+   },
+   {
+    "id": "pack24",
+    "label": "Carton of 24",
+    "qty": 24,
+    "discount": 0.1,
+    "price": 1512,
+    "compareAt": 1680
+   }
+  ],
+  "sold": 344,
+  "createdAt": "2026-08-26",
+  "taste": [
+   {
+    "k": "Flavor",
+    "v": "Sweet, juicy orange with a citrus zing."
+   },
+   {
+    "k": "Fizz",
+    "v": "Playful, bouncy bubbles."
+   },
+   {
+    "k": "Texture",
+    "v": "Soft and smooth."
+   },
+   {
+    "k": "Energy",
+    "v": "Fun and caffeine-free."
+   },
+   {
+    "k": "Vibrance",
+    "v": "Sunny orange colour."
+   },
+   {
+    "k": "Coolness",
+    "v": "Chill well for peak taste."
+   }
+  ],
+  "meter": [
+   {
+    "k": "Fizz",
+    "v": 72
+   },
+   {
+    "k": "Chill",
+    "v": 75
+   },
+   {
+    "k": "Flavor",
+    "v": 81
+   },
+   {
+    "k": "Kick",
+    "v": 83
+   },
+   {
+    "k": "Crave",
+    "v": 76
+   }
+  ],
+  "long": [
+   "Sweet, bubbly orange fizz. Delivered sealed in its original 250 ml can, Mirinda Orange is made for sharing, snacking and beating the heat — a familiar favourite that always hits the spot.",
+   "Chill it for a few hours, pour it over ice or drink straight from the can. It pairs brilliantly with biryani, burgers, fuchka, kebab rolls, pizza and every kind of adda — and it is the easiest way to keep a party, iftar table or office fridge stocked.",
+   "At Drink it you buy straight from our own online store: choose a single can, a 6-pack, a 12-pack or a full carton of 24, pay with bKash, Nagad, Rocket, card or cash on delivery, and we bring the cans to your door. One store, every brand, no running around."
+  ],
+  "why": [
+   "**Bold, recognisable taste** that never lets you down — every can, every time.",
+   "**Easy to stock up:** save up to 10% when you pick a 6-pack, 12-pack or carton.",
+   "**Classic sweetness** — full-flavoured and satisfying.",
+   "**Sealed and genuine:** cans arrive factory-sealed with the best-before date on the base.",
+   "**Party-ready:** perfect for iftar, birthdays, picnics, offices and late-night study sessions.",
+   "**Order your way:** bKash, Nagad, Rocket, card or cash on delivery."
+  ],
+  "details": [
+   {
+    "k": "Brand",
+    "v": "Mirinda"
+   },
+   {
+    "k": "Flavor",
+    "v": "Orange"
+   },
+   {
+    "k": "Can size",
+    "v": "250 ml"
+   },
+   {
+    "k": "Sugar",
+    "v": "Regular (see can label)"
+   },
+   {
+    "k": "Caffeine",
+    "v": "Caffeine-free"
+   },
+   {
+    "k": "Origin",
+    "v": "Bottled in Bangladesh"
+   },
+   {
+    "k": "Serve",
+    "v": "Chilled, around 4 °C"
+   },
+   {
+    "k": "Shelf life",
+    "v": "Best-before date printed on the can"
+   }
+  ],
+  "tile": "#fef2e7",
+  "images": {
+   "single": "/assets/img/cans/mirinda-orange-250ml-can.svg",
+   "angle": "/assets/img/cans/mirinda-orange-250ml-can-angle.svg",
+   "pack6": "/assets/img/cans/mirinda-orange-250ml-can-pack6.svg",
+   "pack12": "/assets/img/cans/mirinda-orange-250ml-can-pack12.svg",
+   "pack24": "/assets/img/cans/mirinda-orange-250ml-can-pack24.svg"
+  }
+ },
+ {
+  "id": "DI014",
+  "handle": "fanta-orange-250ml-can",
+  "title": "Fanta Orange",
+  "brand": "Fanta",
+  "brandHandle": "fanta",
+  "variant": "Orange",
+  "type": "Orange",
+  "canMl": 250,
+  "sugar": "Regular",
+  "caffeine": false,
+  "origin": "Local",
+  "price": 65,
+  "compareAt": 70,
+  "stock": 510,
+  "collections": [
+   "citrus-fizz"
+  ],
+  "badges": [],
+  "short": "Bright, juicy orange flavour with playful bubbles.",
+  "dealEndsAt": "2026-12-31T23:59:59+06:00",
+  "art": {
+   "body": "#FF9A00",
+   "body2": "#E06C00",
+   "ink": "#ffffff",
+   "accent": "#7BD3FF",
+   "font": "LilitaOne-Regular",
+   "icon": "orange",
+   "band": "dots",
+   "brand": "Fanta",
+   "variant": "Orange",
+   "size": "250 mL",
+   "kind": "slim",
+   "badge": [
+    "FRUITY",
+    "fizz"
+   ]
+  },
+  "packs": [
+   {
+    "id": "single",
+    "label": "Single can",
+    "qty": 1,
+    "discount": 0,
+    "price": 65,
+    "compareAt": 70
+   },
+   {
+    "id": "pack6",
+    "label": "6-pack",
+    "qty": 6,
+    "discount": 0.05,
+    "price": 371,
+    "compareAt": 390
+   },
+   {
+    "id": "pack12",
+    "label": "12-pack",
+    "qty": 12,
+    "discount": 0.08,
+    "price": 718,
+    "compareAt": 780
+   },
+   {
+    "id": "pack24",
+    "label": "Carton of 24",
+    "qty": 24,
+    "discount": 0.1,
+    "price": 1404,
+    "compareAt": 1560
+   }
+  ],
+  "sold": 362,
+  "createdAt": "2026-08-17",
+  "taste": [
+   {
+    "k": "Flavor",
+    "v": "Sweet, juicy orange with a citrus zing."
+   },
+   {
+    "k": "Fizz",
+    "v": "Playful, bouncy bubbles."
+   },
+   {
+    "k": "Texture",
+    "v": "Soft and smooth."
+   },
+   {
+    "k": "Energy",
+    "v": "Fun and caffeine-free."
+   },
+   {
+    "k": "Vibrance",
+    "v": "Sunny orange colour."
+   },
+   {
+    "k": "Coolness",
+    "v": "Chill well for peak taste."
+   }
+  ],
+  "meter": [
+   {
+    "k": "Fizz",
+    "v": 75
+   },
+   {
+    "k": "Chill",
+    "v": 77
+   },
+   {
+    "k": "Flavor",
+    "v": 77
+   },
+   {
+    "k": "Kick",
+    "v": 70
+   },
+   {
+    "k": "Crave",
+    "v": 74
+   }
+  ],
+  "long": [
+   "Bright, juicy orange flavour with playful bubbles. Delivered sealed in its original 250 ml can, Fanta Orange is made for sharing, snacking and beating the heat — a familiar favourite that always hits the spot.",
+   "Chill it for a few hours, pour it over ice or drink straight from the can. It pairs brilliantly with biryani, burgers, fuchka, kebab rolls, pizza and every kind of adda — and it is the easiest way to keep a party, iftar table or office fridge stocked.",
+   "At Drink it you buy straight from our own online store: choose a single can, a 6-pack, a 12-pack or a full carton of 24, pay with bKash, Nagad, Rocket, card or cash on delivery, and we bring the cans to your door. One store, every brand, no running around."
+  ],
+  "why": [
+   "**Bold, recognisable taste** that never lets you down — every can, every time.",
+   "**Easy to stock up:** save up to 10% when you pick a 6-pack, 12-pack or carton.",
+   "**Classic sweetness** — full-flavoured and satisfying.",
+   "**Sealed and genuine:** cans arrive factory-sealed with the best-before date on the base.",
+   "**Party-ready:** perfect for iftar, birthdays, picnics, offices and late-night study sessions.",
+   "**Order your way:** bKash, Nagad, Rocket, card or cash on delivery."
+  ],
+  "details": [
+   {
+    "k": "Brand",
+    "v": "Fanta"
+   },
+   {
+    "k": "Flavor",
+    "v": "Orange"
+   },
+   {
+    "k": "Can size",
+    "v": "250 ml"
+   },
+   {
+    "k": "Sugar",
+    "v": "Regular (see can label)"
+   },
+   {
+    "k": "Caffeine",
+    "v": "Caffeine-free"
+   },
+   {
+    "k": "Origin",
+    "v": "Bottled in Bangladesh"
+   },
+   {
+    "k": "Serve",
+    "v": "Chilled, around 4 °C"
+   },
+   {
+    "k": "Shelf life",
+    "v": "Best-before date printed on the can"
+   }
+  ],
+  "tile": "#fff6e7",
+  "images": {
+   "single": "/assets/img/cans/fanta-orange-250ml-can.svg",
+   "angle": "/assets/img/cans/fanta-orange-250ml-can-angle.svg",
+   "pack6": "/assets/img/cans/fanta-orange-250ml-can-pack6.svg",
+   "pack12": "/assets/img/cans/fanta-orange-250ml-can-pack12.svg",
+   "pack24": "/assets/img/cans/fanta-orange-250ml-can-pack24.svg"
+  }
+ },
+ {
+  "id": "DI015",
+  "handle": "mountain-dew-250ml-can",
+  "title": "Mountain Dew",
+  "brand": "Mountain Dew",
+  "brandHandle": "mountain-dew",
+  "variant": "Citrus Kick",
+  "type": "Citrus",
+  "canMl": 250,
+  "sugar": "Regular",
+  "caffeine": true,
+  "origin": "Local",
+  "price": 70,
+  "compareAt": 0,
+  "stock": 340,
+  "collections": [
+   "citrus-fizz",
+   "energy-rush"
+  ],
+  "badges": [],
+  "short": "Bold citrus flavour with an extra kick.",
+  "dealEndsAt": null,
+  "art": {
+   "body": "#6DBE2E",
+   "body2": "#3B8F1A",
+   "ink": "#ffffff",
+   "accent": "#E6FF6B",
+   "font": "Anton-Regular",
+   "icon": "bolt",
+   "band": "slash",
+   "brand": "Mountain Dew",
+   "variant": "Citrus Kick",
+   "size": "250 mL",
+   "kind": "slim",
+   "badge": [
+    "CITRUS",
+    "kick"
+   ]
+  },
+  "packs": [
+   {
+    "id": "single",
+    "label": "Single can",
+    "qty": 1,
+    "discount": 0,
+    "price": 70,
+    "compareAt": 0
+   },
+   {
+    "id": "pack6",
+    "label": "6-pack",
+    "qty": 6,
+    "discount": 0.05,
+    "price": 399,
+    "compareAt": 420
+   },
+   {
+    "id": "pack12",
+    "label": "12-pack",
+    "qty": 12,
+    "discount": 0.08,
+    "price": 773,
+    "compareAt": 840
+   },
+   {
+    "id": "pack24",
+    "label": "Carton of 24",
+    "qty": 24,
+    "discount": 0.1,
+    "price": 1512,
+    "compareAt": 1680
+   }
+  ],
+  "sold": 103,
+  "createdAt": "2026-01-10",
+  "taste": [
+   {
+    "k": "Flavor",
+    "v": "Bold citrus with an extra punch."
+   },
+   {
+    "k": "Fizz",
+    "v": "Energetic bubbles."
+   },
+   {
+    "k": "Texture",
+    "v": "Bright and zesty."
+   },
+   {
+    "k": "Energy",
+    "v": "Made to wake you up."
+   },
+   {
+    "k": "Vibrance",
+    "v": "Electric lime-green colour."
+   },
+   {
+    "k": "Coolness",
+    "v": "Serve over ice."
+   }
+  ],
+  "meter": [
+   {
+    "k": "Fizz",
+    "v": 87
+   },
+   {
+    "k": "Chill",
+    "v": 84
+   },
+   {
+    "k": "Flavor",
+    "v": 85
+   },
+   {
+    "k": "Kick",
+    "v": 89
+   },
+   {
+    "k": "Crave",
+    "v": 94
+   }
+  ],
+  "long": [
+   "Bold citrus flavour with an extra kick. Delivered sealed in its original 250 ml can, Mountain Dew is made for sharing, snacking and beating the heat — a familiar favourite that always hits the spot.",
+   "Chill it for a few hours, pour it over ice or drink straight from the can. It pairs brilliantly with biryani, burgers, fuchka, kebab rolls, pizza and every kind of adda — and it is the easiest way to keep a party, iftar table or office fridge stocked.",
+   "At Drink it you buy straight from our own online store: choose a single can, a 6-pack, a 12-pack or a full carton of 24, pay with bKash, Nagad, Rocket, card or cash on delivery, and we bring the cans to your door. One store, every brand, no running around."
+  ],
+  "why": [
+   "**Bold, recognisable taste** that never lets you down — every can, every time.",
+   "**Easy to stock up:** save up to 10% when you pick a 6-pack, 12-pack or carton.",
+   "**Classic sweetness** — full-flavoured and satisfying.",
+   "**Sealed and genuine:** cans arrive factory-sealed with the best-before date on the base.",
+   "**Party-ready:** perfect for iftar, birthdays, picnics, offices and late-night study sessions.",
+   "**Order your way:** bKash, Nagad, Rocket, card or cash on delivery."
+  ],
+  "details": [
+   {
+    "k": "Brand",
+    "v": "Mountain Dew"
+   },
+   {
+    "k": "Flavor",
+    "v": "Citrus Kick"
+   },
+   {
+    "k": "Can size",
+    "v": "250 ml"
+   },
+   {
+    "k": "Sugar",
+    "v": "Regular (see can label)"
+   },
+   {
+    "k": "Caffeine",
+    "v": "Contains caffeine"
+   },
+   {
+    "k": "Origin",
+    "v": "Bottled in Bangladesh"
+   },
+   {
+    "k": "Serve",
+    "v": "Chilled, around 4 °C"
+   },
+   {
+    "k": "Shelf life",
+    "v": "Best-before date printed on the can"
+   }
+  ],
+  "tile": "#f5f9e9",
+  "images": {
+   "single": "/assets/img/cans/mountain-dew-250ml-can.svg",
+   "angle": "/assets/img/cans/mountain-dew-250ml-can-angle.svg",
+   "pack6": "/assets/img/cans/mountain-dew-250ml-can-pack6.svg",
+   "pack12": "/assets/img/cans/mountain-dew-250ml-can-pack12.svg",
+   "pack24": "/assets/img/cans/mountain-dew-250ml-can-pack24.svg"
+  }
+ },
+ {
+  "id": "DI016",
+  "handle": "clemon-lemon-soda-250ml-can",
+  "title": "Clemon Lemon Soda",
+  "brand": "Clemon",
+  "brandHandle": "clemon",
+  "variant": "Lemon Soda",
+  "type": "Lemon-Lime",
+  "canMl": 250,
+  "sugar": "Regular",
+  "caffeine": false,
+  "origin": "Local",
+  "price": 40,
+  "compareAt": 0,
+  "stock": 560,
+  "collections": [
+   "citrus-fizz"
+  ],
+  "badges": [
+   "best"
+  ],
+  "short": "Tangy lemon soda that tastes like a summer afternoon.",
+  "dealEndsAt": null,
+  "art": {
+   "body": "#F4D80B",
+   "body2": "#D8B800",
+   "ink": "#14532D",
+   "accent": "#2E9E3A",
+   "font": "LilitaOne-Regular",
+   "icon": "lemon",
+   "band": "dots",
+   "brand": "Clemon",
+   "variant": "Lemon Soda",
+   "size": "250 mL",
+   "kind": "slim",
+   "badge": [
+    "LEMON",
+    "soda"
+   ]
+  },
+  "packs": [
+   {
+    "id": "single",
+    "label": "Single can",
+    "qty": 1,
+    "discount": 0,
+    "price": 40,
+    "compareAt": 0
+   },
+   {
+    "id": "pack6",
+    "label": "6-pack",
+    "qty": 6,
+    "discount": 0.05,
+    "price": 228,
+    "compareAt": 240
+   },
+   {
+    "id": "pack12",
+    "label": "12-pack",
+    "qty": 12,
+    "discount": 0.08,
+    "price": 442,
+    "compareAt": 480
+   },
+   {
+    "id": "pack24",
+    "label": "Carton of 24",
+    "qty": 24,
+    "discount": 0.1,
+    "price": 864,
+    "compareAt": 960
+   }
+  ],
+  "sold": 195,
+  "createdAt": "2026-03-21",
+  "taste": [
+   {
+    "k": "Flavor",
+    "v": "Crisp lemon and lime, never heavy."
+   },
+   {
+    "k": "Fizz",
+    "v": "Fine, clean bubbles."
+   },
+   {
+    "k": "Texture",
+    "v": "Light and clear on the palate."
+   },
+   {
+    "k": "Energy",
+    "v": "Refreshment without the heaviness."
+   },
+   {
+    "k": "Vibrance",
+    "v": "Bright, sparkling clarity."
+   },
+   {
+    "k": "Coolness",
+    "v": "Wonderful ice-cold with a lime wedge."
+   }
+  ],
+  "meter": [
+   {
+    "k": "Fizz",
+    "v": 73
+   },
+   {
+    "k": "Chill",
+    "v": 71
+   },
+   {
+    "k": "Flavor",
+    "v": 82
+   },
+   {
+    "k": "Kick",
+    "v": 74
+   },
+   {
+    "k": "Crave",
+    "v": 77
+   }
+  ],
+  "long": [
+   "Tangy lemon soda that tastes like a summer afternoon. Delivered sealed in its original 250 ml can, Clemon Lemon Soda is made for sharing, snacking and beating the heat — a familiar favourite that always hits the spot.",
+   "Chill it for a few hours, pour it over ice or drink straight from the can. It pairs brilliantly with biryani, burgers, fuchka, kebab rolls, pizza and every kind of adda — and it is the easiest way to keep a party, iftar table or office fridge stocked.",
+   "At Drink it you buy straight from our own online store: choose a single can, a 6-pack, a 12-pack or a full carton of 24, pay with bKash, Nagad, Rocket, card or cash on delivery, and we bring the cans to your door. One store, every brand, no running around."
+  ],
+  "why": [
+   "**Bold, recognisable taste** that never lets you down — every can, every time.",
+   "**Easy to stock up:** save up to 10% when you pick a 6-pack, 12-pack or carton.",
+   "**Classic sweetness** — full-flavoured and satisfying.",
+   "**Sealed and genuine:** cans arrive factory-sealed with the best-before date on the base.",
+   "**Party-ready:** perfect for iftar, birthdays, picnics, offices and late-night study sessions.",
+   "**Order your way:** bKash, Nagad, Rocket, card or cash on delivery."
+  ],
+  "details": [
+   {
+    "k": "Brand",
+    "v": "Clemon"
+   },
+   {
+    "k": "Flavor",
+    "v": "Lemon Soda"
+   },
+   {
+    "k": "Can size",
+    "v": "250 ml"
+   },
+   {
+    "k": "Sugar",
+    "v": "Regular (see can label)"
+   },
+   {
+    "k": "Caffeine",
+    "v": "Caffeine-free"
+   },
+   {
+    "k": "Origin",
+    "v": "Bottled in Bangladesh"
+   },
+   {
+    "k": "Serve",
+    "v": "Chilled, around 4 °C"
+   },
+   {
+    "k": "Shelf life",
+    "v": "Best-before date printed on the can"
+   }
+  ],
+  "tile": "#fefae7",
+  "images": {
+   "single": "/assets/img/cans/clemon-lemon-soda-250ml-can.svg",
+   "angle": "/assets/img/cans/clemon-lemon-soda-250ml-can-angle.svg",
+   "pack6": "/assets/img/cans/clemon-lemon-soda-250ml-can-pack6.svg",
+   "pack12": "/assets/img/cans/clemon-lemon-soda-250ml-can-pack12.svg",
+   "pack24": "/assets/img/cans/clemon-lemon-soda-250ml-can-pack24.svg"
+  }
+ },
+ {
+  "id": "DI017",
+  "handle": "clemon-mojito-250ml-can",
+  "title": "Clemon Mojito",
+  "brand": "Clemon",
+  "brandHandle": "clemon",
+  "variant": "Mint & Lime",
+  "type": "Mojito",
+  "canMl": 250,
+  "sugar": "Regular",
+  "caffeine": false,
+  "origin": "Local",
+  "price": 50,
+  "compareAt": 0,
+  "stock": 310,
+  "collections": [
+   "citrus-fizz"
+  ],
+  "badges": [
+   "new"
+  ],
+  "short": "Cool mint and lime in a sparkling mojito-style can.",
+  "dealEndsAt": "2026-12-31T23:59:59+06:00",
+  "art": {
+   "body": "#2BB673",
+   "body2": "#168A52",
+   "ink": "#ffffff",
+   "accent": "#E7FFD0",
+   "font": "LilitaOne-Regular",
+   "icon": "mojito",
+   "band": "wave",
+   "brand": "Clemon Mojito",
+   "variant": "Mint & Lime",
+   "size": "250 mL",
+   "kind": "slim",
+   "badge": [
+    "MINT",
+    "lime"
+   ]
+  },
+  "packs": [
+   {
+    "id": "single",
+    "label": "Single can",
+    "qty": 1,
+    "discount": 0,
+    "price": 50,
+    "compareAt": 0
+   },
+   {
+    "id": "pack6",
+    "label": "6-pack",
+    "qty": 6,
+    "discount": 0.05,
+    "price": 285,
+    "compareAt": 300
+   },
+   {
+    "id": "pack12",
+    "label": "12-pack",
+    "qty": 12,
+    "discount": 0.08,
+    "price": 552,
+    "compareAt": 600
+   },
+   {
+    "id": "pack24",
+    "label": "Carton of 24",
+    "qty": 24,
+    "discount": 0.1,
+    "price": 1080,
+    "compareAt": 1200
+   }
+  ],
+  "sold": 504,
+  "createdAt": "2026-06-06",
+  "taste": [
+   {
+    "k": "Flavor",
+    "v": "Cool mint meets fresh lime."
+   },
+   {
+    "k": "Fizz",
+    "v": "Light, sparkling bubbles."
+   },
+   {
+    "k": "Texture",
+    "v": "Silky and clean."
+   },
+   {
+    "k": "Energy",
+    "v": "Caffeine-free and breezy."
+   },
+   {
+    "k": "Vibrance",
+    "v": "Fresh green sparkle."
+   },
+   {
+    "k": "Coolness",
+    "v": "Extra cooling when chilled."
+   }
+  ],
+  "meter": [
+   {
+    "k": "Fizz",
+    "v": 98
+   },
+   {
+    "k": "Chill",
+    "v": 97
+   },
+   {
+    "k": "Flavor",
+    "v": 87
+   },
+   {
+    "k": "Kick",
+    "v": 95
+   },
+   {
+    "k": "Crave",
+    "v": 87
+   }
+  ],
+  "long": [
+   "Cool mint and lime in a sparkling mojito-style can. Delivered sealed in its original 250 ml can, Clemon Mojito is made for sharing, snacking and beating the heat — a familiar favourite that always hits the spot.",
+   "Chill it for a few hours, pour it over ice or drink straight from the can. It pairs brilliantly with biryani, burgers, fuchka, kebab rolls, pizza and every kind of adda — and it is the easiest way to keep a party, iftar table or office fridge stocked.",
+   "At Drink it you buy straight from our own online store: choose a single can, a 6-pack, a 12-pack or a full carton of 24, pay with bKash, Nagad, Rocket, card or cash on delivery, and we bring the cans to your door. One store, every brand, no running around."
+  ],
+  "why": [
+   "**Bold, recognisable taste** that never lets you down — every can, every time.",
+   "**Easy to stock up:** save up to 10% when you pick a 6-pack, 12-pack or carton.",
+   "**Classic sweetness** — full-flavoured and satisfying.",
+   "**Sealed and genuine:** cans arrive factory-sealed with the best-before date on the base.",
+   "**Party-ready:** perfect for iftar, birthdays, picnics, offices and late-night study sessions.",
+   "**Order your way:** bKash, Nagad, Rocket, card or cash on delivery."
+  ],
+  "details": [
+   {
+    "k": "Brand",
+    "v": "Clemon"
+   },
+   {
+    "k": "Flavor",
+    "v": "Mint & Lime"
+   },
+   {
+    "k": "Can size",
+    "v": "250 ml"
+   },
+   {
+    "k": "Sugar",
+    "v": "Regular (see can label)"
+   },
+   {
+    "k": "Caffeine",
+    "v": "Caffeine-free"
+   },
+   {
+    "k": "Origin",
+    "v": "Bottled in Bangladesh"
+   },
+   {
+    "k": "Serve",
+    "v": "Chilled, around 4 °C"
+   },
+   {
+    "k": "Shelf life",
+    "v": "Best-before date printed on the can"
+   }
+  ],
+  "tile": "#f0f8ee",
+  "images": {
+   "single": "/assets/img/cans/clemon-mojito-250ml-can.svg",
+   "angle": "/assets/img/cans/clemon-mojito-250ml-can-angle.svg",
+   "pack6": "/assets/img/cans/clemon-mojito-250ml-can-pack6.svg",
+   "pack12": "/assets/img/cans/clemon-mojito-250ml-can-pack12.svg",
+   "pack24": "/assets/img/cans/clemon-mojito-250ml-can-pack24.svg"
+  }
+ },
+ {
+  "id": "DI018",
+  "handle": "speed-energy-drink-250ml-can",
+  "title": "Speed Energy Drink",
+  "brand": "Speed",
+  "brandHandle": "speed",
+  "variant": "Energy Drink",
+  "type": "Energy",
+  "canMl": 250,
+  "sugar": "Regular",
+  "caffeine": true,
+  "origin": "Local",
+  "price": 50,
+  "compareAt": 0,
+  "stock": 420,
+  "collections": [
+   "energy-rush"
+  ],
+  "badges": [
+   "best"
+  ],
+  "short": "A home-grown energy drink for long days and late nights.",
+  "dealEndsAt": null,
+  "art": {
+   "body": "#D3151F",
+   "body2": "#8E0D14",
+   "ink": "#ffffff",
+   "accent": "#FFD400",
+   "font": "Anton-Regular",
+   "icon": "bolt",
+   "band": "slash",
+   "brand": "Speed",
+   "variant": "Energy Drink",
+   "size": "250 mL",
+   "kind": "slim",
+   "badge": [
+    "ENERGY",
+    "boost"
+   ]
+  },
+  "packs": [
+   {
+    "id": "single",
+    "label": "Single can",
+    "qty": 1,
+    "discount": 0,
+    "price": 50,
+    "compareAt": 0
+   },
+   {
+    "id": "pack6",
+    "label": "6-pack",
+    "qty": 6,
+    "discount": 0.05,
+    "price": 285,
+    "compareAt": 300
+   },
+   {
+    "id": "pack12",
+    "label": "12-pack",
+    "qty": 12,
+    "discount": 0.08,
+    "price": 552,
+    "compareAt": 600
+   },
+   {
+    "id": "pack24",
+    "label": "Carton of 24",
+    "qty": 24,
+    "discount": 0.1,
+    "price": 1080,
+    "compareAt": 1200
+   }
+  ],
+  "sold": 292,
+  "createdAt": "2026-01-19",
+  "taste": [
+   {
+    "k": "Flavor",
+    "v": "Sweet-tart with a bright, fruity edge."
+   },
+   {
+    "k": "Fizz",
+    "v": "Lively carbonation."
+   },
+   {
+    "k": "Texture",
+    "v": "Smooth with a clean finish."
+   },
+   {
+    "k": "Energy",
+    "v": "Built for a quick boost."
+   },
+   {
+    "k": "Vibrance",
+    "v": "Bold and electric."
+   },
+   {
+    "k": "Coolness",
+    "v": "Always best ice-cold."
+   }
+  ],
+  "meter": [
+   {
+    "k": "Fizz",
+    "v": 96
+   },
+   {
+    "k": "Chill",
+    "v": 85
+   },
+   {
+    "k": "Flavor",
+    "v": 87
+   },
+   {
+    "k": "Kick",
+    "v": 90
+   },
+   {
+    "k": "Crave",
+    "v": 90
+   }
+  ],
+  "long": [
+   "A home-grown energy drink for long days and late nights. Delivered sealed in its original 250 ml can, Speed Energy Drink is made for sharing, snacking and beating the heat — a familiar favourite that always hits the spot.",
+   "Chill it for a few hours, pour it over ice or drink straight from the can. It pairs brilliantly with biryani, burgers, fuchka, kebab rolls, pizza and every kind of adda — and it is the easiest way to keep a party, iftar table or office fridge stocked.",
+   "At Drink it you buy straight from our own online store: choose a single can, a 6-pack, a 12-pack or a full carton of 24, pay with bKash, Nagad, Rocket, card or cash on delivery, and we bring the cans to your door. One store, every brand, no running around."
+  ],
+  "why": [
+   "**Bold, recognisable taste** that never lets you down — every can, every time.",
+   "**Easy to stock up:** save up to 10% when you pick a 6-pack, 12-pack or carton.",
+   "**Classic sweetness** — full-flavoured and satisfying.",
+   "**Sealed and genuine:** cans arrive factory-sealed with the best-before date on the base.",
+   "**Party-ready:** perfect for iftar, birthdays, picnics, offices and late-night study sessions.",
+   "**Order your way:** bKash, Nagad, Rocket, card or cash on delivery."
+  ],
+  "details": [
+   {
+    "k": "Brand",
+    "v": "Speed"
+   },
+   {
+    "k": "Flavor",
+    "v": "Energy Drink"
+   },
+   {
+    "k": "Can size",
+    "v": "250 ml"
+   },
+   {
+    "k": "Sugar",
+    "v": "Regular (see can label)"
+   },
+   {
+    "k": "Caffeine",
+    "v": "Contains caffeine"
+   },
+   {
+    "k": "Origin",
+    "v": "Bottled in Bangladesh"
+   },
+   {
+    "k": "Serve",
+    "v": "Chilled, around 4 °C"
+   },
+   {
+    "k": "Shelf life",
+    "v": "Best-before date printed on the can"
+   }
+  ],
+  "tile": "#fcede9",
+  "images": {
+   "single": "/assets/img/cans/speed-energy-drink-250ml-can.svg",
+   "angle": "/assets/img/cans/speed-energy-drink-250ml-can-angle.svg",
+   "pack6": "/assets/img/cans/speed-energy-drink-250ml-can-pack6.svg",
+   "pack12": "/assets/img/cans/speed-energy-drink-250ml-can-pack12.svg",
+   "pack24": "/assets/img/cans/speed-energy-drink-250ml-can-pack24.svg"
+  }
+ },
+ {
+  "id": "DI019",
+  "handle": "royal-tiger-energy-250ml-can",
+  "title": "Royal Tiger Energy",
+  "brand": "Royal Tiger",
+  "brandHandle": "royal-tiger",
+  "variant": "Energy Drink",
+  "type": "Energy",
+  "canMl": 250,
+  "sugar": "Regular",
+  "caffeine": true,
+  "origin": "Local",
+  "price": 30,
+  "compareAt": 0,
+  "stock": 60,
+  "collections": [
+   "energy-rush"
+  ],
+  "badges": [],
+  "short": "An affordable carbonated energy drink with a bold taste.",
+  "dealEndsAt": null,
+  "art": {
+   "body": "#F59E0B",
+   "body2": "#C26D00",
+   "ink": "#1F1300",
+   "accent": "#1F1300",
+   "font": "Anton-Regular",
+   "icon": "bolt",
+   "band": "stripe",
+   "brand": "Royal Tiger",
+   "variant": "Energy Drink",
+   "size": "250 mL",
+   "kind": "slim",
+   "badge": [
+    "ENERGY",
+    "local"
+   ]
+  },
+  "packs": [
+   {
+    "id": "single",
+    "label": "Single can",
+    "qty": 1,
+    "discount": 0,
+    "price": 30,
+    "compareAt": 0
+   },
+   {
+    "id": "pack6",
+    "label": "6-pack",
+    "qty": 6,
+    "discount": 0.05,
+    "price": 171,
+    "compareAt": 180
+   },
+   {
+    "id": "pack12",
+    "label": "12-pack",
+    "qty": 12,
+    "discount": 0.08,
+    "price": 331,
+    "compareAt": 360
+   },
+   {
+    "id": "pack24",
+    "label": "Carton of 24",
+    "qty": 24,
+    "discount": 0.1,
+    "price": 648,
+    "compareAt": 720
+   }
+  ],
+  "sold": 625,
+  "createdAt": "2026-01-19",
+  "taste": [
+   {
+    "k": "Flavor",
+    "v": "Sweet-tart with a bright, fruity edge."
+   },
+   {
+    "k": "Fizz",
+    "v": "Lively carbonation."
+   },
+   {
+    "k": "Texture",
+    "v": "Smooth with a clean finish."
+   },
+   {
+    "k": "Energy",
+    "v": "Built for a quick boost."
+   },
+   {
+    "k": "Vibrance",
+    "v": "Bold and electric."
+   },
+   {
+    "k": "Coolness",
+    "v": "Always best ice-cold."
+   }
+  ],
+  "meter": [
+   {
+    "k": "Fizz",
+    "v": 83
+   },
+   {
+    "k": "Chill",
+    "v": 80
+   },
+   {
+    "k": "Flavor",
+    "v": 81
+   },
+   {
+    "k": "Kick",
+    "v": 70
+   },
+   {
+    "k": "Crave",
+    "v": 84
+   }
+  ],
+  "long": [
+   "An affordable carbonated energy drink with a bold taste. Delivered sealed in its original 250 ml can, Royal Tiger Energy is made for sharing, snacking and beating the heat — a familiar favourite that always hits the spot.",
+   "Chill it for a few hours, pour it over ice or drink straight from the can. It pairs brilliantly with biryani, burgers, fuchka, kebab rolls, pizza and every kind of adda — and it is the easiest way to keep a party, iftar table or office fridge stocked.",
+   "At Drink it you buy straight from our own online store: choose a single can, a 6-pack, a 12-pack or a full carton of 24, pay with bKash, Nagad, Rocket, card or cash on delivery, and we bring the cans to your door. One store, every brand, no running around."
+  ],
+  "why": [
+   "**Bold, recognisable taste** that never lets you down — every can, every time.",
+   "**Easy to stock up:** save up to 10% when you pick a 6-pack, 12-pack or carton.",
+   "**Classic sweetness** — full-flavoured and satisfying.",
+   "**Sealed and genuine:** cans arrive factory-sealed with the best-before date on the base.",
+   "**Party-ready:** perfect for iftar, birthdays, picnics, offices and late-night study sessions.",
+   "**Order your way:** bKash, Nagad, Rocket, card or cash on delivery."
+  ],
+  "details": [
+   {
+    "k": "Brand",
+    "v": "Royal Tiger"
+   },
+   {
+    "k": "Flavor",
+    "v": "Energy Drink"
+   },
+   {
+    "k": "Can size",
+    "v": "250 ml"
+   },
+   {
+    "k": "Sugar",
+    "v": "Regular (see can label)"
+   },
+   {
+    "k": "Caffeine",
+    "v": "Contains caffeine"
+   },
+   {
+    "k": "Origin",
+    "v": "Bottled in Bangladesh"
+   },
+   {
+    "k": "Serve",
+    "v": "Chilled, around 4 °C"
+   },
+   {
+    "k": "Shelf life",
+    "v": "Best-before date printed on the can"
+   }
+  ],
+  "tile": "#fef6e7",
+  "images": {
+   "single": "/assets/img/cans/royal-tiger-energy-250ml-can.svg",
+   "angle": "/assets/img/cans/royal-tiger-energy-250ml-can-angle.svg",
+   "pack6": "/assets/img/cans/royal-tiger-energy-250ml-can-pack6.svg",
+   "pack12": "/assets/img/cans/royal-tiger-energy-250ml-can-pack12.svg",
+   "pack24": "/assets/img/cans/royal-tiger-energy-250ml-can-pack24.svg"
+  }
+ },
+ {
+  "id": "DI020",
+  "handle": "red-bull-energy-drink-250ml-can",
+  "title": "Red Bull Energy Drink",
+  "brand": "Red Bull",
+  "brandHandle": "red-bull",
+  "variant": "Energy Drink",
+  "type": "Energy",
+  "canMl": 250,
+  "sugar": "Regular",
+  "caffeine": true,
+  "origin": "Imported",
+  "price": 180,
+  "compareAt": 0,
+  "stock": 140,
+  "collections": [
+   "energy-rush",
+   "imported-cans"
+  ],
+  "badges": [],
+  "short": "The original imported energy drink in a slim 250 ml can.",
+  "dealEndsAt": null,
+  "art": {
+   "body": "#1B3A8C",
+   "body2": "#0F2562",
+   "ink": "#ffffff",
+   "accent": "#E4202D",
+   "font": "Anton-Regular",
+   "icon": "bolt",
+   "band": "slash",
+   "brand": "Red Bull",
+   "variant": "Energy Drink",
+   "size": "250 mL",
+   "kind": "slim",
+   "badge": [
+    "ENERGY",
+    "imported"
+   ]
+  },
+  "packs": [
+   {
+    "id": "single",
+    "label": "Single can",
+    "qty": 1,
+    "discount": 0,
+    "price": 180,
+    "compareAt": 0
+   },
+   {
+    "id": "pack6",
+    "label": "6-pack",
+    "qty": 6,
+    "discount": 0.05,
+    "price": 1026,
+    "compareAt": 1080
+   },
+   {
+    "id": "pack12",
+    "label": "12-pack",
+    "qty": 12,
+    "discount": 0.08,
+    "price": 1987,
+    "compareAt": 2160
+   },
+   {
+    "id": "pack24",
+    "label": "Carton of 24",
+    "qty": 24,
+    "discount": 0.1,
+    "price": 3888,
+    "compareAt": 4320
+   }
+  ],
+  "sold": 294,
+  "createdAt": "2026-03-21",
+  "taste": [
+   {
+    "k": "Flavor",
+    "v": "Sweet-tart with a bright, fruity edge."
+   },
+   {
+    "k": "Fizz",
+    "v": "Lively carbonation."
+   },
+   {
+    "k": "Texture",
+    "v": "Smooth with a clean finish."
+   },
+   {
+    "k": "Energy",
+    "v": "Built for a quick boost."
+   },
+   {
+    "k": "Vibrance",
+    "v": "Bold and electric."
+   },
+   {
+    "k": "Coolness",
+    "v": "Always best ice-cold."
+   }
+  ],
+  "meter": [
+   {
+    "k": "Fizz",
+    "v": 82
+   },
+   {
+    "k": "Chill",
+    "v": 83
+   },
+   {
+    "k": "Flavor",
+    "v": 70
+   },
+   {
+    "k": "Kick",
+    "v": 72
+   },
+   {
+    "k": "Crave",
+    "v": 78
+   }
+  ],
+  "long": [
+   "The original imported energy drink in a slim 250 ml can. Delivered sealed in its original 250 ml can, Red Bull Energy Drink is made for sharing, snacking and beating the heat — an imported pick for people who like something a little different.",
+   "Chill it for a few hours, pour it over ice or drink straight from the can. It pairs brilliantly with biryani, burgers, fuchka, kebab rolls, pizza and every kind of adda — and it is the easiest way to keep a party, iftar table or office fridge stocked.",
+   "At Drink it you buy straight from our own online store: choose a single can, a 6-pack, a 12-pack or a full carton of 24, pay with bKash, Nagad, Rocket, card or cash on delivery, and we bring the cans to your door. One store, every brand, no running around."
+  ],
+  "why": [
+   "**Bold, recognisable taste** that never lets you down — every can, every time.",
+   "**Easy to stock up:** save up to 10% when you pick a 6-pack, 12-pack or carton.",
+   "**Classic sweetness** — full-flavoured and satisfying.",
+   "**Sealed and genuine:** cans arrive factory-sealed with the best-before date on the base.",
+   "**Party-ready:** perfect for iftar, birthdays, picnics, offices and late-night study sessions.",
+   "**Order your way:** bKash, Nagad, Rocket, card or cash on delivery."
+  ],
+  "details": [
+   {
+    "k": "Brand",
+    "v": "Red Bull"
+   },
+   {
+    "k": "Flavor",
+    "v": "Energy Drink"
+   },
+   {
+    "k": "Can size",
+    "v": "250 ml"
+   },
+   {
+    "k": "Sugar",
+    "v": "Regular (see can label)"
+   },
+   {
+    "k": "Caffeine",
+    "v": "Contains caffeine"
+   },
+   {
+    "k": "Origin",
+    "v": "Imported"
+   },
+   {
+    "k": "Serve",
+    "v": "Chilled, around 4 °C"
+   },
+   {
+    "k": "Shelf life",
+    "v": "Best-before date printed on the can"
+   }
+  ],
+  "tile": "#efeff0",
+  "images": {
+   "single": "/assets/img/cans/red-bull-energy-drink-250ml-can.svg",
+   "angle": "/assets/img/cans/red-bull-energy-drink-250ml-can-angle.svg",
+   "pack6": "/assets/img/cans/red-bull-energy-drink-250ml-can-pack6.svg",
+   "pack12": "/assets/img/cans/red-bull-energy-drink-250ml-can-pack12.svg",
+   "pack24": "/assets/img/cans/red-bull-energy-drink-250ml-can-pack24.svg"
+  }
+ },
+ {
+  "id": "DI021",
+  "handle": "red-bull-sugarfree-250ml-can",
+  "title": "Red Bull Sugarfree",
+  "brand": "Red Bull",
+  "brandHandle": "red-bull",
+  "variant": "Sugarfree",
+  "type": "Energy",
+  "canMl": 250,
+  "sugar": "Zero",
+  "caffeine": true,
+  "origin": "Imported",
+  "price": 190,
+  "compareAt": 0,
+  "stock": 0,
+  "collections": [
+   "energy-rush",
+   "zero-sugar",
+   "imported-cans"
+  ],
+  "badges": [],
+  "short": "All the lift, without the sugar.",
+  "dealEndsAt": null,
+  "art": {
+   "body": "#C5CCD6",
+   "body2": "#8E98A6",
+   "ink": "#12306E",
+   "accent": "#12306E",
+   "font": "Anton-Regular",
+   "icon": "bolt",
+   "band": "slash",
+   "brand": "Red Bull",
+   "variant": "Sugarfree",
+   "size": "250 mL",
+   "kind": "slim",
+   "badge": [
+    "SUGARFREE",
+    "imported"
+   ]
+  },
+  "packs": [
+   {
+    "id": "single",
+    "label": "Single can",
+    "qty": 1,
+    "discount": 0,
+    "price": 190,
+    "compareAt": 0
+   },
+   {
+    "id": "pack6",
+    "label": "6-pack",
+    "qty": 6,
+    "discount": 0.05,
+    "price": 1083,
+    "compareAt": 1140
+   },
+   {
+    "id": "pack12",
+    "label": "12-pack",
+    "qty": 12,
+    "discount": 0.08,
+    "price": 2098,
+    "compareAt": 2280
+   },
+   {
+    "id": "pack24",
+    "label": "Carton of 24",
+    "qty": 24,
+    "discount": 0.1,
+    "price": 4104,
+    "compareAt": 4560
+   }
+  ],
+  "sold": 811,
+  "createdAt": "2026-07-16",
+  "taste": [
+   {
+    "k": "Flavor",
+    "v": "Sweet-tart with a bright, fruity edge."
+   },
+   {
+    "k": "Fizz",
+    "v": "Lively carbonation."
+   },
+   {
+    "k": "Texture",
+    "v": "Smooth with a clean finish."
+   },
+   {
+    "k": "Energy",
+    "v": "Built for a quick boost."
+   },
+   {
+    "k": "Vibrance",
+    "v": "Bold and electric."
+   },
+   {
+    "k": "Coolness",
+    "v": "Always best ice-cold."
+   }
+  ],
+  "meter": [
+   {
+    "k": "Fizz",
+    "v": 90
+   },
+   {
+    "k": "Chill",
+    "v": 97
+   },
+   {
+    "k": "Flavor",
+    "v": 91
+   },
+   {
+    "k": "Kick",
+    "v": 84
+   },
+   {
+    "k": "Crave",
+    "v": 85
+   }
+  ],
+  "long": [
+   "All the lift, without the sugar. Delivered sealed in its original 250 ml can, Red Bull Sugarfree is made for sharing, snacking and beating the heat — an imported pick for people who like something a little different.",
+   "Chill it for a few hours, pour it over ice or drink straight from the can. It pairs brilliantly with biryani, burgers, fuchka, kebab rolls, pizza and every kind of adda — and it is the easiest way to keep a party, iftar table or office fridge stocked.",
+   "At Drink it you buy straight from our own online store: choose a single can, a 6-pack, a 12-pack or a full carton of 24, pay with bKash, Nagad, Rocket, card or cash on delivery, and we bring the cans to your door. One store, every brand, no running around."
+  ],
+  "why": [
+   "**Bold, recognisable taste** that never lets you down — every can, every time.",
+   "**Easy to stock up:** save up to 10% when you pick a 6-pack, 12-pack or carton.",
+   "**Zero sugar** — all the flavour without the sugar.",
+   "**Sealed and genuine:** cans arrive factory-sealed with the best-before date on the base.",
+   "**Party-ready:** perfect for iftar, birthdays, picnics, offices and late-night study sessions.",
+   "**Order your way:** bKash, Nagad, Rocket, card or cash on delivery."
+  ],
+  "details": [
+   {
+    "k": "Brand",
+    "v": "Red Bull"
+   },
+   {
+    "k": "Flavor",
+    "v": "Sugarfree"
+   },
+   {
+    "k": "Can size",
+    "v": "250 ml"
+   },
+   {
+    "k": "Sugar",
+    "v": "Zero sugar"
+   },
+   {
+    "k": "Caffeine",
+    "v": "Contains caffeine"
+   },
+   {
+    "k": "Origin",
+    "v": "Imported"
+   },
+   {
+    "k": "Serve",
+    "v": "Chilled, around 4 °C"
+   },
+   {
+    "k": "Shelf life",
+    "v": "Best-before date printed on the can"
+   }
+  ],
+  "tile": "#fbf9f5",
+  "images": {
+   "single": "/assets/img/cans/red-bull-sugarfree-250ml-can.svg",
+   "angle": "/assets/img/cans/red-bull-sugarfree-250ml-can-angle.svg",
+   "pack6": "/assets/img/cans/red-bull-sugarfree-250ml-can-pack6.svg",
+   "pack12": "/assets/img/cans/red-bull-sugarfree-250ml-can-pack12.svg",
+   "pack24": "/assets/img/cans/red-bull-sugarfree-250ml-can-pack24.svg"
+  }
+ },
+ {
+  "id": "DI022",
+  "handle": "monster-energy-green-500ml-can",
+  "title": "Monster Energy Green",
+  "brand": "Monster",
+  "brandHandle": "monster",
+  "variant": "Green Original",
+  "type": "Energy",
+  "canMl": 500,
+  "sugar": "Regular",
+  "caffeine": true,
+  "origin": "Imported",
+  "price": 380,
+  "compareAt": 0,
+  "stock": 70,
+  "collections": [
+   "energy-rush",
+   "imported-cans"
+  ],
+  "badges": [],
+  "short": "A big 500 ml imported energy can for serious refuelling.",
+  "dealEndsAt": null,
+  "art": {
+   "body": "#0E0E0E",
+   "body2": "#000000",
+   "ink": "#7CFF3A",
+   "accent": "#7CFF3A",
+   "font": "Anton-Regular",
+   "icon": "bolt",
+   "band": "slash",
+   "brand": "Monster Energy",
+   "variant": "Green Original",
+   "size": "500 mL",
+   "kind": "tall",
+   "badge": [
+    "ENERGY",
+    "imported"
+   ]
+  },
+  "packs": [
+   {
+    "id": "single",
+    "label": "Single can",
+    "qty": 1,
+    "discount": 0,
+    "price": 380,
+    "compareAt": 0
+   },
+   {
+    "id": "pack6",
+    "label": "6-pack",
+    "qty": 6,
+    "discount": 0.05,
+    "price": 2166,
+    "compareAt": 2280
+   },
+   {
+    "id": "pack12",
+    "label": "12-pack",
+    "qty": 12,
+    "discount": 0.08,
+    "price": 4195,
+    "compareAt": 4560
+   },
+   {
+    "id": "pack24",
+    "label": "Carton of 24",
+    "qty": 24,
+    "discount": 0.1,
+    "price": 8208,
+    "compareAt": 9120
+   }
+  ],
+  "sold": 402,
+  "createdAt": "2026-03-21",
+  "taste": [
+   {
+    "k": "Flavor",
+    "v": "Sweet-tart with a bright, fruity edge."
+   },
+   {
+    "k": "Fizz",
+    "v": "Lively carbonation."
+   },
+   {
+    "k": "Texture",
+    "v": "Smooth with a clean finish."
+   },
+   {
+    "k": "Energy",
+    "v": "Built for a quick boost."
+   },
+   {
+    "k": "Vibrance",
+    "v": "Bold and electric."
+   },
+   {
+    "k": "Coolness",
+    "v": "Always best ice-cold."
+   }
+  ],
+  "meter": [
+   {
+    "k": "Fizz",
+    "v": 70
+   },
+   {
+    "k": "Chill",
+    "v": 82
+   },
+   {
+    "k": "Flavor",
+    "v": 76
+   },
+   {
+    "k": "Kick",
+    "v": 81
+   },
+   {
+    "k": "Crave",
+    "v": 83
+   }
+  ],
+  "long": [
+   "A big 500 ml imported energy can for serious refuelling. Delivered sealed in its original 500 ml can, Monster Energy Green is made for sharing, snacking and beating the heat — an imported pick for people who like something a little different.",
+   "Chill it for a few hours, pour it over ice or drink straight from the can. It pairs brilliantly with biryani, burgers, fuchka, kebab rolls, pizza and every kind of adda — and it is the easiest way to keep a party, iftar table or office fridge stocked.",
+   "At Drink it you buy straight from our own online store: choose a single can, a 6-pack, a 12-pack or a full carton of 24, pay with bKash, Nagad, Rocket, card or cash on delivery, and we bring the cans to your door. One store, every brand, no running around."
+  ],
+  "why": [
+   "**Bold, recognisable taste** that never lets you down — every can, every time.",
+   "**Easy to stock up:** save up to 10% when you pick a 6-pack, 12-pack or carton.",
+   "**Classic sweetness** — full-flavoured and satisfying.",
+   "**Sealed and genuine:** cans arrive factory-sealed with the best-before date on the base.",
+   "**Party-ready:** perfect for iftar, birthdays, picnics, offices and late-night study sessions.",
+   "**Order your way:** bKash, Nagad, Rocket, card or cash on delivery."
+  ],
+  "details": [
+   {
+    "k": "Brand",
+    "v": "Monster"
+   },
+   {
+    "k": "Flavor",
+    "v": "Green Original"
+   },
+   {
+    "k": "Can size",
+    "v": "500 ml"
+   },
+   {
+    "k": "Sugar",
+    "v": "Regular (see can label)"
+   },
+   {
+    "k": "Caffeine",
+    "v": "Contains caffeine"
+   },
+   {
+    "k": "Origin",
+    "v": "Imported"
+   },
+   {
+    "k": "Serve",
+    "v": "Chilled, around 4 °C"
+   },
+   {
+    "k": "Shelf life",
+    "v": "Best-before date printed on the can"
+   }
+  ],
+  "tile": "#f6f9ec",
+  "images": {
+   "single": "/assets/img/cans/monster-energy-green-500ml-can.svg",
+   "angle": "/assets/img/cans/monster-energy-green-500ml-can-angle.svg",
+   "pack6": "/assets/img/cans/monster-energy-green-500ml-can-pack6.svg",
+   "pack12": "/assets/img/cans/monster-energy-green-500ml-can-pack12.svg",
+   "pack24": "/assets/img/cans/monster-energy-green-500ml-can-pack24.svg"
+  }
+ },
+ {
+  "id": "DI023",
+  "handle": "monster-ultra-white-500ml-can",
+  "title": "Monster Ultra White",
+  "brand": "Monster",
+  "brandHandle": "monster",
+  "variant": "White Zero",
+  "type": "Energy",
+  "canMl": 500,
+  "sugar": "Zero",
+  "caffeine": true,
+  "origin": "Imported",
+  "price": 390,
+  "compareAt": 0,
+  "stock": 45,
+  "collections": [
+   "energy-rush",
+   "zero-sugar",
+   "imported-cans"
+  ],
+  "badges": [],
+  "short": "Light, crisp and zero sugar in a 500 ml imported can.",
+  "dealEndsAt": null,
+  "art": {
+   "body": "#F2F2F2",
+   "body2": "#C9CCD1",
+   "ink": "#1E1E1E",
+   "accent": "#7C8189",
+   "font": "Anton-Regular",
+   "icon": "bolt",
+   "band": "slash",
+   "brand": "Monster Ultra",
+   "variant": "White Zero",
+   "size": "500 mL",
+   "kind": "tall",
+   "badge": [
+    "ZERO",
+    "imported"
+   ]
+  },
+  "packs": [
+   {
+    "id": "single",
+    "label": "Single can",
+    "qty": 1,
+    "discount": 0,
+    "price": 390,
+    "compareAt": 0
+   },
+   {
+    "id": "pack6",
+    "label": "6-pack",
+    "qty": 6,
+    "discount": 0.05,
+    "price": 2223,
+    "compareAt": 2340
+   },
+   {
+    "id": "pack12",
+    "label": "12-pack",
+    "qty": 12,
+    "discount": 0.08,
+    "price": 4306,
+    "compareAt": 4680
+   },
+   {
+    "id": "pack24",
+    "label": "Carton of 24",
+    "qty": 24,
+    "discount": 0.1,
+    "price": 8424,
+    "compareAt": 9360
+   }
+  ],
+  "sold": 518,
+  "createdAt": "2026-02-02",
+  "taste": [
+   {
+    "k": "Flavor",
+    "v": "Sweet-tart with a bright, fruity edge."
+   },
+   {
+    "k": "Fizz",
+    "v": "Lively carbonation."
+   },
+   {
+    "k": "Texture",
+    "v": "Smooth with a clean finish."
+   },
+   {
+    "k": "Energy",
+    "v": "Built for a quick boost."
+   },
+   {
+    "k": "Vibrance",
+    "v": "Bold and electric."
+   },
+   {
+    "k": "Coolness",
+    "v": "Always best ice-cold."
+   }
+  ],
+  "meter": [
+   {
+    "k": "Fizz",
+    "v": 81
+   },
+   {
+    "k": "Chill",
+    "v": 81
+   },
+   {
+    "k": "Flavor",
+    "v": 78
+   },
+   {
+    "k": "Kick",
+    "v": 79
+   },
+   {
+    "k": "Crave",
+    "v": 75
+   }
+  ],
+  "long": [
+   "Light, crisp and zero sugar in a 500 ml imported can. Delivered sealed in its original 500 ml can, Monster Ultra White is made for sharing, snacking and beating the heat — an imported pick for people who like something a little different.",
+   "Chill it for a few hours, pour it over ice or drink straight from the can. It pairs brilliantly with biryani, burgers, fuchka, kebab rolls, pizza and every kind of adda — and it is the easiest way to keep a party, iftar table or office fridge stocked.",
+   "At Drink it you buy straight from our own online store: choose a single can, a 6-pack, a 12-pack or a full carton of 24, pay with bKash, Nagad, Rocket, card or cash on delivery, and we bring the cans to your door. One store, every brand, no running around."
+  ],
+  "why": [
+   "**Bold, recognisable taste** that never lets you down — every can, every time.",
+   "**Easy to stock up:** save up to 10% when you pick a 6-pack, 12-pack or carton.",
+   "**Zero sugar** — all the flavour without the sugar.",
+   "**Sealed and genuine:** cans arrive factory-sealed with the best-before date on the base.",
+   "**Party-ready:** perfect for iftar, birthdays, picnics, offices and late-night study sessions.",
+   "**Order your way:** bKash, Nagad, Rocket, card or cash on delivery."
+  ],
+  "details": [
+   {
+    "k": "Brand",
+    "v": "Monster"
+   },
+   {
+    "k": "Flavor",
+    "v": "White Zero"
+   },
+   {
+    "k": "Can size",
+    "v": "500 ml"
+   },
+   {
+    "k": "Sugar",
+    "v": "Zero sugar"
+   },
+   {
+    "k": "Caffeine",
+    "v": "Contains caffeine"
+   },
+   {
+    "k": "Origin",
+    "v": "Imported"
+   },
+   {
+    "k": "Serve",
+    "v": "Chilled, around 4 °C"
+   },
+   {
+    "k": "Shelf life",
+    "v": "Best-before date printed on the can"
+   }
+  ],
+  "tile": "#f6f4f0",
+  "images": {
+   "single": "/assets/img/cans/monster-ultra-white-500ml-can.svg",
+   "angle": "/assets/img/cans/monster-ultra-white-500ml-can-angle.svg",
+   "pack6": "/assets/img/cans/monster-ultra-white-500ml-can-pack6.svg",
+   "pack12": "/assets/img/cans/monster-ultra-white-500ml-can-pack12.svg",
+   "pack24": "/assets/img/cans/monster-ultra-white-500ml-can-pack24.svg"
+  }
+ },
+ {
+  "id": "DI024",
+  "handle": "pepsi-imported-330ml-can",
+  "title": "Pepsi Imported (330 ml)",
+  "brand": "Pepsi",
+  "brandHandle": "pepsi",
+  "variant": "Imported",
+  "type": "Cola",
+  "canMl": 330,
+  "sugar": "Regular",
+  "caffeine": true,
+  "origin": "Imported",
+  "price": 300,
+  "compareAt": 0,
+  "stock": 110,
+  "collections": [
+   "cola-classics",
+   "imported-cans"
+  ],
+  "badges": [],
+  "short": "The imported full-size Pepsi can soda lovers look for.",
+  "dealEndsAt": null,
+  "art": {
+   "body": "#1456B8",
+   "body2": "#0B3A82",
+   "ink": "#ffffff",
+   "accent": "#8EBBFF",
+   "font": "Poppins-ExtraBold",
+   "icon": "cola",
+   "band": "wave",
+   "brand": "Pepsi",
+   "variant": "Imported",
+   "size": "330 mL",
+   "kind": "std",
+   "badge": [
+    "IMPORTED",
+    "cola"
+   ]
+  },
+  "packs": [
+   {
+    "id": "single",
+    "label": "Single can",
+    "qty": 1,
+    "discount": 0,
+    "price": 300,
+    "compareAt": 0
+   },
+   {
+    "id": "pack6",
+    "label": "6-pack",
+    "qty": 6,
+    "discount": 0.05,
+    "price": 1710,
+    "compareAt": 1800
+   },
+   {
+    "id": "pack12",
+    "label": "12-pack",
+    "qty": 12,
+    "discount": 0.08,
+    "price": 3312,
+    "compareAt": 3600
+   },
+   {
+    "id": "pack24",
+    "label": "Carton of 24",
+    "qty": 24,
+    "discount": 0.1,
+    "price": 6480,
+    "compareAt": 7200
+   }
+  ],
+  "sold": 184,
+  "createdAt": "2026-01-19",
+  "taste": [
+   {
+    "k": "Flavor",
+    "v": "Caramel, spice and a touch of vanilla."
+   },
+   {
+    "k": "Fizz",
+    "v": "Sharp, lively bubbles from the first sip."
+   },
+   {
+    "k": "Texture",
+    "v": "Smooth, syrupy-light body."
+   },
+   {
+    "k": "Energy",
+    "v": "A gentle lift of caffeine."
+   },
+   {
+    "k": "Vibrance",
+    "v": "Deep amber-brown colour."
+   },
+   {
+    "k": "Coolness",
+    "v": "Best served around 4 °C."
+   }
+  ],
+  "meter": [
+   {
+    "k": "Fizz",
+    "v": 77
+   },
+   {
+    "k": "Chill",
+    "v": 77
+   },
+   {
+    "k": "Flavor",
+    "v": 71
+   },
+   {
+    "k": "Kick",
+    "v": 73
+   },
+   {
+    "k": "Crave",
+    "v": 80
+   }
+  ],
+  "long": [
+   "The imported full-size Pepsi can soda lovers look for. Delivered sealed in its original 330 ml can, Pepsi Imported (330 ml) is made for sharing, snacking and beating the heat — an imported pick for people who like something a little different.",
+   "Chill it for a few hours, pour it over ice or drink straight from the can. It pairs brilliantly with biryani, burgers, fuchka, kebab rolls, pizza and every kind of adda — and it is the easiest way to keep a party, iftar table or office fridge stocked.",
+   "At Drink it you buy straight from our own online store: choose a single can, a 6-pack, a 12-pack or a full carton of 24, pay with bKash, Nagad, Rocket, card or cash on delivery, and we bring the cans to your door. One store, every brand, no running around."
+  ],
+  "why": [
+   "**Bold, recognisable taste** that never lets you down — every can, every time.",
+   "**Easy to stock up:** save up to 10% when you pick a 6-pack, 12-pack or carton.",
+   "**Classic sweetness** — full-flavoured and satisfying.",
+   "**Sealed and genuine:** cans arrive factory-sealed with the best-before date on the base.",
+   "**Party-ready:** perfect for iftar, birthdays, picnics, offices and late-night study sessions.",
+   "**Order your way:** bKash, Nagad, Rocket, card or cash on delivery."
+  ],
+  "details": [
+   {
+    "k": "Brand",
+    "v": "Pepsi"
+   },
+   {
+    "k": "Flavor",
+    "v": "Imported"
+   },
+   {
+    "k": "Can size",
+    "v": "330 ml"
+   },
+   {
+    "k": "Sugar",
+    "v": "Regular (see can label)"
+   },
+   {
+    "k": "Caffeine",
+    "v": "Contains caffeine"
+   },
+   {
+    "k": "Origin",
+    "v": "Imported"
+   },
+   {
+    "k": "Serve",
+    "v": "Chilled, around 4 °C"
+   },
+   {
+    "k": "Shelf life",
+    "v": "Best-before date printed on the can"
+   }
+  ],
+  "tile": "#eff1f3",
+  "images": {
+   "single": "/assets/img/cans/pepsi-imported-330ml-can.svg",
+   "angle": "/assets/img/cans/pepsi-imported-330ml-can-angle.svg",
+   "pack6": "/assets/img/cans/pepsi-imported-330ml-can-pack6.svg",
+   "pack12": "/assets/img/cans/pepsi-imported-330ml-can-pack12.svg",
+   "pack24": "/assets/img/cans/pepsi-imported-330ml-can-pack24.svg"
+  }
+ },
+ {
+  "id": "DI025",
+  "handle": "sprite-imported-320ml-can",
+  "title": "Sprite Imported (320 ml)",
+  "brand": "Sprite",
+  "brandHandle": "sprite",
+  "variant": "Imported",
+  "type": "Lemon-Lime",
+  "canMl": 320,
+  "sugar": "Regular",
+  "caffeine": false,
+  "origin": "Imported",
+  "price": 349,
+  "compareAt": 0,
+  "stock": 85,
+  "collections": [
+   "citrus-fizz",
+   "imported-cans"
+  ],
+  "badges": [],
+  "short": "Imported Sprite in a full-size 320 ml can.",
+  "dealEndsAt": null,
+  "art": {
+   "body": "#0B9A47",
+   "body2": "#066B30",
+   "ink": "#ffffff",
+   "accent": "#D6F25A",
+   "font": "LilitaOne-Regular",
+   "icon": "lime",
+   "band": "dots",
+   "brand": "Sprite",
+   "variant": "Imported",
+   "size": "320 mL",
+   "kind": "std",
+   "badge": [
+    "IMPORTED",
+    "lemon-lime"
+   ]
+  },
+  "packs": [
+   {
+    "id": "single",
+    "label": "Single can",
+    "qty": 1,
+    "discount": 0,
+    "price": 349,
+    "compareAt": 0
+   },
+   {
+    "id": "pack6",
+    "label": "6-pack",
+    "qty": 6,
+    "discount": 0.05,
+    "price": 1989,
+    "compareAt": 2094
+   },
+   {
+    "id": "pack12",
+    "label": "12-pack",
+    "qty": 12,
+    "discount": 0.08,
+    "price": 3853,
+    "compareAt": 4188
+   },
+   {
+    "id": "pack24",
+    "label": "Carton of 24",
+    "qty": 24,
+    "discount": 0.1,
+    "price": 7538,
+    "compareAt": 8376
+   }
+  ],
+  "sold": 503,
+  "createdAt": "2026-05-14",
+  "taste": [
+   {
+    "k": "Flavor",
+    "v": "Crisp lemon and lime, never heavy."
+   },
+   {
+    "k": "Fizz",
+    "v": "Fine, clean bubbles."
+   },
+   {
+    "k": "Texture",
+    "v": "Light and clear on the palate."
+   },
+   {
+    "k": "Energy",
+    "v": "Refreshment without the heaviness."
+   },
+   {
+    "k": "Vibrance",
+    "v": "Bright, sparkling clarity."
+   },
+   {
+    "k": "Coolness",
+    "v": "Wonderful ice-cold with a lime wedge."
+   }
+  ],
+  "meter": [
+   {
+    "k": "Fizz",
+    "v": 97
+   },
+   {
+    "k": "Chill",
+    "v": 89
+   },
+   {
+    "k": "Flavor",
+    "v": 88
+   },
+   {
+    "k": "Kick",
+    "v": 90
+   },
+   {
+    "k": "Crave",
+    "v": 88
+   }
+  ],
+  "long": [
+   "Imported Sprite in a full-size 320 ml can. Delivered sealed in its original 320 ml can, Sprite Imported (320 ml) is made for sharing, snacking and beating the heat — an imported pick for people who like something a little different.",
+   "Chill it for a few hours, pour it over ice or drink straight from the can. It pairs brilliantly with biryani, burgers, fuchka, kebab rolls, pizza and every kind of adda — and it is the easiest way to keep a party, iftar table or office fridge stocked.",
+   "At Drink it you buy straight from our own online store: choose a single can, a 6-pack, a 12-pack or a full carton of 24, pay with bKash, Nagad, Rocket, card or cash on delivery, and we bring the cans to your door. One store, every brand, no running around."
+  ],
+  "why": [
+   "**Bold, recognisable taste** that never lets you down — every can, every time.",
+   "**Easy to stock up:** save up to 10% when you pick a 6-pack, 12-pack or carton.",
+   "**Classic sweetness** — full-flavoured and satisfying.",
+   "**Sealed and genuine:** cans arrive factory-sealed with the best-before date on the base.",
+   "**Party-ready:** perfect for iftar, birthdays, picnics, offices and late-night study sessions.",
+   "**Order your way:** bKash, Nagad, Rocket, card or cash on delivery."
+  ],
+  "details": [
+   {
+    "k": "Brand",
+    "v": "Sprite"
+   },
+   {
+    "k": "Flavor",
+    "v": "Imported"
+   },
+   {
+    "k": "Can size",
+    "v": "320 ml"
+   },
+   {
+    "k": "Sugar",
+    "v": "Regular (see can label)"
+   },
+   {
+    "k": "Caffeine",
+    "v": "Caffeine-free"
+   },
+   {
+    "k": "Origin",
+    "v": "Imported"
+   },
+   {
+    "k": "Serve",
+    "v": "Chilled, around 4 °C"
+   },
+   {
+    "k": "Shelf life",
+    "v": "Best-before date printed on the can"
+   }
+  ],
+  "tile": "#eef6ec",
+  "images": {
+   "single": "/assets/img/cans/sprite-imported-320ml-can.svg",
+   "angle": "/assets/img/cans/sprite-imported-320ml-can-angle.svg",
+   "pack6": "/assets/img/cans/sprite-imported-320ml-can-pack6.svg",
+   "pack12": "/assets/img/cans/sprite-imported-320ml-can-pack12.svg",
+   "pack24": "/assets/img/cans/sprite-imported-320ml-can-pack24.svg"
+  }
+ },
+ {
+  "id": "DI026",
+  "handle": "coca-cola-imported-330ml-can",
+  "title": "Coca-Cola Imported (330 ml)",
+  "brand": "Coca-Cola",
+  "brandHandle": "coca-cola",
+  "variant": "Imported",
+  "type": "Cola",
+  "canMl": 330,
+  "sugar": "Regular",
+  "caffeine": true,
+  "origin": "Imported",
+  "price": 320,
+  "compareAt": 0,
+  "stock": 95,
+  "collections": [
+   "cola-classics",
+   "imported-cans"
+  ],
+  "badges": [],
+  "short": "Full-size imported Coca-Cola, 330 ml.",
+  "dealEndsAt": null,
+  "art": {
+   "body": "#E4202D",
+   "body2": "#A8101B",
+   "ink": "#ffffff",
+   "accent": "#FFD2D6",
+   "font": "Poppins-ExtraBold",
+   "icon": "cola",
+   "band": "wave",
+   "brand": "Coca-Cola",
+   "variant": "Imported",
+   "size": "330 mL",
+   "kind": "std",
+   "badge": [
+    "IMPORTED",
+    "classic"
+   ]
+  },
+  "packs": [
+   {
+    "id": "single",
+    "label": "Single can",
+    "qty": 1,
+    "discount": 0,
+    "price": 320,
+    "compareAt": 0
+   },
+   {
+    "id": "pack6",
+    "label": "6-pack",
+    "qty": 6,
+    "discount": 0.05,
+    "price": 1824,
+    "compareAt": 1920
+   },
+   {
+    "id": "pack12",
+    "label": "12-pack",
+    "qty": 12,
+    "discount": 0.08,
+    "price": 3533,
+    "compareAt": 3840
+   },
+   {
+    "id": "pack24",
+    "label": "Carton of 24",
+    "qty": 24,
+    "discount": 0.1,
+    "price": 6912,
+    "compareAt": 7680
+   }
+  ],
+  "sold": 603,
+  "createdAt": "2026-06-06",
+  "taste": [
+   {
+    "k": "Flavor",
+    "v": "Caramel, spice and a touch of vanilla."
+   },
+   {
+    "k": "Fizz",
+    "v": "Sharp, lively bubbles from the first sip."
+   },
+   {
+    "k": "Texture",
+    "v": "Smooth, syrupy-light body."
+   },
+   {
+    "k": "Energy",
+    "v": "A gentle lift of caffeine."
+   },
+   {
+    "k": "Vibrance",
+    "v": "Deep amber-brown colour."
+   },
+   {
+    "k": "Coolness",
+    "v": "Best served around 4 °C."
+   }
+  ],
+  "meter": [
+   {
+    "k": "Fizz",
+    "v": 92
+   },
+   {
+    "k": "Chill",
+    "v": 94
+   },
+   {
+    "k": "Flavor",
+    "v": 85
+   },
+   {
+    "k": "Kick",
+    "v": 97
+   },
+   {
+    "k": "Crave",
+    "v": 91
+   }
+  ],
+  "long": [
+   "Full-size imported Coca-Cola, 330 ml. Delivered sealed in its original 330 ml can, Coca-Cola Imported (330 ml) is made for sharing, snacking and beating the heat — an imported pick for people who like something a little different.",
+   "Chill it for a few hours, pour it over ice or drink straight from the can. It pairs brilliantly with biryani, burgers, fuchka, kebab rolls, pizza and every kind of adda — and it is the easiest way to keep a party, iftar table or office fridge stocked.",
+   "At Drink it you buy straight from our own online store: choose a single can, a 6-pack, a 12-pack or a full carton of 24, pay with bKash, Nagad, Rocket, card or cash on delivery, and we bring the cans to your door. One store, every brand, no running around."
+  ],
+  "why": [
+   "**Bold, recognisable taste** that never lets you down — every can, every time.",
+   "**Easy to stock up:** save up to 10% when you pick a 6-pack, 12-pack or carton.",
+   "**Classic sweetness** — full-flavoured and satisfying.",
+   "**Sealed and genuine:** cans arrive factory-sealed with the best-before date on the base.",
+   "**Party-ready:** perfect for iftar, birthdays, picnics, offices and late-night study sessions.",
+   "**Order your way:** bKash, Nagad, Rocket, card or cash on delivery."
+  ],
+  "details": [
+   {
+    "k": "Brand",
+    "v": "Coca-Cola"
+   },
+   {
+    "k": "Flavor",
+    "v": "Imported"
+   },
+   {
+    "k": "Can size",
+    "v": "330 ml"
+   },
+   {
+    "k": "Sugar",
+    "v": "Regular (see can label)"
+   },
+   {
+    "k": "Caffeine",
+    "v": "Contains caffeine"
+   },
+   {
+    "k": "Origin",
+    "v": "Imported"
+   },
+   {
+    "k": "Serve",
+    "v": "Chilled, around 4 °C"
+   },
+   {
+    "k": "Shelf life",
+    "v": "Best-before date printed on the can"
+   }
+  ],
+  "tile": "#fdeee9",
+  "images": {
+   "single": "/assets/img/cans/coca-cola-imported-330ml-can.svg",
+   "angle": "/assets/img/cans/coca-cola-imported-330ml-can-angle.svg",
+   "pack6": "/assets/img/cans/coca-cola-imported-330ml-can-pack6.svg",
+   "pack12": "/assets/img/cans/coca-cola-imported-330ml-can-pack12.svg",
+   "pack24": "/assets/img/cans/coca-cola-imported-330ml-can-pack24.svg"
+  }
+ },
+ {
+  "id": "DI027",
+  "handle": "fanta-orange-imported-330ml-can",
+  "title": "Fanta Orange Imported (330 ml)",
+  "brand": "Fanta",
+  "brandHandle": "fanta",
+  "variant": "Orange Imported",
+  "type": "Orange",
+  "canMl": 330,
+  "sugar": "Regular",
+  "caffeine": false,
+  "origin": "Imported",
+  "price": 320,
+  "compareAt": 0,
+  "stock": 75,
+  "collections": [
+   "citrus-fizz",
+   "imported-cans"
+  ],
+  "badges": [],
+  "short": "Imported Fanta Orange in a 330 ml can.",
+  "dealEndsAt": null,
+  "art": {
+   "body": "#FF9A00",
+   "body2": "#E06C00",
+   "ink": "#ffffff",
+   "accent": "#7BD3FF",
+   "font": "LilitaOne-Regular",
+   "icon": "orange",
+   "band": "dots",
+   "brand": "Fanta",
+   "variant": "Orange Imported",
+   "size": "330 mL",
+   "kind": "std",
+   "badge": [
+    "IMPORTED",
+    "orange"
+   ]
+  },
+  "packs": [
+   {
+    "id": "single",
+    "label": "Single can",
+    "qty": 1,
+    "discount": 0,
+    "price": 320,
+    "compareAt": 0
+   },
+   {
+    "id": "pack6",
+    "label": "6-pack",
+    "qty": 6,
+    "discount": 0.05,
+    "price": 1824,
+    "compareAt": 1920
+   },
+   {
+    "id": "pack12",
+    "label": "12-pack",
+    "qty": 12,
+    "discount": 0.08,
+    "price": 3533,
+    "compareAt": 3840
+   },
+   {
+    "id": "pack24",
+    "label": "Carton of 24",
+    "qty": 24,
+    "discount": 0.1,
+    "price": 6912,
+    "compareAt": 7680
+   }
+  ],
+  "sold": 444,
+  "createdAt": "2026-09-09",
+  "taste": [
+   {
+    "k": "Flavor",
+    "v": "Sweet, juicy orange with a citrus zing."
+   },
+   {
+    "k": "Fizz",
+    "v": "Playful, bouncy bubbles."
+   },
+   {
+    "k": "Texture",
+    "v": "Soft and smooth."
+   },
+   {
+    "k": "Energy",
+    "v": "Fun and caffeine-free."
+   },
+   {
+    "k": "Vibrance",
+    "v": "Sunny orange colour."
+   },
+   {
+    "k": "Coolness",
+    "v": "Chill well for peak taste."
+   }
+  ],
+  "meter": [
+   {
+    "k": "Fizz",
+    "v": 82
+   },
+   {
+    "k": "Chill",
+    "v": 72
+   },
+   {
+    "k": "Flavor",
+    "v": 80
+   },
+   {
+    "k": "Kick",
+    "v": 72
+   },
+   {
+    "k": "Crave",
+    "v": 78
+   }
+  ],
+  "long": [
+   "Imported Fanta Orange in a 330 ml can. Delivered sealed in its original 330 ml can, Fanta Orange Imported (330 ml) is made for sharing, snacking and beating the heat — an imported pick for people who like something a little different.",
+   "Chill it for a few hours, pour it over ice or drink straight from the can. It pairs brilliantly with biryani, burgers, fuchka, kebab rolls, pizza and every kind of adda — and it is the easiest way to keep a party, iftar table or office fridge stocked.",
+   "At Drink it you buy straight from our own online store: choose a single can, a 6-pack, a 12-pack or a full carton of 24, pay with bKash, Nagad, Rocket, card or cash on delivery, and we bring the cans to your door. One store, every brand, no running around."
+  ],
+  "why": [
+   "**Bold, recognisable taste** that never lets you down — every can, every time.",
+   "**Easy to stock up:** save up to 10% when you pick a 6-pack, 12-pack or carton.",
+   "**Classic sweetness** — full-flavoured and satisfying.",
+   "**Sealed and genuine:** cans arrive factory-sealed with the best-before date on the base.",
+   "**Party-ready:** perfect for iftar, birthdays, picnics, offices and late-night study sessions.",
+   "**Order your way:** bKash, Nagad, Rocket, card or cash on delivery."
+  ],
+  "details": [
+   {
+    "k": "Brand",
+    "v": "Fanta"
+   },
+   {
+    "k": "Flavor",
+    "v": "Orange Imported"
+   },
+   {
+    "k": "Can size",
+    "v": "330 ml"
+   },
+   {
+    "k": "Sugar",
+    "v": "Regular (see can label)"
+   },
+   {
+    "k": "Caffeine",
+    "v": "Caffeine-free"
+   },
+   {
+    "k": "Origin",
+    "v": "Imported"
+   },
+   {
+    "k": "Serve",
+    "v": "Chilled, around 4 °C"
+   },
+   {
+    "k": "Shelf life",
+    "v": "Best-before date printed on the can"
+   }
+  ],
+  "tile": "#fff6e7",
+  "images": {
+   "single": "/assets/img/cans/fanta-orange-imported-330ml-can.svg",
+   "angle": "/assets/img/cans/fanta-orange-imported-330ml-can-angle.svg",
+   "pack6": "/assets/img/cans/fanta-orange-imported-330ml-can-pack6.svg",
+   "pack12": "/assets/img/cans/fanta-orange-imported-330ml-can-pack12.svg",
+   "pack24": "/assets/img/cans/fanta-orange-imported-330ml-can-pack24.svg"
+  }
+ },
+ {
+  "id": "DI028",
+  "handle": "7up-imported-330ml-can",
+  "title": "7UP Imported (330 ml)",
+  "brand": "7UP",
+  "brandHandle": "7up",
+  "variant": "Imported",
+  "type": "Lemon-Lime",
+  "canMl": 330,
+  "sugar": "Regular",
+  "caffeine": false,
+  "origin": "Imported",
+  "price": 300,
+  "compareAt": 0,
+  "stock": 80,
+  "collections": [
+   "citrus-fizz",
+   "imported-cans"
+  ],
+  "badges": [],
+  "short": "Imported 7UP, crisp and clear in 330 ml.",
+  "dealEndsAt": null,
+  "art": {
+   "body": "#25A84A",
+   "body2": "#157A33",
+   "ink": "#ffffff",
+   "accent": "#FF4B5C",
+   "font": "Righteous-Regular",
+   "icon": "lemon",
+   "band": "stripe",
+   "brand": "7UP",
+   "variant": "Imported",
+   "size": "330 mL",
+   "kind": "std",
+   "badge": [
+    "IMPORTED",
+    "lemon-lime"
+   ]
+  },
+  "packs": [
+   {
+    "id": "single",
+    "label": "Single can",
+    "qty": 1,
+    "discount": 0,
+    "price": 300,
+    "compareAt": 0
+   },
+   {
+    "id": "pack6",
+    "label": "6-pack",
+    "qty": 6,
+    "discount": 0.05,
+    "price": 1710,
+    "compareAt": 1800
+   },
+   {
+    "id": "pack12",
+    "label": "12-pack",
+    "qty": 12,
+    "discount": 0.08,
+    "price": 3312,
+    "compareAt": 3600
+   },
+   {
+    "id": "pack24",
+    "label": "Carton of 24",
+    "qty": 24,
+    "discount": 0.1,
+    "price": 6480,
+    "compareAt": 7200
+   }
+  ],
+  "sold": 107,
+  "createdAt": "2026-05-23",
+  "taste": [
+   {
+    "k": "Flavor",
+    "v": "Crisp lemon and lime, never heavy."
+   },
+   {
+    "k": "Fizz",
+    "v": "Fine, clean bubbles."
+   },
+   {
+    "k": "Texture",
+    "v": "Light and clear on the palate."
+   },
+   {
+    "k": "Energy",
+    "v": "Refreshment without the heaviness."
+   },
+   {
+    "k": "Vibrance",
+    "v": "Bright, sparkling clarity."
+   },
+   {
+    "k": "Coolness",
+    "v": "Wonderful ice-cold with a lime wedge."
+   }
+  ],
+  "meter": [
+   {
+    "k": "Fizz",
+    "v": 75
+   },
+   {
+    "k": "Chill",
+    "v": 82
+   },
+   {
+    "k": "Flavor",
+    "v": 72
+   },
+   {
+    "k": "Kick",
+    "v": 75
+   },
+   {
+    "k": "Crave",
+    "v": 77
+   }
+  ],
+  "long": [
+   "Imported 7UP, crisp and clear in 330 ml. Delivered sealed in its original 330 ml can, 7UP Imported (330 ml) is made for sharing, snacking and beating the heat — an imported pick for people who like something a little different.",
+   "Chill it for a few hours, pour it over ice or drink straight from the can. It pairs brilliantly with biryani, burgers, fuchka, kebab rolls, pizza and every kind of adda — and it is the easiest way to keep a party, iftar table or office fridge stocked.",
+   "At Drink it you buy straight from our own online store: choose a single can, a 6-pack, a 12-pack or a full carton of 24, pay with bKash, Nagad, Rocket, card or cash on delivery, and we bring the cans to your door. One store, every brand, no running around."
+  ],
+  "why": [
+   "**Bold, recognisable taste** that never lets you down — every can, every time.",
+   "**Easy to stock up:** save up to 10% when you pick a 6-pack, 12-pack or carton.",
+   "**Classic sweetness** — full-flavoured and satisfying.",
+   "**Sealed and genuine:** cans arrive factory-sealed with the best-before date on the base.",
+   "**Party-ready:** perfect for iftar, birthdays, picnics, offices and late-night study sessions.",
+   "**Order your way:** bKash, Nagad, Rocket, card or cash on delivery."
+  ],
+  "details": [
+   {
+    "k": "Brand",
+    "v": "7UP"
+   },
+   {
+    "k": "Flavor",
+    "v": "Imported"
+   },
+   {
+    "k": "Can size",
+    "v": "330 ml"
+   },
+   {
+    "k": "Sugar",
+    "v": "Regular (see can label)"
+   },
+   {
+    "k": "Caffeine",
+    "v": "Caffeine-free"
+   },
+   {
+    "k": "Origin",
+    "v": "Imported"
+   },
+   {
+    "k": "Serve",
+    "v": "Chilled, around 4 °C"
+   },
+   {
+    "k": "Shelf life",
+    "v": "Best-before date printed on the can"
+   }
+  ],
+  "tile": "#f0f7ec",
+  "images": {
+   "single": "/assets/img/cans/7up-imported-330ml-can.svg",
+   "angle": "/assets/img/cans/7up-imported-330ml-can-angle.svg",
+   "pack6": "/assets/img/cans/7up-imported-330ml-can-pack6.svg",
+   "pack12": "/assets/img/cans/7up-imported-330ml-can-pack12.svg",
+   "pack24": "/assets/img/cans/7up-imported-330ml-can-pack24.svg"
+  }
+ },
+ {
+  "id": "DI029",
+  "handle": "mountain-dew-imported-330ml-can",
+  "title": "Mountain Dew Imported (330 ml)",
+  "brand": "Mountain Dew",
+  "brandHandle": "mountain-dew",
+  "variant": "Imported",
+  "type": "Citrus",
+  "canMl": 330,
+  "sugar": "Regular",
+  "caffeine": true,
+  "origin": "Imported",
+  "price": 320,
+  "compareAt": 0,
+  "stock": 65,
+  "collections": [
+   "citrus-fizz",
+   "imported-cans"
+  ],
+  "badges": [
+   "new"
+  ],
+  "short": "Imported Mountain Dew with that citrus kick, 330 ml.",
+  "dealEndsAt": null,
+  "art": {
+   "body": "#6DBE2E",
+   "body2": "#3B8F1A",
+   "ink": "#ffffff",
+   "accent": "#E6FF6B",
+   "font": "Anton-Regular",
+   "icon": "bolt",
+   "band": "slash",
+   "brand": "Mountain Dew",
+   "variant": "Imported",
+   "size": "330 mL",
+   "kind": "std",
+   "badge": [
+    "IMPORTED",
+    "citrus"
+   ]
+  },
+  "packs": [
+   {
+    "id": "single",
+    "label": "Single can",
+    "qty": 1,
+    "discount": 0,
+    "price": 320,
+    "compareAt": 0
+   },
+   {
+    "id": "pack6",
+    "label": "6-pack",
+    "qty": 6,
+    "discount": 0.05,
+    "price": 1824,
+    "compareAt": 1920
+   },
+   {
+    "id": "pack12",
+    "label": "12-pack",
+    "qty": 12,
+    "discount": 0.08,
+    "price": 3533,
+    "compareAt": 3840
+   },
+   {
+    "id": "pack24",
+    "label": "Carton of 24",
+    "qty": 24,
+    "discount": 0.1,
+    "price": 6912,
+    "compareAt": 7680
+   }
+  ],
+  "sold": 423,
+  "createdAt": "2026-06-06",
+  "taste": [
+   {
+    "k": "Flavor",
+    "v": "Bold citrus with an extra punch."
+   },
+   {
+    "k": "Fizz",
+    "v": "Energetic bubbles."
+   },
+   {
+    "k": "Texture",
+    "v": "Bright and zesty."
+   },
+   {
+    "k": "Energy",
+    "v": "Made to wake you up."
+   },
+   {
+    "k": "Vibrance",
+    "v": "Electric lime-green colour."
+   },
+   {
+    "k": "Coolness",
+    "v": "Serve over ice."
+   }
+  ],
+  "meter": [
+   {
+    "k": "Fizz",
+    "v": 92
+   },
+   {
+    "k": "Chill",
+    "v": 94
+   },
+   {
+    "k": "Flavor",
+    "v": 85
+   },
+   {
+    "k": "Kick",
+    "v": 84
+   },
+   {
+    "k": "Crave",
+    "v": 84
+   }
+  ],
+  "long": [
+   "Imported Mountain Dew with that citrus kick, 330 ml. Delivered sealed in its original 330 ml can, Mountain Dew Imported (330 ml) is made for sharing, snacking and beating the heat — an imported pick for people who like something a little different.",
+   "Chill it for a few hours, pour it over ice or drink straight from the can. It pairs brilliantly with biryani, burgers, fuchka, kebab rolls, pizza and every kind of adda — and it is the easiest way to keep a party, iftar table or office fridge stocked.",
+   "At Drink it you buy straight from our own online store: choose a single can, a 6-pack, a 12-pack or a full carton of 24, pay with bKash, Nagad, Rocket, card or cash on delivery, and we bring the cans to your door. One store, every brand, no running around."
+  ],
+  "why": [
+   "**Bold, recognisable taste** that never lets you down — every can, every time.",
+   "**Easy to stock up:** save up to 10% when you pick a 6-pack, 12-pack or carton.",
+   "**Classic sweetness** — full-flavoured and satisfying.",
+   "**Sealed and genuine:** cans arrive factory-sealed with the best-before date on the base.",
+   "**Party-ready:** perfect for iftar, birthdays, picnics, offices and late-night study sessions.",
+   "**Order your way:** bKash, Nagad, Rocket, card or cash on delivery."
+  ],
+  "details": [
+   {
+    "k": "Brand",
+    "v": "Mountain Dew"
+   },
+   {
+    "k": "Flavor",
+    "v": "Imported"
+   },
+   {
+    "k": "Can size",
+    "v": "330 ml"
+   },
+   {
+    "k": "Sugar",
+    "v": "Regular (see can label)"
+   },
+   {
+    "k": "Caffeine",
+    "v": "Contains caffeine"
+   },
+   {
+    "k": "Origin",
+    "v": "Imported"
+   },
+   {
+    "k": "Serve",
+    "v": "Chilled, around 4 °C"
+   },
+   {
+    "k": "Shelf life",
+    "v": "Best-before date printed on the can"
+   }
+  ],
+  "tile": "#f5f9e9",
+  "images": {
+   "single": "/assets/img/cans/mountain-dew-imported-330ml-can.svg",
+   "angle": "/assets/img/cans/mountain-dew-imported-330ml-can-angle.svg",
+   "pack6": "/assets/img/cans/mountain-dew-imported-330ml-can-pack6.svg",
+   "pack12": "/assets/img/cans/mountain-dew-imported-330ml-can-pack12.svg",
+   "pack24": "/assets/img/cans/mountain-dew-imported-330ml-can-pack24.svg"
+  }
+ },
+ {
+  "id": "DI030",
+  "handle": "dr-pepper-355ml-can",
+  "title": "Dr Pepper",
+  "brand": "Dr Pepper",
+  "brandHandle": "dr-pepper",
+  "variant": "Imported",
+  "type": "Cola",
+  "canMl": 355,
+  "sugar": "Regular",
+  "caffeine": true,
+  "origin": "Imported",
+  "price": 390,
+  "compareAt": 0,
+  "stock": 55,
+  "collections": [
+   "cola-classics",
+   "imported-cans"
+  ],
+  "badges": [
+   "new"
+  ],
+  "short": "A unique spiced soda with a cult following.",
+  "dealEndsAt": null,
+  "art": {
+   "body": "#7A1226",
+   "body2": "#4E0A18",
+   "ink": "#ffffff",
+   "accent": "#FFB3C0",
+   "font": "Poppins-ExtraBold",
+   "icon": "cherry",
+   "band": "wave",
+   "brand": "Dr Pepper",
+   "variant": "Imported",
+   "size": "355 mL",
+   "kind": "std",
+   "badge": [
+    "IMPORTED",
+    "USA"
+   ]
+  },
+  "packs": [
+   {
+    "id": "single",
+    "label": "Single can",
+    "qty": 1,
+    "discount": 0,
+    "price": 390,
+    "compareAt": 0
+   },
+   {
+    "id": "pack6",
+    "label": "6-pack",
+    "qty": 6,
+    "discount": 0.05,
+    "price": 2223,
+    "compareAt": 2340
+   },
+   {
+    "id": "pack12",
+    "label": "12-pack",
+    "qty": 12,
+    "discount": 0.08,
+    "price": 4306,
+    "compareAt": 4680
+   },
+   {
+    "id": "pack24",
+    "label": "Carton of 24",
+    "qty": 24,
+    "discount": 0.1,
+    "price": 8424,
+    "compareAt": 9360
+   }
+  ],
+  "sold": 786,
+  "createdAt": "2026-09-09",
+  "taste": [
+   {
+    "k": "Flavor",
+    "v": "Caramel, spice and a touch of vanilla."
+   },
+   {
+    "k": "Fizz",
+    "v": "Sharp, lively bubbles from the first sip."
+   },
+   {
+    "k": "Texture",
+    "v": "Smooth, syrupy-light body."
+   },
+   {
+    "k": "Energy",
+    "v": "A gentle lift of caffeine."
+   },
+   {
+    "k": "Vibrance",
+    "v": "Deep amber-brown colour."
+   },
+   {
+    "k": "Coolness",
+    "v": "Best served around 4 °C."
+   }
+  ],
+  "meter": [
+   {
+    "k": "Fizz",
+    "v": 95
+   },
+   {
+    "k": "Chill",
+    "v": 94
+   },
+   {
+    "k": "Flavor",
+    "v": 87
+   },
+   {
+    "k": "Kick",
+    "v": 84
+   },
+   {
+    "k": "Crave",
+    "v": 85
+   }
+  ],
+  "long": [
+   "A unique spiced soda with a cult following. Delivered sealed in its original 355 ml can, Dr Pepper is made for sharing, snacking and beating the heat — an imported pick for people who like something a little different.",
+   "Chill it for a few hours, pour it over ice or drink straight from the can. It pairs brilliantly with biryani, burgers, fuchka, kebab rolls, pizza and every kind of adda — and it is the easiest way to keep a party, iftar table or office fridge stocked.",
+   "At Drink it you buy straight from our own online store: choose a single can, a 6-pack, a 12-pack or a full carton of 24, pay with bKash, Nagad, Rocket, card or cash on delivery, and we bring the cans to your door. One store, every brand, no running around."
+  ],
+  "why": [
+   "**Bold, recognisable taste** that never lets you down — every can, every time.",
+   "**Easy to stock up:** save up to 10% when you pick a 6-pack, 12-pack or carton.",
+   "**Classic sweetness** — full-flavoured and satisfying.",
+   "**Sealed and genuine:** cans arrive factory-sealed with the best-before date on the base.",
+   "**Party-ready:** perfect for iftar, birthdays, picnics, offices and late-night study sessions.",
+   "**Order your way:** bKash, Nagad, Rocket, card or cash on delivery."
+  ],
+  "details": [
+   {
+    "k": "Brand",
+    "v": "Dr Pepper"
+   },
+   {
+    "k": "Flavor",
+    "v": "Imported"
+   },
+   {
+    "k": "Can size",
+    "v": "355 ml"
+   },
+   {
+    "k": "Sugar",
+    "v": "Regular (see can label)"
+   },
+   {
+    "k": "Caffeine",
+    "v": "Contains caffeine"
+   },
+   {
+    "k": "Origin",
+    "v": "Imported"
+   },
+   {
+    "k": "Serve",
+    "v": "Chilled, around 4 °C"
+   },
+   {
+    "k": "Shelf life",
+    "v": "Best-before date printed on the can"
+   }
+  ],
+  "tile": "#f6ece9",
+  "images": {
+   "single": "/assets/img/cans/dr-pepper-355ml-can.svg",
+   "angle": "/assets/img/cans/dr-pepper-355ml-can-angle.svg",
+   "pack6": "/assets/img/cans/dr-pepper-355ml-can-pack6.svg",
+   "pack12": "/assets/img/cans/dr-pepper-355ml-can-pack12.svg",
+   "pack24": "/assets/img/cans/dr-pepper-355ml-can-pack24.svg"
+  }
+ },
+ {
+  "id": "DI031",
+  "handle": "schweppes-ginger-ale-330ml-can",
+  "title": "Schweppes Ginger Ale",
+  "brand": "Schweppes",
+  "brandHandle": "schweppes",
+  "variant": "Ginger Ale",
+  "type": "Ginger",
+  "canMl": 330,
+  "sugar": "Regular",
+  "caffeine": false,
+  "origin": "Imported",
+  "price": 290,
+  "compareAt": 0,
+  "stock": 60,
+  "collections": [
+   "imported-cans"
+  ],
+  "badges": [],
+  "short": "Sparkling ginger ale — brilliant on its own or with ice and lime.",
+  "dealEndsAt": null,
+  "art": {
+   "body": "#2D6A4F",
+   "body2": "#1B4332",
+   "ink": "#ffffff",
+   "accent": "#E9C46A",
+   "font": "Poppins-ExtraBold",
+   "icon": "ginger",
+   "band": "stripe",
+   "brand": "Schweppes",
+   "variant": "Ginger Ale",
+   "size": "330 mL",
+   "kind": "std",
+   "badge": [
+    "IMPORTED",
+    "ginger"
+   ]
+  },
+  "packs": [
+   {
+    "id": "single",
+    "label": "Single can",
+    "qty": 1,
+    "discount": 0,
+    "price": 290,
+    "compareAt": 0
+   },
+   {
+    "id": "pack6",
+    "label": "6-pack",
+    "qty": 6,
+    "discount": 0.05,
+    "price": 1653,
+    "compareAt": 1740
+   },
+   {
+    "id": "pack12",
+    "label": "12-pack",
+    "qty": 12,
+    "discount": 0.08,
+    "price": 3202,
+    "compareAt": 3480
+   },
+   {
+    "id": "pack24",
+    "label": "Carton of 24",
+    "qty": 24,
+    "discount": 0.1,
+    "price": 6264,
+    "compareAt": 6960
+   }
+  ],
+  "sold": 724,
+  "createdAt": "2026-01-19",
+  "taste": [
+   {
+    "k": "Flavor",
+    "v": "Warm ginger with a gentle spice."
+   },
+   {
+    "k": "Fizz",
+    "v": "Fine, elegant bubbles."
+   },
+   {
+    "k": "Texture",
+    "v": "Crisp and dry."
+   },
+   {
+    "k": "Energy",
+    "v": "Caffeine-free."
+   },
+   {
+    "k": "Vibrance",
+    "v": "Pale golden colour."
+   },
+   {
+    "k": "Coolness",
+    "v": "Lovely over ice with lime."
+   }
+  ],
+  "meter": [
+   {
+    "k": "Fizz",
+    "v": 77
+   },
+   {
+    "k": "Chill",
+    "v": 77
+   },
+   {
+    "k": "Flavor",
+    "v": 77
+   },
+   {
+    "k": "Kick",
+    "v": 73
+   },
+   {
+    "k": "Crave",
+    "v": 84
+   }
+  ],
+  "long": [
+   "Sparkling ginger ale — brilliant on its own or with ice and lime. Delivered sealed in its original 330 ml can, Schweppes Ginger Ale is made for sharing, snacking and beating the heat — an imported pick for people who like something a little different.",
+   "Chill it for a few hours, pour it over ice or drink straight from the can. It pairs brilliantly with biryani, burgers, fuchka, kebab rolls, pizza and every kind of adda — and it is the easiest way to keep a party, iftar table or office fridge stocked.",
+   "At Drink it you buy straight from our own online store: choose a single can, a 6-pack, a 12-pack or a full carton of 24, pay with bKash, Nagad, Rocket, card or cash on delivery, and we bring the cans to your door. One store, every brand, no running around."
+  ],
+  "why": [
+   "**Bold, recognisable taste** that never lets you down — every can, every time.",
+   "**Easy to stock up:** save up to 10% when you pick a 6-pack, 12-pack or carton.",
+   "**Classic sweetness** — full-flavoured and satisfying.",
+   "**Sealed and genuine:** cans arrive factory-sealed with the best-before date on the base.",
+   "**Party-ready:** perfect for iftar, birthdays, picnics, offices and late-night study sessions.",
+   "**Order your way:** bKash, Nagad, Rocket, card or cash on delivery."
+  ],
+  "details": [
+   {
+    "k": "Brand",
+    "v": "Schweppes"
+   },
+   {
+    "k": "Flavor",
+    "v": "Ginger Ale"
+   },
+   {
+    "k": "Can size",
+    "v": "330 ml"
+   },
+   {
+    "k": "Sugar",
+    "v": "Regular (see can label)"
+   },
+   {
+    "k": "Caffeine",
+    "v": "Caffeine-free"
+   },
+   {
+    "k": "Origin",
+    "v": "Imported"
+   },
+   {
+    "k": "Serve",
+    "v": "Chilled, around 4 °C"
+   },
+   {
+    "k": "Shelf life",
+    "v": "Best-before date printed on the can"
+   }
+  ],
+  "tile": "#f0f2ec",
+  "images": {
+   "single": "/assets/img/cans/schweppes-ginger-ale-330ml-can.svg",
+   "angle": "/assets/img/cans/schweppes-ginger-ale-330ml-can-angle.svg",
+   "pack6": "/assets/img/cans/schweppes-ginger-ale-330ml-can-pack6.svg",
+   "pack12": "/assets/img/cans/schweppes-ginger-ale-330ml-can-pack12.svg",
+   "pack24": "/assets/img/cans/schweppes-ginger-ale-330ml-can-pack24.svg"
+  }
+ },
+ {
+  "id": "DI032",
+  "handle": "schweppes-tonic-water-330ml-can",
+  "title": "Schweppes Tonic Water",
+  "brand": "Schweppes",
+  "brandHandle": "schweppes",
+  "variant": "Tonic Water",
+  "type": "Tonic",
+  "canMl": 330,
+  "sugar": "Regular",
+  "caffeine": false,
+  "origin": "Imported",
+  "price": 290,
+  "compareAt": 0,
+  "stock": 50,
+  "collections": [
+   "imported-cans"
+  ],
+  "badges": [],
+  "short": "Crisp, bitter-sweet tonic water for mixers and mocktails.",
+  "dealEndsAt": null,
+  "art": {
+   "body": "#1D4E89",
+   "body2": "#12335C",
+   "ink": "#ffffff",
+   "accent": "#BFE0FF",
+   "font": "Poppins-ExtraBold",
+   "icon": "cola",
+   "band": "wave",
+   "brand": "Schweppes",
+   "variant": "Tonic Water",
+   "size": "330 mL",
+   "kind": "std",
+   "badge": [
+    "IMPORTED",
+    "tonic"
+   ]
+  },
+  "packs": [
+   {
+    "id": "single",
+    "label": "Single can",
+    "qty": 1,
+    "discount": 0,
+    "price": 290,
+    "compareAt": 0
+   },
+   {
+    "id": "pack6",
+    "label": "6-pack",
+    "qty": 6,
+    "discount": 0.05,
+    "price": 1653,
+    "compareAt": 1740
+   },
+   {
+    "id": "pack12",
+    "label": "12-pack",
+    "qty": 12,
+    "discount": 0.08,
+    "price": 3202,
+    "compareAt": 3480
+   },
+   {
+    "id": "pack24",
+    "label": "Carton of 24",
+    "qty": 24,
+    "discount": 0.1,
+    "price": 6264,
+    "compareAt": 6960
+   }
+  ],
+  "sold": 598,
+  "createdAt": "2026-01-01",
+  "taste": [
+   {
+    "k": "Flavor",
+    "v": "Bittersweet citrus character."
+   },
+   {
+    "k": "Fizz",
+    "v": "Fine, champagne-like bubbles."
+   },
+   {
+    "k": "Texture",
+    "v": "Dry and crisp."
+   },
+   {
+    "k": "Energy",
+    "v": "Caffeine-free."
+   },
+   {
+    "k": "Vibrance",
+    "v": "Crystal-clear sparkle."
+   },
+   {
+    "k": "Coolness",
+    "v": "Great as a mixer."
+   }
+  ],
+  "meter": [
+   {
+    "k": "Fizz",
+    "v": 71
+   },
+   {
+    "k": "Chill",
+    "v": 76
+   },
+   {
+    "k": "Flavor",
+    "v": 75
+   },
+   {
+    "k": "Kick",
+    "v": 84
+   },
+   {
+    "k": "Crave",
+    "v": 76
+   }
+  ],
+  "long": [
+   "Crisp, bitter-sweet tonic water for mixers and mocktails. Delivered sealed in its original 330 ml can, Schweppes Tonic Water is made for sharing, snacking and beating the heat — an imported pick for people who like something a little different.",
+   "Chill it for a few hours, pour it over ice or drink straight from the can. It pairs brilliantly with biryani, burgers, fuchka, kebab rolls, pizza and every kind of adda — and it is the easiest way to keep a party, iftar table or office fridge stocked.",
+   "At Drink it you buy straight from our own online store: choose a single can, a 6-pack, a 12-pack or a full carton of 24, pay with bKash, Nagad, Rocket, card or cash on delivery, and we bring the cans to your door. One store, every brand, no running around."
+  ],
+  "why": [
+   "**Bold, recognisable taste** that never lets you down — every can, every time.",
+   "**Easy to stock up:** save up to 10% when you pick a 6-pack, 12-pack or carton.",
+   "**Classic sweetness** — full-flavoured and satisfying.",
+   "**Sealed and genuine:** cans arrive factory-sealed with the best-before date on the base.",
+   "**Party-ready:** perfect for iftar, birthdays, picnics, offices and late-night study sessions.",
+   "**Order your way:** bKash, Nagad, Rocket, card or cash on delivery."
+  ],
+  "details": [
+   {
+    "k": "Brand",
+    "v": "Schweppes"
+   },
+   {
+    "k": "Flavor",
+    "v": "Tonic Water"
+   },
+   {
+    "k": "Can size",
+    "v": "330 ml"
+   },
+   {
+    "k": "Sugar",
+    "v": "Regular (see can label)"
+   },
+   {
+    "k": "Caffeine",
+    "v": "Caffeine-free"
+   },
+   {
+    "k": "Origin",
+    "v": "Imported"
+   },
+   {
+    "k": "Serve",
+    "v": "Chilled, around 4 °C"
+   },
+   {
+    "k": "Shelf life",
+    "v": "Best-before date printed on the can"
+   }
+  ],
+  "tile": "#eff0f0",
+  "images": {
+   "single": "/assets/img/cans/schweppes-tonic-water-330ml-can.svg",
+   "angle": "/assets/img/cans/schweppes-tonic-water-330ml-can-angle.svg",
+   "pack6": "/assets/img/cans/schweppes-tonic-water-330ml-can-pack6.svg",
+   "pack12": "/assets/img/cans/schweppes-tonic-water-330ml-can-pack12.svg",
+   "pack24": "/assets/img/cans/schweppes-tonic-water-330ml-can-pack24.svg"
+  }
+ },
+ {
+  "id": "DI033",
+  "handle": "rani-float-grape-240ml-can",
+  "title": "Rani Float Grape",
+  "brand": "Rani Float",
+  "brandHandle": "rani-float",
+  "variant": "Grape",
+  "type": "Fruit",
+  "canMl": 240,
+  "sugar": "Regular",
+  "caffeine": false,
+  "origin": "Imported",
+  "price": 120,
+  "compareAt": 0,
+  "stock": 130,
+  "collections": [
+   "fruity-picks",
+   "imported-cans"
+  ],
+  "badges": [],
+  "short": "Grape juice drink with soft fruit pieces to chew on.",
+  "dealEndsAt": null,
+  "art": {
+   "body": "#7B3FA0",
+   "body2": "#552B72",
+   "ink": "#ffffff",
+   "accent": "#E6C7FF",
+   "font": "LilitaOne-Regular",
+   "icon": "grape",
+   "band": "dots",
+   "brand": "Rani Float",
+   "variant": "Grape",
+   "size": "240 mL",
+   "kind": "slim",
+   "badge": [
+    "FRUIT",
+    "pieces"
+   ]
+  },
+  "packs": [
+   {
+    "id": "single",
+    "label": "Single can",
+    "qty": 1,
+    "discount": 0,
+    "price": 120,
+    "compareAt": 0
+   },
+   {
+    "id": "pack6",
+    "label": "6-pack",
+    "qty": 6,
+    "discount": 0.05,
+    "price": 684,
+    "compareAt": 720
+   },
+   {
+    "id": "pack12",
+    "label": "12-pack",
+    "qty": 12,
+    "discount": 0.08,
+    "price": 1325,
+    "compareAt": 1440
+   },
+   {
+    "id": "pack24",
+    "label": "Carton of 24",
+    "qty": 24,
+    "discount": 0.1,
+    "price": 2592,
+    "compareAt": 2880
+   }
+  ],
+  "sold": 189,
+  "createdAt": "2026-06-15",
+  "taste": [
+   {
+    "k": "Flavor",
+    "v": "Juicy, sweet fruit character."
+   },
+   {
+    "k": "Fizz",
+    "v": "Smooth and still — no bubbles."
+   },
+   {
+    "k": "Texture",
+    "v": "Soft fruit pieces to chew."
+   },
+   {
+    "k": "Energy",
+    "v": "Naturally sweet pick-me-up."
+   },
+   {
+    "k": "Vibrance",
+    "v": "Rich fruit colour."
+   },
+   {
+    "k": "Coolness",
+    "v": "Delicious well-chilled."
+   }
+  ],
+  "meter": [
+   {
+    "k": "Fizz",
+    "v": 82
+   },
+   {
+    "k": "Chill",
+    "v": 70
+   },
+   {
+    "k": "Flavor",
+    "v": 72
+   },
+   {
+    "k": "Kick",
+    "v": 75
+   },
+   {
+    "k": "Crave",
+    "v": 79
+   }
+  ],
+  "long": [
+   "Grape juice drink with soft fruit pieces to chew on. Delivered sealed in its original 240 ml can, Rani Float Grape is made for sharing, snacking and beating the heat — an imported pick for people who like something a little different.",
+   "Chill it for a few hours, pour it over ice or drink straight from the can. It pairs brilliantly with biryani, burgers, fuchka, kebab rolls, pizza and every kind of adda — and it is the easiest way to keep a party, iftar table or office fridge stocked.",
+   "At Drink it you buy straight from our own online store: choose a single can, a 6-pack, a 12-pack or a full carton of 24, pay with bKash, Nagad, Rocket, card or cash on delivery, and we bring the cans to your door. One store, every brand, no running around."
+  ],
+  "why": [
+   "**Bold, recognisable taste** that never lets you down — every can, every time.",
+   "**Easy to stock up:** save up to 10% when you pick a 6-pack, 12-pack or carton.",
+   "**Classic sweetness** — full-flavoured and satisfying.",
+   "**Sealed and genuine:** cans arrive factory-sealed with the best-before date on the base.",
+   "**Party-ready:** perfect for iftar, birthdays, picnics, offices and late-night study sessions.",
+   "**Order your way:** bKash, Nagad, Rocket, card or cash on delivery."
+  ],
+  "details": [
+   {
+    "k": "Brand",
+    "v": "Rani Float"
+   },
+   {
+    "k": "Flavor",
+    "v": "Grape"
+   },
+   {
+    "k": "Can size",
+    "v": "240 ml"
+   },
+   {
+    "k": "Sugar",
+    "v": "Regular (see can label)"
+   },
+   {
+    "k": "Caffeine",
+    "v": "Caffeine-free"
+   },
+   {
+    "k": "Origin",
+    "v": "Imported"
+   },
+   {
+    "k": "Serve",
+    "v": "Chilled, around 4 °C"
+   },
+   {
+    "k": "Shelf life",
+    "v": "Best-before date printed on the can"
+   }
+  ],
+  "tile": "#f6f0f2",
+  "images": {
+   "single": "/assets/img/cans/rani-float-grape-240ml-can.svg",
+   "angle": "/assets/img/cans/rani-float-grape-240ml-can-angle.svg",
+   "pack6": "/assets/img/cans/rani-float-grape-240ml-can-pack6.svg",
+   "pack12": "/assets/img/cans/rani-float-grape-240ml-can-pack12.svg",
+   "pack24": "/assets/img/cans/rani-float-grape-240ml-can-pack24.svg"
+  }
+ },
+ {
+  "id": "DI034",
+  "handle": "rani-float-orange-240ml-can",
+  "title": "Rani Float Orange",
+  "brand": "Rani Float",
+  "brandHandle": "rani-float",
+  "variant": "Orange",
+  "type": "Fruit",
+  "canMl": 240,
+  "sugar": "Regular",
+  "caffeine": false,
+  "origin": "Imported",
+  "price": 120,
+  "compareAt": 0,
+  "stock": 120,
+  "collections": [
+   "fruity-picks",
+   "imported-cans"
+  ],
+  "badges": [],
+  "short": "Orange juice drink with soft pulp pieces.",
+  "dealEndsAt": null,
+  "art": {
+   "body": "#F5841F",
+   "body2": "#CF5F0A",
+   "ink": "#ffffff",
+   "accent": "#FFE2B8",
+   "font": "LilitaOne-Regular",
+   "icon": "orange",
+   "band": "dots",
+   "brand": "Rani Float",
+   "variant": "Orange",
+   "size": "240 mL",
+   "kind": "slim",
+   "badge": [
+    "FRUIT",
+    "pieces"
+   ]
+  },
+  "packs": [
+   {
+    "id": "single",
+    "label": "Single can",
+    "qty": 1,
+    "discount": 0,
+    "price": 120,
+    "compareAt": 0
+   },
+   {
+    "id": "pack6",
+    "label": "6-pack",
+    "qty": 6,
+    "discount": 0.05,
+    "price": 684,
+    "compareAt": 720
+   },
+   {
+    "id": "pack12",
+    "label": "12-pack",
+    "qty": 12,
+    "discount": 0.08,
+    "price": 1325,
+    "compareAt": 1440
+   },
+   {
+    "id": "pack24",
+    "label": "Carton of 24",
+    "qty": 24,
+    "discount": 0.1,
+    "price": 2592,
+    "compareAt": 2880
+   }
+  ],
+  "sold": 770,
+  "createdAt": "2026-02-20",
+  "taste": [
+   {
+    "k": "Flavor",
+    "v": "Juicy, sweet fruit character."
+   },
+   {
+    "k": "Fizz",
+    "v": "Smooth and still — no bubbles."
+   },
+   {
+    "k": "Texture",
+    "v": "Soft fruit pieces to chew."
+   },
+   {
+    "k": "Energy",
+    "v": "Naturally sweet pick-me-up."
+   },
+   {
+    "k": "Vibrance",
+    "v": "Rich fruit colour."
+   },
+   {
+    "k": "Coolness",
+    "v": "Delicious well-chilled."
+   }
+  ],
+  "meter": [
+   {
+    "k": "Fizz",
+    "v": 94
+   },
+   {
+    "k": "Chill",
+    "v": 85
+   },
+   {
+    "k": "Flavor",
+    "v": 95
+   },
+   {
+    "k": "Kick",
+    "v": 92
+   },
+   {
+    "k": "Crave",
+    "v": 94
+   }
+  ],
+  "long": [
+   "Orange juice drink with soft pulp pieces. Delivered sealed in its original 240 ml can, Rani Float Orange is made for sharing, snacking and beating the heat — an imported pick for people who like something a little different.",
+   "Chill it for a few hours, pour it over ice or drink straight from the can. It pairs brilliantly with biryani, burgers, fuchka, kebab rolls, pizza and every kind of adda — and it is the easiest way to keep a party, iftar table or office fridge stocked.",
+   "At Drink it you buy straight from our own online store: choose a single can, a 6-pack, a 12-pack or a full carton of 24, pay with bKash, Nagad, Rocket, card or cash on delivery, and we bring the cans to your door. One store, every brand, no running around."
+  ],
+  "why": [
+   "**Bold, recognisable taste** that never lets you down — every can, every time.",
+   "**Easy to stock up:** save up to 10% when you pick a 6-pack, 12-pack or carton.",
+   "**Classic sweetness** — full-flavoured and satisfying.",
+   "**Sealed and genuine:** cans arrive factory-sealed with the best-before date on the base.",
+   "**Party-ready:** perfect for iftar, birthdays, picnics, offices and late-night study sessions.",
+   "**Order your way:** bKash, Nagad, Rocket, card or cash on delivery."
+  ],
+  "details": [
+   {
+    "k": "Brand",
+    "v": "Rani Float"
+   },
+   {
+    "k": "Flavor",
+    "v": "Orange"
+   },
+   {
+    "k": "Can size",
+    "v": "240 ml"
+   },
+   {
+    "k": "Sugar",
+    "v": "Regular (see can label)"
+   },
+   {
+    "k": "Caffeine",
+    "v": "Caffeine-free"
+   },
+   {
+    "k": "Origin",
+    "v": "Imported"
+   },
+   {
+    "k": "Serve",
+    "v": "Chilled, around 4 °C"
+   },
+   {
+    "k": "Shelf life",
+    "v": "Best-before date printed on the can"
+   }
+  ],
+  "tile": "#fef5e9",
+  "images": {
+   "single": "/assets/img/cans/rani-float-orange-240ml-can.svg",
+   "angle": "/assets/img/cans/rani-float-orange-240ml-can-angle.svg",
+   "pack6": "/assets/img/cans/rani-float-orange-240ml-can-pack6.svg",
+   "pack12": "/assets/img/cans/rani-float-orange-240ml-can-pack12.svg",
+   "pack24": "/assets/img/cans/rani-float-orange-240ml-can-pack24.svg"
+  }
+ },
+ {
+  "id": "DI035",
+  "handle": "rani-float-mango-240ml-can",
+  "title": "Rani Float Mango",
+  "brand": "Rani Float",
+  "brandHandle": "rani-float",
+  "variant": "Mango",
+  "type": "Fruit",
+  "canMl": 240,
+  "sugar": "Regular",
+  "caffeine": false,
+  "origin": "Imported",
+  "price": 120,
+  "compareAt": 0,
+  "stock": 150,
+  "collections": [
+   "fruity-picks",
+   "imported-cans"
+  ],
+  "badges": [
+   "best"
+  ],
+  "short": "Sweet mango drink with juicy fruit bits.",
+  "dealEndsAt": null,
+  "art": {
+   "body": "#F2A900",
+   "body2": "#C98300",
+   "ink": "#3A2500",
+   "accent": "#FFE49A",
+   "font": "LilitaOne-Regular",
+   "icon": "mango",
+   "band": "dots",
+   "brand": "Rani Float",
+   "variant": "Mango",
+   "size": "240 mL",
+   "kind": "slim",
+   "badge": [
+    "FRUIT",
+    "pieces"
+   ]
+  },
+  "packs": [
+   {
+    "id": "single",
+    "label": "Single can",
+    "qty": 1,
+    "discount": 0,
+    "price": 120,
+    "compareAt": 0
+   },
+   {
+    "id": "pack6",
+    "label": "6-pack",
+    "qty": 6,
+    "discount": 0.05,
+    "price": 684,
+    "compareAt": 720
+   },
+   {
+    "id": "pack12",
+    "label": "12-pack",
+    "qty": 12,
+    "discount": 0.08,
+    "price": 1325,
+    "compareAt": 1440
+   },
+   {
+    "id": "pack24",
+    "label": "Carton of 24",
+    "qty": 24,
+    "discount": 0.1,
+    "price": 2592,
+    "compareAt": 2880
+   }
+  ],
+  "sold": 400,
+  "createdAt": "2026-01-19",
+  "taste": [
+   {
+    "k": "Flavor",
+    "v": "Juicy, sweet fruit character."
+   },
+   {
+    "k": "Fizz",
+    "v": "Smooth and still — no bubbles."
+   },
+   {
+    "k": "Texture",
+    "v": "Soft fruit pieces to chew."
+   },
+   {
+    "k": "Energy",
+    "v": "Naturally sweet pick-me-up."
+   },
+   {
+    "k": "Vibrance",
+    "v": "Rich fruit colour."
+   },
+   {
+    "k": "Coolness",
+    "v": "Delicious well-chilled."
+   }
+  ],
+  "meter": [
+   {
+    "k": "Fizz",
+    "v": 84
+   },
+   {
+    "k": "Chill",
+    "v": 84
+   },
+   {
+    "k": "Flavor",
+    "v": 93
+   },
+   {
+    "k": "Kick",
+    "v": 87
+   },
+   {
+    "k": "Crave",
+    "v": 88
+   }
+  ],
+  "long": [
+   "Sweet mango drink with juicy fruit bits. Delivered sealed in its original 240 ml can, Rani Float Mango is made for sharing, snacking and beating the heat — an imported pick for people who like something a little different.",
+   "Chill it for a few hours, pour it over ice or drink straight from the can. It pairs brilliantly with biryani, burgers, fuchka, kebab rolls, pizza and every kind of adda — and it is the easiest way to keep a party, iftar table or office fridge stocked.",
+   "At Drink it you buy straight from our own online store: choose a single can, a 6-pack, a 12-pack or a full carton of 24, pay with bKash, Nagad, Rocket, card or cash on delivery, and we bring the cans to your door. One store, every brand, no running around."
+  ],
+  "why": [
+   "**Bold, recognisable taste** that never lets you down — every can, every time.",
+   "**Easy to stock up:** save up to 10% when you pick a 6-pack, 12-pack or carton.",
+   "**Classic sweetness** — full-flavoured and satisfying.",
+   "**Sealed and genuine:** cans arrive factory-sealed with the best-before date on the base.",
+   "**Party-ready:** perfect for iftar, birthdays, picnics, offices and late-night study sessions.",
+   "**Order your way:** bKash, Nagad, Rocket, card or cash on delivery."
+  ],
+  "details": [
+   {
+    "k": "Brand",
+    "v": "Rani Float"
+   },
+   {
+    "k": "Flavor",
+    "v": "Mango"
+   },
+   {
+    "k": "Can size",
+    "v": "240 ml"
+   },
+   {
+    "k": "Sugar",
+    "v": "Regular (see can label)"
+   },
+   {
+    "k": "Caffeine",
+    "v": "Caffeine-free"
+   },
+   {
+    "k": "Origin",
+    "v": "Imported"
+   },
+   {
+    "k": "Serve",
+    "v": "Chilled, around 4 °C"
+   },
+   {
+    "k": "Shelf life",
+    "v": "Best-before date printed on the can"
+   }
+  ],
+  "tile": "#fef7e7",
+  "images": {
+   "single": "/assets/img/cans/rani-float-mango-240ml-can.svg",
+   "angle": "/assets/img/cans/rani-float-mango-240ml-can-angle.svg",
+   "pack6": "/assets/img/cans/rani-float-mango-240ml-can-pack6.svg",
+   "pack12": "/assets/img/cans/rani-float-mango-240ml-can-pack12.svg",
+   "pack24": "/assets/img/cans/rani-float-mango-240ml-can-pack24.svg"
+  }
+ }
+]

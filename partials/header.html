@@ -1,0 +1,97 @@
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="announcement" data-announcement>
+  <div class="announcement__bar">
+    <div class="marquee" aria-label="Store announcements">
+      <div class="marquee__track" data-announcement-track></div>
+      <div class="marquee__track" aria-hidden="true" data-announcement-track></div>
+    </div>
+    <button class="announcement__close" type="button" aria-label="Close announcement" data-announcement-close><svg viewBox="0 0 24 24"><use href="/assets/img/icons.svg#close"/></svg></button>
+  </div>
+</div>
+
+<div class="header-spacer" data-header-spacer></div>
+<header class="site-header" data-site-header>
+  <div class="site-header__inner">
+    <div class="header-row">
+      <div class="header-left">
+        <button class="icon-btn menu-toggle" type="button" aria-label="Open menu" data-open="menu"><svg viewBox="0 0 24 24"><use href="/assets/img/icons.svg#menu"/></svg></button>
+        <button class="icon-btn search-toggle" type="button" aria-label="Search" data-open="search"><svg viewBox="0 0 24 24"><use href="/assets/img/icons.svg#search"/></svg></button>
+      </div>
+      <a class="logo" href="/" aria-label="{{site.name}} home"><img src="/assets/img/shapes/logo.svg" alt="{{site.name}}" width="140" height="48"></a>
+      <div class="header-actions">
+        <button class="icon-btn search-toggle" type="button" aria-label="Search" data-open="search"><svg viewBox="0 0 24 24"><use href="/assets/img/icons.svg#search"/></svg></button>
+        <a class="icon-btn" href="/account" aria-label="My account"><svg viewBox="0 0 24 24"><use href="/assets/img/icons.svg#user"/></svg></a>
+        <a class="icon-btn wishlist-link" href="/wishlist" aria-label="Wishlist"><svg viewBox="0 0 24 24"><use href="/assets/img/icons.svg#heart"/></svg><span class="count" data-wishlist-count></span></a>
+        <button class="icon-btn" type="button" aria-label="Open cart" data-open="cart"><svg viewBox="0 0 24 24"><use href="/assets/img/icons.svg#cart"/></svg><span class="count" data-cart-count></span></button>
+      </div>
+    </div>
+    <nav class="header-nav" aria-label="Main">
+      <ul class="menu">
+        <li class="has-small">
+          <a class="menu__link" href="/" aria-haspopup="true"><span>Home</span><svg viewBox="0 0 24 24"><use href="/assets/img/icons.svg#chev-down"/></svg></a>
+          <div class="menu-panel menu-panel--small"><div class="menu-panel__box"><ul class="menu-col">
+            <li><a href="/" data-layout-set="1">Home – Default</a></li>
+            <li><a href="/home-2" data-layout-set="2">Home V2</a></li>
+          </ul></div></div>
+        </li>
+        <li><a class="menu__link" href="/collections"><span>Collections</span></a></li>
+        <li class="has-mega">
+          <a class="menu__link" href="/collections/all" aria-haspopup="true"><span>Shop</span><svg viewBox="0 0 24 24"><use href="/assets/img/icons.svg#chev-down"/></svg></a>
+          <div class="menu-panel menu-panel--mega"><div class="menu-panel__box">
+            <div class="menu-col"><h3>Shop by Collection</h3><ul data-menu-collections></ul></div>
+            <div class="menu-col"><h3>Shop by Brand</h3><ul data-menu-brands></ul></div>
+            <div class="menu-col"><h3>Shop by Pack</h3>
+              <ul>
+                <li><a href="/collections/all?pack=single">Single cans</a></li>
+                <li><a href="/collections/all?pack=pack6">6-packs</a></li>
+                <li><a href="/collections/all?pack=pack12">12-packs</a></li>
+                <li><a href="/collections/all?pack=pack24">Cartons of 24</a></li>
+              </ul>
+              <h3 style="margin-top:22px">Shop by Size</h3>
+              <ul>
+                <li><a href="/collections/all?size=small">Slim cans (≤ 250 ml)</a></li>
+                <li><a href="/collections/all?size=std">Standard (320–355 ml)</a></li>
+                <li><a href="/collections/all?size=large">Large (500 ml)</a></li>
+              </ul>
+            </div>
+            <div class="menu-feature" data-menu-feature="0"></div>
+            <div class="menu-feature" data-menu-feature="1"></div>
+          </div></div>
+        </li>
+        <li class="has-mega">
+          <a class="menu__link" href="/collections/all" aria-haspopup="true"><span>Product</span><svg viewBox="0 0 24 24"><use href="/assets/img/icons.svg#chev-down"/></svg></a>
+          <div class="menu-panel menu-panel--mega"><div class="menu-panel__box">
+            <div class="menu-col"><h3>Best Sellers</h3><ul data-menu-list="best"></ul></div>
+            <div class="menu-col"><h3>New Arrivals</h3><ul data-menu-list="new"></ul></div>
+            <div class="menu-col"><h3>Energy &amp; Zero</h3><ul data-menu-list="energy"></ul></div>
+            <div class="menu-feature" data-menu-feature="2"></div>
+            <div class="menu-feature" data-menu-feature="3"></div>
+          </div></div>
+        </li>
+        <li class="has-small">
+          <a class="menu__link" href="/pages/about-us" aria-haspopup="true"><span>Pages</span><svg viewBox="0 0 24 24"><use href="/assets/img/icons.svg#chev-down"/></svg></a>
+          <div class="menu-panel menu-panel--small"><div class="menu-panel__box"><ul class="menu-col">
+            <li><a href="/pages/about-us">About Us</a></li>
+            <li><a href="/pages/faq">FAQ’s</a></li>
+            <li><a href="/pages/our-locations">Delivery Areas</a></li>
+            <li><a href="/track">Track Order</a></li>
+            <li><a href="/pages/contact">Contact us</a></li>
+            <li><a href="/404">Page 404</a></li>
+          </ul></div></div>
+        </li>
+        <li><a class="menu__link" href="/blogs/news"><span>Blog</span></a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<div class="tabbar" data-tabbar aria-label="Quick navigation">
+  <a href="/" data-tab="home"><svg viewBox="0 0 24 24"><use href="/assets/img/icons.svg#home"/></svg>Home</a>
+  <a href="/collections" data-tab="collections"><svg viewBox="0 0 24 24"><use href="/assets/img/icons.svg#grid"/></svg>Category</a>
+  <button type="button" data-open="cart" data-tab="cart"><svg viewBox="0 0 24 24"><use href="/assets/img/icons.svg#bag"/></svg>Cart<span class="count" data-cart-count></span></button>
+  <a href="/account" data-tab="account"><svg viewBox="0 0 24 24"><use href="/assets/img/icons.svg#user"/></svg>Account</a>
+  <a href="/wishlist" data-tab="wishlist"><svg viewBox="0 0 24 24"><use href="/assets/img/icons.svg#heart"/></svg>Wishlist<span class="count" data-wishlist-count></span></a>
+</div>
+
+<main id="main">

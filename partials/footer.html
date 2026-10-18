@@ -1,0 +1,66 @@
+</main>
+
+<footer class="site-footer on-dark">
+  <div class="footer__grid">
+    <div class="footer__col">
+      <h2>Quick<br>link</h2>
+      <ul>
+        <li><a href="/pages/about-us">About Us</a></li>
+        <li><a href="/blogs/news">Blog List</a></li>
+        <li><a href="/pages/shipping-policy">Shipping Policy</a></li>
+        <li><a href="/pages/refund-policy">Refund Policy</a></li>
+        <li><a href="/pages/privacy-policy">Privacy Policy</a></li>
+        <li><a href="/pages/terms-condition">Terms Condition</a></li>
+      </ul>
+    </div>
+    <div class="footer__col">
+      <h2>Our<br>Company</h2>
+      <ul>
+        <li><a href="/account">My account</a></li>
+        <li><a href="/cart">Cart</a></li>
+        <li><a href="/checkout">Checkout</a></li>
+        <li><a href="/track">Track Order</a></li>
+        <li><a href="/search">Search</a></li>
+        <li><a href="/wishlist">Wishlist</a></li>
+      </ul>
+    </div>
+    <div class="footer__col footer__col--service">
+      <h2>Customer Service</h2>
+      <p>Address: {{site.contact.address}}</p>
+      <p>Call: <a href="tel:{{site.contact.phoneRaw}}">{{site.contact.phone}}</a></p>
+      <p>WhatsApp: <a href="https://wa.me/{{site.contact.whatsapp}}" rel="noopener">Chat with us</a></p>
+      <p>Email: <a href="mailto:{{site.contact.email}}">{{site.contact.email}}</a></p>
+      <p>{{site.contact.hours}}</p>
+    </div>
+    <div class="footer__col footer__col--news">
+      <h2>Sign Up To Newsletter</h2>
+      <p>Don’t want to miss out? Sign up for our newsletter and be the first to hear about new cans, restocks and deals.</p>
+      <form class="newsletter" data-newsletter novalidate>
+        <label class="sr-only" for="footer-email">Your email</label>
+        <input id="footer-email" type="email" name="email" placeholder="Your Email" autocomplete="email" required>
+        <button type="submit" aria-label="Subscribe"><svg viewBox="0 0 24 24"><use href="/assets/img/icons.svg#arrow-right"/></svg></button>
+      </form>
+      <div class="newsletter__msg" aria-live="polite" data-newsletter-msg></div>
+    </div>
+  </div>
+  <div class="footer__bar">
+    <span>© {{year}} {{site.name}}. All rights reserved.</span>
+    <div class="pay-chips" aria-label="Accepted payments">
+      <span class="pay-chip pay-chip--bkash">bKash</span>
+      <span class="pay-chip pay-chip--nagad">Nagad</span>
+      <span class="pay-chip pay-chip--rocket">Rocket</span>
+      <span class="pay-chip pay-chip--cod">Cash on delivery</span>
+    </div>
+    <div class="socials">
+      <a href="{{site.social.facebook}}" aria-label="Facebook" rel="noopener" target="_blank"><svg viewBox="0 0 24 24"><use href="/assets/img/icons.svg#facebook"/></svg></a>
+      <a href="{{site.social.instagram}}" aria-label="Instagram" rel="noopener" target="_blank"><svg viewBox="0 0 24 24" style="fill:none;stroke:currentColor;stroke-width:1.8"><use href="/assets/img/icons.svg#instagram"/></svg></a>
+      <a href="{{site.social.youtube}}" aria-label="YouTube" rel="noopener" target="_blank"><svg viewBox="0 0 24 24"><use href="/assets/img/icons.svg#youtube"/></svg></a>
+      <a href="{{site.social.tiktok}}" aria-label="TikTok" rel="noopener" target="_blank"><svg viewBox="0 0 24 24"><use href="/assets/img/icons.svg#tiktok"/></svg></a>
+    </div>
+  </div>
+</footer>
+
+<div class="fab-stack">
+  <a class="fab fab--wa" href="https://wa.me/{{site.contact.whatsapp}}" target="_blank" rel="noopener" aria-label="Chat on WhatsApp"><svg viewBox="0 0 24 24"><use href="/assets/img/icons.svg#whatsapp"/></svg></a>
+  <button class="fab fab--top" type="button" aria-label="Back to top" data-scroll-top><svg viewBox="0 0 24 24"><use href="/assets/img/icons.svg#arrow-up"/></svg></button>
+</div>

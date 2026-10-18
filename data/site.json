@@ -1,0 +1,46 @@
+{
+  "name": "Drink it",
+  "tagline": "Every cold can in Bangladesh. One store.",
+  "description": "Drink it is Bangladesh's online store for cold drink cans — Coca-Cola, Pepsi, Sprite, Mojo, Speed, Red Bull and more. Order singles, 6-packs or cartons and get them delivered to your door.",
+  "currency": "৳",
+  "contact": {
+    "phone": "+880 1XXX-XXXXXX",
+    "phoneRaw": "+8801000000000",
+    "whatsapp": "8801000000000",
+    "email": "hello@drinkit.com.bd",
+    "address": "House 12, Road 5, Gulshan-1, Dhaka 1212, Bangladesh",
+    "hours": "Every day, 9:00 AM – 11:00 PM"
+  },
+  "delivery": {
+    "freeOver": 1500,
+    "dhaka": 60,
+    "outside": 120,
+    "cutoffHour": 15,
+    "etaDhaka": [1, 2],
+    "etaOutside": [3, 5]
+  },
+  "payments": {
+    "cod": { "label": "Cash on delivery", "enabled": true, "hint": "Pay in cash when your cans arrive." },
+    "bkash": { "label": "bKash", "enabled": true, "number": "01XXX-XXXXXX", "kind": "Personal", "hint": "Send Money to our bKash number, then enter the TrxID." },
+    "nagad": { "label": "Nagad", "enabled": true, "number": "01XXX-XXXXXX", "kind": "Personal", "hint": "Send Money to our Nagad number, then enter the TrxID." },
+    "rocket": { "label": "Rocket", "enabled": true, "number": "01XXX-XXXXXX", "kind": "Personal", "hint": "Send Money to our Rocket number, then enter the TrxID." },
+    "card": { "label": "Debit / credit card", "enabled": false, "hint": "Coming soon." }
+  },
+  "social": { "facebook": "https://facebook.com/", "instagram": "https://instagram.com/", "youtube": "https://youtube.com/", "tiktok": "https://tiktok.com/" },
+  "announcements": [
+    "Free delivery on orders above ৳1,500 🚚",
+    "New can just landed: Clemon Mojito 🍃",
+    "Buy a carton of 24 and save 10% 🧊",
+    "Pay with bKash, Nagad, Rocket or cash on delivery 💸"
+  ],
+  "divisions": {
+    "Dhaka": ["Dhaka", "Gazipur", "Narayanganj", "Narsingdi", "Manikganj", "Munshiganj", "Tangail", "Kishoreganj", "Faridpur", "Gopalganj", "Madaripur", "Rajbari", "Shariatpur"],
+    "Chattogram": ["Chattogram", "Cox's Bazar", "Cumilla", "Feni", "Noakhali", "Lakshmipur", "Chandpur", "Brahmanbaria", "Khagrachhari", "Rangamati", "Bandarban"],
+    "Sylhet": ["Sylhet", "Moulvibazar", "Habiganj", "Sunamganj"],
+    "Rajshahi": ["Rajshahi", "Bogura", "Pabna", "Sirajganj", "Natore", "Naogaon", "Joypurhat", "Chapainawabganj"],
+    "Khulna": ["Khulna", "Jashore", "Satkhira", "Bagerhat", "Kushtia", "Chuadanga", "Meherpur", "Magura", "Narail", "Jhenaidah"],
+    "Barishal": ["Barishal", "Bhola", "Patuakhali", "Pirojpur", "Jhalokati", "Barguna"],
+    "Rangpur": ["Rangpur", "Dinajpur", "Kurigram", "Gaibandha", "Lalmonirhat", "Nilphamari", "Panchagarh", "Thakurgaon"],
+    "Mymensingh": ["Mymensingh", "Jamalpur", "Netrokona", "Sherpur"]
+  }
+}

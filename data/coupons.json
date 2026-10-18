@@ -1,0 +1,5 @@
+[
+  { "code": "WELCOME50", "type": "fixed", "value": 50, "minSubtotal": 400, "label": "৳50 off your first order over ৳400", "active": true },
+  { "code": "DRINKIT10", "type": "percent", "value": 10, "minSubtotal": 800, "maxDiscount": 300, "label": "10% off orders over ৳800 (max ৳300)", "active": true },
+  { "code": "FREESHIP", "type": "shipping", "value": 0, "minSubtotal": 600, "label": "Free delivery on orders over ৳600", "active": true }
+]
