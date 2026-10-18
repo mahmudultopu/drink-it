@@ -1,6 +1,6 @@
-// Catalogue source for Drink it. `npm run build:catalog` turns this into data/*.json and the can artwork.
+// Catalogue source for Drink it. `npm run build:catalog` turns this into data/*.json; `npm run render` draws the can images.
 // Prices are indicative (BDT, per single can) and based on recent Bangladeshi retail listings — edit freely.
-// Brand names are used only to describe the products we sell; the can artwork is original illustration.
+// Brand names are used only to describe the products we sell; the can images are in-house 3D renders (scripts/render).
 
 export const PACKS = [
   { id: 'single', label: 'Single can', qty: 1, discount: 0 },
@@ -10,15 +10,15 @@ export const PACKS = [
 ];
 
 export const COLLECTIONS = [
-  { handle: 'cola-classics', title: 'Cola Classics', tagline: 'Bold, dark & fizzy', blurb: 'Every cola can we stock — from the global icons to Bangladesh’s own favourites. Deep caramel flavour, sharp bubbles, served ice-cold.' },
-  { handle: 'citrus-fizz', title: 'Citrus Fizz', tagline: 'Zesty, bright & crisp', blurb: 'Lemon-lime, orange and citrus-kick cans for the days when you want something light, sparkling and sharp.' },
-  { handle: 'energy-rush', title: 'Energy Rush', tagline: 'Charge up fast', blurb: 'Energy drink cans for long study nights, gym sessions and road trips. Local favourites and imported names side by side.' },
-  { handle: 'zero-sugar', title: 'Zero Sugar', tagline: 'All the fizz, no sugar', blurb: 'Zero-sugar and sugar-free cans — the same bold taste without the sugar. Perfect for keeping it light.' },
-  { handle: 'imported-cans', title: 'Imported Cans', tagline: 'Taste the world', blurb: 'Hard-to-find imported cans: 330 ml classics, ginger ale, tonic and more — brought in for Bangladesh’s soda lovers.' },
-  { handle: 'fruity-picks', title: 'Fruity Picks', tagline: 'Juicy fruit-drink cans', blurb: 'Fruit-flavoured drink cans with real fruit character — grape, orange and mango for sweet, easy sipping.' },
+  { handle: 'cola-classics', lead: 'coca-cola-original-250ml-can', title: 'Cola Classics', tagline: 'Bold, dark & fizzy', blurb: 'Every cola can we stock — from the global icons to Bangladesh’s own favourites. Deep caramel flavour, sharp bubbles, served ice-cold.' },
+  { handle: 'citrus-fizz', lead: 'sprite-250ml-can', title: 'Citrus Fizz', tagline: 'Zesty, bright & crisp', blurb: 'Lemon-lime, orange and citrus-kick cans for the days when you want something light, sparkling and sharp.' },
+  { handle: 'energy-rush', lead: 'red-bull-energy-drink-250ml-can', title: 'Energy Rush', tagline: 'Charge up fast', blurb: 'Energy drink cans for long study nights, gym sessions and road trips. Local favourites and imported names side by side.' },
+  { handle: 'zero-sugar', lead: 'coke-zero-sugar-250ml-can', title: 'Zero Sugar', tagline: 'All the fizz, no sugar', blurb: 'Zero-sugar and sugar-free cans — the same bold taste without the sugar. Perfect for keeping it light.' },
+  { handle: 'imported-cans', lead: 'dr-pepper-355ml-can', title: 'Imported Cans', tagline: 'Taste the world', blurb: 'Hard-to-find imported cans: 330 ml classics, ginger ale, tonic and more — brought in for Bangladesh’s soda lovers.' },
+  { handle: 'fruity-picks', lead: 'rani-float-grape-240ml-can', title: 'Fruity Picks', tagline: 'Juicy fruit-drink cans', blurb: 'Fruit-flavoured drink cans with real fruit character — grape, orange and mango for sweet, easy sipping.' },
 ];
 
-// ---- brand presets (colours + typography for the illustrated cans) ----
+// ---- brand presets (tile / title colours; the can label designs themselves live in scripts/render/page/labels.js) ----
 const B = {
   coke: { body: '#E4202D', body2: '#A8101B', ink: '#ffffff', accent: '#FFD2D6', font: 'Poppins-ExtraBold', icon: 'cola', band: 'wave' },
   cokezero: { body: '#161616', body2: '#000000', ink: '#ffffff', accent: '#E4202D', font: 'Poppins-ExtraBold', icon: 'zero', band: 'stripe' },
@@ -125,6 +125,15 @@ function hash(str) {
 }
 export const slug = (s) => s.toLowerCase().replace(/&/g, 'and').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
 
+// how the 3D renderer (scripts/render) should draw this product
+const LATIN_DESIGNS = new Set(['coke', 'cokezero', 'pepsi', 'sprite', 'sevenup', 'fanta', 'dew']);
+function renderSpec(r, kind) {
+  const opts = { ml: `${r.ml} mL` };
+  if (r.origin === 'Imported' && LATIN_DESIGNS.has(r.k)) opts.latin = true;
+  if (r.k === 'rani') opts.flavor = r.variant.toLowerCase();
+  return { design: r.k, kind: r.k === 'rani' ? 'mini' : kind, opts };
+}
+
 export function buildProducts() {
   const seen = new Set();
   return RAW.map((r, i) => {
@@ -173,6 +182,7 @@ export function buildProducts() {
       short: r.notes,
       dealEndsAt: r.deal || null,
       art,
+      render: renderSpec(r, kind),
       packs,
       sold: 40 + (h % 900),
       createdAt: `2026-0${1 + (h % 9)}-${String(1 + (h % 27)).padStart(2, '0')}`,

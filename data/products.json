@@ -171,12 +171,15 @@
    }
   ],
   "tile": "#fdeee9",
+  "ink": "#bb1a25",
   "images": {
-   "single": "/assets/img/cans/coca-cola-original-250ml-can.svg",
-   "angle": "/assets/img/cans/coca-cola-original-250ml-can-angle.svg",
-   "pack6": "/assets/img/cans/coca-cola-original-250ml-can-pack6.svg",
-   "pack12": "/assets/img/cans/coca-cola-original-250ml-can-pack12.svg",
-   "pack24": "/assets/img/cans/coca-cola-original-250ml-can-pack24.svg"
+   "single": "/assets/img/products/coca-cola-original-250ml-can.webp",
+   "card": "/assets/img/products/coca-cola-original-250ml-can-card.webp",
+   "thumb": "/assets/img/products/coca-cola-original-250ml-can-thumb.webp",
+   "angle": "/assets/img/products/coca-cola-original-250ml-can-angle.webp",
+   "pack6": "/assets/img/products/coca-cola-original-250ml-can-pack6.webp",
+   "pack12": "/assets/img/products/coca-cola-original-250ml-can-pack12.webp",
+   "pack24": "/assets/img/products/coca-cola-original-250ml-can-pack24.webp"
   }
  },
  {
@@ -350,12 +353,15 @@
    }
   ],
   "tile": "#fbf0ec",
+  "ink": "#bb1a25",
   "images": {
-   "single": "/assets/img/cans/coke-zero-sugar-250ml-can.svg",
-   "angle": "/assets/img/cans/coke-zero-sugar-250ml-can-angle.svg",
-   "pack6": "/assets/img/cans/coke-zero-sugar-250ml-can-pack6.svg",
-   "pack12": "/assets/img/cans/coke-zero-sugar-250ml-can-pack12.svg",
-   "pack24": "/assets/img/cans/coke-zero-sugar-250ml-can-pack24.svg"
+   "single": "/assets/img/products/coke-zero-sugar-250ml-can.webp",
+   "card": "/assets/img/products/coke-zero-sugar-250ml-can-card.webp",
+   "thumb": "/assets/img/products/coke-zero-sugar-250ml-can-thumb.webp",
+   "angle": "/assets/img/products/coke-zero-sugar-250ml-can-angle.webp",
+   "pack6": "/assets/img/products/coke-zero-sugar-250ml-can-pack6.webp",
+   "pack12": "/assets/img/products/coke-zero-sugar-250ml-can-pack12.webp",
+   "pack24": "/assets/img/products/coke-zero-sugar-250ml-can-pack24.webp"
   }
  },
  {
@@ -530,12 +536,15 @@
    }
   ],
   "tile": "#eff1f3",
+  "ink": "#104797",
   "images": {
-   "single": "/assets/img/cans/pepsi-250ml-can.svg",
-   "angle": "/assets/img/cans/pepsi-250ml-can-angle.svg",
-   "pack6": "/assets/img/cans/pepsi-250ml-can-pack6.svg",
-   "pack12": "/assets/img/cans/pepsi-250ml-can-pack12.svg",
-   "pack24": "/assets/img/cans/pepsi-250ml-can-pack24.svg"
+   "single": "/assets/img/products/pepsi-250ml-can.webp",
+   "card": "/assets/img/products/pepsi-250ml-can-card.webp",
+   "thumb": "/assets/img/products/pepsi-250ml-can-thumb.webp",
+   "angle": "/assets/img/products/pepsi-250ml-can-angle.webp",
+   "pack6": "/assets/img/products/pepsi-250ml-can-pack6.webp",
+   "pack12": "/assets/img/products/pepsi-250ml-can-pack12.webp",
+   "pack24": "/assets/img/products/pepsi-250ml-can-pack24.webp"
   }
  },
  {
@@ -709,12 +718,15 @@
    }
   ],
   "tile": "#f3f4f5",
+  "ink": "#2765d1",
   "images": {
-   "single": "/assets/img/cans/pepsi-black-250ml-can.svg",
-   "angle": "/assets/img/cans/pepsi-black-250ml-can-angle.svg",
-   "pack6": "/assets/img/cans/pepsi-black-250ml-can-pack6.svg",
-   "pack12": "/assets/img/cans/pepsi-black-250ml-can-pack12.svg",
-   "pack24": "/assets/img/cans/pepsi-black-250ml-can-pack24.svg"
+   "single": "/assets/img/products/pepsi-black-250ml-can.webp",
+   "card": "/assets/img/products/pepsi-black-250ml-can-card.webp",
+   "thumb": "/assets/img/products/pepsi-black-250ml-can-thumb.webp",
+   "angle": "/assets/img/products/pepsi-black-250ml-can-angle.webp",
+   "pack6": "/assets/img/products/pepsi-black-250ml-can-pack6.webp",
+   "pack12": "/assets/img/products/pepsi-black-250ml-can-pack12.webp",
+   "pack24": "/assets/img/products/pepsi-black-250ml-can-pack24.webp"
   }
  },
  {
@@ -889,12 +901,15 @@
    }
   ],
   "tile": "#f8ede8",
+  "ink": "#801616",
   "images": {
-   "single": "/assets/img/cans/mojo-cola-250ml-can.svg",
-   "angle": "/assets/img/cans/mojo-cola-250ml-can-angle.svg",
-   "pack6": "/assets/img/cans/mojo-cola-250ml-can-pack6.svg",
-   "pack12": "/assets/img/cans/mojo-cola-250ml-can-pack12.svg",
-   "pack24": "/assets/img/cans/mojo-cola-250ml-can-pack24.svg"
+   "single": "/assets/img/products/mojo-cola-250ml-can.webp",
+   "card": "/assets/img/products/mojo-cola-250ml-can-card.webp",
+   "thumb": "/assets/img/products/mojo-cola-250ml-can-thumb.webp",
+   "angle": "/assets/img/products/mojo-cola-250ml-can-angle.webp",
+   "pack6": "/assets/img/products/mojo-cola-250ml-can-pack6.webp",
+   "pack12": "/assets/img/products/mojo-cola-250ml-can-pack12.webp",
+   "pack24": "/assets/img/products/mojo-cola-250ml-can-pack24.webp"
   }
  },
  {
@@ -1067,12 +1082,15 @@
    }
   ],
   "tile": "#f8ede8",
+  "ink": "#801616",
   "images": {
-   "single": "/assets/img/cans/mojo-cola-330ml-can.svg",
-   "angle": "/assets/img/cans/mojo-cola-330ml-can-angle.svg",
-   "pack6": "/assets/img/cans/mojo-cola-330ml-can-pack6.svg",
-   "pack12": "/assets/img/cans/mojo-cola-330ml-can-pack12.svg",
-   "pack24": "/assets/img/cans/mojo-cola-330ml-can-pack24.svg"
+   "single": "/assets/img/products/mojo-cola-330ml-can.webp",
+   "card": "/assets/img/products/mojo-cola-330ml-can-card.webp",
+   "thumb": "/assets/img/products/mojo-cola-330ml-can-thumb.webp",
+   "angle": "/assets/img/products/mojo-cola-330ml-can-angle.webp",
+   "pack6": "/assets/img/products/mojo-cola-330ml-can-pack6.webp",
+   "pack12": "/assets/img/products/mojo-cola-330ml-can-pack12.webp",
+   "pack24": "/assets/img/products/mojo-cola-330ml-can-pack24.webp"
   }
  },
  {
@@ -1245,13 +1263,16 @@
     "v": "Best-before date printed on the can"
    }
   ],
-  "tile": "#f0eee9",
+  "tile": "#fcf7ee",
+  "ink": "#d1a447",
   "images": {
-   "single": "/assets/img/cans/mojo-zero-250ml-can.svg",
-   "angle": "/assets/img/cans/mojo-zero-250ml-can-angle.svg",
-   "pack6": "/assets/img/cans/mojo-zero-250ml-can-pack6.svg",
-   "pack12": "/assets/img/cans/mojo-zero-250ml-can-pack12.svg",
-   "pack24": "/assets/img/cans/mojo-zero-250ml-can-pack24.svg"
+   "single": "/assets/img/products/mojo-zero-250ml-can.webp",
+   "card": "/assets/img/products/mojo-zero-250ml-can-card.webp",
+   "thumb": "/assets/img/products/mojo-zero-250ml-can-thumb.webp",
+   "angle": "/assets/img/products/mojo-zero-250ml-can-angle.webp",
+   "pack6": "/assets/img/products/mojo-zero-250ml-can-pack6.webp",
+   "pack12": "/assets/img/products/mojo-zero-250ml-can-pack12.webp",
+   "pack24": "/assets/img/products/mojo-zero-250ml-can-pack24.webp"
   }
  },
  {
@@ -1426,12 +1447,15 @@
    }
   ],
   "tile": "#fbede8",
+  "ink": "#a11217",
   "images": {
-   "single": "/assets/img/cans/naga-mojo-250ml-can.svg",
-   "angle": "/assets/img/cans/naga-mojo-250ml-can-angle.svg",
-   "pack6": "/assets/img/cans/naga-mojo-250ml-can-pack6.svg",
-   "pack12": "/assets/img/cans/naga-mojo-250ml-can-pack12.svg",
-   "pack24": "/assets/img/cans/naga-mojo-250ml-can-pack24.svg"
+   "single": "/assets/img/products/naga-mojo-250ml-can.webp",
+   "card": "/assets/img/products/naga-mojo-250ml-can-card.webp",
+   "thumb": "/assets/img/products/naga-mojo-250ml-can-thumb.webp",
+   "angle": "/assets/img/products/naga-mojo-250ml-can-angle.webp",
+   "pack6": "/assets/img/products/naga-mojo-250ml-can-pack6.webp",
+   "pack12": "/assets/img/products/naga-mojo-250ml-can-pack12.webp",
+   "pack24": "/assets/img/products/naga-mojo-250ml-can-pack24.webp"
   }
  },
  {
@@ -1604,12 +1628,15 @@
    }
   ],
   "tile": "#f9ece9",
+  "ink": "#930f22",
   "images": {
-   "single": "/assets/img/cans/rc-cola-250ml-can.svg",
-   "angle": "/assets/img/cans/rc-cola-250ml-can-angle.svg",
-   "pack6": "/assets/img/cans/rc-cola-250ml-can-pack6.svg",
-   "pack12": "/assets/img/cans/rc-cola-250ml-can-pack12.svg",
-   "pack24": "/assets/img/cans/rc-cola-250ml-can-pack24.svg"
+   "single": "/assets/img/products/rc-cola-250ml-can.webp",
+   "card": "/assets/img/products/rc-cola-250ml-can-card.webp",
+   "thumb": "/assets/img/products/rc-cola-250ml-can-thumb.webp",
+   "angle": "/assets/img/products/rc-cola-250ml-can-angle.webp",
+   "pack6": "/assets/img/products/rc-cola-250ml-can-pack6.webp",
+   "pack12": "/assets/img/products/rc-cola-250ml-can-pack12.webp",
+   "pack24": "/assets/img/products/rc-cola-250ml-can-pack24.webp"
   }
  },
  {
@@ -1782,12 +1809,15 @@
    }
   ],
   "tile": "#f4eef3",
+  "ink": "#4b2497",
   "images": {
-   "single": "/assets/img/cans/houston-soft-drink-250ml-can.svg",
-   "angle": "/assets/img/cans/houston-soft-drink-250ml-can-angle.svg",
-   "pack6": "/assets/img/cans/houston-soft-drink-250ml-can-pack6.svg",
-   "pack12": "/assets/img/cans/houston-soft-drink-250ml-can-pack12.svg",
-   "pack24": "/assets/img/cans/houston-soft-drink-250ml-can-pack24.svg"
+   "single": "/assets/img/products/houston-soft-drink-250ml-can.webp",
+   "card": "/assets/img/products/houston-soft-drink-250ml-can-card.webp",
+   "thumb": "/assets/img/products/houston-soft-drink-250ml-can-thumb.webp",
+   "angle": "/assets/img/products/houston-soft-drink-250ml-can-angle.webp",
+   "pack6": "/assets/img/products/houston-soft-drink-250ml-can-pack6.webp",
+   "pack12": "/assets/img/products/houston-soft-drink-250ml-can-pack12.webp",
+   "pack24": "/assets/img/products/houston-soft-drink-250ml-can-pack24.webp"
   }
  },
  {
@@ -1962,12 +1992,15 @@
    }
   ],
   "tile": "#eef6ec",
+  "ink": "#097e3a",
   "images": {
-   "single": "/assets/img/cans/sprite-250ml-can.svg",
-   "angle": "/assets/img/cans/sprite-250ml-can-angle.svg",
-   "pack6": "/assets/img/cans/sprite-250ml-can-pack6.svg",
-   "pack12": "/assets/img/cans/sprite-250ml-can-pack12.svg",
-   "pack24": "/assets/img/cans/sprite-250ml-can-pack24.svg"
+   "single": "/assets/img/products/sprite-250ml-can.webp",
+   "card": "/assets/img/products/sprite-250ml-can-card.webp",
+   "thumb": "/assets/img/products/sprite-250ml-can-thumb.webp",
+   "angle": "/assets/img/products/sprite-250ml-can-angle.webp",
+   "pack6": "/assets/img/products/sprite-250ml-can-pack6.webp",
+   "pack12": "/assets/img/products/sprite-250ml-can-pack12.webp",
+   "pack24": "/assets/img/products/sprite-250ml-can-pack24.webp"
   }
  },
  {
@@ -2140,12 +2173,15 @@
    }
   ],
   "tile": "#f0f7ec",
+  "ink": "#1e8a3d",
   "images": {
-   "single": "/assets/img/cans/7up-250ml-can.svg",
-   "angle": "/assets/img/cans/7up-250ml-can-angle.svg",
-   "pack6": "/assets/img/cans/7up-250ml-can-pack6.svg",
-   "pack12": "/assets/img/cans/7up-250ml-can-pack12.svg",
-   "pack24": "/assets/img/cans/7up-250ml-can-pack24.svg"
+   "single": "/assets/img/products/7up-250ml-can.webp",
+   "card": "/assets/img/products/7up-250ml-can-card.webp",
+   "thumb": "/assets/img/products/7up-250ml-can-thumb.webp",
+   "angle": "/assets/img/products/7up-250ml-can-angle.webp",
+   "pack6": "/assets/img/products/7up-250ml-can-pack6.webp",
+   "pack12": "/assets/img/products/7up-250ml-can-pack12.webp",
+   "pack24": "/assets/img/products/7up-250ml-can-pack24.webp"
   }
  },
  {
@@ -2318,12 +2354,15 @@
    }
   ],
   "tile": "#fef2e7",
+  "ink": "#c6580c",
   "images": {
-   "single": "/assets/img/cans/mirinda-orange-250ml-can.svg",
-   "angle": "/assets/img/cans/mirinda-orange-250ml-can-angle.svg",
-   "pack6": "/assets/img/cans/mirinda-orange-250ml-can-pack6.svg",
-   "pack12": "/assets/img/cans/mirinda-orange-250ml-can-pack12.svg",
-   "pack24": "/assets/img/cans/mirinda-orange-250ml-can-pack24.svg"
+   "single": "/assets/img/products/mirinda-orange-250ml-can.webp",
+   "card": "/assets/img/products/mirinda-orange-250ml-can-card.webp",
+   "thumb": "/assets/img/products/mirinda-orange-250ml-can-thumb.webp",
+   "angle": "/assets/img/products/mirinda-orange-250ml-can-angle.webp",
+   "pack6": "/assets/img/products/mirinda-orange-250ml-can-pack6.webp",
+   "pack12": "/assets/img/products/mirinda-orange-250ml-can-pack12.webp",
+   "pack24": "/assets/img/products/mirinda-orange-250ml-can-pack24.webp"
   }
  },
  {
@@ -2496,12 +2535,15 @@
    }
   ],
   "tile": "#fff6e7",
+  "ink": "#d17e00",
   "images": {
-   "single": "/assets/img/cans/fanta-orange-250ml-can.svg",
-   "angle": "/assets/img/cans/fanta-orange-250ml-can-angle.svg",
-   "pack6": "/assets/img/cans/fanta-orange-250ml-can-pack6.svg",
-   "pack12": "/assets/img/cans/fanta-orange-250ml-can-pack12.svg",
-   "pack24": "/assets/img/cans/fanta-orange-250ml-can-pack24.svg"
+   "single": "/assets/img/products/fanta-orange-250ml-can.webp",
+   "card": "/assets/img/products/fanta-orange-250ml-can-card.webp",
+   "thumb": "/assets/img/products/fanta-orange-250ml-can-thumb.webp",
+   "angle": "/assets/img/products/fanta-orange-250ml-can-angle.webp",
+   "pack6": "/assets/img/products/fanta-orange-250ml-can-pack6.webp",
+   "pack12": "/assets/img/products/fanta-orange-250ml-can-pack12.webp",
+   "pack24": "/assets/img/products/fanta-orange-250ml-can-pack24.webp"
   }
  },
  {
@@ -2675,12 +2717,15 @@
    }
   ],
   "tile": "#f5f9e9",
+  "ink": "#599c26",
   "images": {
-   "single": "/assets/img/cans/mountain-dew-250ml-can.svg",
-   "angle": "/assets/img/cans/mountain-dew-250ml-can-angle.svg",
-   "pack6": "/assets/img/cans/mountain-dew-250ml-can-pack6.svg",
-   "pack12": "/assets/img/cans/mountain-dew-250ml-can-pack12.svg",
-   "pack24": "/assets/img/cans/mountain-dew-250ml-can-pack24.svg"
+   "single": "/assets/img/products/mountain-dew-250ml-can.webp",
+   "card": "/assets/img/products/mountain-dew-250ml-can-card.webp",
+   "thumb": "/assets/img/products/mountain-dew-250ml-can-thumb.webp",
+   "angle": "/assets/img/products/mountain-dew-250ml-can-angle.webp",
+   "pack6": "/assets/img/products/mountain-dew-250ml-can-pack6.webp",
+   "pack12": "/assets/img/products/mountain-dew-250ml-can-pack12.webp",
+   "pack24": "/assets/img/products/mountain-dew-250ml-can-pack24.webp"
   }
  },
  {
@@ -2854,13 +2899,16 @@
     "v": "Best-before date printed on the can"
    }
   ],
-  "tile": "#fefae7",
+  "tile": "#f0f6ea",
+  "ink": "#268230",
   "images": {
-   "single": "/assets/img/cans/clemon-lemon-soda-250ml-can.svg",
-   "angle": "/assets/img/cans/clemon-lemon-soda-250ml-can-angle.svg",
-   "pack6": "/assets/img/cans/clemon-lemon-soda-250ml-can-pack6.svg",
-   "pack12": "/assets/img/cans/clemon-lemon-soda-250ml-can-pack12.svg",
-   "pack24": "/assets/img/cans/clemon-lemon-soda-250ml-can-pack24.svg"
+   "single": "/assets/img/products/clemon-lemon-soda-250ml-can.webp",
+   "card": "/assets/img/products/clemon-lemon-soda-250ml-can-card.webp",
+   "thumb": "/assets/img/products/clemon-lemon-soda-250ml-can-thumb.webp",
+   "angle": "/assets/img/products/clemon-lemon-soda-250ml-can-angle.webp",
+   "pack6": "/assets/img/products/clemon-lemon-soda-250ml-can-pack6.webp",
+   "pack12": "/assets/img/products/clemon-lemon-soda-250ml-can-pack12.webp",
+   "pack24": "/assets/img/products/clemon-lemon-soda-250ml-can-pack24.webp"
   }
  },
  {
@@ -3035,12 +3083,15 @@
    }
   ],
   "tile": "#f0f8ee",
+  "ink": "#23955e",
   "images": {
-   "single": "/assets/img/cans/clemon-mojito-250ml-can.svg",
-   "angle": "/assets/img/cans/clemon-mojito-250ml-can-angle.svg",
-   "pack6": "/assets/img/cans/clemon-mojito-250ml-can-pack6.svg",
-   "pack12": "/assets/img/cans/clemon-mojito-250ml-can-pack12.svg",
-   "pack24": "/assets/img/cans/clemon-mojito-250ml-can-pack24.svg"
+   "single": "/assets/img/products/clemon-mojito-250ml-can.webp",
+   "card": "/assets/img/products/clemon-mojito-250ml-can-card.webp",
+   "thumb": "/assets/img/products/clemon-mojito-250ml-can-thumb.webp",
+   "angle": "/assets/img/products/clemon-mojito-250ml-can-angle.webp",
+   "pack6": "/assets/img/products/clemon-mojito-250ml-can-pack6.webp",
+   "pack12": "/assets/img/products/clemon-mojito-250ml-can-pack12.webp",
+   "pack24": "/assets/img/products/clemon-mojito-250ml-can-pack24.webp"
   }
  },
  {
@@ -3215,12 +3266,15 @@
    }
   ],
   "tile": "#fcede9",
+  "ink": "#ad1119",
   "images": {
-   "single": "/assets/img/cans/speed-energy-drink-250ml-can.svg",
-   "angle": "/assets/img/cans/speed-energy-drink-250ml-can-angle.svg",
-   "pack6": "/assets/img/cans/speed-energy-drink-250ml-can-pack6.svg",
-   "pack12": "/assets/img/cans/speed-energy-drink-250ml-can-pack12.svg",
-   "pack24": "/assets/img/cans/speed-energy-drink-250ml-can-pack24.svg"
+   "single": "/assets/img/products/speed-energy-drink-250ml-can.webp",
+   "card": "/assets/img/products/speed-energy-drink-250ml-can-card.webp",
+   "thumb": "/assets/img/products/speed-energy-drink-250ml-can-thumb.webp",
+   "angle": "/assets/img/products/speed-energy-drink-250ml-can-angle.webp",
+   "pack6": "/assets/img/products/speed-energy-drink-250ml-can-pack6.webp",
+   "pack12": "/assets/img/products/speed-energy-drink-250ml-can-pack12.webp",
+   "pack24": "/assets/img/products/speed-energy-drink-250ml-can-pack24.webp"
   }
  },
  {
@@ -3393,12 +3447,15 @@
    }
   ],
   "tile": "#fef6e7",
+  "ink": "#c98209",
   "images": {
-   "single": "/assets/img/cans/royal-tiger-energy-250ml-can.svg",
-   "angle": "/assets/img/cans/royal-tiger-energy-250ml-can-angle.svg",
-   "pack6": "/assets/img/cans/royal-tiger-energy-250ml-can-pack6.svg",
-   "pack12": "/assets/img/cans/royal-tiger-energy-250ml-can-pack12.svg",
-   "pack24": "/assets/img/cans/royal-tiger-energy-250ml-can-pack24.svg"
+   "single": "/assets/img/products/royal-tiger-energy-250ml-can.webp",
+   "card": "/assets/img/products/royal-tiger-energy-250ml-can-card.webp",
+   "thumb": "/assets/img/products/royal-tiger-energy-250ml-can-thumb.webp",
+   "angle": "/assets/img/products/royal-tiger-energy-250ml-can-angle.webp",
+   "pack6": "/assets/img/products/royal-tiger-energy-250ml-can-pack6.webp",
+   "pack12": "/assets/img/products/royal-tiger-energy-250ml-can-pack12.webp",
+   "pack24": "/assets/img/products/royal-tiger-energy-250ml-can-pack24.webp"
   }
  },
  {
@@ -3572,12 +3629,15 @@
    }
   ],
   "tile": "#efeff0",
+  "ink": "#163073",
   "images": {
-   "single": "/assets/img/cans/red-bull-energy-drink-250ml-can.svg",
-   "angle": "/assets/img/cans/red-bull-energy-drink-250ml-can-angle.svg",
-   "pack6": "/assets/img/cans/red-bull-energy-drink-250ml-can-pack6.svg",
-   "pack12": "/assets/img/cans/red-bull-energy-drink-250ml-can-pack12.svg",
-   "pack24": "/assets/img/cans/red-bull-energy-drink-250ml-can-pack24.svg"
+   "single": "/assets/img/products/red-bull-energy-drink-250ml-can.webp",
+   "card": "/assets/img/products/red-bull-energy-drink-250ml-can-card.webp",
+   "thumb": "/assets/img/products/red-bull-energy-drink-250ml-can-thumb.webp",
+   "angle": "/assets/img/products/red-bull-energy-drink-250ml-can-angle.webp",
+   "pack6": "/assets/img/products/red-bull-energy-drink-250ml-can-pack6.webp",
+   "pack12": "/assets/img/products/red-bull-energy-drink-250ml-can-pack12.webp",
+   "pack24": "/assets/img/products/red-bull-energy-drink-250ml-can-pack24.webp"
   }
  },
  {
@@ -3752,12 +3812,15 @@
    }
   ],
   "tile": "#fbf9f5",
+  "ink": "#a2a7af",
   "images": {
-   "single": "/assets/img/cans/red-bull-sugarfree-250ml-can.svg",
-   "angle": "/assets/img/cans/red-bull-sugarfree-250ml-can-angle.svg",
-   "pack6": "/assets/img/cans/red-bull-sugarfree-250ml-can-pack6.svg",
-   "pack12": "/assets/img/cans/red-bull-sugarfree-250ml-can-pack12.svg",
-   "pack24": "/assets/img/cans/red-bull-sugarfree-250ml-can-pack24.svg"
+   "single": "/assets/img/products/red-bull-sugarfree-250ml-can.webp",
+   "card": "/assets/img/products/red-bull-sugarfree-250ml-can-card.webp",
+   "thumb": "/assets/img/products/red-bull-sugarfree-250ml-can-thumb.webp",
+   "angle": "/assets/img/products/red-bull-sugarfree-250ml-can-angle.webp",
+   "pack6": "/assets/img/products/red-bull-sugarfree-250ml-can-pack6.webp",
+   "pack12": "/assets/img/products/red-bull-sugarfree-250ml-can-pack12.webp",
+   "pack24": "/assets/img/products/red-bull-sugarfree-250ml-can-pack24.webp"
   }
  },
  {
@@ -3931,12 +3994,15 @@
    }
   ],
   "tile": "#f6f9ec",
+  "ink": "#66d130",
   "images": {
-   "single": "/assets/img/cans/monster-energy-green-500ml-can.svg",
-   "angle": "/assets/img/cans/monster-energy-green-500ml-can-angle.svg",
-   "pack6": "/assets/img/cans/monster-energy-green-500ml-can-pack6.svg",
-   "pack12": "/assets/img/cans/monster-energy-green-500ml-can-pack12.svg",
-   "pack24": "/assets/img/cans/monster-energy-green-500ml-can-pack24.svg"
+   "single": "/assets/img/products/monster-energy-green-500ml-can.webp",
+   "card": "/assets/img/products/monster-energy-green-500ml-can-card.webp",
+   "thumb": "/assets/img/products/monster-energy-green-500ml-can-thumb.webp",
+   "angle": "/assets/img/products/monster-energy-green-500ml-can-angle.webp",
+   "pack6": "/assets/img/products/monster-energy-green-500ml-can-pack6.webp",
+   "pack12": "/assets/img/products/monster-energy-green-500ml-can-pack12.webp",
+   "pack24": "/assets/img/products/monster-energy-green-500ml-can-pack24.webp"
   }
  },
  {
@@ -4111,12 +4177,15 @@
    }
   ],
   "tile": "#f6f4f0",
+  "ink": "#666a70",
   "images": {
-   "single": "/assets/img/cans/monster-ultra-white-500ml-can.svg",
-   "angle": "/assets/img/cans/monster-ultra-white-500ml-can-angle.svg",
-   "pack6": "/assets/img/cans/monster-ultra-white-500ml-can-pack6.svg",
-   "pack12": "/assets/img/cans/monster-ultra-white-500ml-can-pack12.svg",
-   "pack24": "/assets/img/cans/monster-ultra-white-500ml-can-pack24.svg"
+   "single": "/assets/img/products/monster-ultra-white-500ml-can.webp",
+   "card": "/assets/img/products/monster-ultra-white-500ml-can-card.webp",
+   "thumb": "/assets/img/products/monster-ultra-white-500ml-can-thumb.webp",
+   "angle": "/assets/img/products/monster-ultra-white-500ml-can-angle.webp",
+   "pack6": "/assets/img/products/monster-ultra-white-500ml-can-pack6.webp",
+   "pack12": "/assets/img/products/monster-ultra-white-500ml-can-pack12.webp",
+   "pack24": "/assets/img/products/monster-ultra-white-500ml-can-pack24.webp"
   }
  },
  {
@@ -4290,12 +4359,15 @@
    }
   ],
   "tile": "#eff1f3",
+  "ink": "#104797",
   "images": {
-   "single": "/assets/img/cans/pepsi-imported-330ml-can.svg",
-   "angle": "/assets/img/cans/pepsi-imported-330ml-can-angle.svg",
-   "pack6": "/assets/img/cans/pepsi-imported-330ml-can-pack6.svg",
-   "pack12": "/assets/img/cans/pepsi-imported-330ml-can-pack12.svg",
-   "pack24": "/assets/img/cans/pepsi-imported-330ml-can-pack24.svg"
+   "single": "/assets/img/products/pepsi-imported-330ml-can.webp",
+   "card": "/assets/img/products/pepsi-imported-330ml-can-card.webp",
+   "thumb": "/assets/img/products/pepsi-imported-330ml-can-thumb.webp",
+   "angle": "/assets/img/products/pepsi-imported-330ml-can-angle.webp",
+   "pack6": "/assets/img/products/pepsi-imported-330ml-can-pack6.webp",
+   "pack12": "/assets/img/products/pepsi-imported-330ml-can-pack12.webp",
+   "pack24": "/assets/img/products/pepsi-imported-330ml-can-pack24.webp"
   }
  },
  {
@@ -4469,12 +4541,15 @@
    }
   ],
   "tile": "#eef6ec",
+  "ink": "#097e3a",
   "images": {
-   "single": "/assets/img/cans/sprite-imported-320ml-can.svg",
-   "angle": "/assets/img/cans/sprite-imported-320ml-can-angle.svg",
-   "pack6": "/assets/img/cans/sprite-imported-320ml-can-pack6.svg",
-   "pack12": "/assets/img/cans/sprite-imported-320ml-can-pack12.svg",
-   "pack24": "/assets/img/cans/sprite-imported-320ml-can-pack24.svg"
+   "single": "/assets/img/products/sprite-imported-320ml-can.webp",
+   "card": "/assets/img/products/sprite-imported-320ml-can-card.webp",
+   "thumb": "/assets/img/products/sprite-imported-320ml-can-thumb.webp",
+   "angle": "/assets/img/products/sprite-imported-320ml-can-angle.webp",
+   "pack6": "/assets/img/products/sprite-imported-320ml-can-pack6.webp",
+   "pack12": "/assets/img/products/sprite-imported-320ml-can-pack12.webp",
+   "pack24": "/assets/img/products/sprite-imported-320ml-can-pack24.webp"
   }
  },
  {
@@ -4648,12 +4723,15 @@
    }
   ],
   "tile": "#fdeee9",
+  "ink": "#bb1a25",
   "images": {
-   "single": "/assets/img/cans/coca-cola-imported-330ml-can.svg",
-   "angle": "/assets/img/cans/coca-cola-imported-330ml-can-angle.svg",
-   "pack6": "/assets/img/cans/coca-cola-imported-330ml-can-pack6.svg",
-   "pack12": "/assets/img/cans/coca-cola-imported-330ml-can-pack12.svg",
-   "pack24": "/assets/img/cans/coca-cola-imported-330ml-can-pack24.svg"
+   "single": "/assets/img/products/coca-cola-imported-330ml-can.webp",
+   "card": "/assets/img/products/coca-cola-imported-330ml-can-card.webp",
+   "thumb": "/assets/img/products/coca-cola-imported-330ml-can-thumb.webp",
+   "angle": "/assets/img/products/coca-cola-imported-330ml-can-angle.webp",
+   "pack6": "/assets/img/products/coca-cola-imported-330ml-can-pack6.webp",
+   "pack12": "/assets/img/products/coca-cola-imported-330ml-can-pack12.webp",
+   "pack24": "/assets/img/products/coca-cola-imported-330ml-can-pack24.webp"
   }
  },
  {
@@ -4827,12 +4905,15 @@
    }
   ],
   "tile": "#fff6e7",
+  "ink": "#d17e00",
   "images": {
-   "single": "/assets/img/cans/fanta-orange-imported-330ml-can.svg",
-   "angle": "/assets/img/cans/fanta-orange-imported-330ml-can-angle.svg",
-   "pack6": "/assets/img/cans/fanta-orange-imported-330ml-can-pack6.svg",
-   "pack12": "/assets/img/cans/fanta-orange-imported-330ml-can-pack12.svg",
-   "pack24": "/assets/img/cans/fanta-orange-imported-330ml-can-pack24.svg"
+   "single": "/assets/img/products/fanta-orange-imported-330ml-can.webp",
+   "card": "/assets/img/products/fanta-orange-imported-330ml-can-card.webp",
+   "thumb": "/assets/img/products/fanta-orange-imported-330ml-can-thumb.webp",
+   "angle": "/assets/img/products/fanta-orange-imported-330ml-can-angle.webp",
+   "pack6": "/assets/img/products/fanta-orange-imported-330ml-can-pack6.webp",
+   "pack12": "/assets/img/products/fanta-orange-imported-330ml-can-pack12.webp",
+   "pack24": "/assets/img/products/fanta-orange-imported-330ml-can-pack24.webp"
   }
  },
  {
@@ -5006,12 +5087,15 @@
    }
   ],
   "tile": "#f0f7ec",
+  "ink": "#1e8a3d",
   "images": {
-   "single": "/assets/img/cans/7up-imported-330ml-can.svg",
-   "angle": "/assets/img/cans/7up-imported-330ml-can-angle.svg",
-   "pack6": "/assets/img/cans/7up-imported-330ml-can-pack6.svg",
-   "pack12": "/assets/img/cans/7up-imported-330ml-can-pack12.svg",
-   "pack24": "/assets/img/cans/7up-imported-330ml-can-pack24.svg"
+   "single": "/assets/img/products/7up-imported-330ml-can.webp",
+   "card": "/assets/img/products/7up-imported-330ml-can-card.webp",
+   "thumb": "/assets/img/products/7up-imported-330ml-can-thumb.webp",
+   "angle": "/assets/img/products/7up-imported-330ml-can-angle.webp",
+   "pack6": "/assets/img/products/7up-imported-330ml-can-pack6.webp",
+   "pack12": "/assets/img/products/7up-imported-330ml-can-pack12.webp",
+   "pack24": "/assets/img/products/7up-imported-330ml-can-pack24.webp"
   }
  },
  {
@@ -5187,12 +5271,15 @@
    }
   ],
   "tile": "#f5f9e9",
+  "ink": "#599c26",
   "images": {
-   "single": "/assets/img/cans/mountain-dew-imported-330ml-can.svg",
-   "angle": "/assets/img/cans/mountain-dew-imported-330ml-can-angle.svg",
-   "pack6": "/assets/img/cans/mountain-dew-imported-330ml-can-pack6.svg",
-   "pack12": "/assets/img/cans/mountain-dew-imported-330ml-can-pack12.svg",
-   "pack24": "/assets/img/cans/mountain-dew-imported-330ml-can-pack24.svg"
+   "single": "/assets/img/products/mountain-dew-imported-330ml-can.webp",
+   "card": "/assets/img/products/mountain-dew-imported-330ml-can-card.webp",
+   "thumb": "/assets/img/products/mountain-dew-imported-330ml-can-thumb.webp",
+   "angle": "/assets/img/products/mountain-dew-imported-330ml-can-angle.webp",
+   "pack6": "/assets/img/products/mountain-dew-imported-330ml-can-pack6.webp",
+   "pack12": "/assets/img/products/mountain-dew-imported-330ml-can-pack12.webp",
+   "pack24": "/assets/img/products/mountain-dew-imported-330ml-can-pack24.webp"
   }
  },
  {
@@ -5368,12 +5455,15 @@
    }
   ],
   "tile": "#f6ece9",
+  "ink": "#640f1f",
   "images": {
-   "single": "/assets/img/cans/dr-pepper-355ml-can.svg",
-   "angle": "/assets/img/cans/dr-pepper-355ml-can-angle.svg",
-   "pack6": "/assets/img/cans/dr-pepper-355ml-can-pack6.svg",
-   "pack12": "/assets/img/cans/dr-pepper-355ml-can-pack12.svg",
-   "pack24": "/assets/img/cans/dr-pepper-355ml-can-pack24.svg"
+   "single": "/assets/img/products/dr-pepper-355ml-can.webp",
+   "card": "/assets/img/products/dr-pepper-355ml-can-card.webp",
+   "thumb": "/assets/img/products/dr-pepper-355ml-can-thumb.webp",
+   "angle": "/assets/img/products/dr-pepper-355ml-can-angle.webp",
+   "pack6": "/assets/img/products/dr-pepper-355ml-can-pack6.webp",
+   "pack12": "/assets/img/products/dr-pepper-355ml-can-pack12.webp",
+   "pack24": "/assets/img/products/dr-pepper-355ml-can-pack24.webp"
   }
  },
  {
@@ -5546,12 +5636,15 @@
    }
   ],
   "tile": "#f0f2ec",
+  "ink": "#255741",
   "images": {
-   "single": "/assets/img/cans/schweppes-ginger-ale-330ml-can.svg",
-   "angle": "/assets/img/cans/schweppes-ginger-ale-330ml-can-angle.svg",
-   "pack6": "/assets/img/cans/schweppes-ginger-ale-330ml-can-pack6.svg",
-   "pack12": "/assets/img/cans/schweppes-ginger-ale-330ml-can-pack12.svg",
-   "pack24": "/assets/img/cans/schweppes-ginger-ale-330ml-can-pack24.svg"
+   "single": "/assets/img/products/schweppes-ginger-ale-330ml-can.webp",
+   "card": "/assets/img/products/schweppes-ginger-ale-330ml-can-card.webp",
+   "thumb": "/assets/img/products/schweppes-ginger-ale-330ml-can-thumb.webp",
+   "angle": "/assets/img/products/schweppes-ginger-ale-330ml-can-angle.webp",
+   "pack6": "/assets/img/products/schweppes-ginger-ale-330ml-can-pack6.webp",
+   "pack12": "/assets/img/products/schweppes-ginger-ale-330ml-can-pack12.webp",
+   "pack24": "/assets/img/products/schweppes-ginger-ale-330ml-can-pack24.webp"
   }
  },
  {
@@ -5724,12 +5817,15 @@
    }
   ],
   "tile": "#eff0f0",
+  "ink": "#184070",
   "images": {
-   "single": "/assets/img/cans/schweppes-tonic-water-330ml-can.svg",
-   "angle": "/assets/img/cans/schweppes-tonic-water-330ml-can-angle.svg",
-   "pack6": "/assets/img/cans/schweppes-tonic-water-330ml-can-pack6.svg",
-   "pack12": "/assets/img/cans/schweppes-tonic-water-330ml-can-pack12.svg",
-   "pack24": "/assets/img/cans/schweppes-tonic-water-330ml-can-pack24.svg"
+   "single": "/assets/img/products/schweppes-tonic-water-330ml-can.webp",
+   "card": "/assets/img/products/schweppes-tonic-water-330ml-can-card.webp",
+   "thumb": "/assets/img/products/schweppes-tonic-water-330ml-can-thumb.webp",
+   "angle": "/assets/img/products/schweppes-tonic-water-330ml-can-angle.webp",
+   "pack6": "/assets/img/products/schweppes-tonic-water-330ml-can-pack6.webp",
+   "pack12": "/assets/img/products/schweppes-tonic-water-330ml-can-pack12.webp",
+   "pack24": "/assets/img/products/schweppes-tonic-water-330ml-can-pack24.webp"
   }
  },
  {
@@ -5903,12 +5999,15 @@
    }
   ],
   "tile": "#f6f0f2",
+  "ink": "#653483",
   "images": {
-   "single": "/assets/img/cans/rani-float-grape-240ml-can.svg",
-   "angle": "/assets/img/cans/rani-float-grape-240ml-can-angle.svg",
-   "pack6": "/assets/img/cans/rani-float-grape-240ml-can-pack6.svg",
-   "pack12": "/assets/img/cans/rani-float-grape-240ml-can-pack12.svg",
-   "pack24": "/assets/img/cans/rani-float-grape-240ml-can-pack24.svg"
+   "single": "/assets/img/products/rani-float-grape-240ml-can.webp",
+   "card": "/assets/img/products/rani-float-grape-240ml-can-card.webp",
+   "thumb": "/assets/img/products/rani-float-grape-240ml-can-thumb.webp",
+   "angle": "/assets/img/products/rani-float-grape-240ml-can-angle.webp",
+   "pack6": "/assets/img/products/rani-float-grape-240ml-can-pack6.webp",
+   "pack12": "/assets/img/products/rani-float-grape-240ml-can-pack12.webp",
+   "pack24": "/assets/img/products/rani-float-grape-240ml-can-pack24.webp"
   }
  },
  {
@@ -6082,12 +6181,15 @@
    }
   ],
   "tile": "#fef5e9",
+  "ink": "#c96c19",
   "images": {
-   "single": "/assets/img/cans/rani-float-orange-240ml-can.svg",
-   "angle": "/assets/img/cans/rani-float-orange-240ml-can-angle.svg",
-   "pack6": "/assets/img/cans/rani-float-orange-240ml-can-pack6.svg",
-   "pack12": "/assets/img/cans/rani-float-orange-240ml-can-pack12.svg",
-   "pack24": "/assets/img/cans/rani-float-orange-240ml-can-pack24.svg"
+   "single": "/assets/img/products/rani-float-orange-240ml-can.webp",
+   "card": "/assets/img/products/rani-float-orange-240ml-can-card.webp",
+   "thumb": "/assets/img/products/rani-float-orange-240ml-can-thumb.webp",
+   "angle": "/assets/img/products/rani-float-orange-240ml-can-angle.webp",
+   "pack6": "/assets/img/products/rani-float-orange-240ml-can-pack6.webp",
+   "pack12": "/assets/img/products/rani-float-orange-240ml-can-pack12.webp",
+   "pack24": "/assets/img/products/rani-float-orange-240ml-can-pack24.webp"
   }
  },
  {
@@ -6263,12 +6365,15 @@
    }
   ],
   "tile": "#fef7e7",
+  "ink": "#c68b00",
   "images": {
-   "single": "/assets/img/cans/rani-float-mango-240ml-can.svg",
-   "angle": "/assets/img/cans/rani-float-mango-240ml-can-angle.svg",
-   "pack6": "/assets/img/cans/rani-float-mango-240ml-can-pack6.svg",
-   "pack12": "/assets/img/cans/rani-float-mango-240ml-can-pack12.svg",
-   "pack24": "/assets/img/cans/rani-float-mango-240ml-can-pack24.svg"
+   "single": "/assets/img/products/rani-float-mango-240ml-can.webp",
+   "card": "/assets/img/products/rani-float-mango-240ml-can-card.webp",
+   "thumb": "/assets/img/products/rani-float-mango-240ml-can-thumb.webp",
+   "angle": "/assets/img/products/rani-float-mango-240ml-can-angle.webp",
+   "pack6": "/assets/img/products/rani-float-mango-240ml-can-pack6.webp",
+   "pack12": "/assets/img/products/rani-float-mango-240ml-can-pack12.webp",
+   "pack24": "/assets/img/products/rani-float-mango-240ml-can-pack24.webp"
   }
  }
 ]

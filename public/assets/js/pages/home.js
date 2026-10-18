@@ -113,7 +113,7 @@ function reviews() {
   const cards = REVIEWS.map((r) => ({ ...r, product: Store.get(r.handle) })).filter((r) => r.product);
   const card = (r) => html`<article class="reel">
     <div class="reel__tile" style="--tile:${r.product.tile}">
-      <img src="${r.product.images.single}" alt="${r.product.title}" loading="lazy">
+      <img src="${r.product.images.card}" alt="${r.product.title}" loading="lazy">
       <span class="reel__badge" aria-hidden="true">${icon('check')}</span>
       <p class="reel__quote">“${r.text}”</p>
     </div>

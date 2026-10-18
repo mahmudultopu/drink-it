@@ -7,7 +7,7 @@ export const POSTS = [
     tag: 'Summer',
     date: '2026-09-17',
     read: 4,
-    image: '/assets/img/scenes/blog-4.svg',
+    image: '/assets/img/scenes/blog-4.webp',
     excerpt: 'No fridge space? No problem. Five quick tricks to get your cans ice-cold in minutes.',
     author: { name: 'Nusrat Jahan', role: 'Head of Content' },
     body: `
@@ -34,7 +34,7 @@ export const POSTS = [
     tag: 'Favorites',
     date: '2026-09-09',
     read: 5,
-    image: '/assets/img/scenes/blog-3.svg',
+    image: '/assets/img/scenes/blog-3.webp',
     excerpt: 'Everyone has a side. We break down what makes each cola different — and how to settle it at your next adda.',
     author: { name: 'Tanvir Ahmed', role: 'Founder' },
     body: `
@@ -60,7 +60,7 @@ export const POSTS = [
     tag: 'Process',
     date: '2026-08-28',
     read: 4,
-    image: '/assets/img/scenes/blog-1.svg',
+    image: '/assets/img/scenes/blog-1.webp',
     excerpt: 'From the moment you hit “Place order” to the knock at your door — here is what happens in between.',
     author: { name: 'Nusrat Jahan', role: 'Head of Content' },
     body: `
@@ -87,7 +87,7 @@ export const POSTS = [
     tag: 'Iftar',
     date: '2026-08-14',
     read: 3,
-    image: '/assets/img/scenes/blog-2.svg',
+    image: '/assets/img/scenes/blog-2.webp',
     excerpt: 'Break your fast in style. Our five favourite cold cans to pair with piyaju, beguni and haleem.',
     author: { name: 'Tanvir Ahmed', role: 'Founder' },
     body: `
@@ -114,7 +114,7 @@ export const POSTS = [
     tag: 'Flavors',
     date: '2026-07-30',
     read: 4,
-    image: '/assets/img/scenes/blog-5.svg',
+    image: '/assets/img/scenes/blog-5.webp',
     excerpt: 'Coke Zero, Pepsi Black, Mojo Zero and more — what zero-sugar actually means and how they taste.',
     author: { name: 'Nusrat Jahan', role: 'Head of Content' },
     body: `
@@ -142,7 +142,7 @@ export const POSTS = [
     tag: 'Party',
     date: '2026-07-12',
     read: 4,
-    image: '/assets/img/scenes/blog-6.svg',
+    image: '/assets/img/scenes/blog-6.webp',
     excerpt: 'Birthday, office hangout or rooftop adda — a simple plan for serving everyone without the stress.',
     author: { name: 'Tanvir Ahmed', role: 'Founder' },
     body: `

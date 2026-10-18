@@ -39,7 +39,7 @@ function heroSlides() {
 function fan() {
   const el = $('[data-fan]');
   const list = ['sprite-250ml-can', 'coca-cola-original-250ml-can', 'fanta-orange-250ml-can'].map((h) => Store.get(h)).filter(Boolean);
-  el.innerHTML = list.map((p) => `<img src="${esc(p.images.single)}" alt="" loading="lazy">`).join('');
+  el.innerHTML = list.map((p) => `<img src="${esc(p.images.card)}" alt="" loading="lazy">`).join('');
 }
 
 function reviewsTable() {

@@ -7,7 +7,7 @@ import { freeDeliveryHtml } from '../chrome.js';
 function lineHtml(l) {
   const { product: p, pack, qty } = l;
   return html`<li class="cart-row cline" data-handle="${p.handle}" data-pack="${pack.id}">
-    <a class="cart-row__img" href="/products/${p.handle}" style="--tile:${p.tile}"><img src="${p.images[pack.id] || p.images.single}" alt="${p.title}" width="110" height="110"></a>
+    <a class="cart-row__img" href="/products/${p.handle}" style="--tile:${p.tile}"><img src="${pack.id === 'single' ? p.images.thumb : p.images[pack.id] || p.images.thumb}" alt="${p.title}" width="110" height="110"></a>
     <div class="cart-row__info">
       <a class="cart-row__title" href="/products/${p.handle}">${p.title}</a>
       <p class="cart-row__meta">${pack.label}${pack.qty > 1 ? ` · ${pack.qty} cans` : ''} · ${p.canMl} ml</p>

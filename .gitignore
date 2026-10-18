@@ -15,3 +15,5 @@ data/secret.key
 # OS / editor noise
 .DS_Store
 Thumbs.db
+# renderer scratch output
+scripts/render/out/

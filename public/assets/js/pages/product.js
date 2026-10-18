@@ -70,7 +70,7 @@ export async function init() {
       ${p.dealEndsAt ? html`<div style="margin-top:16px"><p class="eyebrow" style="margin-bottom:8px">Deal ends in</p>${countdownHtml(p.dealEndsAt, 'cd--lg')}</div>` : ''}
       <div class="packs" role="radiogroup" aria-label="Choose a pack size" data-packs>${p.packs.map((pk) => html`<button class="pack${pk.id === 'single' ? ' is-active' : ''}" type="button" role="radio" aria-checked="${String(pk.id === 'single')}" data-pack="${pk.id}" ${pk.available ? '' : 'disabled'}>
         ${pk.qty > 1 && pk.compareAt > pk.price ? html`<span class="pack__save">Save ${discountPct(pk.price, pk.compareAt)}%</span>` : ''}
-        <span class="pack__img" style="--tile:${p.tile}"><img src="${p.images[pk.id]}" alt="" loading="lazy"></span>
+        <span class="pack__img" style="--tile:${p.tile}"><img src="${pk.id === 'single' ? p.images.thumb : p.images[pk.id]}" alt="" loading="lazy"></span>
         <span><b>${pk.label}</b><small>${pk.qty > 1 ? `${pk.qty} cans · ${money(Math.round((pk.price / pk.qty) * 10) / 10)}/can` : p.canMl + ' ml can'}</small><span class="price">${money(pk.price)}</span></span>
       </button>`)}</div>
       <div class="pdp__buy">
@@ -143,7 +143,7 @@ export async function init() {
 <div data-cta></div>
 
 <div class="stickybar" data-stickybar aria-hidden="true">
-  <span class="stickybar__img" style="--tile:${p.tile}"><img src="${p.images.single}" alt="" width="54" height="54"></span>
+  <span class="stickybar__img" style="--tile:${p.tile}"><img src="${p.images.thumb}" alt="" width="54" height="54"></span>
   <div class="stickybar__info"><b>${p.title}</b><span class="price" data-sticky-price></span></div>
   <button class="btn" type="button" data-sticky-add><span>Add to cart</span></button>
   <button class="icon-btn stickybar__x" type="button" aria-label="Close" data-sticky-close>${icon('close')}</button>

@@ -91,7 +91,7 @@ function fillMenus() {
   $$('[data-menu-feature]').forEach((el) => {
     const p = feats[Number(el.dataset.menuFeature)];
     if (!p) { el.remove(); return; }
-    el.outerHTML = `<a class="menu-feature" href="/products/${esc(p.handle)}"><div class="menu-feature__media" style="--tile:${esc(p.tile)}"><img src="${esc(p.images.single)}" alt="${esc(p.title)}" loading="lazy"></div><h4>${esc(p.title)}</h4><span class="price">${money(p.price)}${p.compareAt > p.price ? `<s>${money(p.compareAt)}</s>` : ''}</span></a>`;
+    el.outerHTML = `<a class="menu-feature" href="/products/${esc(p.handle)}"><div class="menu-feature__media" style="--tile:${esc(p.tile)}"><img src="${esc(p.images.card)}" alt="${esc(p.title)}" loading="lazy"></div><h4>${esc(p.title)}</h4><span class="price">${money(p.price)}${p.compareAt > p.price ? `<s>${money(p.compareAt)}</s>` : ''}</span></a>`;
   });
 }
 
@@ -136,7 +136,7 @@ function makeDrawer(id, { side = 'right', label, cls = '', content }) {
 function cartLineHtml(l) {
   const { product: p, pack, qty } = l;
   return html`<li class="cline" data-handle="${p.handle}" data-pack="${pack.id}">
-    <a class="cline__img" href="/products/${p.handle}" style="--tile:${p.tile}"><img src="${p.images[pack.id] || p.images.single}" alt="${p.title}" width="80" height="80"></a>
+    <a class="cline__img" href="/products/${p.handle}" style="--tile:${p.tile}"><img src="${pack.id === 'single' ? p.images.thumb : p.images[pack.id] || p.images.thumb}" alt="${p.title}" width="80" height="80"></a>
     <div class="cline__body">
       <a class="cline__title" href="/products/${p.handle}">${p.title}</a>
       <div class="cline__pack">${pack.label}${pack.qty > 1 ? ` · ${pack.qty} cans` : ''}</div>
@@ -166,7 +166,7 @@ function renderCart() {
   const body = $('[data-cart-body]', d.el);
   const foot = $('[data-cart-foot]', d.el);
   if (!lines.length) {
-    body.innerHTML = String(html`<div class="cart-empty"><img src="/assets/img/cans/${Store.products[0]?.handle}.svg" alt="" width="120"><h3>Your cart is empty</h3><p>Grab a few ice-cold cans and they’ll show up here.</p><a class="btn" href="/collections/all" data-close>Start shopping</a></div>`);
+    body.innerHTML = String(html`<div class="cart-empty"><img src="${Store.products[0]?.images.card}" alt="" width="120"><h3>Your cart is empty</h3><p>Grab a few ice-cold cans and they’ll show up here.</p><a class="btn" href="/collections/all" data-close>Start shopping</a></div>`);
     foot.hidden = true;
     return;
   }
@@ -255,7 +255,7 @@ function initSearch() {
   const results = $('[data-search-results]', modal);
   let last = null;
 
-  const miniHtml = (p) => html`<a class="sres" href="/products/${p.handle}"><span class="sres__img" style="--tile:${p.tile}"><img src="${p.images.single}" alt="" loading="lazy" width="60" height="60"></span><span class="sres__body"><b>${p.title}</b><small>${p.brand} · ${p.canMl} ml</small></span><span class="price">${money(p.price)}</span></a>`;
+  const miniHtml = (p) => html`<a class="sres" href="/products/${p.handle}"><span class="sres__img" style="--tile:${p.tile}"><img src="${p.images.thumb}" alt="" loading="lazy" width="60" height="60"></span><span class="sres__body"><b>${p.title}</b><small>${p.brand} · ${p.canMl} ml</small></span><span class="price">${money(p.price)}</span></a>`;
 
   const render = () => {
     const q = input.value.trim().toLowerCase();
@@ -342,7 +342,7 @@ function initPopup() {
           </form>
           <p class="nl-modal__msg" data-popup-msg aria-live="polite"></p>
         </div>
-        <div class="nl-modal__art"><img src="/assets/img/scenes/hero-2.svg" alt="" loading="lazy"></div>
+        <div class="nl-modal__art"><img src="/assets/img/scenes/hero-2.webp" alt="" loading="lazy"></div>
       </div>`);
     document.body.append(modal);
     requestAnimationFrame(() => modal.classList.add('is-open'));

@@ -109,7 +109,7 @@ export function init() {
   const itemsPayload = () => Store.cartItems().map((i) => ({ handle: i.handle, pack: i.pack, qty: i.qty }));
   const renderSummary = (q, couponMsg) => {
     $('[data-summary]', root).innerHTML = String(html`<h2>Order summary</h2>
-      <ul class="sum-items">${Store.cartLines().map((l) => html`<li><span class="oitems__img" style="--tile:${l.product.tile}"><img src="${l.product.images[l.pack.id] || l.product.images.single}" alt=""><i>${l.qty}</i></span><span><b>${l.product.title}</b><small>${l.pack.label}</small></span><b>${money(l.total)}</b></li>`)}</ul>
+      <ul class="sum-items">${Store.cartLines().map((l) => html`<li><span class="oitems__img" style="--tile:${l.product.tile}"><img src="${l.pack.id === 'single' ? l.product.images.thumb : l.product.images[l.pack.id] || l.product.images.thumb}" alt=""><i>${l.qty}</i></span><span><b>${l.product.title}</b><small>${l.pack.label}</small></span><b>${money(l.total)}</b></li>`)}</ul>
       <div class="coupon"><label class="sr-only" for="coupon">Coupon code</label><input class="input" id="coupon" placeholder="Coupon code" value="${state.coupon}" data-coupon autocomplete="off"><button class="btn btn--sm btn--lime" type="button" data-apply>Apply</button></div>
       <p class="coupon__msg ${couponMsg?.error ? 'is-error' : ''}" data-coupon-msg>${couponMsg?.text || ''}</p>
       ${q ? freeDeliveryHtml(q.subtotal) : ''}

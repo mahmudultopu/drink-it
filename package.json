@@ -5,12 +5,20 @@
   "description": "Drink it — Bangladesh's online store for every cold drink can. Zero-dependency Node server + static storefront.",
   "type": "module",
   "main": "server.js",
-  "engines": { "node": ">=20" },
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "start": "node server.js",
-    "build:catalog": "node scripts/build.mjs"
+    "build:catalog": "node scripts/build.mjs",
+    "render": "node scripts/render/render.mjs all",
+    "render:products": "node scripts/render/render.mjs build",
+    "render:scenes": "node scripts/render/render.mjs scenes"
   },
   "devDependencies": {
-    "opentype.js": "^1.3.4"
+    "opentype.js": "^1.3.4",
+    "puppeteer-core": "^23.11.1",
+    "sharp": "^0.33.5",
+    "three": "^0.170.0"
   }
 }

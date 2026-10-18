@@ -16,7 +16,7 @@ export function productCard(p, { pack = 'single', eager = false, swatches = true
   return html`<article class="pcard${soldOut ? ' pcard--soldout' : ''}" data-handle="${p.handle}" data-pack="${pk.id}">
   <div class="pcard__media" style="--tile:${p.tile}">
     <a class="pcard__link" href="/products/${p.handle}" aria-label="${p.title}">
-      <img class="pcard__img pcard__img--main" src="${p.images[pk.id] || p.images.single}" alt="${p.title}" ${raw(eager ? 'fetchpriority="high"' : 'loading="lazy"')} width="300" height="300">
+      <img class="pcard__img pcard__img--main" src="${pk.id === 'single' ? p.images.card : p.images[pk.id] || p.images.card}" alt="${p.title}" ${raw(eager ? 'fetchpriority="high"' : 'loading="lazy"')} width="300" height="300">
       <img class="pcard__img pcard__img--hover" src="${p.images.angle}" alt="" aria-hidden="true" loading="lazy" width="300" height="300">
     </a>
     <div class="pcard__badges">${p.stock <= 0 ? raw('<span class="badge" data-badge>Sold out</span>') : disc ? raw(`<span class="badge" data-badge>-${disc}%</span>`) : ''}${p.badges.includes('new') && p.stock > 0 ? raw('<span class="badge badge--crimson">New</span>') : ''}</div>
@@ -49,7 +49,7 @@ function selectPack(card, packId) {
   card.dataset.pack = pk.id;
   card.querySelectorAll('[data-swatch]').forEach((b) => { const on = b.dataset.swatch === pk.id; b.classList.toggle('is-active', on); b.setAttribute('aria-pressed', on); });
   const img = card.querySelector('.pcard__img--main');
-  img.src = p.images[pk.id] || p.images.single;
+  img.src = pk.id === 'single' ? p.images.card : p.images[pk.id] || p.images.card;
   card.querySelector('[data-price]').innerHTML = String(priceHtml(pk));
   const disc = discountPct(pk.price, pk.compareAt);
   const b = card.querySelector('[data-badge]');
@@ -92,14 +92,14 @@ export function bindCards() {
     if (e.target.closest('[data-wish]')) {
       e.preventDefault();
       const added = Store.toggleWishlist(handle);
-      toast(added ? `${product.title} saved to your wishlist.` : 'Removed from wishlist.', added ? { image: product.images.single, href: '/wishlist', label: 'View' } : {});
+      toast(added ? `${product.title} saved to your wishlist.` : 'Removed from wishlist.', added ? { image: product.images.thumb, href: '/wishlist', label: 'View' } : {});
       return;
     }
     if (e.target.closest('[data-compare]')) {
       e.preventDefault();
       const r = Store.toggleCompare(handle);
       if (r === 'full') toast('You can compare up to 4 cans at a time.', { type: 'error' });
-      else toast(r === 'added' ? `${product.title} added to compare.` : 'Removed from compare.', r === 'added' ? { image: product.images.single, href: '/compare', label: 'Compare' } : {});
+      else toast(r === 'added' ? `${product.title} added to compare.` : 'Removed from compare.', r === 'added' ? { image: product.images.thumb, href: '/compare', label: 'Compare' } : {});
     }
   });
   Store.on('wish', () => syncCards());

@@ -302,7 +302,7 @@ route('GET', '/api/admin/orders.csv', (ctx) => {
 
 route('GET', '/api/admin/products', (ctx) => {
   needAdmin(ctx);
-  json(ctx.res, 200, { products: products.get().map((p) => ({ handle: p.handle, title: p.title, brand: p.brand, canMl: p.canMl, price: p.price, compareAt: p.compareAt, stock: p.stock, dealEndsAt: p.dealEndsAt, image: p.images.single, tile: p.tile, packs: p.packs })) });
+  json(ctx.res, 200, { products: products.get().map((p) => ({ handle: p.handle, title: p.title, brand: p.brand, canMl: p.canMl, price: p.price, compareAt: p.compareAt, stock: p.stock, dealEndsAt: p.dealEndsAt, image: p.images.thumb, tile: p.tile, packs: p.packs })) });
 });
 
 route('PATCH', '/api/admin/products/:handle', (ctx) => {

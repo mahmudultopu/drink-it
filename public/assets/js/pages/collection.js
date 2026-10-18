@@ -34,8 +34,8 @@ export function init() {
   // ---------- banner, tiles, tags, crumbs ----------
   $('[data-collection-banner]').innerHTML = String(bannerHtml({ title, text: blurb }));
   $('[data-crumbs]').innerHTML = String(crumbs([{ label: 'Home', href: '/' }, { label: 'Collections', href: '/collections' }, { label: title }]));
-  const tiles = [{ handle: 'all', title: 'All Cans', lead: Store.products.slice().sort((a, b) => b.sold - a.sold)[0].handle }, ...Store.collections];
-  $('[data-ctiles]').innerHTML = String(html`${tiles.map((c) => { const lead = Store.get(c.lead); return html`<a class="ctile${c.handle === handle && !brand ? ' is-active' : ''}" href="/collections/${c.handle}" style="--tile:${lead?.tile};--accent:${lead?.art?.body || 'var(--green)'}"><img src="${lead?.images.single}" alt="" loading="lazy"><span>${c.title}</span></a>`; })}`);
+  const tiles = [{ handle: 'all', title: 'All Cans', lead: Store.site.allLead || Store.products.slice().sort((a, b) => b.sold - a.sold)[0].handle }, ...Store.collections];
+  $('[data-ctiles]').innerHTML = String(html`${tiles.map((c) => { const lead = Store.get(c.lead); return html`<a class="ctile${c.handle === handle && !brand ? ' is-active' : ''}" href="/collections/${c.handle}" style="--tile:${lead?.tile};--accent:${lead?.ink || 'var(--green)'}"><img src="${lead?.images.card}" alt="" loading="lazy"><span>${c.title}</span></a>`; })}`);
   $('[data-tagrow]').innerHTML = String(html`<strong>Brands:</strong>${Store.brands().slice(0, 9).map((b) => raw(`<a class="pill pill--btn${b.handle === brandHandle ? ' is-active' : ''}" href="/collections/all?brand=${esc(b.handle)}">${esc(b.name)}</a>`))}`);
 
   // ---------- state ----------

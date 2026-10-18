@@ -28,7 +28,7 @@
 /* ---------- collection page ---------- */
 .ctiles { display: flex; gap: 10px; overflow-x: auto; padding: 34px 20px 8px; scrollbar-width: none; }
 .ctiles::-webkit-scrollbar { display: none; }
-.ctile { flex: 0 0 min(260px, 42vw); display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 16px 12px 18px; border-radius: 12px; background: var(--tile, #f4f4e6); aspect-ratio: 1 / 1.05; overflow: hidden; transition: transform 0.3s var(--ease); }
+.ctile { flex: 0 0 min(260px, 42vw); display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 14px 12px 16px; border-radius: 12px; background: var(--tile, #f4f4e6); background: linear-gradient(to bottom, var(--tile, #f4f4e6) 0 76%, color-mix(in srgb, var(--tile, #f4f4e6) 80%, var(--accent, #11704b) 20%) 76% 100%); aspect-ratio: 1 / 1.1; overflow: hidden; transition: transform 0.3s var(--ease); }
 .ctile:hover { transform: translateY(-4px); }
 .ctile img { flex: 1 1 0; min-height: 0; width: 100%; object-fit: contain; filter: drop-shadow(0 12px 10px rgba(0, 0, 0, 0.12)); }
 .ctile span { font: 400 26px/1.1 var(--font-heading); color: var(--accent, var(--green)); text-align: center; }
@@ -82,8 +82,8 @@
 
 /* collections index tiles */
 .cindex { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; padding: 40px 10px 0; }
-.cindex__tile { position: relative; display: grid; align-content: end; justify-items: center; gap: 4px; min-height: 440px; padding: 24px 20px 30px; border-radius: 12px; background: var(--tile, #f4f4e6); overflow: hidden; }
-.cindex__tile img { position: absolute; left: 50%; top: 6%; translate: -50% 0; height: 62%; width: auto; filter: drop-shadow(0 16px 14px rgba(0, 0, 0, 0.14)); transition: transform 0.5s var(--ease); }
+.cindex__tile { position: relative; display: grid; align-content: end; justify-items: center; gap: 4px; min-height: 470px; padding: 24px 20px 30px; border-radius: 12px; background: var(--tile, #f4f4e6); background: linear-gradient(to bottom, var(--tile, #f4f4e6) 0 72%, color-mix(in srgb, var(--tile, #f4f4e6) 80%, var(--accent, #11704b) 20%) 72% 100%); overflow: hidden; }
+.cindex__tile img { position: absolute; left: 50%; top: 5%; translate: -50% 0; height: 70%; width: auto; filter: drop-shadow(0 18px 14px rgba(0, 0, 0, 0.18)); transition: transform 0.5s var(--ease); }
 .cindex__tile:hover img { transform: translateY(-10px) rotate(-3deg) scale(1.04); }
 .cindex__tile strong { position: relative; font: 400 40px/1.1 var(--font-heading); color: var(--accent, var(--green)); }
 .cindex__tile small { position: relative; font-size: 15px; font-weight: 500; opacity: 0.8; }

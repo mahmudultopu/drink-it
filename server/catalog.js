@@ -53,6 +53,7 @@ export function toCard(p) {
     createdAt: p.createdAt,
     images: p.images,
     tile: p.tile,
+    ink: p.ink,
     rating,
     reviewCount,
   };

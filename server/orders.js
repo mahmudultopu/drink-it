@@ -68,7 +68,7 @@ export function quote(rawItems, { shipping = {}, coupon = '' } = {}) {
     if (!pk) throw new HttpError(422, `Pack option "${pack}" is not available for ${p.title}.`);
     const cans = pk.qty * qty;
     needed.set(p.handle, (needed.get(p.handle) || 0) + cans);
-    lines.push({ handle: p.handle, title: p.title, brand: p.brand, pack: pk.id, packLabel: pk.label, packQty: pk.qty, qty, cans, unitPrice: pk.price, lineTotal: pk.price * qty, image: p.images.single, packImage: p.images[pk.id] || p.images.single, tile: p.tile });
+    lines.push({ handle: p.handle, title: p.title, brand: p.brand, pack: pk.id, packLabel: pk.label, packQty: pk.qty, qty, cans, unitPrice: pk.price, lineTotal: pk.price * qty, image: p.images.thumb, packImage: pk.id === 'single' ? p.images.thumb : p.images[pk.id] || p.images.thumb, tile: p.tile });
   }
   for (const [handle, cans] of needed) {
     const p = catalogue.find((x) => x.handle === handle);

@@ -23,7 +23,7 @@
 .hero h1, .hero .hero__h { margin: 0 0 30px; font: 400 clamp(50px, 5.5vw, 80px) / 1.2 var(--font-heading); color: #fff; text-wrap: pretty; }
 .hero__art { position: relative; flex: none; margin-right: 0; }
 .hero__arch { width: clamp(190px, 19.8vw, 400px); aspect-ratio: 285 / 428; border-radius: 300px 300px 30px 30px; background: #e7f2d4; display: grid; place-items: center; overflow: hidden; }
-.hero__arch img { width: 56%; height: 72%; object-fit: contain; margin-top: 18%; filter: drop-shadow(0 14px 14px rgba(0, 0, 0, 0.12)); }
+.hero__arch img { width: 100%; height: 86%; object-fit: contain; margin-top: 10%; filter: drop-shadow(0 14px 14px rgba(0, 0, 0, 0.14)); }
 .hero__badge { position: absolute; left: -26%; bottom: -17%; width: 65%; height: auto; animation: spin 22s linear infinite; }
 .hero__slide--rev .hero__badge { left: auto; right: -26%; }
 .hero__arrow { position: absolute; top: 50%; translate: 0 -50%; z-index: 3; background: var(--green); color: var(--lime-text); box-shadow: 2px 3px 0 var(--teal); opacity: 0; transition: opacity 0.3s; }
@@ -101,7 +101,7 @@
 @property --pan { syntax: '<length>'; inherits: true; initial-value: 0px; }
 @keyframes pan { to { --pan: -160px; } }
 .strips__bars { position: absolute; inset: 0; display: flex; gap: 13px; }
-.strips__bar { flex: 0 0 39px; height: 100%; border-radius: 20px; background-image: url('/assets/img/scenes/strips.svg'); background-repeat: no-repeat; background-size: var(--box-w, 1400px) auto; background-position: calc(var(--x, 0px) + var(--pan)) center; }
+.strips__bar { flex: 0 0 39px; height: 100%; border-radius: 20px; background-image: url('/assets/img/scenes/strips.webp'); background-repeat: no-repeat; background-size: var(--box-w, 1400px) auto; background-position: calc(var(--x, 0px) + var(--pan)) center; }
 .strips__play { position: absolute; left: 50%; top: 50%; translate: -50% -50%; z-index: 2; width: 126px; height: 126px; border-radius: 50%; }
 .strips__play img { width: 100%; height: 100%; animation: spin 14s linear infinite; }
 .strips.is-paused .strips__play img { animation-play-state: paused; }

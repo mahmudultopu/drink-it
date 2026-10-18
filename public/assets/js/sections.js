@@ -2,7 +2,7 @@
 import { html, raw, esc, icon } from './ui.js';
 
 export function bannerHtml({ title, text, cta }) {
-  return html`<div class="banner__media"><img src="/assets/img/scenes/banner-cans.svg" alt="" width="1424" height="852" fetchpriority="high"></div>
+  return html`<div class="banner__media"><img src="/assets/img/scenes/banner-cans.webp" alt="" width="1424" height="852" fetchpriority="high"></div>
   <div class="banner__panel" data-reveal="left"><h1>${title}</h1>${text ? html`<p>${text}</p>` : ''}${cta ? raw(`<a class="btn btn--lime" href="${esc(cta.href)}">${esc(cta.label)}</a>`) : ''}</div>`;
 }
 

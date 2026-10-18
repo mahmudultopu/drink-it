@@ -10,8 +10,9 @@ cash on delivery, bKash, Nagad or Rocket, and the order lands in your admin dash
 
 The look follows the *Feezee* food-and-beverage theme you pointed me to: deep green `#11704B` + lime `#E0FA63`,
 Young Serif headings with DM Sans text, chunky pill buttons with a teal drop edge, torn-paper edges, layered hill
-and wave dividers, pastel product tiles, and both home layouts (**Home – Default** and **Home V2**). All code and
-artwork here is original — no theme files, images or code were copied.
+and wave dividers, pastel product tiles, and both home layouts (**Home – Default** and **Home V2**). All code is
+original — no theme files, images or code were copied. The can pictures are photoreal 3D renders made in-house (see
+*Product images* below); swap in official packshots whenever you have them.
 
 ## Run it
 
@@ -65,22 +66,38 @@ stock editing, review moderation, contact messages, newsletter subscribers, cust
 **Data** (`data/*.json`): plain JSON files — orders, users, reviews, subscribers, messages are written here by the
 server. Back this folder up.
 
-## Changing the catalogue or artwork
+## Product images
 
-Products, pack discounts, collections and copy are defined in `scripts/catalog.mjs` and `scripts/content.mjs`.
-Run `npm install` once (it fetches `opentype.js`, used only for drawing the vector can art), then:
+Every can picture on the site (cards, product galleries, 6/12/24-can packs, cartons, category tiles, hero, banners and
+blog covers) comes from `scripts/render`: a small three.js pipeline that draws aluminium cans with glossy printed bodies,
+studio reflections and condensation, using label designs drawn in `scripts/render/page/labels.js` (including the
+Bengali-script wordmarks of the Bangladeshi market cans). Rendering needs Chrome and runs on your GPU in about five minutes:
 
 ```
+npm install                  # once: three.js, puppeteer-core, sharp (dev dependencies only)
+npm run render               # all product images + scenes  -> public/assets/img/products, public/assets/img/scenes
+npm run render:products      # products only   (node scripts/render/render.mjs build <handle> for just one)
+npm run render:scenes        # hero / banner / blog scenes (defined in scripts/render/scenes.mjs)
+```
+
+The renders are *approximations* of the real packs. **Real photos win:** drop a photo named after the product handle into
+`scripts/render/inbox/` (see the README there) and `npm run render:products` cuts it out and rebuilds all the pack images
+from it. The best legal source for packshots is the brands' distributors; do not copy photos from other shops' sites.
+
+## Changing the catalogue
+
+Products, pack discounts, collections and copy are defined in `scripts/catalog.mjs` and `scripts/content.mjs`
+(each category's tile can is its `lead` product). Then:
+
+```
+npm run render:products   # only for new / changed cans or label designs
 npm run build:catalog
 ```
 
-This regenerates `data/products.json`, `data/collections.json`, blog/FAQ/policy data and every illustration in
-`public/assets/img/` (cans, packs, scenes, badges, logo). **Warning:** it resets product stock and prices to the
-values in `scripts/catalog.mjs`, so do it before you start taking orders (or copy your edits into the script).
+`build:catalog` regenerates `data/products.json`, `data/collections.json`, blog/FAQ/policy data and the small vector
+shapes in `public/assets/img/` (badges, logo, fruit icons, avatars). **Warning:** it resets product stock and prices to
+the values in `scripts/catalog.mjs`, so do it before you start taking orders (or copy your edits into the script).
 Existing customer reviews are never overwritten.
-
-To use real product photos instead of the illustrated cans, drop images into `public/assets/img/` and change the
-`images` paths in `data/products.json`.
 
 ## Deploy
 
@@ -112,10 +129,14 @@ Environment variables for Vercel (Project → Settings → Environment Variables
 * **Sample content:** the product reviews seeded in `data/reviews.json` (flagged `"sample": true`), the three
   testimonials on the home page and the crew names on the About page are placeholders — replace them with real ones
   (home-page testimonials: `public/assets/js/pages/home.js`).
-  Brand names are used only to describe products for sale; the can illustrations are original artwork.
+  Brand names, logos and pack designs appear only to identify the products for sale; the can images are in-house 3D
+  renders that approximate the real packs, not official packshots.
 * **Hosting:** the server keeps data in local files, so a shop that takes real orders needs a machine with a
   persistent disk (see *Deploy* above); serverless platforms such as Vercel are fine for previews only.
 
 ## Credits
 
 Fonts: Young Serif and DM Sans (SIL Open Font License), self-hosted in `public/assets/fonts/`.
+Can-label fonts (all SIL Open Font License, from Google Fonts, in `scripts/fonts/`): Poppins, Anton, Lilita One, Righteous,
+Pacifico, Lobster, Russo One, Bungee, Bebas Neue, Oswald, Fredoka, Young Serif, Galada, Hind Siliguri, Atma, Baloo Da 2
+and Tiro Bangla. Rendering uses [three.js](https://threejs.org) (MIT).

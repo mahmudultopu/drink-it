@@ -1,13 +1,12 @@
-// Build step: generates data/products.json, data/collections.json and all vector art under public/assets/img.
+// Build step: generates data/products.json, data/collections.json and the small vector shapes under public/assets/img.
+// (Can images come from `npm run render` - scripts/render.)
 // Run with:  npm run build:catalog
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { buildProducts, COLLECTIONS, PACKS } from './catalog.mjs';
-import { canSvg, canAngleSvg, pack6Svg, pack12Svg, pack24Svg } from './art/can.mjs';
 import { tileColor, mix, hex2rgb } from './art/lib.mjs';
 import { tornEdgeSvg, waveSvg, hillsSvg, badgeSvg, playBadgeSvg, logoSvg, faviconSvg, fruitSvg, starsSvg, blobSvg, iceCubeSvg, bubbleSvg } from './art/shapes.mjs';
-import { heroScene, rowScene, stripsScene } from './art/scenes.mjs';
 import { avatarSvg } from './art/avatars.mjs';
 import { POSTS, FAQ, PAGES } from './content.mjs';
 import { seedReviews } from './seed.mjs';
@@ -15,40 +14,47 @@ import { seedReviews } from './seed.mjs';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const dataDir = path.join(root, 'data');
 const imgDir = path.join(root, 'public', 'assets', 'img');
-const cansDir = path.join(imgDir, 'cans');
+const productsDir = path.join(imgDir, 'products');
 fs.mkdirSync(dataDir, { recursive: true });
-fs.mkdirSync(cansDir, { recursive: true });
 
+const chroma = (hex) => { const c = hex2rgb(hex); return Math.max(...c) - Math.min(...c); };
+// a can whose body is white-ish or near-black (dark and colourless) is tinted by its accent colour instead
+const usesAccent = (a) => luminance(a.body) > 205 || (luminance(a.body) < 60 && chroma(a.body) < 45);
 const luminance = (hex) => {
   const [r, g, b] = hex2rgb(hex);
   return 0.2126 * r + 0.7152 * g + 0.0722 * b;
 };
 
-// ---------- products + can art ----------
+// ---------- products + can images ----------
+// The photoreal can images come from the 3D renderer (npm run render) or from real photos dropped in scripts/render/inbox.
 const products = buildProducts();
+const missing = [];
 for (const p of products) {
   const a = p.art;
-  p.tile = tileColor(luminance(a.body) > 215 ? a.accent : luminance(a.body) < 40 ? mix(a.accent, '#888888', 0.4) : a.body);
-  const base = `/assets/img/cans/${p.handle}`;
-  fs.writeFileSync(path.join(cansDir, `${p.handle}.svg`), canSvg(a, { title: p.title }));
-  fs.writeFileSync(path.join(cansDir, `${p.handle}-angle.svg`), canAngleSvg(a, { title: p.title }));
-  fs.writeFileSync(path.join(cansDir, `${p.handle}-pack6.svg`), pack6Svg(a));
-  fs.writeFileSync(path.join(cansDir, `${p.handle}-pack12.svg`), pack12Svg(a));
-  fs.writeFileSync(path.join(cansDir, `${p.handle}-pack24.svg`), pack24Svg(a));
+  p.tile = tileColor(usesAccent(a) ? (luminance(a.body) > 205 ? a.accent : mix(a.accent, '#888888', 0.4)) : a.body);
+  p.ink = mix(usesAccent(a) ? a.accent : a.body, '#000000', 0.18); // readable title colour for this can's tiles
+  const base = `/assets/img/products/${p.handle}`;
   p.images = {
-    single: `${base}.svg`,
-    angle: `${base}-angle.svg`,
-    pack6: `${base}-pack6.svg`,
-    pack12: `${base}-pack12.svg`,
-    pack24: `${base}-pack24.svg`,
+    single: `${base}.webp`,
+    card: `${base}-card.webp`,
+    thumb: `${base}-thumb.webp`,
+    angle: `${base}-angle.webp`,
+    pack6: `${base}-pack6.webp`,
+    pack12: `${base}-pack12.webp`,
+    pack24: `${base}-pack24.webp`,
   };
+  if (!fs.existsSync(path.join(productsDir, `${p.handle}.webp`))) missing.push(p.handle);
+  delete p.render; // renderer-only settings
 }
+if (missing.length) console.warn(`
+  ! ${missing.length} product image(s) missing - run "npm run render" first (first: ${missing[0]})
+`);
 fs.writeFileSync(path.join(dataDir, 'products.json'), JSON.stringify(products, null, 1));
 
 // ---------- collections (with a representative can for each) ----------
 const collections = COLLECTIONS.map((c) => {
   const items = products.filter((p) => p.collections.includes(c.handle));
-  const lead = items.slice().sort((a, b) => b.sold - a.sold)[0];
+  const lead = items.find((p) => p.handle === c.lead) || items.slice().sort((a, b) => b.sold - a.sold)[0];
   return { ...c, count: items.length, minPrice: Math.min(...items.map((p) => p.price)), minMl: Math.min(...items.map((p) => p.canMl)), lead: lead?.handle, tint: lead?.tile, products: items.map((p) => p.handle) };
 });
 fs.writeFileSync(path.join(dataDir, 'collections.json'), JSON.stringify(collections, null, 1));
@@ -74,33 +80,13 @@ write('stars-fill.svg', starsSvg('fill'));
 write('stars-outline.svg', starsSvg('outline'));
 for (const f of ['lime', 'lemon', 'orange', 'cherry', 'grape', 'peach', 'mango', 'berry', 'mojito', 'coconut']) write(`fruit-${f}.svg`, fruitSvg(f));
 
-// ---------- scenes ----------
-const scenesDir = path.join(imgDir, 'scenes');
-fs.mkdirSync(scenesDir, { recursive: true });
+// ---------- art the avatars need ----------
 const art = (handle) => {
   const p = products.find((x) => x.handle === handle);
-  if (!p) throw new Error('scene needs product ' + handle);
+  if (!p) throw new Error('avatar needs product ' + handle);
   return p.art;
 };
-const S = {
-  coke: art('coca-cola-original-250ml-can'), sprite: art('sprite-250ml-can'), fanta: art('fanta-orange-250ml-can'),
-  pepsi: art('pepsi-250ml-can'), dew: art('mountain-dew-250ml-can'), mirinda: art('mirinda-orange-250ml-can'),
-  clemon: art('clemon-lemon-soda-250ml-can'), mojito: art('clemon-mojito-250ml-can'), mojo: art('mojo-cola-250ml-can'),
-  speed: art('speed-energy-drink-250ml-can'), sevenup: art('7up-250ml-can'), redbull: art('red-bull-energy-drink-250ml-can'),
-  rani: art('rani-float-grape-240ml-can'), zero: art('coke-zero-sugar-250ml-can'),
-};
-const sw = (name, svg) => fs.writeFileSync(path.join(scenesDir, name), svg);
-sw('hero-1.svg', heroScene([S.coke, S.sprite, S.fanta, S.dew, S.pepsi]));
-sw('hero-2.svg', heroScene([S.dew, S.fanta, S.mojito, S.mirinda, S.sevenup], { bg1: '#FFF0DC', bg2: '#FFD3A5', sun: '#FFF9EE', floor: '#FFB66B', slices: ['orange', 'lemon', 'lime'], seed: 8 }));
-sw('banner-cans.svg', rowScene([S.fanta, S.sprite, S.coke, S.pepsi, S.mirinda], { bg: '#F5C531', stripe: '#FFE27A', w: 1424, h: 852, fill: 0.84, overlap: 0.92 }));
-sw('blog-1.svg', rowScene([S.fanta, S.mirinda, S.clemon, S.mojo], { bg: '#FFA977', stripe: '#FFC9A8', seed: 2 }));
-sw('blog-2.svg', rowScene([S.pepsi, S.sprite, S.dew, S.sevenup], { bg: '#F5C531', stripe: '#FFE27A', seed: 3 }));
-sw('blog-3.svg', rowScene([S.coke, S.rani, S.zero, S.redbull], { bg: '#F26FA3', stripe: '#FF9CC2', seed: 4 }));
-sw('blog-4.svg', rowScene([S.speed, S.redbull, S.dew], { bg: '#4DB6E8', stripe: '#8ED2F2', seed: 6, fill: 0.8 }));
-sw('blog-5.svg', rowScene([S.mojito, S.clemon, S.sprite], { bg: '#7FD08C', stripe: '#B3E6BA', seed: 7, fill: 0.8 }));
-sw('blog-6.svg', rowScene([S.coke, S.fanta, S.sprite, S.pepsi, S.mojo], { bg: '#B57BE0', stripe: '#D2A9F0', seed: 9 }));
-sw('about-scene.svg', rowScene([S.mirinda, S.coke, S.sprite], { bg: '#F2B90C', stripe: '#FFD84D', w: 1140, h: 960, seed: 5, fill: 0.8, overlap: 0.9, crop: 0.04 }));
-sw('strips.svg', stripsScene([S.coke, S.fanta, S.sprite, S.pepsi, S.speed]));
+const S = { coke: art('coca-cola-original-250ml-can'), sprite: art('sprite-250ml-can'), fanta: art('fanta-orange-250ml-can'), pepsi: art('pepsi-250ml-can') };
 
 // team avatars (About page)
 const avDir = path.join(imgDir, 'avatars');
