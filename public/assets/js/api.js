@@ -12,8 +12,17 @@ export async function api(path, { method = 'GET', body } = {}) {
     throw Object.assign(new Error('Network error — please check your connection and try again.'), { status: 0 });
   }
   let data = {};
-  try { data = await res.json(); } catch { /* empty body */ }
-  if (!res.ok) throw Object.assign(new Error(data.error || 'Something went wrong. Please try again.'), { status: res.status, fields: data.fields, data });
+  try {
+    data = await res.json();
+  } catch {
+    /* empty body */
+  }
+  if (!res.ok)
+    throw Object.assign(new Error(data.error || 'Something went wrong. Please try again.'), {
+      status: res.status,
+      fields: data.fields,
+      data,
+    });
   return data;
 }
 

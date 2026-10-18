@@ -1,6 +1,6 @@
 // Vector can renderer: aluminium rims, shaded cylindrical body, flat label art, outlined text.
 // Produces self-contained SVG (no external fonts), so images work inside <img> tags.
-import { textNode, textWidth, textPath, fitText, KS, mix, lighten, darken, num, svgDoc, rng, hashSeed } from './lib.mjs';
+import { textNode, textWidth, textPath, fitText, KS, lighten, darken, num, svgDoc, rng, hashSeed } from './lib.mjs';
 import { icon } from './icons.mjs';
 
 const KINDS = {
@@ -23,7 +23,10 @@ export function geometry(kind = 'std') {
 function smooth(points) {
   let d = `M${num(points[0][0])} ${num(points[0][1])}`;
   for (let i = 0; i < points.length - 1; i++) {
-    const p0 = points[i - 1] || points[i], p1 = points[i], p2 = points[i + 1], p3 = points[i + 2] || p2;
+    const p0 = points[i - 1] || points[i],
+      p1 = points[i],
+      p2 = points[i + 1],
+      p3 = points[i + 2] || p2;
     const c1 = [p1[0] + (p2[0] - p0[0]) / 6, p1[1] + (p2[1] - p0[1]) / 6];
     const c2 = [p2[0] - (p3[0] - p1[0]) / 6, p2[1] - (p3[1] - p1[1]) / 6];
     d += ` C${num(c1[0])} ${num(c1[1])} ${num(c2[0])} ${num(c2[1])} ${num(p2[0])} ${num(p2[1])}`;
@@ -32,7 +35,8 @@ function smooth(points) {
 }
 
 function ribbon(W, y, thickness, amp, phase = 0) {
-  const top = [], bot = [];
+  const top = [],
+    bot = [];
   for (let x = -W - 12; x <= W + 12; x += 14) {
     const yy = y + amp * Math.sin((x / W) * Math.PI * 1.15 + phase);
     top.push([x, yy]);
@@ -49,7 +53,8 @@ function splitWords(text, font, size, maxW) {
   const words = text.split(' ');
   let best = null;
   for (let i = 1; i < words.length; i++) {
-    const a = words.slice(0, i).join(' '), b = words.slice(i).join(' ');
+    const a = words.slice(0, i).join(' '),
+      b = words.slice(i).join(' ');
     const m = Math.max(textWidth(font, a, size), textWidth(font, b, size));
     if (!best || m < best.m) best = { lines: [a, b], m };
   }
@@ -65,7 +70,8 @@ export function canGroup(spec, id) {
   const g = geometry(spec.kind);
   const { W, H, lidR, top, shoulder, bodyBottom, base } = g;
   const s = W / 70; // type scale relative to the standard can
-  const body = spec.body, body2 = spec.body2 || darken(body, 0.2);
+  const body = spec.body,
+    body2 = spec.body2 || darken(body, 0.2);
   const ink = spec.ink || '#ffffff';
   const accent = spec.accent || lighten(body, 0.55);
   const wf = spec.font || 'Poppins-ExtraBold';
@@ -108,7 +114,8 @@ export function canGroup(spec, id) {
     const R = rng(hashSeed(spec.brand + (spec.variant || '')));
     let dots = '';
     for (let i = 0; i < 46; i++) {
-      const x = -W + R() * 2 * W, y = shoulder + R() * H;
+      const x = -W + R() * 2 * W,
+        y = shoulder + R() * H;
       const edge = Math.min(1, Math.hypot(x / W, (y - yMid) / (H / 2)));
       if (edge < 0.62) continue;
       dots += `<circle cx="${num(x)}" cy="${num(y)}" r="${num((1.6 + R() * 3) * s)}" fill="${accent}" fill-opacity="${num(0.2 + R() * 0.25)}"/>`;
@@ -119,15 +126,27 @@ export function canGroup(spec, id) {
   }
 
   // running tagline (wraps around the can, so it overflows on purpose)
-  const tag = spec.tagline || (W < 64 ? 'ICE COLD  •  REFRESHING  •  ICE COLD' : 'ICE COLD  •  REFRESHING  •  ICE COLD  •');
-  if (!spec.lite) art += textNode('Poppins-SemiBold', tag, { cx: 0, y: shoulder + 17 * s, size: 6.2 * s, letterSpacing: 1.5 * s, fill: ink, opacity: 0.78 });
+  const tag =
+    spec.tagline || (W < 64 ? 'ICE COLD  •  REFRESHING  •  ICE COLD' : 'ICE COLD  •  REFRESHING  •  ICE COLD  •');
+  if (!spec.lite)
+    art += textNode('Poppins-SemiBold', tag, {
+      cx: 0,
+      y: shoulder + 17 * s,
+      size: 6.2 * s,
+      letterSpacing: 1.5 * s,
+      fill: ink,
+      opacity: 0.78,
+    });
 
   // ---- flow layout: wordmark -> icon -> variant name -> bottom row ----
   const by = bodyBottom - 11 * s; // baseline of the bottom info row
   const wmMax = 2 * W - 16 * s;
   let wmSize = 30 * s * (spec.wordScale || 1);
   let lines = splitWords(spec.brand, wf, wmSize, wmMax);
-  if (lines.length > 1) { wmSize *= 0.84; lines = splitWords(spec.brand, wf, wmSize, wmMax); }
+  if (lines.length > 1) {
+    wmSize *= 0.84;
+    lines = splitWords(spec.brand, wf, wmSize, wmMax);
+  }
   const lineH = wmSize * 0.94;
   const capH = wmSize * 0.72;
   const tilt = spec.tilt ?? -6;
@@ -168,7 +187,13 @@ export function canGroup(spec, id) {
     if (vl.length) {
       const vy0 = (hasIcon ? iy + iconR : gapTop + 6 * s) + 4 * s + vSize * 0.78;
       vl.forEach((ln, i) => {
-        out += textNode('YoungSerif-Regular', ln, { cx: 0, y: vy0 + i * vSize * 1.05, size: vSize, maxW: 2 * W - 20 * s, fill: ink });
+        out += textNode('YoungSerif-Regular', ln, {
+          cx: 0,
+          y: vy0 + i * vSize * 1.05,
+          size: vSize,
+          maxW: 2 * W - 20 * s,
+          fill: ink,
+        });
       });
       bottom = vy0 + (vl.length - 1) * vSize * 1.05 + vSize * 0.25;
     }
@@ -191,11 +216,24 @@ export function canGroup(spec, id) {
     const bw = Math.max(textWidth('Poppins-Bold', b1, 6.6 * s), textWidth('Poppins-SemiBold', b2, 5.2 * s));
     const bx = W - 13 * s - bw / 2;
     art += textNode('Poppins-Bold', b1, { cx: bx, y: by - (b2 ? 1 : 0), size: 6.6 * s, fill: ink });
-    if (b2) art += textNode('Poppins-SemiBold', b2, { cx: bx, y: by + 6.4 * s, size: 5.2 * s, fill: ink, opacity: 0.85 });
+    if (b2)
+      art += textNode('Poppins-SemiBold', b2, { cx: bx, y: by + 6.4 * s, size: 5.2 * s, fill: ink, opacity: 0.85 });
   }
   if (spec.kind !== 'slim' && spec.center !== false && !spec.lite) {
-    art += textNode('Poppins-SemiBold', spec.center || 'Best served', { cx: 0, y: by - 1, size: 5.6 * s, fill: ink, opacity: 0.85 });
-    art += textNode('Poppins-SemiBold', spec.center2 || 'ice cold', { cx: 0, y: by + 6, size: 5.6 * s, fill: ink, opacity: 0.85 });
+    art += textNode('Poppins-SemiBold', spec.center || 'Best served', {
+      cx: 0,
+      y: by - 1,
+      size: 5.6 * s,
+      fill: ink,
+      opacity: 0.85,
+    });
+    art += textNode('Poppins-SemiBold', spec.center2 || 'ice cold', {
+      cx: 0,
+      y: by + 6,
+      size: 5.6 * s,
+      fill: ink,
+      opacity: 0.85,
+    });
   }
 
   // condensation droplets
@@ -203,7 +241,9 @@ export function canGroup(spec, id) {
   if (spec.droplets) {
     const R = rng(hashSeed('d' + spec.brand + (spec.variant || '')));
     for (let i = 0; i < spec.droplets; i++) {
-      const x = -W + 8 + R() * (2 * W - 16), y = shoulder + 10 + R() * (H - 20), r = 1.1 + R() * 3.1;
+      const x = -W + 8 + R() * (2 * W - 16),
+        y = shoulder + 10 + R() * (H - 20),
+        r = 1.1 + R() * 3.1;
       drops += `<ellipse cx="${num(x)}" cy="${num(y)}" rx="${num(r)}" ry="${num(r * 1.18)}" fill="url(#${id}-drop)"/><ellipse cx="${num(x + r * 0.3)}" cy="${num(y + r * 0.9)}" rx="${num(r * 0.8)}" ry="${num(r * 0.3)}" fill="#000" fill-opacity=".10"/>`;
     }
   }
@@ -233,8 +273,12 @@ export function canSvg(spec, { shadow = true, title } = {}) {
   const { defs, content, geom } = canGroup(spec, id);
   const pad = 14;
   const vb = [-geom.W - pad, 0, 2 * (geom.W + pad), geom.height + 14];
-  const sh = shadow ? `<ellipse cx="0" cy="${geom.base + 5}" rx="${geom.W - 8}" ry="6.5" fill="#000" fill-opacity=".16" filter="url(#${id}-soft)"/>` : '';
-  return svgDoc(vb, `<defs>${defs}</defs>${sh}${content}`, { title: title || `${spec.brand} ${spec.variant || ''}`.trim() });
+  const sh = shadow
+    ? `<ellipse cx="0" cy="${geom.base + 5}" rx="${geom.W - 8}" ry="6.5" fill="#000" fill-opacity=".16" filter="url(#${id}-soft)"/>`
+    : '';
+  return svgDoc(vb, `<defs>${defs}</defs>${sh}${content}`, {
+    title: title || `${spec.brand} ${spec.variant || ''}`.trim(),
+  });
 }
 
 /** Tilted can with condensation, used as the 2nd gallery image and hover image. */
@@ -243,7 +287,11 @@ export function canAngleSvg(spec, { title } = {}) {
   const { defs, content, geom } = canGroup(s2, 'c');
   const cy = geom.height / 2;
   const vb = [-150, -40, 300, 360];
-  return svgDoc(vb, `<defs>${defs}</defs><g transform="translate(0 ${num(10)}) rotate(18 0 ${num(cy)})">${content}</g>`, { title: title || `${spec.brand} ${spec.variant || ''}`.trim() });
+  return svgDoc(
+    vb,
+    `<defs>${defs}</defs><g transform="translate(0 ${num(10)}) rotate(18 0 ${num(cy)})">${content}</g>`,
+    { title: title || `${spec.brand} ${spec.variant || ''}`.trim() },
+  );
 }
 
 /** Rounded "pill" badge used on pack images (matches the theme's lime pill with a teal drop edge). */
@@ -253,14 +301,15 @@ function packBadge(text, x, y) {
 }
 
 /** Cardboard tray (12 / 24 packs): kraft front panel with cans behind. */
-function tray(rows, cols, label, spec, kind) {
+function tray(rows, cols, label, spec) {
   const id = 'c';
   const { defs, content, geom } = canGroup({ ...spec, lite: true }, id);
   const W2 = geom.W * 2;
   const parts = [];
   const totalW = cols * (W2 - 6);
   const startX = -totalW / 2 + (W2 - 6) / 2;
-  const kraft = '#C79B63', kraftDark = '#A57B45';
+  const kraft = '#C79B63',
+    kraftDark = '#A57B45';
   const rowsDraw = Math.min(rows, 3);
   for (let r = rowsDraw - 1; r >= 0; r--) {
     const k = 1 - r * 0.07;
@@ -270,7 +319,8 @@ function tray(rows, cols, label, spec, kind) {
     }
   }
   const panelY = geom.height * 0.58;
-  const panelW = totalW + 26, panelH = geom.height * 0.5;
+  const panelW = totalW + 26,
+    panelH = geom.height * 0.5;
   const panel = `<g><rect x="${num(-panelW / 2)}" y="${num(panelY)}" width="${num(panelW)}" height="${num(panelH)}" rx="10" fill="${kraft}"/>
     <rect x="${num(-panelW / 2)}" y="${num(panelY)}" width="${num(panelW)}" height="14" rx="7" fill="${kraftDark}" fill-opacity=".55"/>
     <path d="M${num(-panelW / 2 + 12)} ${num(panelY + 30)} H${num(panelW / 2 - 12)}" stroke="#fff" stroke-opacity=".28" stroke-width="2" stroke-dasharray="3 7"/>
@@ -278,7 +328,10 @@ function tray(rows, cols, label, spec, kind) {
     ${textNode('Poppins-SemiBold', `${(spec.brand + ' ' + (spec.variant || '')).toUpperCase().trim()}`, { cx: 0, y: panelY + 98, size: 12, maxW: panelW - 40, letterSpacing: 2, fill: '#5A3A12', opacity: 0.8 })}</g>`;
   const vbW = panelW + 40;
   const vb = [-vbW / 2, -10, vbW, panelY + panelH + 24];
-  return { svg: svgDoc(vb, `<defs>${defs}${content}</defs>${parts.join('')}${panel}`, { title: `${label} ${spec.brand}` }), vb };
+  return {
+    svg: svgDoc(vb, `<defs>${defs}${content}</defs>${parts.join('')}${panel}`, { title: `${label} ${spec.brand}` }),
+    vb,
+  };
 }
 
 /** 6-pack shrink-wrapped: two rows of three. */
@@ -291,7 +344,11 @@ export function pack6Svg(spec) {
   const H = geom.height + 54 + 20;
   // translucent wrap bands
   const wrap = `<rect x="${num(-dx * 1.5 - 4)}" y="${num(geom.shoulder + 44)}" width="${num(dx * 3 + 8)}" height="12" rx="6" fill="#fff" fill-opacity=".22" stroke="#fff" stroke-opacity=".5"/>`;
-  return svgDoc([-vbW / 2, 0, vbW, H], `<defs>${defs}${content}</defs>${back}${front}${wrap}${packBadge('6 CANS', num(dx * 1.05), H - 34)}`, { title: `6 pack ${spec.brand} ${spec.variant || ''}` });
+  return svgDoc(
+    [-vbW / 2, 0, vbW, H],
+    `<defs>${defs}${content}</defs>${back}${front}${wrap}${packBadge('6 CANS', num(dx * 1.05), H - 34)}`,
+    { title: `6 pack ${spec.brand} ${spec.variant || ''}` },
+  );
 }
 
 export function pack12Svg(spec) {
@@ -300,4 +357,3 @@ export function pack12Svg(spec) {
 export function pack24Svg(spec) {
   return tray(3, 6, '24', spec).svg;
 }
-

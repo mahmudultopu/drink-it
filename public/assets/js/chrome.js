@@ -1,6 +1,6 @@
 // Site chrome behaviour: announcement bar, sticky header, mega menus, drawers (cart / menu), search,
 // newsletter + activity popups, scroll-to-top and the mobile tab bar.
-import { $, $$, html, raw, esc, money, icon, stars, toast, lockScroll, trapFocus, debounce, initReveal } from './ui.js';
+import { $, $$, html, raw, esc, money, icon, lockScroll, trapFocus, debounce, initReveal } from './ui.js';
 import { Store } from './store.js';
 import { api } from './api.js';
 import { bindCards, syncCards } from './card.js';
@@ -14,19 +14,33 @@ function initAnnouncement() {
   if (!bar) return;
   const items = Store.site.announcements || [];
   const markup = items.map((t) => `<span class="announcement__item">${esc(t)}</span>`).join('');
-  $$('[data-announcement-track]', bar).forEach((t) => { t.innerHTML = markup + markup; });
+  $$('[data-announcement-track]', bar).forEach((t) => {
+    t.innerHTML = markup + markup;
+  });
   let hidden = false;
-  try { hidden = sessionStorage.getItem('drinkit.ann') === '1'; } catch { /* ignore */ }
+  try {
+    hidden = sessionStorage.getItem('drinkit.ann') === '1';
+  } catch {
+    /* ignore */
+  }
   if (hidden) bar.classList.add('is-hidden');
   $('[data-announcement-close]', bar)?.addEventListener('click', () => {
     bar.classList.add('is-hidden');
-    try { sessionStorage.setItem('drinkit.ann', '1'); } catch { /* ignore */ }
+    try {
+      sessionStorage.setItem('drinkit.ann', '1');
+    } catch {
+      /* ignore */
+    }
     measureHeader();
   });
 }
 
 // ---------------------------------------------------------------- sticky header
-let header, spacer, baseBottom = 0, baseSpace = 0, stuck = false;
+let header,
+  spacer,
+  baseBottom = 0,
+  baseSpace = 0,
+  stuck = false;
 function measureHeader() {
   if (!header || stuck) return;
   const r = header.getBoundingClientRect();
@@ -38,7 +52,13 @@ function initStickyHeader() {
   spacer = $('[data-header-spacer]');
   if (!header) return;
   measureHeader();
-  window.addEventListener('resize', debounce(() => { measureHeader(); window.dispatchEvent(new Event('scroll')); }, 150));
+  window.addEventListener(
+    'resize',
+    debounce(() => {
+      measureHeader();
+      window.dispatchEvent(new Event('scroll'));
+    }, 150),
+  );
   window.addEventListener('load', measureHeader);
   let ticking = false;
   const update = () => {
@@ -48,7 +68,10 @@ function initStickyHeader() {
     if (want === stuck) return;
     if (want) {
       const inFlow = getComputedStyle(header).position !== 'absolute' && isDesktop();
-      if (inFlow && spacer) { spacer.style.height = baseSpace + 'px'; spacer.classList.add('is-on'); }
+      if (inFlow && spacer) {
+        spacer.style.height = baseSpace + 'px';
+        spacer.classList.add('is-on');
+      }
       header.classList.add('is-stuck');
       stuck = true;
     } else {
@@ -58,7 +81,16 @@ function initStickyHeader() {
       requestAnimationFrame(measureHeader);
     }
   };
-  window.addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+  window.addEventListener(
+    'scroll',
+    () => {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(update);
+      }
+    },
+    { passive: true },
+  );
   update();
 
   // keyboard / touch support for mega menus
@@ -67,30 +99,53 @@ function initStickyHeader() {
     if (!link) return;
     link.addEventListener('click', (e) => {
       if (window.matchMedia('(hover: none)').matches && isDesktop()) {
-        if (!li.classList.contains('is-open')) { e.preventDefault(); $$('.menu > li.is-open').forEach((o) => o.classList.remove('is-open')); li.classList.add('is-open'); }
+        if (!li.classList.contains('is-open')) {
+          e.preventDefault();
+          $$('.menu > li.is-open').forEach((o) => o.classList.remove('is-open'));
+          li.classList.add('is-open');
+        }
       }
     });
   });
-  document.addEventListener('click', (e) => { if (!e.target.closest('.menu')) $$('.menu > li.is-open').forEach((o) => o.classList.remove('is-open')); });
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.menu')) $$('.menu > li.is-open').forEach((o) => o.classList.remove('is-open'));
+  });
 }
 
 // ---------------------------------------------------------------- mega menu content
 function fillMenus() {
   const cols = Store.collections;
-  $$('[data-menu-collections]').forEach((ul) => { ul.innerHTML = String(html`${cols.map((c) => raw(`<li><a href="/collections/${c.handle}">${esc(c.title)}</a></li>`))}<li><a href="/collections/all">All cans</a></li>`); });
+  $$('[data-menu-collections]').forEach((ul) => {
+    ul.innerHTML = String(
+      html`${cols.map((c) => raw(`<li><a href="/collections/${c.handle}">${esc(c.title)}</a></li>`))}<li><a href="/collections/all">All cans</a></li>`,
+    );
+  });
   const brands = Store.brands().slice(0, 9);
-  $$('[data-menu-brands]').forEach((ul) => { ul.innerHTML = brands.map((b) => `<li><a href="/collections/all?brand=${esc(b.handle)}">${esc(b.name)}</a></li>`).join(''); });
+  $$('[data-menu-brands]').forEach((ul) => {
+    ul.innerHTML = brands
+      .map((b) => `<li><a href="/collections/all?brand=${esc(b.handle)}">${esc(b.name)}</a></li>`)
+      .join('');
+  });
   const best = [...Store.products].sort((a, b) => b.sold - a.sold);
   const lists = {
     best: best.slice(0, 5),
     new: [...Store.products].filter((p) => p.badges.includes('new')).slice(0, 5),
-    energy: Store.products.filter((p) => p.collections.includes('energy-rush') || p.collections.includes('zero-sugar')).slice(0, 5),
+    energy: Store.products
+      .filter((p) => p.collections.includes('energy-rush') || p.collections.includes('zero-sugar'))
+      .slice(0, 5),
   };
-  $$('[data-menu-list]').forEach((ul) => { ul.innerHTML = (lists[ul.dataset.menuList] || []).map((p) => `<li><a href="/products/${esc(p.handle)}">${esc(p.title)}</a></li>`).join(''); });
+  $$('[data-menu-list]').forEach((ul) => {
+    ul.innerHTML = (lists[ul.dataset.menuList] || [])
+      .map((p) => `<li><a href="/products/${esc(p.handle)}">${esc(p.title)}</a></li>`)
+      .join('');
+  });
   const feats = [best[0], best[1], lists.new[0] || best[2], best.find((p) => p.origin === 'Imported') || best[3]];
   $$('[data-menu-feature]').forEach((el) => {
     const p = feats[Number(el.dataset.menuFeature)];
-    if (!p) { el.remove(); return; }
+    if (!p) {
+      el.remove();
+      return;
+    }
     el.outerHTML = `<a class="menu-feature" href="/products/${esc(p.handle)}"><div class="menu-feature__media" style="--tile:${esc(p.tile)}"><img src="${esc(p.images.card)}" alt="${esc(p.title)}" loading="lazy"></div><h4>${esc(p.title)}</h4><span class="price">${money(p.price)}${p.compareAt > p.price ? `<s>${money(p.compareAt)}</s>` : ''}</span></a>`;
   });
 }
@@ -111,23 +166,35 @@ function makeDrawer(id, { side = 'right', label, cls = '', content }) {
   document.body.append(overlay, el);
   let lastFocus = null;
   const api_ = {
-    el, overlay,
+    el,
+    overlay,
     open() {
       Object.values(drawers).forEach((d) => d !== api_ && d.close());
       lastFocus = document.activeElement;
-      overlay.classList.add('is-open'); el.classList.add('is-open'); lockScroll(true);
+      overlay.classList.add('is-open');
+      el.classList.add('is-open');
+      lockScroll(true);
       el.querySelector('input, button, a')?.focus({ preventScroll: true });
     },
     close() {
       if (!el.classList.contains('is-open')) return;
-      overlay.classList.remove('is-open'); el.classList.remove('is-open'); lockScroll(false);
+      overlay.classList.remove('is-open');
+      el.classList.remove('is-open');
+      lockScroll(false);
       lastFocus?.focus?.({ preventScroll: true });
     },
-    get isOpen() { return el.classList.contains('is-open'); },
+    get isOpen() {
+      return el.classList.contains('is-open');
+    },
   };
   overlay.addEventListener('click', () => api_.close());
-  el.addEventListener('keydown', (e) => { if (e.key === 'Escape') api_.close(); else trapFocus(el, e); });
-  el.addEventListener('click', (e) => { if (e.target.closest('[data-close]')) api_.close(); });
+  el.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') api_.close();
+    else trapFocus(el, e);
+  });
+  el.addEventListener('click', (e) => {
+    if (e.target.closest('[data-close]')) api_.close();
+  });
   drawers[id] = api_;
   return api_;
 }
@@ -166,7 +233,9 @@ function renderCart() {
   const body = $('[data-cart-body]', d.el);
   const foot = $('[data-cart-foot]', d.el);
   if (!lines.length) {
-    body.innerHTML = String(html`<div class="cart-empty"><img src="${Store.products[0]?.images.card}" alt="" width="120"><h3>Your cart is empty</h3><p>Grab a few ice-cold cans and they’ll show up here.</p><a class="btn" href="/collections/all" data-close>Start shopping</a></div>`);
+    body.innerHTML = String(
+      html`<div class="cart-empty"><img src="${Store.products[0]?.images.card}" alt="" width="120"><h3>Your cart is empty</h3><p>Grab a few ice-cold cans and they’ll show up here.</p><a class="btn" href="/collections/all" data-close>Start shopping</a></div>`,
+    );
     foot.hidden = true;
     return;
   }
@@ -195,19 +264,28 @@ function initCartDrawer() {
     const { handle, pack } = li.dataset;
     const cur = Store.cartItems().find((i) => i.handle === handle && i.pack === pack);
     if (e.target.closest('[data-inc]')) Store.setQty(handle, pack, (cur?.qty || 1) + 1);
-    else if (e.target.closest('[data-dec]')) { if ((cur?.qty || 1) > 1) Store.setQty(handle, pack, cur.qty - 1); else Store.removeFromCart(handle, pack); }
-    else if (e.target.closest('[data-remove]')) Store.removeFromCart(handle, pack);
+    else if (e.target.closest('[data-dec]')) {
+      if ((cur?.qty || 1) > 1) Store.setQty(handle, pack, cur.qty - 1);
+      else Store.removeFromCart(handle, pack);
+    } else if (e.target.closest('[data-remove]')) Store.removeFromCart(handle, pack);
   });
   d.el.addEventListener('change', (e) => {
     const input = e.target.closest('[data-qty]');
     if (!input) return;
     const li = input.closest('.cline');
     const n = parseInt(input.value, 10);
-    if (n >= 1) Store.setQty(li.dataset.handle, li.dataset.pack, n); else renderCart();
+    if (n >= 1) Store.setQty(li.dataset.handle, li.dataset.pack, n);
+    else renderCart();
   });
   renderCart();
-  Store.on('cart', () => { renderCart(); updateCounts(); });
-  Store.on('cart:added', () => { renderCart(); d.open(); });
+  Store.on('cart', () => {
+    renderCart();
+    updateCounts();
+  });
+  Store.on('cart:added', () => {
+    renderCart();
+    d.open();
+  });
   return d;
 }
 
@@ -253,48 +331,94 @@ function initSearch() {
   document.body.append(modal);
   const input = $('[data-search-input]', modal);
   const results = $('[data-search-results]', modal);
-  let last = null;
 
-  const miniHtml = (p) => html`<a class="sres" href="/products/${p.handle}"><span class="sres__img" style="--tile:${p.tile}"><img src="${p.images.thumb}" alt="" loading="lazy" width="60" height="60"></span><span class="sres__body"><b>${p.title}</b><small>${p.brand} · ${p.canMl} ml</small></span><span class="price">${money(p.price)}</span></a>`;
+  const miniHtml = (p) =>
+    html`<a class="sres" href="/products/${p.handle}"><span class="sres__img" style="--tile:${p.tile}"><img src="${p.images.thumb}" alt="" loading="lazy" width="60" height="60"></span><span class="sres__body"><b>${p.title}</b><small>${p.brand} · ${p.canMl} ml</small></span><span class="price">${money(p.price)}</span></a>`;
 
   const render = () => {
     const q = input.value.trim().toLowerCase();
     if (!q) {
-      const rec = Store.recent().map((h) => Store.get(h)).filter(Boolean).slice(0, 5);
-      results.innerHTML = String(html`<div class="sres__chips"><span>Popular:</span>${['Coca-Cola', 'Pepsi', 'Sprite', 'Mojo', 'Energy', 'Zero sugar', 'Imported'].map((t) => raw(`<a class="pill pill--btn" href="/search?q=${encodeURIComponent(t)}">${esc(t)}</a>`))}</div>
+      const rec = Store.recent()
+        .map((h) => Store.get(h))
+        .filter(Boolean)
+        .slice(0, 5);
+      results.innerHTML =
+        String(html`<div class="sres__chips"><span>Popular:</span>${['Coca-Cola', 'Pepsi', 'Sprite', 'Mojo', 'Energy', 'Zero sugar', 'Imported'].map((t) => raw(`<a class="pill pill--btn" href="/search?q=${encodeURIComponent(t)}">${esc(t)}</a>`))}</div>
         ${rec.length ? html`<div class="sres__head"><h3>Recently viewed</h3><button type="button" class="link-btn" data-clear-recent>Clear</button></div><div class="sres__list">${rec.map(miniHtml)}</div>` : ''}`);
       return;
     }
     const terms = q.split(/\s+/);
-    const hits = Store.products.filter((p) => {
-      const hay = `${p.title} ${p.brand} ${p.variant} ${p.type} ${p.origin} ${p.sugar === 'Zero' ? 'zero sugar sugarfree' : ''} ${p.collections.join(' ')} ${p.canMl}ml`.toLowerCase();
-      return terms.every((t) => hay.includes(t));
-    }).slice(0, 6);
+    const hits = Store.products
+      .filter((p) => {
+        const hay =
+          `${p.title} ${p.brand} ${p.variant} ${p.type} ${p.origin} ${p.sugar === 'Zero' ? 'zero sugar sugarfree' : ''} ${p.collections.join(' ')} ${p.canMl}ml`.toLowerCase();
+        return terms.every((t) => hay.includes(t));
+      })
+      .slice(0, 6);
     results.innerHTML = hits.length
-      ? String(html`<div class="sres__list">${hits.map(miniHtml)}</div><a class="btn btn--block sres__all" href="/search?q=${encodeURIComponent(input.value.trim())}">See all results</a>`)
-      : String(html`<p class="sres__none">No cans match “${input.value.trim()}”. Try a brand like “Coca-Cola” or a flavour like “orange”.</p>`);
+      ? String(
+          html`<div class="sres__list">${hits.map(miniHtml)}</div><a class="btn btn--block sres__all" href="/search?q=${encodeURIComponent(input.value.trim())}">See all results</a>`,
+        )
+      : String(
+          html`<p class="sres__none">No cans match “${input.value.trim()}”. Try a brand like “Coca-Cola” or a flavour like “orange”.</p>`,
+        );
   };
   input.addEventListener('input', debounce(render, 120));
-  results.addEventListener('click', (e) => { if (e.target.closest('[data-clear-recent]')) { Store.clearRecent(); render(); } });
+  results.addEventListener('click', (e) => {
+    if (e.target.closest('[data-clear-recent]')) {
+      Store.clearRecent();
+      render();
+    }
+  });
   const api_ = {
-    open() { drawers['cart-drawer']?.close(); drawers['menu-drawer']?.close(); modal.classList.add('is-open'); lockScroll(true); render(); setTimeout(() => input.focus(), 50); },
-    close() { modal.classList.remove('is-open'); lockScroll(false); },
+    open() {
+      drawers['cart-drawer']?.close();
+      drawers['menu-drawer']?.close();
+      modal.classList.add('is-open');
+      lockScroll(true);
+      render();
+      setTimeout(() => input.focus(), 50);
+    },
+    close() {
+      modal.classList.remove('is-open');
+      lockScroll(false);
+    },
   };
-  modal.addEventListener('click', (e) => { if (e.target.closest('[data-close]')) api_.close(); });
-  modal.addEventListener('keydown', (e) => { if (e.key === 'Escape') api_.close(); else trapFocus(modal, e); });
+  modal.addEventListener('click', (e) => {
+    if (e.target.closest('[data-close]')) api_.close();
+  });
+  modal.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') api_.close();
+    else trapFocus(modal, e);
+  });
   return api_;
 }
 
 // ---------------------------------------------------------------- counts + tab bar
 function updateCounts() {
   const cart = Store.cartCount();
-  $$('[data-cart-count]').forEach((el) => { el.textContent = cart ? String(cart) : ''; });
+  $$('[data-cart-count]').forEach((el) => {
+    el.textContent = cart ? String(cart) : '';
+  });
   const w = Store.wishlist().length;
-  $$('[data-wishlist-count]').forEach((el) => { el.textContent = w ? String(w) : ''; });
+  $$('[data-wishlist-count]').forEach((el) => {
+    el.textContent = w ? String(w) : '';
+  });
 }
 function initTabbar() {
   const p = location.pathname;
-  const key = p === '/' || p === '/home-2' ? 'home' : p.startsWith('/collections') || p.startsWith('/products') ? 'collections' : p.startsWith('/account') ? 'account' : p.startsWith('/wishlist') ? 'wishlist' : p.startsWith('/cart') ? 'cart' : '';
+  const key =
+    p === '/' || p === '/home-2'
+      ? 'home'
+      : p.startsWith('/collections') || p.startsWith('/products')
+        ? 'collections'
+        : p.startsWith('/account')
+          ? 'account'
+          : p.startsWith('/wishlist')
+            ? 'wishlist'
+            : p.startsWith('/cart')
+              ? 'cart'
+              : '';
   $(`[data-tab="${key}"]`)?.classList.add('is-current');
 }
 
@@ -306,7 +430,11 @@ async function subscribe(form, msgEl) {
     const r = await api('/newsletter', { method: 'POST', body: { email } });
     msgEl.textContent = r.message;
     form.reset();
-    try { localStorage.setItem('drinkit.nl', 'done'); } catch { /* ignore */ }
+    try {
+      localStorage.setItem('drinkit.nl', 'done');
+    } catch {
+      /* ignore */
+    }
     return r;
   } catch (err) {
     msgEl.textContent = err.fields?.email || err.message;
@@ -315,13 +443,20 @@ async function subscribe(form, msgEl) {
 }
 function initNewsletter() {
   $$('[data-newsletter]').forEach((form) => {
-    form.addEventListener('submit', (e) => { e.preventDefault(); subscribe(form, $('[data-newsletter-msg]') || form.nextElementSibling); });
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      subscribe(form, $('[data-newsletter-msg]') || form.nextElementSibling);
+    });
   });
 }
 
 function initPopup() {
   let seen = false;
-  try { seen = localStorage.getItem('drinkit.nl') === 'done' || sessionStorage.getItem('drinkit.popup') === '1'; } catch { /* ignore */ }
+  try {
+    seen = localStorage.getItem('drinkit.nl') === 'done' || sessionStorage.getItem('drinkit.popup') === '1';
+  } catch {
+    /* ignore */
+  }
   if (seen || /^\/(checkout|admin|cart|orders)/.test(location.pathname)) return;
   setTimeout(() => {
     if ($('.modal.is-open') || $('.drawer.is-open')) return;
@@ -347,10 +482,23 @@ function initPopup() {
     document.body.append(modal);
     requestAnimationFrame(() => modal.classList.add('is-open'));
     lockScroll(true);
-    try { sessionStorage.setItem('drinkit.popup', '1'); } catch { /* ignore */ }
-    const close = () => { modal.classList.remove('is-open'); lockScroll(false); setTimeout(() => modal.remove(), 350); };
-    modal.addEventListener('click', (e) => { if (e.target.closest('[data-close]')) close(); });
-    modal.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); else trapFocus(modal, e); });
+    try {
+      sessionStorage.setItem('drinkit.popup', '1');
+    } catch {
+      /* ignore */
+    }
+    const close = () => {
+      modal.classList.remove('is-open');
+      lockScroll(false);
+      setTimeout(() => modal.remove(), 350);
+    };
+    modal.addEventListener('click', (e) => {
+      if (e.target.closest('[data-close]')) close();
+    });
+    modal.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') close();
+      else trapFocus(modal, e);
+    });
     $('input', modal).focus();
     $('[data-popup-form]', modal).addEventListener('submit', async (e) => {
       e.preventDefault();
@@ -372,11 +520,18 @@ async function initActivity() {
       const el = document.createElement('a');
       el.className = 'activity';
       el.href = `/products/${a.handle}`;
-      el.innerHTML = String(html`<span class="activity__img" style="--tile:${a.tile}"><img src="${a.image}" alt="" width="64" height="64"></span><span><small>Recently ordered</small><b>${a.title}</b><em>In ${a.place} · ${a.minutesAgo < 60 ? `${a.minutesAgo} min ago` : `${Math.round(a.minutesAgo / 60)} hr ago`}</em></span><button type="button" aria-label="Dismiss">${icon('close')}</button>`);
-      el.querySelector('button').addEventListener('click', (e) => { e.preventDefault(); el.remove(); });
+      el.innerHTML = String(
+        html`<span class="activity__img" style="--tile:${a.tile}"><img src="${a.image}" alt="" width="64" height="64"></span><span><small>Recently ordered</small><b>${a.title}</b><em>In ${a.place} · ${a.minutesAgo < 60 ? `${a.minutesAgo} min ago` : `${Math.round(a.minutesAgo / 60)} hr ago`}</em></span><button type="button" aria-label="Dismiss">${icon('close')}</button>`,
+      );
+      el.querySelector('button').addEventListener('click', (e) => {
+        e.preventDefault();
+        el.remove();
+      });
       document.body.append(el);
       setTimeout(() => el.remove(), 7000);
-    } catch { /* optional */ }
+    } catch {
+      /* optional */
+    }
   }, 22000);
 }
 
@@ -408,7 +563,15 @@ export function initChrome() {
     else if (what === 'search') search.open();
   });
   document.addEventListener('keydown', (e) => {
-    if (e.key === '/' && !/input|textarea|select/i.test(document.activeElement?.tagName || '') && !e.ctrlKey && !e.metaKey) { e.preventDefault(); search.open(); }
+    if (
+      e.key === '/' &&
+      !/input|textarea|select/i.test(document.activeElement?.tagName || '') &&
+      !e.ctrlKey &&
+      !e.metaKey
+    ) {
+      e.preventDefault();
+      search.open();
+    }
   });
   updateCounts();
   Store.on('wish', updateCounts);

@@ -32,7 +32,11 @@ export function textPath(fontName, text, size, { letterSpacing = 0 } = {}) {
   const scale = big / f.unitsPerEm;
   if (!letterSpacing) {
     const p = f.getPath(text, 0, 0, big, { kerning: true });
-    return { d: p.toPathData(0), width: f.getAdvanceWidth(text, big, { kerning: true }) / K, ascent: (f.ascender * scale) / K };
+    return {
+      d: p.toPathData(0),
+      width: f.getAdvanceWidth(text, big, { kerning: true }) / K,
+      ascent: (f.ascender * scale) / K,
+    };
   }
   let x = 0;
   const glyphs = f.stringToGlyphs(text);
@@ -58,7 +62,11 @@ export function fitText(fontName, text, { size = 12, maxW = Infinity, letterSpac
 }
 
 /** Outlined text, horizontally centred on x=cx with baseline y. Auto-shrinks to fit maxW. */
-export function textNode(fontName, text, { cx = 0, y = 0, size = 12, maxW = Infinity, fill = '#000', letterSpacing = 0, opacity = 1, extra = '' } = {}) {
+export function textNode(
+  fontName,
+  text,
+  { cx = 0, y = 0, size = 12, maxW = Infinity, fill = '#000', letterSpacing = 0, opacity = 1, extra = '' } = {},
+) {
   const t = fitText(fontName, text, { size, maxW, letterSpacing });
   const x = r1(cx - t.width / 2);
   return `<path d="${t.d}" transform="translate(${x} ${r1(y)}) scale(${KS})" fill="${fill}"${opacity !== 1 ? ` fill-opacity="${opacity}"` : ''} ${extra}/>`;
@@ -71,15 +79,29 @@ export function textWidth(fontName, text, size, letterSpacing = 0) {
 // ---------- colour helpers ----------
 export function hex2rgb(h) {
   h = h.replace('#', '');
-  if (h.length === 3) h = h.split('').map((c) => c + c).join('');
+  if (h.length === 3)
+    h = h
+      .split('')
+      .map((c) => c + c)
+      .join('');
   const n = parseInt(h, 16);
   return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
 }
 export function rgb2hex([r, g, b]) {
-  return '#' + [r, g, b].map((v) => Math.max(0, Math.min(255, Math.round(v))).toString(16).padStart(2, '0')).join('');
+  return (
+    '#' +
+    [r, g, b]
+      .map((v) =>
+        Math.max(0, Math.min(255, Math.round(v)))
+          .toString(16)
+          .padStart(2, '0'),
+      )
+      .join('')
+  );
 }
 export function mix(a, b, t) {
-  const A = hex2rgb(a), B = hex2rgb(b);
+  const A = hex2rgb(a),
+    B = hex2rgb(b);
   return rgb2hex(A.map((v, i) => v + (B[i] - v) * t));
 }
 export const lighten = (c, t) => mix(c, '#ffffff', t);
@@ -100,7 +122,8 @@ export const num = r1;
 export function rng(seed) {
   let a = seed >>> 0;
   return () => {
-    a |= 0; a = (a + 0x6d2b79f5) | 0;
+    a |= 0;
+    a = (a + 0x6d2b79f5) | 0;
     let t = Math.imul(a ^ (a >>> 15), 1 | a);
     t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
     return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
@@ -108,7 +131,10 @@ export function rng(seed) {
 }
 export function hashSeed(str) {
   let h = 2166136261;
-  for (let i = 0; i < str.length; i++) { h ^= str.charCodeAt(i); h = Math.imul(h, 16777619); }
+  for (let i = 0; i < str.length; i++) {
+    h ^= str.charCodeAt(i);
+    h = Math.imul(h, 16777619);
+  }
   return h >>> 0;
 }
 

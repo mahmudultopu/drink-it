@@ -1,1 +1,3 @@
-export function init() { /* static page */ }
+export function init() {
+  /* static page */
+}

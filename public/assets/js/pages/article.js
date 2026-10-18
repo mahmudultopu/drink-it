@@ -8,7 +8,13 @@ export async function init() {
   const handle = decodeURIComponent(location.pathname.split('/')[3] || '');
   const root = $('[data-article-root]');
   let data;
-  try { data = await api('/posts/' + handle); } catch { root.innerHTML = '<div class="empty"><h3>We couldn’t find that article</h3><a class="btn" href="/blogs/news">Back to the blog</a></div>'; return; }
+  try {
+    data = await api('/posts/' + handle);
+  } catch {
+    root.innerHTML =
+      '<div class="empty"><h3>We couldn’t find that article</h3><a class="btn" href="/blogs/news">Back to the blog</a></div>';
+    return;
+  }
   const { post: p, related } = data;
   document.title = `${p.title} – Drink it`;
   const url = encodeURIComponent(location.href);
@@ -32,11 +38,24 @@ export async function init() {
     </article>
     <aside class="sidebar">
       <div class="sidebox"><h3>Subscribe For More</h3><form action="/blogs/news" method="get" role="search"><label class="sr-only" for="bq">Search articles</label><input class="input" id="bq" name="q" type="search" placeholder="Search blog articles…"></form></div>
-      <div class="sidebox"><h3>Recent Posts</h3><ul class="recent">${Store.posts.filter((x) => x.handle !== p.handle).slice(0, 4).map((x) => html`<li><a href="/blogs/news/${x.handle}"><img src="${x.image}" alt="" loading="lazy"><b>${x.title}</b></a></li>`)}</ul></div>
+      <div class="sidebox"><h3>Recent Posts</h3><ul class="recent">${Store.posts
+        .filter((x) => x.handle !== p.handle)
+        .slice(0, 4)
+        .map(
+          (x) =>
+            html`<li><a href="/blogs/news/${x.handle}"><img src="${x.image}" alt="" loading="lazy"><b>${x.title}</b></a></li>`,
+        )}</ul></div>
       <div class="sidebox"><h3>Tags</h3><div class="taglist">${tags.map((t) => raw(`<a class="pill pill--btn" href="/blogs/news?tag=${encodeURIComponent(t)}">${esc(t)}</a>`))}</div></div>
     </aside>
   </div>
   <section class="sec" style="padding-top:100px"><div class="sec-head"><p class="eyebrow">Keep Exploring</p><h2>More Juicy Reads You’ll Love</h2></div><div class="bloglist">${related.map((x) => blogCard(x))}</div></section>`);
-  $('[data-copy]', root).addEventListener('click', async () => { try { await navigator.clipboard.writeText(location.href); toast('Link copied to clipboard.'); } catch { toast('Copy the link from your address bar.', { type: 'error' }); } });
+  $('[data-copy]', root).addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(location.href);
+      toast('Link copied to clipboard.');
+    } catch {
+      toast('Copy the link from your address bar.', { type: 'error' });
+    }
+  });
   initReveal();
 }

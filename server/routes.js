@@ -1,9 +1,20 @@
 // JSON API. Every handler receives ctx = { req, res, url, params, ip, user, admin, body }.
 import crypto from 'node:crypto';
-import { site, products, collections as collectionsDb, posts, faq, pages, coupons, orders, users, reviews, subscribers, messages } from './db.js';
-import { HttpError, json, readJson, parseCookies, setCookie, clean, normalizePhone, isEmail, rateLimit, randomId } from './util.js';
+import { site, products, posts, faq, pages, orders, users, reviews, subscribers, messages } from './db.js';
+import {
+  HttpError,
+  json,
+  readJson,
+  parseCookies,
+  setCookie,
+  clean,
+  normalizePhone,
+  isEmail,
+  rateLimit,
+  randomId,
+} from './util.js';
 import { sign, verify, hashPassword, verifyPassword, verifyAdminPassword } from './auth.js';
-import { allCards, toCard, toDetail, findProduct, collectionList, invalidateStats, ratingFor } from './catalog.js';
+import { allCards, toDetail, findProduct, collectionList, invalidateStats, ratingFor } from './catalog.js';
 import { quote, placeOrder, publicOrder, findOrderForCustomer, setStatus, STATUSES, STATUS_LABEL } from './orders.js';
 
 const SESSION_COOKIE = 'di_session';
@@ -13,11 +24,19 @@ const THIRTY_DAYS = 30 * 24 * 3600;
 const routes = [];
 const route = (method, pattern, handler, opts = {}) => {
   const keys = [];
-  const re = new RegExp('^' + pattern.replace(/:([a-zA-Z]+)/g, (_, k) => { keys.push(k); return '([^/]+)'; }) + '/?$');
+  const re = new RegExp(
+    '^' +
+      pattern.replace(/:([a-zA-Z]+)/g, (_, k) => {
+        keys.push(k);
+        return '([^/]+)';
+      }) +
+      '/?$',
+  );
   routes.push({ method, re, keys, handler, ...opts });
 };
 
-const publicUser = (u) => u && { id: u.id, name: u.name, phone: u.phone, email: u.email, addresses: u.addresses || [], createdAt: u.createdAt };
+const publicUser = (u) =>
+  u && { id: u.id, name: u.name, phone: u.phone, email: u.email, addresses: u.addresses || [], createdAt: u.createdAt };
 const currentUser = (req) => {
   const t = verify(parseCookies(req)[SESSION_COOKIE]);
   return t?.uid ? users.find((u) => u.id === t.uid) || null : null;
@@ -29,15 +48,21 @@ const bdDay = (iso) => new Date(new Date(iso).getTime() + 6 * 3600_000).toISOStr
 function limit(ctx, key, max, windowMs, msg = 'Too many requests. Please try again in a little while.') {
   if (!rateLimit(`${key}:${ctx.ip}`, max, windowMs)) throw new HttpError(429, msg);
 }
-const needUser = (ctx) => { if (!ctx.user) throw new HttpError(401, 'Please log in first.'); };
-const needAdmin = (ctx) => { if (!ctx.admin) throw new HttpError(401, 'Admin login required.'); };
+const needUser = (ctx) => {
+  if (!ctx.user) throw new HttpError(401, 'Please log in first.');
+};
+const needAdmin = (ctx) => {
+  if (!ctx.admin) throw new HttpError(401, 'Admin login required.');
+};
 
 // When the data folder is throw-away storage (see server/vercel-env.js) say so on every page, so nobody
 // mistakes a preview deployment for a shop that really takes orders.
 const PREVIEW_NOTICE = 'Preview site — orders placed here are not saved or delivered.';
 const publicSite = () => {
   const s = site.get();
-  return process.env.DRINKIT_EPHEMERAL === '1' ? { ...s, announcements: [PREVIEW_NOTICE, ...(s.announcements || [])] } : s;
+  return process.env.DRINKIT_EPHEMERAL === '1'
+    ? { ...s, announcements: [PREVIEW_NOTICE, ...(s.announcements || [])] }
+    : s;
 };
 
 // ---------------------------------------------------------------- public catalogue
@@ -60,10 +85,20 @@ route('GET', '/api/products/:handle', (ctx) => {
 
 route('GET', '/api/reviews', (ctx) => {
   const handle = clean(ctx.url.searchParams.get('product'), 120);
-  const list = reviews.filter((r) => r.approved && (!handle || r.product === handle))
+  const list = reviews
+    .filter((r) => r.approved && (!handle || r.product === handle))
     .sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1))
     .slice(0, 60)
-    .map(({ id, product, name, rating, title, body, createdAt, verified }) => ({ id, product, name, rating, title, body, createdAt, verified }));
+    .map(({ id, product, name, rating, title, body, createdAt, verified }) => ({
+      id,
+      product,
+      name,
+      rating,
+      title,
+      body,
+      createdAt,
+      verified,
+    }));
   json(ctx.res, 200, { reviews: list, stats: handle ? ratingFor(handle) : undefined });
 });
 
@@ -80,14 +115,31 @@ route('POST', '/api/reviews', async (ctx) => {
   if (name.length < 2) errors.name = 'Please enter your name.';
   if (body.length < 5) errors.body = 'Please write a short review.';
   if (Object.keys(errors).length) throw new HttpError(422, 'Please fix the highlighted fields.', { fields: errors });
-  reviews.add({ id: randomId(6), product: handle, name, rating, title: clean(b.title, 80), body, createdAt: new Date().toISOString(), approved: false, verified: false });
+  reviews.add({
+    id: randomId(6),
+    product: handle,
+    name,
+    rating,
+    title: clean(b.title, 80),
+    body,
+    createdAt: new Date().toISOString(),
+    approved: false,
+    verified: false,
+  });
   json(ctx.res, 201, { ok: true, message: 'Thank you! Your review will appear once it has been approved.' });
 });
 
 route('GET', '/api/posts/:handle', (ctx) => {
   const p = posts.get().find((x) => x.handle === ctx.params.handle);
   if (!p) throw new HttpError(404, 'Article not found');
-  json(ctx.res, 200, { post: p, related: posts.get().filter((x) => x.handle !== p.handle).slice(0, 3).map(({ body, ...r }) => r) });
+  json(ctx.res, 200, {
+    post: p,
+    related: posts
+      .get()
+      .filter((x) => x.handle !== p.handle)
+      .slice(0, 3)
+      .map(({ body, ...r }) => r),
+  });
 });
 route('GET', '/api/faq', (ctx) => json(ctx.res, 200, { faq: faq.get() }));
 route('GET', '/api/pages/:handle', (ctx) => {
@@ -113,7 +165,13 @@ route('POST', '/api/quote', (ctx) => {
 });
 
 route('POST', '/api/orders', (ctx) => {
-  limit(ctx, 'order', 20, 3_600_000, 'You have placed several orders recently. Please wait a little before ordering again.');
+  limit(
+    ctx,
+    'order',
+    20,
+    3_600_000,
+    'You have placed several orders recently. Please wait a little before ordering again.',
+  );
   const order = placeOrder(ctx.body, ctx.user);
   json(ctx.res, 201, { order: publicOrder(order) });
 });
@@ -126,11 +184,20 @@ route('GET', '/api/orders/lookup', (ctx) => {
 
 route('GET', '/api/activity', (ctx) => {
   const since = Date.now() - 48 * 3600_000;
-  const recent = orders.filter((o) => o.status !== 'cancelled' && new Date(o.createdAt).getTime() > since)
-    .sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1)).slice(0, 8)
+  const recent = orders
+    .filter((o) => o.status !== 'cancelled' && new Date(o.createdAt).getTime() > since)
+    .sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1))
+    .slice(0, 8)
     .map((o) => {
       const l = o.items[0];
-      return { title: l.title, image: l.image, tile: l.tile, place: o.shipping.district, minutesAgo: Math.max(1, Math.round((Date.now() - new Date(o.createdAt).getTime()) / 60000)), handle: l.handle };
+      return {
+        title: l.title,
+        image: l.image,
+        tile: l.tile,
+        place: o.shipping.district,
+        minutesAgo: Math.max(1, Math.round((Date.now() - new Date(o.createdAt).getTime()) / 60000)),
+        handle: l.handle,
+      };
     });
   json(ctx.res, 200, { activity: recent });
 });
@@ -138,9 +205,14 @@ route('GET', '/api/activity', (ctx) => {
 route('POST', '/api/newsletter', (ctx) => {
   limit(ctx, 'news', 10, 3_600_000);
   const email = clean(ctx.body.email, 120).toLowerCase();
-  if (!isEmail(email)) throw new HttpError(422, 'Please enter a valid email address.', { fields: { email: 'Invalid email' } });
+  if (!isEmail(email))
+    throw new HttpError(422, 'Please enter a valid email address.', { fields: { email: 'Invalid email' } });
   if (!subscribers.find((s) => s.email === email)) subscribers.add({ email, createdAt: new Date().toISOString() });
-  json(ctx.res, 201, { ok: true, coupon: 'WELCOME50', message: 'You are in! Use code WELCOME50 for ৳50 off your first order over ৳400.' });
+  json(ctx.res, 201, {
+    ok: true,
+    coupon: 'WELCOME50',
+    message: 'You are in! Use code WELCOME50 for ৳50 off your first order over ৳400.',
+  });
 });
 
 route('POST', '/api/contact', (ctx) => {
@@ -154,7 +226,15 @@ route('POST', '/api/contact', (ctx) => {
   if (!isEmail(email)) errors.email = 'Please enter a valid email.';
   if (message.length < 5) errors.message = 'Please write a message.';
   if (Object.keys(errors).length) throw new HttpError(422, 'Please fix the highlighted fields.', { fields: errors });
-  messages.add({ id: randomId(6), name, email, phone: clean(b.phone, 20), message, createdAt: new Date().toISOString(), read: false });
+  messages.add({
+    id: randomId(6),
+    name,
+    email,
+    phone: clean(b.phone, 20),
+    message,
+    createdAt: new Date().toISOString(),
+    read: false,
+  });
   json(ctx.res, 201, { ok: true, message: 'Thanks! Your message has been sent — we will get back to you soon.' });
 });
 
@@ -178,7 +258,15 @@ route('POST', '/api/auth/register', (ctx) => {
   if (phone && users.find((u) => u.phone === phone)) errors.phone = 'An account with this phone number already exists.';
   if (email && users.find((u) => u.email === email)) errors.email = 'An account with this email already exists.';
   if (Object.keys(errors).length) throw new HttpError(422, 'Please fix the highlighted fields.', { fields: errors });
-  const user = users.add({ id: crypto.randomUUID(), name, phone, email, passwordHash: hashPassword(password), addresses: [], createdAt: new Date().toISOString() });
+  const user = users.add({
+    id: crypto.randomUUID(),
+    name,
+    phone,
+    email,
+    passwordHash: hashPassword(password),
+    addresses: [],
+    createdAt: new Date().toISOString(),
+  });
   startSession(ctx.res, user);
   json(ctx.res, 201, { user: publicUser(user) });
 });
@@ -206,16 +294,25 @@ route('PATCH', '/api/me', (ctx) => {
   needUser(ctx);
   const b = ctx.body;
   const errors = {};
-  if (b.name !== undefined) { const n = clean(b.name, 80); if (n.length < 2) errors.name = 'Please enter your name.'; else ctx.user.name = n; }
+  if (b.name !== undefined) {
+    const n = clean(b.name, 80);
+    if (n.length < 2) errors.name = 'Please enter your name.';
+    else ctx.user.name = n;
+  }
   if (b.email !== undefined) {
     const e = clean(b.email, 120).toLowerCase();
     if (e && !isEmail(e)) errors.email = 'Enter a valid email.';
-    else if (e && users.find((u) => u.email === e && u.id !== ctx.user.id)) errors.email = 'That email is already used.';
+    else if (e && users.find((u) => u.email === e && u.id !== ctx.user.id))
+      errors.email = 'That email is already used.';
     else ctx.user.email = e;
   }
   if (Array.isArray(b.addresses)) {
     ctx.user.addresses = b.addresses.slice(0, 5).map((a) => ({
-      label: clean(a.label, 30) || 'Home', division: clean(a.division, 40), district: clean(a.district, 40), area: clean(a.area, 80), address: clean(a.address, 300),
+      label: clean(a.label, 30) || 'Home',
+      division: clean(a.division, 40),
+      district: clean(a.district, 40),
+      area: clean(a.area, 80),
+      address: clean(a.address, 300),
     }));
   }
   if (Object.keys(errors).length) throw new HttpError(422, 'Please fix the highlighted fields.', { fields: errors });
@@ -225,8 +322,10 @@ route('PATCH', '/api/me', (ctx) => {
 
 route('GET', '/api/me/orders', (ctx) => {
   needUser(ctx);
-  const mine = orders.filter((o) => o.userId === ctx.user.id || o.customer.phone === ctx.user.phone)
-    .sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1)).map(publicOrder);
+  const mine = orders
+    .filter((o) => o.userId === ctx.user.id || o.customer.phone === ctx.user.phone)
+    .sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1))
+    .map(publicOrder);
   json(ctx.res, 200, { orders: mine });
 });
 
@@ -237,7 +336,10 @@ route('POST', '/api/admin/login', (ctx) => {
   setCookie(ctx.res, ADMIN_COOKIE, sign({ role: 'admin' }, 12 * 3600), { maxAge: 12 * 3600 });
   json(ctx.res, 200, { ok: true });
 });
-route('POST', '/api/admin/logout', (ctx) => { setCookie(ctx.res, ADMIN_COOKIE, '', { maxAge: 0 }); json(ctx.res, 200, { ok: true }); });
+route('POST', '/api/admin/logout', (ctx) => {
+  setCookie(ctx.res, ADMIN_COOKIE, '', { maxAge: 0 });
+  json(ctx.res, 200, { ok: true });
+});
 route('GET', '/api/admin/session', (ctx) => json(ctx.res, 200, { admin: !!ctx.admin }));
 
 route('GET', '/api/admin/stats', (ctx) => {
@@ -247,15 +349,28 @@ route('GET', '/api/admin/stats', (ctx) => {
   const live = all.filter((o) => o.status !== 'cancelled');
   const byStatus = Object.fromEntries(STATUSES.map((s) => [s, all.filter((o) => o.status === s).length]));
   const sold = new Map();
-  for (const o of live) for (const l of o.items) sold.set(l.handle, { title: l.title, cans: (sold.get(l.handle)?.cans || 0) + l.cans });
+  for (const o of live)
+    for (const l of o.items) sold.set(l.handle, { title: l.title, cans: (sold.get(l.handle)?.cans || 0) + l.cans });
   const sum = (arr) => arr.reduce((s, o) => s + o.pricing.total, 0);
   json(ctx.res, 200, {
     orders: { total: all.length, today: all.filter((o) => bdDay(o.createdAt) === today).length, byStatus },
-    revenue: { total: sum(live), today: sum(live.filter((o) => bdDay(o.createdAt) === today)), delivered: sum(all.filter((o) => o.status === 'delivered')) },
+    revenue: {
+      total: sum(live),
+      today: sum(live.filter((o) => bdDay(o.createdAt) === today)),
+      delivered: sum(all.filter((o) => o.status === 'delivered')),
+    },
     avgOrder: live.length ? Math.round(sum(live) / live.length) : 0,
     awaitingPayment: all.filter((o) => o.payment.status === 'awaiting' && o.status !== 'cancelled').length,
-    lowStock: products.get().filter((p) => p.stock < 25).sort((a, b) => a.stock - b.stock).slice(0, 8).map((p) => ({ handle: p.handle, title: p.title, stock: p.stock })),
-    top: [...sold.entries()].map(([handle, v]) => ({ handle, ...v })).sort((a, b) => b.cans - a.cans).slice(0, 6),
+    lowStock: products
+      .get()
+      .filter((p) => p.stock < 25)
+      .sort((a, b) => a.stock - b.stock)
+      .slice(0, 8)
+      .map((p) => ({ handle: p.handle, title: p.title, stock: p.stock })),
+    top: [...sold.entries()]
+      .map(([handle, v]) => ({ handle, ...v }))
+      .sort((a, b) => b.cans - a.cans)
+      .slice(0, 6),
     subscribers: subscribers.all().length,
     unreadMessages: messages.filter((m) => !m.read).length,
     pendingReviews: reviews.filter((r) => !r.approved).length,
@@ -268,10 +383,17 @@ route('GET', '/api/admin/orders', (ctx) => {
   const sp = ctx.url.searchParams;
   const status = sp.get('status');
   const q = clean(sp.get('q'), 60).toLowerCase();
-  let list = orders.all().slice().sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1));
+  let list = orders
+    .all()
+    .slice()
+    .sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1));
   if (status && STATUSES.includes(status)) list = list.filter((o) => o.status === status);
-  if (sp.get('payment') === 'awaiting') list = list.filter((o) => o.payment.status === 'awaiting' && o.status !== 'cancelled');
-  if (q) list = list.filter((o) => `${o.number} ${o.customer.name} ${o.customer.phone} ${o.shipping.district}`.toLowerCase().includes(q));
+  if (sp.get('payment') === 'awaiting')
+    list = list.filter((o) => o.payment.status === 'awaiting' && o.status !== 'cancelled');
+  if (q)
+    list = list.filter((o) =>
+      `${o.number} ${o.customer.name} ${o.customer.phone} ${o.shipping.district}`.toLowerCase().includes(q),
+    );
   json(ctx.res, 200, { orders: list.slice(0, 300), total: list.length, statuses: STATUS_LABEL });
 });
 
@@ -282,7 +404,8 @@ route('PATCH', '/api/admin/orders/:id', (ctx) => {
   const b = ctx.body;
   if (b.status) setStatus(o, b.status, b.note);
   if (b.paymentStatus) {
-    if (!['cod', 'awaiting', 'paid', 'failed', 'refunded'].includes(b.paymentStatus)) throw new HttpError(422, 'Unknown payment status');
+    if (!['cod', 'awaiting', 'paid', 'failed', 'refunded'].includes(b.paymentStatus))
+      throw new HttpError(422, 'Unknown payment status');
     o.payment.status = b.paymentStatus;
   }
   if (b.adminNote !== undefined) o.adminNote = clean(b.adminNote, 500);
@@ -293,16 +416,68 @@ route('PATCH', '/api/admin/orders/:id', (ctx) => {
 route('GET', '/api/admin/orders.csv', (ctx) => {
   needAdmin(ctx);
   const esc = (v) => `"${String(v ?? '').replace(/"/g, '""')}"`;
-  const head = ['Order', 'Date', 'Status', 'Name', 'Phone', 'District', 'Address', 'Items', 'Subtotal', 'Discount', 'Delivery', 'Total', 'Payment', 'Payment status', 'TrxID'];
-  const rows = orders.all().map((o) => [o.number, o.createdAt, o.status, o.customer.name, o.customer.phone, o.shipping.district, `${o.shipping.area}, ${o.shipping.address}`, o.items.map((l) => `${l.qty}x ${l.title} (${l.packLabel})`).join('; '), o.pricing.subtotal, o.pricing.discount, o.pricing.delivery, o.pricing.total, o.payment.method, o.payment.status, o.payment.trxId]);
+  const head = [
+    'Order',
+    'Date',
+    'Status',
+    'Name',
+    'Phone',
+    'District',
+    'Address',
+    'Items',
+    'Subtotal',
+    'Discount',
+    'Delivery',
+    'Total',
+    'Payment',
+    'Payment status',
+    'TrxID',
+  ];
+  const rows = orders
+    .all()
+    .map((o) => [
+      o.number,
+      o.createdAt,
+      o.status,
+      o.customer.name,
+      o.customer.phone,
+      o.shipping.district,
+      `${o.shipping.area}, ${o.shipping.address}`,
+      o.items.map((l) => `${l.qty}x ${l.title} (${l.packLabel})`).join('; '),
+      o.pricing.subtotal,
+      o.pricing.discount,
+      o.pricing.delivery,
+      o.pricing.total,
+      o.payment.method,
+      o.payment.status,
+      o.payment.trxId,
+    ]);
   const csv = '﻿' + [head, ...rows].map((r) => r.map(esc).join(',')).join('\r\n');
-  ctx.res.writeHead(200, { 'Content-Type': 'text/csv; charset=utf-8', 'Content-Disposition': 'attachment; filename="drinkit-orders.csv"', 'Cache-Control': 'no-store' });
+  ctx.res.writeHead(200, {
+    'Content-Type': 'text/csv; charset=utf-8',
+    'Content-Disposition': 'attachment; filename="drinkit-orders.csv"',
+    'Cache-Control': 'no-store',
+  });
   ctx.res.end(csv);
 });
 
 route('GET', '/api/admin/products', (ctx) => {
   needAdmin(ctx);
-  json(ctx.res, 200, { products: products.get().map((p) => ({ handle: p.handle, title: p.title, brand: p.brand, canMl: p.canMl, price: p.price, compareAt: p.compareAt, stock: p.stock, dealEndsAt: p.dealEndsAt, image: p.images.thumb, tile: p.tile, packs: p.packs })) });
+  json(ctx.res, 200, {
+    products: products.get().map((p) => ({
+      handle: p.handle,
+      title: p.title,
+      brand: p.brand,
+      canMl: p.canMl,
+      price: p.price,
+      compareAt: p.compareAt,
+      stock: p.stock,
+      dealEndsAt: p.dealEndsAt,
+      image: p.images.thumb,
+      tile: p.tile,
+      packs: p.packs,
+    })),
+  });
 });
 
 route('PATCH', '/api/admin/products/:handle', (ctx) => {
@@ -339,7 +514,11 @@ route('PATCH', '/api/admin/products/:handle', (ctx) => {
 
 route('GET', '/api/admin/reviews', (ctx) => {
   needAdmin(ctx);
-  const list = reviews.all().slice().sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1)).slice(0, 300);
+  const list = reviews
+    .all()
+    .slice()
+    .sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1))
+    .slice(0, 300);
   json(ctx.res, 200, { reviews: list });
 });
 route('PATCH', '/api/admin/reviews/:id', (ctx) => {
@@ -359,7 +538,12 @@ route('DELETE', '/api/admin/reviews/:id', (ctx) => {
 });
 route('GET', '/api/admin/messages', (ctx) => {
   needAdmin(ctx);
-  json(ctx.res, 200, { messages: messages.all().slice().sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1)) });
+  json(ctx.res, 200, {
+    messages: messages
+      .all()
+      .slice()
+      .sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1)),
+  });
 });
 route('PATCH', '/api/admin/messages/:id', (ctx) => {
   needAdmin(ctx);
@@ -371,18 +555,36 @@ route('PATCH', '/api/admin/messages/:id', (ctx) => {
 });
 route('GET', '/api/admin/subscribers', (ctx) => {
   needAdmin(ctx);
-  json(ctx.res, 200, { subscribers: subscribers.all().slice().sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1)) });
+  json(ctx.res, 200, {
+    subscribers: subscribers
+      .all()
+      .slice()
+      .sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1)),
+  });
 });
 route('GET', '/api/admin/customers', (ctx) => {
   needAdmin(ctx);
-  json(ctx.res, 200, { customers: users.all().map((u) => ({ id: u.id, name: u.name, phone: u.phone, email: u.email, createdAt: u.createdAt, orders: orders.filter((o) => o.userId === u.id).length })) });
+  json(ctx.res, 200, {
+    customers: users.all().map((u) => ({
+      id: u.id,
+      name: u.name,
+      phone: u.phone,
+      email: u.email,
+      createdAt: u.createdAt,
+      orders: orders.filter((o) => o.userId === u.id).length,
+    })),
+  });
 });
 
 // ---------------------------------------------------------------- dispatcher
 function sameOrigin(req) {
   const origin = req.headers.origin;
   if (!origin) return true;
-  try { return new URL(origin).host === req.headers.host; } catch { return false; }
+  try {
+    return new URL(origin).host === req.headers.host;
+  } catch {
+    return false;
+  }
 }
 
 export async function handleApi(req, res, url, ip) {
@@ -407,11 +609,24 @@ export async function handleApi(req, res, url, ip) {
       if (!ct.includes('application/json')) throw new HttpError(415, 'Send JSON (Content-Type: application/json)');
     }
     if (!rateLimit(`api:${ip}`, 600, 60_000)) throw new HttpError(429, 'Too many requests');
-    const ctx = { req, res, url, params, ip, user: currentUser(req), admin: isAdmin(req), body: method === 'GET' ? {} : await readJson(req) };
+    const ctx = {
+      req,
+      res,
+      url,
+      params,
+      ip,
+      user: currentUser(req),
+      admin: isAdmin(req),
+      body: method === 'GET' ? {} : await readJson(req),
+    };
     await matched.handler(ctx);
   } catch (e) {
     const status = e instanceof HttpError ? e.status : 500;
     if (status === 500) console.error('API error:', e);
-    if (!res.headersSent) json(res, status, { error: status === 500 ? 'Something went wrong on our side.' : e.message, ...(e.extra || {}) });
+    if (!res.headersSent)
+      json(res, status, {
+        error: status === 500 ? 'Something went wrong on our side.' : e.message,
+        ...(e.extra || {}),
+      });
   }
 }

@@ -84,7 +84,12 @@ export function parseCookies(req) {
 const SECURE_COOKIES = process.env.DRINKIT_SECURE_COOKIES === '1';
 const TRUST_PROXY = process.env.DRINKIT_TRUST_PROXY === '1';
 
-export function setCookie(res, name, value, { maxAge, httpOnly = true, sameSite = 'Lax', path = '/', secure = SECURE_COOKIES } = {}) {
+export function setCookie(
+  res,
+  name,
+  value,
+  { maxAge, httpOnly = true, sameSite = 'Lax', path = '/', secure = SECURE_COOKIES } = {},
+) {
   const parts = [`${name}=${encodeURIComponent(value)}`, `Path=${path}`, `SameSite=${sameSite}`];
   if (httpOnly) parts.push('HttpOnly');
   if (secure) parts.push('Secure');
@@ -95,13 +100,21 @@ export function setCookie(res, name, value, { maxAge, httpOnly = true, sameSite 
 
 /** Scheme + host as the visitor sees it (needs DRINKIT_TRUST_PROXY=1 to believe X-Forwarded-Proto). */
 export function publicOrigin(req) {
-  const proto = TRUST_PROXY && String(req.headers['x-forwarded-proto'] || '').split(',')[0].trim() === 'https' ? 'https' : 'http';
+  const proto =
+    TRUST_PROXY &&
+    String(req.headers['x-forwarded-proto'] || '')
+      .split(',')[0]
+      .trim() === 'https'
+      ? 'https'
+      : 'http';
   return `${proto}://${req.headers.host}`;
 }
 
 export function clientIp(req) {
   if (TRUST_PROXY) {
-    const fwd = String(req.headers['x-forwarded-for'] || '').split(',')[0].trim();
+    const fwd = String(req.headers['x-forwarded-for'] || '')
+      .split(',')[0]
+      .trim();
     if (fwd) return fwd;
   }
   return req.socket.remoteAddress || 'unknown';
@@ -129,14 +142,24 @@ setInterval(() => {
   }
 }, 600_000).unref();
 
-export const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
+export const esc = (s) =>
+  String(s ?? '').replace(
+    /[&<>"']/g,
+    (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c],
+  );
 
 export const randomId = (bytes = 8) => crypto.randomBytes(bytes).toString('hex');
 
-/** trim + cap a user supplied string */
+/**
+ * Trim and cap a user supplied string. Control characters are replaced with spaces so a value can never
+ * smuggle line breaks into log lines, response headers or CSV cells.
+ */
 export function clean(v, max = 200) {
   if (v === undefined || v === null) return '';
-  return String(v).replace(/[\u0000-\u001f\u007f]/g, ' ').trim().slice(0, max);
+  return String(v)
+    .replace(/[\u0000-\u001f\u007f]/g, ' ') // eslint-disable-line no-control-regex
+    .trim()
+    .slice(0, max);
 }
 
 /** Normalise a Bangladeshi mobile number to 01XXXXXXXXX, or return null. */

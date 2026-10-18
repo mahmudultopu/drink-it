@@ -4,27 +4,46 @@ import { svgDoc, num, darken, lighten } from './lib.mjs';
 
 function hairBack(style, hair, cloth) {
   switch (style) {
-    case 'long': return `<path d="M96 262 C78 120 140 92 200 92 C260 92 322 120 304 262 L318 430 C270 452 130 452 82 430 Z" fill="${hair}"/>`;
-    case 'hijab': return `<path d="M78 262 C66 108 138 78 200 78 C262 78 334 108 322 262 C326 336 304 392 262 410 L138 410 C96 392 74 336 78 262 Z" fill="${cloth}"/>`;
-    default: return '';
+    case 'long':
+      return `<path d="M96 262 C78 120 140 92 200 92 C260 92 322 120 304 262 L318 430 C270 452 130 452 82 430 Z" fill="${hair}"/>`;
+    case 'hijab':
+      return `<path d="M78 262 C66 108 138 78 200 78 C262 78 334 108 322 262 C326 336 304 392 262 410 L138 410 C96 392 74 336 78 262 Z" fill="${cloth}"/>`;
+    default:
+      return '';
   }
 }
 function hairFront(style, hair, cloth) {
   switch (style) {
-    case 'short': return `<path d="M118 224 C112 128 168 104 200 104 C242 104 290 128 282 224 C270 176 236 156 200 156 C164 156 130 176 118 224 Z" fill="${hair}"/>`;
-    case 'curly': return `<g fill="${hair}"><circle cx="140" cy="158" r="34"/><circle cx="178" cy="130" r="38"/><circle cx="224" cy="130" r="38"/><circle cx="262" cy="158" r="34"/><circle cx="130" cy="200" r="26"/><circle cx="270" cy="200" r="26"/></g>`;
-    case 'long': return `<path d="M120 226 C122 142 170 118 200 118 C236 118 282 142 280 226 C262 178 232 160 200 160 C170 160 138 178 120 226 Z" fill="${hair}"/>`;
-    case 'hijab': return `<path d="M132 214 C140 150 170 128 200 128 C232 128 262 150 268 214" fill="none" stroke="${cloth}" stroke-width="30" stroke-linecap="round"/>`;
-    default: return '';
+    case 'short':
+      return `<path d="M118 224 C112 128 168 104 200 104 C242 104 290 128 282 224 C270 176 236 156 200 156 C164 156 130 176 118 224 Z" fill="${hair}"/>`;
+    case 'curly':
+      return `<g fill="${hair}"><circle cx="140" cy="158" r="34"/><circle cx="178" cy="130" r="38"/><circle cx="224" cy="130" r="38"/><circle cx="262" cy="158" r="34"/><circle cx="130" cy="200" r="26"/><circle cx="270" cy="200" r="26"/></g>`;
+    case 'long':
+      return `<path d="M120 226 C122 142 170 118 200 118 C236 118 282 142 280 226 C262 178 232 160 200 160 C170 160 138 178 120 226 Z" fill="${hair}"/>`;
+    case 'hijab':
+      return `<path d="M132 214 C140 150 170 128 200 128 C232 128 262 150 268 214" fill="none" stroke="${cloth}" stroke-width="30" stroke-linecap="round"/>`;
+    default:
+      return '';
   }
 }
 
-export function avatarSvg({ bg = '#FFE7B8', skin = '#E9B08A', hair = '#2B1B14', style = 'short', shirt = '#11704B', cloth = '#E0FA63', glasses = false, beard = false, can, seed = 1 }) {
+export function avatarSvg({
+  bg = '#FFE7B8',
+  skin = '#E9B08A',
+  hair = '#2B1B14',
+  style = 'short',
+  shirt = '#11704B',
+  cloth = '#E0FA63',
+  glasses = false,
+  beard = false,
+  can,
+}) {
   const shade = darken(skin, 0.12);
   const { defs, content, geom } = canGroup({ ...can, droplets: 14, lite: true }, 'k');
-  const face = style === 'hijab'
-    ? `<ellipse cx="200" cy="244" rx="68" ry="84" fill="${skin}"/><ellipse cx="200" cy="244" rx="68" ry="84" fill="none" stroke="${cloth}" stroke-width="16"/>`
-    : `<ellipse cx="200" cy="238" rx="80" ry="94" fill="${skin}"/><circle cx="121" cy="248" r="15" fill="${skin}"/><circle cx="279" cy="248" r="15" fill="${skin}"/>`;
+  const face =
+    style === 'hijab'
+      ? `<ellipse cx="200" cy="244" rx="68" ry="84" fill="${skin}"/><ellipse cx="200" cy="244" rx="68" ry="84" fill="none" stroke="${cloth}" stroke-width="16"/>`
+      : `<ellipse cx="200" cy="238" rx="80" ry="94" fill="${skin}"/><circle cx="121" cy="248" r="15" fill="${skin}"/><circle cx="279" cy="248" r="15" fill="${skin}"/>`;
   const body = `
 <defs>${defs}${content}</defs>
 <rect width="400" height="500" fill="${bg}"/>

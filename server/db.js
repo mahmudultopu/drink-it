@@ -6,7 +6,9 @@ import { fileURLToPath } from 'node:url';
 
 export const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 // DRINKIT_DATA_DIR moves the data folder elsewhere (the Vercel entry points it at the writable /tmp).
-export const DATA_DIR = process.env.DRINKIT_DATA_DIR ? path.resolve(process.env.DRINKIT_DATA_DIR) : path.join(ROOT, 'data');
+export const DATA_DIR = process.env.DRINKIT_DATA_DIR
+  ? path.resolve(process.env.DRINKIT_DATA_DIR)
+  : path.join(ROOT, 'data');
 fs.mkdirSync(DATA_DIR, { recursive: true });
 
 function readFileJson(file, fallback) {
@@ -34,7 +36,11 @@ class WatchedJson {
   }
   get() {
     let m = 0;
-    try { m = fs.statSync(this.file).mtimeMs; } catch { /* missing */ }
+    try {
+      m = fs.statSync(this.file).mtimeMs;
+    } catch {
+      /* missing */
+    }
     if (m !== this.mtime) {
       this.value = readFileJson(this.file, this.fallback);
       this.mtime = m;
@@ -44,7 +50,11 @@ class WatchedJson {
   save(value) {
     this.value = value;
     writeJsonAtomic(this.file, value);
-    try { this.mtime = fs.statSync(this.file).mtimeMs; } catch { /* ignore */ }
+    try {
+      this.mtime = fs.statSync(this.file).mtimeMs;
+    } catch {
+      /* ignore */
+    }
   }
 }
 
@@ -55,11 +65,23 @@ class Table {
     this.rows = readFileJson(this.file, fallback);
     if (!fs.existsSync(this.file)) writeJsonAtomic(this.file, this.rows);
   }
-  all() { return this.rows; }
-  save() { writeJsonAtomic(this.file, this.rows); }
-  add(row) { this.rows.push(row); this.save(); return row; }
-  find(fn) { return this.rows.find(fn); }
-  filter(fn) { return this.rows.filter(fn); }
+  all() {
+    return this.rows;
+  }
+  save() {
+    writeJsonAtomic(this.file, this.rows);
+  }
+  add(row) {
+    this.rows.push(row);
+    this.save();
+    return row;
+  }
+  find(fn) {
+    return this.rows.find(fn);
+  }
+  filter(fn) {
+    return this.rows.filter(fn);
+  }
   remove(fn) {
     const before = this.rows.length;
     this.rows = this.rows.filter((r) => !fn(r));

@@ -47,14 +47,21 @@ function selectPack(card, packId) {
   const p = Store.get(card.dataset.handle);
   const pk = Store.pack(p, packId);
   card.dataset.pack = pk.id;
-  card.querySelectorAll('[data-swatch]').forEach((b) => { const on = b.dataset.swatch === pk.id; b.classList.toggle('is-active', on); b.setAttribute('aria-pressed', on); });
+  card.querySelectorAll('[data-swatch]').forEach((b) => {
+    const on = b.dataset.swatch === pk.id;
+    b.classList.toggle('is-active', on);
+    b.setAttribute('aria-pressed', on);
+  });
   const img = card.querySelector('.pcard__img--main');
   img.src = pk.id === 'single' ? p.images.card : p.images[pk.id] || p.images.card;
   card.querySelector('[data-price]').innerHTML = String(priceHtml(pk));
   const disc = discountPct(pk.price, pk.compareAt);
   const b = card.querySelector('[data-badge]');
   if (b && p.stock > 0) b.textContent = disc ? `-${disc}%` : '';
-  else if (!b && disc && p.stock > 0) card.querySelector('.pcard__badges').insertAdjacentHTML('afterbegin', `<span class="badge" data-badge>-${disc}%</span>`);
+  else if (!b && disc && p.stock > 0)
+    card
+      .querySelector('.pcard__badges')
+      .insertAdjacentHTML('afterbegin', `<span class="badge" data-badge>-${disc}%</span>`);
   const add = card.querySelector('[data-add]');
   add.disabled = !pk.available;
   add.textContent = pk.available ? 'Add to cart' : 'Sold out';
@@ -67,8 +74,14 @@ export function syncCards(root = document) {
     const h = card.dataset.handle;
     const w = card.querySelector('[data-wish]');
     const c = card.querySelector('[data-compare]');
-    if (w) { w.classList.toggle('is-active', wish.has(h)); w.setAttribute('aria-pressed', wish.has(h)); }
-    if (c) { c.classList.toggle('is-active', cmp.has(h)); c.setAttribute('aria-pressed', cmp.has(h)); }
+    if (w) {
+      w.classList.toggle('is-active', wish.has(h));
+      w.setAttribute('aria-pressed', wish.has(h));
+    }
+    if (c) {
+      c.classList.toggle('is-active', cmp.has(h));
+      c.setAttribute('aria-pressed', cmp.has(h));
+    }
   });
 }
 
@@ -83,7 +96,11 @@ export function bindCards() {
     const product = Store.get(handle);
     if (!product) return;
     const sw = e.target.closest('[data-swatch]');
-    if (sw) { e.preventDefault(); selectPack(card, sw.dataset.swatch); return; }
+    if (sw) {
+      e.preventDefault();
+      selectPack(card, sw.dataset.swatch);
+      return;
+    }
     if (e.target.closest('[data-add]')) {
       e.preventDefault();
       Store.addToCart(handle, card.dataset.pack || 'single', 1);
@@ -92,14 +109,21 @@ export function bindCards() {
     if (e.target.closest('[data-wish]')) {
       e.preventDefault();
       const added = Store.toggleWishlist(handle);
-      toast(added ? `${product.title} saved to your wishlist.` : 'Removed from wishlist.', added ? { image: product.images.thumb, href: '/wishlist', label: 'View' } : {});
+      toast(
+        added ? `${product.title} saved to your wishlist.` : 'Removed from wishlist.',
+        added ? { image: product.images.thumb, href: '/wishlist', label: 'View' } : {},
+      );
       return;
     }
     if (e.target.closest('[data-compare]')) {
       e.preventDefault();
       const r = Store.toggleCompare(handle);
       if (r === 'full') toast('You can compare up to 4 cans at a time.', { type: 'error' });
-      else toast(r === 'added' ? `${product.title} added to compare.` : 'Removed from compare.', r === 'added' ? { image: product.images.thumb, href: '/compare', label: 'Compare' } : {});
+      else
+        toast(
+          r === 'added' ? `${product.title} added to compare.` : 'Removed from compare.',
+          r === 'added' ? { image: product.images.thumb, href: '/compare', label: 'Compare' } : {},
+        );
     }
   });
   Store.on('wish', () => syncCards());

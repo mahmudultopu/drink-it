@@ -63,7 +63,11 @@ const partialCache = new Map();
 function readPartial(name) {
   const file = path.join(PARTIALS, name + '.html');
   let st;
-  try { st = fs.statSync(file); } catch { return `<!-- missing partial ${name} -->`; }
+  try {
+    st = fs.statSync(file);
+  } catch {
+    return `<!-- missing partial ${name} -->`;
+  }
   const hit = partialCache.get(name);
   if (hit && hit.mtime === st.mtimeMs) return hit.text;
   const text = fs.readFileSync(file, 'utf8');
@@ -100,7 +104,13 @@ function metaFor(pathname) {
   let m;
   if ((m = pathname.match(/^\/products\/([^/]+)/))) {
     const p = products.get().find((x) => x.handle === decodeURIComponent(m[1]));
-    if (p) return metaTags({ title: p.title, description: `${p.short} Order ${p.title} online in Bangladesh — singles, 6-packs and cartons delivered to your door.`, image: p.images.single, type: 'product' });
+    if (p)
+      return metaTags({
+        title: p.title,
+        description: `${p.short} Order ${p.title} online in Bangladesh — singles, 6-packs and cartons delivered to your door.`,
+        image: p.images.single,
+        type: 'product',
+      });
   } else if ((m = pathname.match(/^\/collections\/([^/]+)/))) {
     const c = collections.get().find((x) => x.handle === decodeURIComponent(m[1]));
     if (c) return metaTags({ title: c.title, description: c.blurb });
@@ -117,8 +127,14 @@ function metaFor(pathname) {
 // ---------- CSS bundle: public/assets/css/parts/*.css concatenated ----------
 function cssBundle() {
   const dir = path.join(PUBLIC, 'assets', 'css', 'parts');
-  const files = fs.existsSync(dir) ? fs.readdirSync(dir).filter((f) => f.endsWith('.css')).sort() : [];
-  let mtime = 0, text = '';
+  const files = fs.existsSync(dir)
+    ? fs
+        .readdirSync(dir)
+        .filter((f) => f.endsWith('.css'))
+        .sort()
+    : [];
+  let mtime = 0,
+    text = '';
   for (const f of files) {
     const st = fs.statSync(path.join(dir, f));
     mtime = Math.max(mtime, st.mtimeMs);
@@ -127,7 +143,12 @@ function cssBundle() {
   if (hit && hit.mtime === mtime) return hit;
   for (const f of files) text += `/* ${f} */\n` + fs.readFileSync(path.join(dir, f), 'utf8') + '\n';
   const buf = Buffer.from(text);
-  const entry = { mtime, buf, gz: zlib.gzipSync(buf), etag: '"' + crypto.createHash('md5').update(buf).digest('hex') + '"' };
+  const entry = {
+    mtime,
+    buf,
+    gz: zlib.gzipSync(buf),
+    etag: '"' + crypto.createHash('md5').update(buf).digest('hex') + '"',
+  };
   fileCache.set('css-bundle', entry);
   return entry;
 }
@@ -136,7 +157,10 @@ function send(req, res, status, buf, gz, type, extra = {}) {
   const headers = { 'Content-Type': type, Vary: 'Accept-Encoding', ...extra };
   const acceptsGzip = /\bgzip\b/.test(req.headers['accept-encoding'] || '');
   let body = buf;
-  if (gz && acceptsGzip) { body = gz; headers['Content-Encoding'] = 'gzip'; }
+  if (gz && acceptsGzip) {
+    body = gz;
+    headers['Content-Encoding'] = 'gzip';
+  }
   headers['Content-Length'] = body.length;
   res.writeHead(status, headers);
   res.end(req.method === 'HEAD' ? undefined : body);
@@ -146,17 +170,31 @@ function sendFile(req, res, file, status = 200) {
   const ext = path.extname(file).toLowerCase();
   const type = MIME[ext] || 'application/octet-stream';
   let st;
-  try { st = fs.statSync(file); } catch { return false; }
+  try {
+    st = fs.statSync(file);
+  } catch {
+    return false;
+  }
   if (!st.isFile()) return false;
   let entry = fileCache.get(file);
   if (!entry || entry.mtime !== st.mtimeMs) {
     const buf = fs.readFileSync(file);
-    entry = { mtime: st.mtimeMs, buf, gz: COMPRESSIBLE.has(ext) && buf.length > 800 ? zlib.gzipSync(buf) : null, etag: `"${st.size.toString(16)}-${Math.floor(st.mtimeMs).toString(16)}"` };
+    entry = {
+      mtime: st.mtimeMs,
+      buf,
+      gz: COMPRESSIBLE.has(ext) && buf.length > 800 ? zlib.gzipSync(buf) : null,
+      etag: `"${st.size.toString(16)}-${Math.floor(st.mtimeMs).toString(16)}"`,
+    };
     fileCache.set(file, entry);
   }
-  const immutable = /\.(woff2?|svg|png|jpe?g|webp|ico)$/.test(ext) && /\/assets\/(fonts|img)\//.test(file.replace(/\\/g, '/'));
+  const immutable =
+    /\.(woff2?|svg|png|jpe?g|webp|ico)$/.test(ext) && /\/assets\/(fonts|img)\//.test(file.replace(/\\/g, '/'));
   const cache = immutable ? 'public, max-age=604800' : 'no-cache';
-  if (req.headers['if-none-match'] === entry.etag) { res.writeHead(304, { ETag: entry.etag, 'Cache-Control': cache }); res.end(); return true; }
+  if (req.headers['if-none-match'] === entry.etag) {
+    res.writeHead(304, { ETag: entry.etag, 'Cache-Control': cache });
+    res.end();
+    return true;
+  }
   send(req, res, status, entry.buf, entry.gz, type, { ETag: entry.etag, 'Cache-Control': cache });
   return true;
 }
@@ -164,15 +202,31 @@ function sendFile(req, res, file, status = 200) {
 function sendHtml(req, res, name, pathname, status = 200) {
   const file = path.join(VIEWS, name);
   let raw;
-  try { raw = fs.readFileSync(file, 'utf8'); } catch { return false; }
+  try {
+    raw = fs.readFileSync(file, 'utf8');
+  } catch {
+    return false;
+  }
   const html = fill(raw, { meta: metaFor(pathname) });
   const buf = Buffer.from(html);
-  send(req, res, status, buf, buf.length > 800 ? zlib.gzipSync(buf) : null, MIME['.html'], { 'Cache-Control': 'no-cache', ...SECURITY });
+  send(req, res, status, buf, buf.length > 800 ? zlib.gzipSync(buf) : null, MIME['.html'], {
+    'Cache-Control': 'no-cache',
+    ...SECURITY,
+  });
   return true;
 }
 
 function sitemap(base) {
-  const urls = ['/', '/collections', '/blogs/news', '/pages/about-us', '/pages/contact', '/pages/faq', '/pages/our-locations', '/track']
+  const urls = [
+    '/',
+    '/collections',
+    '/blogs/news',
+    '/pages/about-us',
+    '/pages/contact',
+    '/pages/faq',
+    '/pages/our-locations',
+    '/track',
+  ]
     .concat(collections.get().map((c) => `/collections/${c.handle}`))
     .concat(products.get().map((p) => `/products/${p.handle}`))
     .concat(posts.get().map((p) => `/blogs/news/${p.handle}`));
@@ -185,7 +239,11 @@ export function handleStatic(req, res, url) {
     return res.end();
   }
   let pathname;
-  try { pathname = decodeURIComponent(url.pathname); } catch { pathname = ''; }
+  try {
+    pathname = decodeURIComponent(url.pathname);
+  } catch {
+    pathname = '';
+  }
   if (!pathname || pathname.includes('\0') || pathname.includes('..')) {
     res.writeHead(400);
     return res.end('Bad request');
@@ -193,15 +251,21 @@ export function handleStatic(req, res, url) {
 
   if (pathname === '/assets/css/theme.css') {
     const e = cssBundle();
-    if (req.headers['if-none-match'] === e.etag) { res.writeHead(304, { ETag: e.etag }); return res.end(); }
+    if (req.headers['if-none-match'] === e.etag) {
+      res.writeHead(304, { ETag: e.etag });
+      return res.end();
+    }
     return send(req, res, 200, e.buf, e.gz, MIME['.css'], { ETag: e.etag, 'Cache-Control': 'no-cache' });
   }
-  if (pathname === '/favicon.ico') { // modern browsers use the SVG <link rel="icon">; keep the old probe quiet
+  if (pathname === '/favicon.ico') {
+    // modern browsers use the SVG <link rel="icon">; keep the old probe quiet
     res.writeHead(302, { Location: '/assets/img/shapes/favicon.svg', 'Cache-Control': 'public, max-age=86400' });
     return res.end();
   }
   if (pathname === '/robots.txt') {
-    const body = Buffer.from(`User-agent: *\nAllow: /\nDisallow: /admin\nDisallow: /api/\nSitemap: ${publicOrigin(req)}/sitemap.xml\n`);
+    const body = Buffer.from(
+      `User-agent: *\nAllow: /\nDisallow: /admin\nDisallow: /api/\nSitemap: ${publicOrigin(req)}/sitemap.xml\n`,
+    );
     return send(req, res, 200, body, null, MIME['.txt']);
   }
   if (pathname === '/sitemap.xml') {

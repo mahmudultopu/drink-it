@@ -8,11 +8,31 @@ export const STEPS = [
   ['shipped', 'Out for delivery', 'truck'],
   ['delivered', 'Delivered', 'home'],
 ];
-export const STATUS_LABEL = { placed: 'Order placed', confirmed: 'Confirmed', packed: 'Packed', shipped: 'Out for delivery', delivered: 'Delivered', cancelled: 'Cancelled' };
+export const STATUS_LABEL = {
+  placed: 'Order placed',
+  confirmed: 'Confirmed',
+  packed: 'Packed',
+  shipped: 'Out for delivery',
+  delivered: 'Delivered',
+  cancelled: 'Cancelled',
+};
 const PAY_LABEL = { cod: 'Cash on delivery', bkash: 'bKash', nagad: 'Nagad', rocket: 'Rocket' };
-const PAY_STATUS = { cod: 'Pay on delivery', awaiting: 'Verifying payment', paid: 'Paid', failed: 'Payment failed', refunded: 'Refunded' };
+const PAY_STATUS = {
+  cod: 'Pay on delivery',
+  awaiting: 'Verifying payment',
+  paid: 'Paid',
+  failed: 'Payment failed',
+  refunded: 'Refunded',
+};
 
-const when = (iso) => new Date(iso).toLocaleString('en-GB', { day: 'numeric', month: 'short', hour: 'numeric', minute: '2-digit', hour12: true });
+const when = (iso) =>
+  new Date(iso).toLocaleString('en-GB', {
+    day: 'numeric',
+    month: 'short',
+    hour: 'numeric',
+    minute: '2-digit',
+    hour12: true,
+  });
 
 export function statusChip(status) {
   return html`<span class="chip chip--${status}">${STATUS_LABEL[status] || status}</span>`;
@@ -32,7 +52,8 @@ export function timelineHtml(o) {
 
 export function paymentInstructions(o, site) {
   const p = o.payment;
-  if (p.method === 'cod') return html`<div class="form-note form-note--ok"><b>Cash on delivery.</b> Please keep <b>${money(o.pricing.total)}</b> ready when your cans arrive.</div>`;
+  if (p.method === 'cod')
+    return html`<div class="form-note form-note--ok"><b>Cash on delivery.</b> Please keep <b>${money(o.pricing.total)}</b> ready when your cans arrive.</div>`;
   const conf = site.payments[p.method];
   if (p.status === 'awaiting') {
     return html`<div class="form-note"><b>We’re verifying your ${PAY_LABEL[p.method]} payment.</b> Transaction ID <b>${p.trxId}</b> from ${p.sender}. We’ll confirm your order by phone or message shortly. If you haven’t paid yet, send <b>${money(o.pricing.total)}</b> to ${conf.label} (${conf.kind}) <b>${conf.number}</b> and reply with the transaction ID.</div>`;

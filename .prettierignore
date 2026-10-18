@@ -1,0 +1,11 @@
+node_modules/
+package-lock.json
+# generated or hand-formatted
+data/
+public/assets/dist/
+public/assets/img/
+public/assets/fonts/
+scripts/render/out/
+# HTML templates contain include markers and are whitespace sensitive
+views/
+partials/

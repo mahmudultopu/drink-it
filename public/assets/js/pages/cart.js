@@ -1,5 +1,5 @@
 // Cart page: full-size cart with quantity controls and an order summary.
-import { $, $$, html, raw, esc, money, icon, startCountdowns } from '../ui.js';
+import { $, html, raw, money, icon, startCountdowns } from '../ui.js';
 import { Store } from '../store.js';
 import { productCard } from '../card.js';
 import { freeDeliveryHtml } from '../chrome.js';
@@ -24,7 +24,9 @@ export function init() {
   const render = () => {
     const lines = Store.cartLines();
     if (!lines.length) {
-      root.innerHTML = String(html`<div class="cart-empty-page"><p>Have an account? <a href="/account/login">Log in</a> to check out faster.</p><a class="btn" href="/collections/all">Continue shopping</a></div>`);
+      root.innerHTML = String(
+        html`<div class="cart-empty-page"><p>Have an account? <a href="/account/login">Log in</a> to check out faster.</p><a class="btn" href="/collections/all">Continue shopping</a></div>`,
+      );
       return;
     }
     const sub = lines.reduce((s, l) => s + l.total, 0);
@@ -50,28 +52,37 @@ export function init() {
     </div>`);
   };
   root.addEventListener('click', (e) => {
-    if (e.target.closest('[data-clear]')) { Store.clearCart(); return; }
+    if (e.target.closest('[data-clear]')) {
+      Store.clearCart();
+      return;
+    }
     const li = e.target.closest('.cline');
     if (!li) return;
     const { handle, pack } = li.dataset;
     const cur = Store.cartItems().find((i) => i.handle === handle && i.pack === pack);
     if (e.target.closest('[data-inc]')) Store.setQty(handle, pack, (cur?.qty || 1) + 1);
-    else if (e.target.closest('[data-dec]')) { if ((cur?.qty || 1) > 1) Store.setQty(handle, pack, cur.qty - 1); else Store.removeFromCart(handle, pack); }
-    else if (e.target.closest('[data-remove]')) Store.removeFromCart(handle, pack);
+    else if (e.target.closest('[data-dec]')) {
+      if ((cur?.qty || 1) > 1) Store.setQty(handle, pack, cur.qty - 1);
+      else Store.removeFromCart(handle, pack);
+    } else if (e.target.closest('[data-remove]')) Store.removeFromCart(handle, pack);
   });
   root.addEventListener('change', (e) => {
     const input = e.target.closest('[data-qty]');
     if (!input) return;
     const li = input.closest('.cline');
     const n = parseInt(input.value, 10);
-    if (n >= 1) Store.setQty(li.dataset.handle, li.dataset.pack, n); else render();
+    if (n >= 1) Store.setQty(li.dataset.handle, li.dataset.pack, n);
+    else render();
   });
   Store.on('cart', render);
   render();
 
   // suggestions
   const inCart = new Set(Store.cartItems().map((i) => i.handle));
-  const picks = Store.products.filter((p) => !inCart.has(p.handle)).sort((a, b) => b.sold - a.sold).slice(0, 4);
+  const picks = Store.products
+    .filter((p) => !inCart.has(p.handle))
+    .sort((a, b) => b.sold - a.sold)
+    .slice(0, 4);
   if (picks.length) {
     $('[data-also]').hidden = false;
     $('[data-also-grid]').innerHTML = String(html`${picks.map((p) => productCard(p))}`);

@@ -36,7 +36,9 @@ export function applyCoupon(codeRaw, subtotal) {
   const c = coupons.get().find((x) => x.code === code && x.active);
   if (!c) throw new HttpError(422, 'That coupon code is not valid.', { fields: { coupon: 'Invalid coupon code' } });
   if (subtotal < c.minSubtotal) {
-    throw new HttpError(422, `This coupon needs a minimum order of ৳${c.minSubtotal}.`, { fields: { coupon: `Minimum order ৳${c.minSubtotal}` } });
+    throw new HttpError(422, `This coupon needs a minimum order of ৳${c.minSubtotal}.`, {
+      fields: { coupon: `Minimum order ৳${c.minSubtotal}` },
+    });
   }
   if (c.type === 'shipping') return { coupon: { code: c.code, label: c.label }, discount: 0, freeShipping: true };
   let discount = c.type === 'percent' ? Math.floor((subtotal * c.value) / 100) : c.value;
@@ -55,7 +57,8 @@ export function quote(rawItems, { shipping = {}, coupon = '' } = {}) {
     const handle = clean(it?.handle, 120);
     const pack = clean(it?.pack, 20) || 'single';
     const qty = Math.floor(Number(it?.qty));
-    if (!handle || !Number.isFinite(qty) || qty < 1 || qty > 99) throw new HttpError(422, 'One of the cart items is invalid.');
+    if (!handle || !Number.isFinite(qty) || qty < 1 || qty > 99)
+      throw new HttpError(422, 'One of the cart items is invalid.');
     const key = `${handle}|${pack}`;
     merged.set(key, { handle, pack, qty: (merged.get(key)?.qty || 0) + qty });
   }
@@ -68,12 +71,30 @@ export function quote(rawItems, { shipping = {}, coupon = '' } = {}) {
     if (!pk) throw new HttpError(422, `Pack option "${pack}" is not available for ${p.title}.`);
     const cans = pk.qty * qty;
     needed.set(p.handle, (needed.get(p.handle) || 0) + cans);
-    lines.push({ handle: p.handle, title: p.title, brand: p.brand, pack: pk.id, packLabel: pk.label, packQty: pk.qty, qty, cans, unitPrice: pk.price, lineTotal: pk.price * qty, image: p.images.thumb, packImage: pk.id === 'single' ? p.images.thumb : p.images[pk.id] || p.images.thumb, tile: p.tile });
+    lines.push({
+      handle: p.handle,
+      title: p.title,
+      brand: p.brand,
+      pack: pk.id,
+      packLabel: pk.label,
+      packQty: pk.qty,
+      qty,
+      cans,
+      unitPrice: pk.price,
+      lineTotal: pk.price * qty,
+      image: p.images.thumb,
+      packImage: pk.id === 'single' ? p.images.thumb : p.images[pk.id] || p.images.thumb,
+      tile: p.tile,
+    });
   }
   for (const [handle, cans] of needed) {
     const p = catalogue.find((x) => x.handle === handle);
     if (p.stock < cans) {
-      throw new HttpError(409, p.stock > 0 ? `Only ${p.stock} cans of ${p.title} are left in stock.` : `${p.title} is sold out.`, { handle, stock: p.stock });
+      throw new HttpError(
+        409,
+        p.stock > 0 ? `Only ${p.stock} cans of ${p.title} are left in stock.` : `${p.title} is sold out.`,
+        { handle, stock: p.stock },
+      );
     }
   }
   const subtotal = lines.reduce((s, l) => s + l.lineTotal, 0);
@@ -81,7 +102,15 @@ export function quote(rawItems, { shipping = {}, coupon = '' } = {}) {
   let delivery = deliveryFee(shipping, subtotal);
   if (c.freeShipping) delivery = 0;
   const total = subtotal - c.discount + delivery;
-  return { lines, subtotal, discount: c.discount, delivery, total, coupon: c.coupon, cans: lines.reduce((s, l) => s + l.cans, 0) };
+  return {
+    lines,
+    subtotal,
+    discount: c.discount,
+    delivery,
+    total,
+    coupon: c.coupon,
+    cans: lines.reduce((s, l) => s + l.cans, 0),
+  };
 }
 
 function validateCustomer(body, user) {
@@ -133,7 +162,9 @@ export function placeOrder(body, user) {
   products.save(catalogue);
   const now = new Date().toISOString();
   let number;
-  do { number = orderNumber(); } while (orders.find((o) => o.number === number));
+  do {
+    number = orderNumber();
+  } while (orders.find((o) => o.number === number));
   const order = {
     id: crypto.randomUUID(),
     number,
@@ -143,7 +174,14 @@ export function placeOrder(body, user) {
     customer: v.customer,
     shipping: v.shipping,
     items: q.lines,
-    pricing: { subtotal: q.subtotal, discount: q.discount, delivery: q.delivery, total: q.total, coupon: q.coupon, cans: q.cans },
+    pricing: {
+      subtotal: q.subtotal,
+      discount: q.discount,
+      delivery: q.delivery,
+      total: q.total,
+      coupon: q.coupon,
+      cans: q.cans,
+    },
     payment: v.payment,
     userId: v.userId,
     adminNote: '',
@@ -171,11 +209,17 @@ export function setStatus(o, status, note = '') {
   const catalogue = products.get();
   // cancelling returns the cans to stock; un-cancelling takes them again
   if (status === 'cancelled' && o.status !== 'cancelled') {
-    for (const l of o.items) { const p = catalogue.find((x) => x.handle === l.handle); if (p) p.stock += l.cans; }
+    for (const l of o.items) {
+      const p = catalogue.find((x) => x.handle === l.handle);
+      if (p) p.stock += l.cans;
+    }
     products.save(catalogue);
     if (o.payment.status === 'awaiting') o.payment.status = 'failed';
   } else if (o.status === 'cancelled' && status !== 'cancelled') {
-    for (const l of o.items) { const p = catalogue.find((x) => x.handle === l.handle); if (p) p.stock = Math.max(0, p.stock - l.cans); }
+    for (const l of o.items) {
+      const p = catalogue.find((x) => x.handle === l.handle);
+      if (p) p.stock = Math.max(0, p.stock - l.cans);
+    }
     products.save(catalogue);
   }
   o.status = status;

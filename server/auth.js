@@ -34,7 +34,8 @@ export function verify(token) {
   const [body, mac] = token.split('.');
   if (!body || !mac) return null;
   const expected = hmac(body);
-  const a = Buffer.from(mac), b = Buffer.from(expected);
+  const a = Buffer.from(mac),
+    b = Buffer.from(expected);
   if (a.length !== b.length || !crypto.timingSafeEqual(a, b)) return null;
   try {
     const payload = JSON.parse(Buffer.from(body, 'base64url').toString('utf8'));

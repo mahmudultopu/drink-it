@@ -6,7 +6,20 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { buildProducts, COLLECTIONS, PACKS } from './catalog.mjs';
 import { tileColor, mix, hex2rgb } from './art/lib.mjs';
-import { tornEdgeSvg, waveSvg, hillsSvg, badgeSvg, playBadgeSvg, logoSvg, faviconSvg, fruitSvg, starsSvg, blobSvg, iceCubeSvg, bubbleSvg } from './art/shapes.mjs';
+import {
+  tornEdgeSvg,
+  waveSvg,
+  hillsSvg,
+  badgeSvg,
+  playBadgeSvg,
+  logoSvg,
+  faviconSvg,
+  fruitSvg,
+  starsSvg,
+  blobSvg,
+  iceCubeSvg,
+  bubbleSvg,
+} from './art/shapes.mjs';
 import { avatarSvg } from './art/avatars.mjs';
 import { POSTS, FAQ, PAGES } from './content.mjs';
 import { seedReviews } from './seed.mjs';
@@ -17,7 +30,10 @@ const imgDir = path.join(root, 'public', 'assets', 'img');
 const productsDir = path.join(imgDir, 'products');
 fs.mkdirSync(dataDir, { recursive: true });
 
-const chroma = (hex) => { const c = hex2rgb(hex); return Math.max(...c) - Math.min(...c); };
+const chroma = (hex) => {
+  const c = hex2rgb(hex);
+  return Math.max(...c) - Math.min(...c);
+};
 // a can whose body is white-ish or near-black (dark and colourless) is tinted by its accent colour instead
 const usesAccent = (a) => luminance(a.body) > 205 || (luminance(a.body) < 60 && chroma(a.body) < 45);
 const luminance = (hex) => {
@@ -46,7 +62,8 @@ for (const p of products) {
   if (!fs.existsSync(path.join(productsDir, `${p.handle}.webp`))) missing.push(p.handle);
   delete p.render; // renderer-only settings
 }
-if (missing.length) console.warn(`
+if (missing.length)
+  console.warn(`
   ! ${missing.length} product image(s) missing - run "npm run render" first (first: ${missing[0]})
 `);
 fs.writeFileSync(path.join(dataDir, 'products.json'), JSON.stringify(products, null, 1));
@@ -55,7 +72,15 @@ fs.writeFileSync(path.join(dataDir, 'products.json'), JSON.stringify(products, n
 const collections = COLLECTIONS.map((c) => {
   const items = products.filter((p) => p.collections.includes(c.handle));
   const lead = items.find((p) => p.handle === c.lead) || items.slice().sort((a, b) => b.sold - a.sold)[0];
-  return { ...c, count: items.length, minPrice: Math.min(...items.map((p) => p.price)), minMl: Math.min(...items.map((p) => p.canMl)), lead: lead?.handle, tint: lead?.tile, products: items.map((p) => p.handle) };
+  return {
+    ...c,
+    count: items.length,
+    minPrice: Math.min(...items.map((p) => p.price)),
+    minMl: Math.min(...items.map((p) => p.canMl)),
+    lead: lead?.handle,
+    tint: lead?.tile,
+    products: items.map((p) => p.handle),
+  };
 });
 fs.writeFileSync(path.join(dataDir, 'collections.json'), JSON.stringify(collections, null, 1));
 
@@ -78,7 +103,8 @@ write('ice.svg', iceCubeSvg());
 write('bubble.svg', bubbleSvg());
 write('stars-fill.svg', starsSvg('fill'));
 write('stars-outline.svg', starsSvg('outline'));
-for (const f of ['lime', 'lemon', 'orange', 'cherry', 'grape', 'peach', 'mango', 'berry', 'mojito', 'coconut']) write(`fruit-${f}.svg`, fruitSvg(f));
+for (const f of ['lime', 'lemon', 'orange', 'cherry', 'grape', 'peach', 'mango', 'berry', 'mojito', 'coconut'])
+  write(`fruit-${f}.svg`, fruitSvg(f));
 
 // ---------- art the avatars need ----------
 const art = (handle) => {
@@ -86,16 +112,48 @@ const art = (handle) => {
   if (!p) throw new Error('avatar needs product ' + handle);
   return p.art;
 };
-const S = { coke: art('coca-cola-original-250ml-can'), sprite: art('sprite-250ml-can'), fanta: art('fanta-orange-250ml-can'), pepsi: art('pepsi-250ml-can') };
+const S = {
+  coke: art('coca-cola-original-250ml-can'),
+  sprite: art('sprite-250ml-can'),
+  fanta: art('fanta-orange-250ml-can'),
+  pepsi: art('pepsi-250ml-can'),
+};
 
 // team avatars (About page)
 const avDir = path.join(imgDir, 'avatars');
 fs.mkdirSync(avDir, { recursive: true });
 const AV = [
-  { n: 'crew-1', bg: '#FFD9B3', skin: '#C98E67', hair: '#241611', style: 'hijab', shirt: '#11704B', cloth: '#E0FA63', can: S.sprite },
-  { n: 'crew-2', bg: '#D7ECFF', skin: '#D9A07C', hair: '#1B1310', style: 'short', shirt: '#DE114A', beard: true, can: S.coke },
+  {
+    n: 'crew-1',
+    bg: '#FFD9B3',
+    skin: '#C98E67',
+    hair: '#241611',
+    style: 'hijab',
+    shirt: '#11704B',
+    cloth: '#E0FA63',
+    can: S.sprite,
+  },
+  {
+    n: 'crew-2',
+    bg: '#D7ECFF',
+    skin: '#D9A07C',
+    hair: '#1B1310',
+    style: 'short',
+    shirt: '#DE114A',
+    beard: true,
+    can: S.coke,
+  },
   { n: 'crew-3', bg: '#F3DAFF', skin: '#E4B494', hair: '#3A241A', style: 'long', shirt: '#F2B90C', can: S.fanta },
-  { n: 'crew-4', bg: '#DDF5C9', skin: '#B97E58', hair: '#1A120E', style: 'curly', shirt: '#1456B8', glasses: true, can: S.pepsi },
+  {
+    n: 'crew-4',
+    bg: '#DDF5C9',
+    skin: '#B97E58',
+    hair: '#1A120E',
+    style: 'curly',
+    shirt: '#1456B8',
+    glasses: true,
+    can: S.pepsi,
+  },
 ];
 for (const a of AV) fs.writeFileSync(path.join(avDir, a.n + '.svg'), avatarSvg(a));
 
@@ -107,6 +165,6 @@ fs.writeFileSync(path.join(dataDir, 'pages.json'), JSON.stringify(PAGES, null, 1
 // ---------- sample reviews (only when none exist yet) ----------
 const seeded = seedReviews(dataDir, products);
 
-console.log(`products: ${products.length}, collections: ${collections.length}, packs: ${PACKS.length}, posts: ${POSTS.length}${seeded ? ', sample reviews seeded' : ''}`);
-
-
+console.log(
+  `products: ${products.length}, collections: ${collections.length}, packs: ${PACKS.length}, posts: ${POSTS.length}${seeded ? ', sample reviews seeded' : ''}`,
+);

@@ -8,11 +8,11 @@ Mirinda, Mountain Dew, Mojo, Clemon, Speed, Royal Tiger, Red Bull, Monster, impo
 **from the Drink it website itself**: they pick singles, 6-packs, 12-packs or cartons of 24, check out with
 cash on delivery, bKash, Nagad or Rocket, and the order lands in your admin dashboard.
 
-The look follows the *Feezee* food-and-beverage theme you pointed me to: deep green `#11704B` + lime `#E0FA63`,
+The look follows the _Feezee_ food-and-beverage theme you pointed me to: deep green `#11704B` + lime `#E0FA63`,
 Young Serif headings with DM Sans text, chunky pill buttons with a teal drop edge, torn-paper edges, layered hill
 and wave dividers, pastel product tiles, and both home layouts (**Home – Default** and **Home V2**). All code is
 original — no theme files, images or code were copied. The can pictures are photoreal 3D renders made in-house (see
-*Product images* below); swap in official packshots whenever you have them.
+_Product images_ below); swap in official packshots whenever you have them.
 
 ## Run it
 
@@ -36,17 +36,17 @@ the store from your phone on the same Wi-Fi), `DRINKIT_SECURE_COOKIES=1` (when s
 
 Edit **`data/site.json`** (it is picked up immediately, no restart):
 
-| What | Where |
-| --- | --- |
-| Phone, WhatsApp, email, address, opening hours | `contact` |
-| bKash / Nagad / Rocket merchant numbers | `payments.bkash.number` … (currently `01XXX-XXXXXX`) |
-| Delivery charges, free-delivery threshold, ETAs | `delivery` |
-| Announcement-bar messages | `announcements` |
-| Social links | `social` |
+| What                                            | Where                                                |
+| ----------------------------------------------- | ---------------------------------------------------- |
+| Phone, WhatsApp, email, address, opening hours  | `contact`                                            |
+| bKash / Nagad / Rocket merchant numbers         | `payments.bkash.number` … (currently `01XXX-XXXXXX`) |
+| Delivery charges, free-delivery threshold, ETAs | `delivery`                                           |
+| Announcement-bar messages                       | `announcements`                                      |
+| Social links                                    | `social`                                             |
 
 Coupons live in `data/coupons.json` (`WELCOME50`, `DRINKIT10`, `FREESHIP`).
 
-> The store shows prices in Bangladeshi Taka (৳). Prices are *indicative* (based on recent Bangladeshi retail
+> The store shows prices in Bangladeshi Taka (৳). Prices are _indicative_ (based on recent Bangladeshi retail
 > listings) — set your real prices in the admin → Products tab, or in `scripts/catalog.mjs`.
 
 ## What's inside
@@ -80,7 +80,7 @@ npm run render:products      # products only   (node scripts/render/render.mjs b
 npm run render:scenes        # hero / banner / blog scenes (defined in scripts/render/scenes.mjs)
 ```
 
-The renders are *approximations* of the real packs. **Real photos win:** drop a photo named after the product handle into
+The renders are _approximations_ of the real packs. **Real photos win:** drop a photo named after the product handle into
 `scripts/render/inbox/` (see the README there) and `npm run render:products` cuts it out and rebuilds all the pack images
 from it. The best legal source for packshots is the brands' distributors; do not copy photos from other shops' sites.
 
@@ -114,25 +114,25 @@ orders use a host with a disk, or swap the storage in `server/db.js` for a datab
 
 Environment variables for Vercel (Project → Settings → Environment Variables):
 
-| Variable | Purpose |
-| --- | --- |
+| Variable                 | Purpose                                                                     |
+| ------------------------ | --------------------------------------------------------------------------- |
 | `DRINKIT_ADMIN_PASSWORD` | Turns on the `/admin` login (it stays closed on Vercel until you set this). |
-| `DRINKIT_SECRET` | Any long random string; keeps login cookies valid across server instances. |
+| `DRINKIT_SECRET`         | Any long random string; keeps login cookies valid across server instances.  |
 
 ## Notes & limits
 
-* **Payments:** cash on delivery works out of the box. bKash / Nagad / Rocket use the common "Send Money + TrxID"
-  flow: the customer pays your number, enters the transaction ID, and you mark the payment *paid* in the admin after
+- **Payments:** cash on delivery works out of the box. bKash / Nagad / Rocket use the common "Send Money + TrxID"
+  flow: the customer pays your number, enters the transaction ID, and you mark the payment _paid_ in the admin after
   checking. Card payments are shown as "coming soon" — connect a gateway such as SSLCommerz in `server/routes.js`.
-* **Notifications:** the store does not send email/SMS. New orders appear in the admin; the dashboard badge shows
+- **Notifications:** the store does not send email/SMS. New orders appear in the admin; the dashboard badge shows
   how many are waiting.
-* **Sample content:** the product reviews seeded in `data/reviews.json` (flagged `"sample": true`), the three
+- **Sample content:** the product reviews seeded in `data/reviews.json` (flagged `"sample": true`), the three
   testimonials on the home page and the crew names on the About page are placeholders — replace them with real ones
   (home-page testimonials: `public/assets/js/pages/home.js`).
   Brand names, logos and pack designs appear only to identify the products for sale; the can images are in-house 3D
   renders that approximate the real packs, not official packshots.
-* **Hosting:** the server keeps data in local files, so a shop that takes real orders needs a machine with a
-  persistent disk (see *Deploy* above); serverless platforms such as Vercel are fine for previews only.
+- **Hosting:** the server keeps data in local files, so a shop that takes real orders needs a machine with a
+  persistent disk (see _Deploy_ above); serverless platforms such as Vercel are fine for previews only.
 
 ## Credits
 

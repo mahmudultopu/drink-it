@@ -46,7 +46,21 @@ function frameCamera(w, h, { R, H }, { elevation = 9, fill = 0.92, fov = 14, yOf
 window.renderJob = async (job) => {
   fontsReady ||= loadFonts();
   await fontsReady;
-  const { kind = 'slim', design, opts = {}, w = 1000, h = 1500, elevation = 11, yaw = 0, tilt = 0, fill = 0.92, droplets = 1, seed = 7, flake = 0.2, gloss = 0.2 } = job;
+  const {
+    kind = 'slim',
+    design,
+    opts = {},
+    w = 1000,
+    h = 1500,
+    elevation = 11,
+    yaw = 0,
+    tilt = 0,
+    fill = 0.92,
+    droplets = 1,
+    seed = 7,
+    flake = 0.2,
+    gloss = 0.2,
+  } = job;
   init(w, h);
   const scene = new THREE.Scene();
   scene.environment = envTex;
@@ -80,7 +94,9 @@ window.renderLabel = async (design, kind = 'slim', droplets = 0, opts = {}) => {
   fontsReady ||= loadFonts();
   await fontsReady;
   const l = drawLabel(design, kind, { dropletDensity: droplets, opts });
-  const c = document.createElement('canvas'); c.width = 2048; c.height = Math.round(2048 * l.H / l.W);
+  const c = document.createElement('canvas');
+  c.width = 2048;
+  c.height = Math.round((2048 * l.H) / l.W);
   c.getContext('2d').drawImage(l.labelCanvas, 0, 0, c.width, c.height);
   return c.toDataURL('image/png');
 };
@@ -89,6 +105,11 @@ window.rendererInfo = () => {
   init(8, 8);
   const gl = renderer.getContext();
   const ext = gl.getExtension('WEBGL_debug_renderer_info');
-  return { gl: gl.getParameter(ext ? ext.UNMASKED_RENDERER_WEBGL : gl.RENDERER), version: gl.getParameter(gl.VERSION), maxTex: gl.getParameter(gl.MAX_TEXTURE_SIZE), maxSamples: gl.getParameter(gl.MAX_SAMPLES) };
+  return {
+    gl: gl.getParameter(ext ? ext.UNMASKED_RENDERER_WEBGL : gl.RENDERER),
+    version: gl.getParameter(gl.VERSION),
+    maxTex: gl.getParameter(gl.MAX_TEXTURE_SIZE),
+    maxSamples: gl.getParameter(gl.MAX_SAMPLES),
+  };
 };
 window.ready = true;

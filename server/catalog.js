@@ -2,7 +2,9 @@
 import { products, reviews, collections } from './db.js';
 
 let statsCache = null;
-export function invalidateStats() { statsCache = null; }
+export function invalidateStats() {
+  statsCache = null;
+}
 
 function stats() {
   if (!statsCache) {
@@ -61,7 +63,15 @@ export function toCard(p) {
 
 export function toDetail(p) {
   const base = toCard(p);
-  return { ...base, taste: p.taste, meter: p.meter, long: p.long, why: p.why, details: p.details, dist: ratingFor(p.handle).dist };
+  return {
+    ...base,
+    taste: p.taste,
+    meter: p.meter,
+    long: p.long,
+    why: p.why,
+    details: p.details,
+    dist: ratingFor(p.handle).dist,
+  };
 }
 
 export const allCards = () => products.get().map(toCard);

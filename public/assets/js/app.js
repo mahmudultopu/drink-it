@@ -9,7 +9,12 @@ async function main() {
   try {
     boot = await bootstrap();
   } catch (err) {
-    document.querySelector('main')?.insertAdjacentHTML('afterbegin', `<div class="container" style="padding:80px 20px;text-align:center"><h2>We can’t reach the store right now</h2><p>${err.message}</p><p><button class="btn" onclick="location.reload()">Try again</button></p></div>`);
+    document
+      .querySelector('main')
+      ?.insertAdjacentHTML(
+        'afterbegin',
+        `<div class="container" style="padding:80px 20px;text-align:center"><h2>We can’t reach the store right now</h2><p>${err.message}</p><p><button class="btn" onclick="location.reload()">Try again</button></p></div>`,
+      );
     return;
   }
   Store.init(boot);

@@ -1,5 +1,5 @@
 // Checkout: contact + Bangladeshi delivery address + payment (COD / bKash / Nagad / Rocket) with a live server quote.
-import { $, $$, html, raw, esc, money, icon, toast, debounce } from '../ui.js';
+import { $, $$, html, esc, money, toast } from '../ui.js';
 import { Store } from '../store.js';
 import { api } from '../api.js';
 import { freeDeliveryHtml } from '../chrome.js';
@@ -11,18 +11,30 @@ export function init() {
   const root = $('[data-checkout-root]');
   const site = Store.site;
   if (!Store.cartLines().length) {
-    root.innerHTML = String(html`<div class="empty"><h3>Your cart is empty</h3><p>Add a few cans before checking out.</p><a class="btn" href="/collections/all">Shop cans</a></div>`);
+    root.innerHTML = String(
+      html`<div class="empty"><h3>Your cart is empty</h3><p>Add a few cans before checking out.</p><a class="btn" href="/collections/all">Shop cans</a></div>`,
+    );
     return;
   }
   document.title = 'Checkout – Drink it';
   const divisions = site.divisions;
   const user = Store.user;
   let draft = {};
-  try { draft = JSON.parse(localStorage.getItem('drinkit.checkout') || '{}'); } catch { /* ignore */ }
+  try {
+    draft = JSON.parse(localStorage.getItem('drinkit.checkout') || '{}');
+  } catch {
+    /* ignore */
+  }
   const saved = user?.addresses?.[0] || {};
   const v = {
-    name: user?.name || draft.name || '', phone: user?.phone || draft.phone || '', email: user?.email || draft.email || '',
-    division: saved.division || draft.division || 'Dhaka', district: saved.district || draft.district || 'Dhaka', area: saved.area || draft.area || '', address: saved.address || draft.address || '', notes: '',
+    name: user?.name || draft.name || '',
+    phone: user?.phone || draft.phone || '',
+    email: user?.email || draft.email || '',
+    division: saved.division || draft.division || 'Dhaka',
+    district: saved.district || draft.district || 'Dhaka',
+    area: saved.area || draft.area || '',
+    address: saved.address || draft.address || '',
+    notes: '',
   };
   const methods = PAY_ORDER.filter((k) => site.payments[k]);
   const state = { coupon: '', method: 'cod', quote: null, busy: false };
@@ -52,7 +64,10 @@ export function init() {
 
       <section class="cbox"><h2><span>3</span> Payment</h2>
         <div class="paycards" role="radiogroup" aria-label="Payment method">
-          ${methods.map((k) => { const m = site.payments[k]; return html`<label class="paycard${m.enabled ? '' : ' is-disabled'}"><input type="radio" name="method" value="${k}" ${k === 'cod' ? 'checked' : ''} ${m.enabled ? '' : 'disabled'}><span class="paycard__body"><b>${m.label}</b><small>${m.hint}</small></span><span class="pay-chip pay-chip--${k === 'card' ? 'visa' : k}">${PAY_CHIP[k]}</span></label>`; })}
+          ${methods.map((k) => {
+            const m = site.payments[k];
+            return html`<label class="paycard${m.enabled ? '' : ' is-disabled'}"><input type="radio" name="method" value="${k}" ${k === 'cod' ? 'checked' : ''} ${m.enabled ? '' : 'disabled'}><span class="paycard__body"><b>${m.label}</b><small>${m.hint}</small></span><span class="pay-chip pay-chip--${k === 'card' ? 'visa' : k}">${PAY_CHIP[k]}</span></label>`;
+          })}
         </div>
         <div class="paybox" data-paybox hidden>
           <p data-paybox-text></p>
@@ -78,17 +93,26 @@ export function init() {
   // district list depends on division
   const fillDistricts = (select, keep) => {
     const list = divisions[form.elements.division.value] || [];
-    form.elements.district.innerHTML = list.map((d) => `<option ${d === (keep || v.district) ? 'selected' : ''}>${esc(d)}</option>`).join('');
+    form.elements.district.innerHTML = list
+      .map((d) => `<option ${d === (keep || v.district) ? 'selected' : ''}>${esc(d)}</option>`)
+      .join('');
   };
   fillDistricts();
-  form.elements.division.addEventListener('change', () => { fillDistricts(null, ''); requote(); });
+  form.elements.division.addEventListener('change', () => {
+    fillDistricts(null, '');
+    requote();
+  });
   form.elements.district.addEventListener('change', requote);
 
   // saved addresses
   $('[data-saved]', form)?.addEventListener('change', (e) => {
     const a = user.addresses[Number(e.target.value)];
     if (!a) return;
-    form.elements.division.value = a.division; fillDistricts(null, a.district); form.elements.area.value = a.area; form.elements.address.value = a.address; requote();
+    form.elements.division.value = a.division;
+    fillDistricts(null, a.district);
+    form.elements.area.value = a.area;
+    form.elements.address.value = a.address;
+    requote();
   });
 
   // payment method UI
@@ -100,10 +124,13 @@ export function init() {
     state.method = form.elements.method.value;
     const box = $('[data-paybox]', form);
     box.hidden = state.method === 'cod';
-    if (state.method !== 'cod') $('[data-paybox-text]', form).textContent = payTexts(state.quote?.total ?? Store.cartSubtotal());
+    if (state.method !== 'cod')
+      $('[data-paybox-text]', form).textContent = payTexts(state.quote?.total ?? Store.cartSubtotal());
     $$('.paycard', form).forEach((c) => c.classList.toggle('is-selected', c.querySelector('input').checked));
   };
-  form.addEventListener('change', (e) => { if (e.target.name === 'method') updatePay(); });
+  form.addEventListener('change', (e) => {
+    if (e.target.name === 'method') updatePay();
+  });
 
   // summary + live quote
   const itemsPayload = () => Store.cartItems().map((i) => ({ handle: i.handle, pack: i.pack, qty: i.qty }));
@@ -119,12 +146,28 @@ export function init() {
         <div><dt>Delivery</dt><dd>${q ? (q.delivery ? money(q.delivery) : 'Free') : '…'}</dd></div>
       </dl>
       <div class="summary__total"><span>Total</span><b>${q ? money(q.total) : '…'}</b></div>`);
-    $('[data-apply]', root).addEventListener('click', () => { state.coupon = $('[data-coupon]', root).value.trim().toUpperCase(); requote(true); });
-    $('[data-coupon]', root).addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); state.coupon = e.target.value.trim().toUpperCase(); requote(true); } });
+    $('[data-apply]', root).addEventListener('click', () => {
+      state.coupon = $('[data-coupon]', root).value.trim().toUpperCase();
+      requote(true);
+    });
+    $('[data-coupon]', root).addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        state.coupon = e.target.value.trim().toUpperCase();
+        requote(true);
+      }
+    });
   };
   async function requote(showMsg = false) {
     try {
-      const { quote } = await api('/quote', { method: 'POST', body: { items: itemsPayload(), shipping: { division: form.elements.division.value, district: form.elements.district.value }, coupon: state.coupon } });
+      const { quote } = await api('/quote', {
+        method: 'POST',
+        body: {
+          items: itemsPayload(),
+          shipping: { division: form.elements.division.value, district: form.elements.district.value },
+          coupon: state.coupon,
+        },
+      });
       state.quote = quote;
       let msg = null;
       if (quote.couponError) msg = { error: true, text: quote.couponError };
@@ -145,12 +188,22 @@ export function init() {
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     if (state.busy) return;
-    $$('[data-err]', form).forEach((x) => { x.textContent = ''; x.closest('.field')?.classList.remove('has-error'); });
+    $$('[data-err]', form).forEach((x) => {
+      x.textContent = '';
+      x.closest('.field')?.classList.remove('has-error');
+    });
     $('[data-form-error]', form).hidden = true;
     const body = {
-      items: itemsPayload(), coupon: state.coupon,
+      items: itemsPayload(),
+      coupon: state.coupon,
       customer: { name: fval('name'), phone: fval('phone'), email: fval('email') },
-      shipping: { division: fval('division'), district: fval('district'), area: fval('area'), address: fval('address'), notes: fval('notes') },
+      shipping: {
+        division: fval('division'),
+        district: fval('district'),
+        area: fval('area'),
+        address: fval('address'),
+        notes: fval('notes'),
+      },
       payment: { method: state.method, trxId: fval('trxId'), sender: fval('sender') },
     };
     state.busy = true;
@@ -159,23 +212,35 @@ export function init() {
     try {
       const { order } = await api('/orders', { method: 'POST', body });
       try {
-        localStorage.setItem('drinkit.checkout', JSON.stringify({ ...body.customer, ...body.shipping, notes: undefined }));
+        localStorage.setItem(
+          'drinkit.checkout',
+          JSON.stringify({ ...body.customer, ...body.shipping, notes: undefined }),
+        );
         sessionStorage.setItem('drinkit.last', JSON.stringify({ number: order.number, phone: order.customer.phone }));
-      } catch { /* ignore */ }
+      } catch {
+        /* ignore */
+      }
       Store.clearCart();
       location.href = `/orders/${order.number}`;
     } catch (err) {
       const fields = err.fields || {};
       for (const [k, msg] of Object.entries(fields)) {
         const el = $(`[data-err="${k}"]`, form);
-        if (el) { el.textContent = msg; el.closest('.field')?.classList.add('has-error'); }
+        if (el) {
+          el.textContent = msg;
+          el.closest('.field')?.classList.add('has-error');
+        }
       }
       const note = $('[data-form-error]', form);
-      note.textContent = err.message; note.hidden = false;
+      note.textContent = err.message;
+      note.hidden = false;
       const first = $('.has-error input, .has-error select, .has-error textarea', form);
       (first || note).scrollIntoView({ behavior: 'smooth', block: 'center' });
       first?.focus({ preventScroll: true });
       if (err.status === 409) requote();
-    } finally { state.busy = false; btn.classList.remove('is-loading'); }
+    } finally {
+      state.busy = false;
+      btn.classList.remove('is-loading');
+    }
   });
 }

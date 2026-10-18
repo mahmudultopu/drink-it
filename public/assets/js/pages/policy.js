@@ -1,4 +1,4 @@
-import { $, raw } from '../ui.js';
+import { $ } from '../ui.js';
 import { api } from '../api.js';
 import { bannerHtml } from '../sections.js';
 
