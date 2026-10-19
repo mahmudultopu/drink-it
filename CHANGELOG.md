@@ -49,6 +49,7 @@ First release: a complete shop with an admin dashboard, hardened, measured and d
   HTML and catalogue.
 - No layout shift on the main pages (the collection page went from 1.04 to 0).
 - On a throttled phone: home page 1,143 KB to 374 KB, product page largest paint 5.2 s to 1.5 s.
+- Lighthouse on the live site: performance 98-100 (was 75-100), accessibility 100 (was 88-98), SEO 100 (was 92-100).
 
 ### Fixed
 
