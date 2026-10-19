@@ -185,6 +185,9 @@ persistent disk, or move storage to a database.
   path traversal, caching and compression.
 - **Build tests** run the asset build, start the server from it and check that every referenced file exists, that URLs are
   fingerprinted and that cache headers are right.
+- **Browser tests** drive headless Chrome through every page (no console errors or policy violations), layout stability,
+  the product gallery, search and a complete purchase. They run against the readable sources and again against the
+  minified production build, and skip themselves when no Chrome is installed.
 
 ## Scaling up
 

@@ -25,8 +25,8 @@ orders there are not saved (see [Deployment](#deployment)).
 - **Secure by default.** Prices and stock are decided on the server, passwords use scrypt, sessions are signed
   `HttpOnly` cookies, cross-site requests are refused, and a strict Content-Security-Policy forbids inline scripts
   ([details](SECURITY.md)).
-- **Tested.** About 180 tests run on Node's built-in runner, including real-browser checks of every page, layout
-  stability and the purchase flow.
+- **Tested.** More than 200 tests run on Node's built-in runner, including real-browser checks of every page, layout
+  stability and the purchase flow - against both the readable sources and the production build.
 
 ![Collection page](docs/screenshots/collection.jpg)
 

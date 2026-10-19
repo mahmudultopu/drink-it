@@ -21,7 +21,7 @@ export default [
   },
   {
     // the browser tests also contain callbacks that run inside the page they drive
-    files: ['test/browser.test.mjs'],
+    files: ['test/support/browser-suites.mjs'],
     languageOptions: { ...shared, globals: { ...globals.node, ...globals.browser } },
   },
   {

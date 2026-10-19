@@ -1,4 +1,5 @@
-// Tests for the production asset build (scripts/build-assets.mjs) and for serving it.
+// Tests for the production asset build (scripts/build-assets.mjs) and for serving it, including a pass of the browser
+// suites over the minified bundles, which are what visitors actually run.
 // The build writes to public/assets/dist, which is git-ignored; an existing build is set aside and restored afterwards.
 import { describe, it, before, after } from 'node:test';
 import assert from 'node:assert/strict';
@@ -8,12 +9,19 @@ import { existsSync } from 'node:fs';
 import { readFile, rename, rm } from 'node:fs/promises';
 import path from 'node:path';
 import zlib from 'node:zlib';
+import puppeteer from 'puppeteer-core';
+import { findChromeOrNull } from '../scripts/chrome.mjs';
 import { ROOT, startServer, rawRequest } from './support/server.mjs';
+import { registerBrowserSuites } from './support/browser-suites.mjs';
 
 const DIST = path.join(ROOT, 'public', 'assets', 'dist');
 const PARKED = `${DIST}.parked`;
 
+const chrome = findChromeOrNull();
+const skipBrowser = chrome ? false : 'Chrome or Chromium not found (set CHROME_PATH)';
+
 let server;
+let browser;
 let manifest;
 let hadBuild = false;
 
@@ -27,9 +35,17 @@ before(async () => {
   assert.equal(build.status, 0, build.stderr || build.stdout);
   manifest = JSON.parse(await readFile(path.join(DIST, 'manifest.json'), 'utf8'));
   server = await startServer({ DRINKIT_ASSETS: 'built' });
+  if (!skipBrowser) {
+    browser = await puppeteer.launch({
+      executablePath: chrome,
+      headless: true,
+      args: ['--no-sandbox', '--disable-gpu'],
+    });
+  }
 });
 
 after(async () => {
+  await browser?.close();
   await server?.stop();
   await rm(DIST, { recursive: true, force: true });
   if (hadBuild) await rename(PARKED, DIST);
@@ -178,4 +194,13 @@ describe('assets from a build', () => {
     });
     assert.equal(review.status, 201);
   });
+});
+
+// The same browser checks as browser.test.mjs, against the minified, code-split bundles.
+registerBrowserSuites({
+  skip: skipBrowser,
+  browser: () => browser,
+  base: () => server.base,
+  label: 'production build',
+  layoutPages: ['/', '/collections/cola-classics', '/products/sprite-250ml-can'],
 });
