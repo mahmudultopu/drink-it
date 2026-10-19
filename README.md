@@ -20,8 +20,8 @@ orders there are not saved (see [Deployment](#deployment)).
   empty by construction.
 - **Fast on a phone.** Pages ship their banner, title and main photo in the first HTML, assets are bundled, fingerprinted
   and cached for a year, and images are sent at the size they are shown. On a throttled phone the product page paints its
-  main photo in 1.5 s instead of 5.2 s and the collection page no longer shifts at all
-  ([measurements](docs/performance.md)).
+  main photo in 1.5 s instead of 5.2 s and the collection page no longer shifts at all; Lighthouse scores on the live
+  site are 98-100 for performance and 100 for accessibility, best practices and SEO ([measurements](docs/performance.md)).
 - **Secure by default.** Prices and stock are decided on the server, passwords use scrypt, sessions are signed
   `HttpOnly` cookies, cross-site requests are refused, and a strict Content-Security-Policy forbids inline scripts
   ([details](SECURITY.md)).

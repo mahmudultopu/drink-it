@@ -37,6 +37,23 @@ npm run measure -- http://localhost:3001 http://localhost:3000 /products/coca-co
 Absolute timings depend on the machine, which is why the comparison is made side by side. Layout shift and bytes are
 deterministic and the most reliable columns.
 
+## Lighthouse on the live site
+
+The same pages were audited with Lighthouse 13 against the Vercel deployment before and after this work, on the same
+machine and in the same state (its CPU benchmark index was 2,100-2,450 for every run).
+
+| Page, device        | Performance | Accessibility | SEO      | Largest paint | Blocking time | Layout shift | Transferred (KB) |
+| ------------------- | ----------- | ------------- | -------- | ------------- | ------------- | ------------ | ---------------- |
+| Home, phone         | 83 → 99     | 97 → 100      | 92 → 100 | 3.2 → 2.0 s   | 320 → 20 ms   | 0 → 0.001    | 1,394 → 462      |
+| Collection, phone   | 94 → 99     | 98 → 100      | 100      | 2.3 → 2.0 s   | 100 → 20 ms   | 0 → 0.001    | 1,144 → 517      |
+| Product, phone      | 90 → 98     | 88 → 100      | 100      | 2.3 → 2.0 s   | 290 → 100 ms  | 0 → 0.001    | 740 → 322        |
+| Home, desktop       | 100 → 100   | 97 → 100      | 92 → 100 | 0.6 → 0.5 s   | 0 → 0 ms      | 0 → 0        | 3,757 → 756      |
+| Collection, desktop | 75 → 100    | 93 → 100      | 100      | 0.8 → 0.5 s   | 10 → 0 ms     | **0.81 → 0** | 5,184 → 878      |
+| Product, desktop    | 99 → 100    | 88 → 100      | 100      | 0.9 → 0.5 s   | 30 → 0 ms     | 0 → 0        | 2,162 → 506      |
+
+Best practices stayed at 100 throughout. Lighthouse estimates the phone profile rather than replaying it, so its
+largest-paint figures move less than the replayed measurements above, which is why both are shown.
+
 ## What made the difference
 
 **Less to download**
