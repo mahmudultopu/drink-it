@@ -1,0 +1,83 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    name: Lint, format and test (Node ${{ matrix.node }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node: [20, 22, 24]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Check formatting
+        run: npm run format:check
+
+      - name: Test
+        run: npm test
+
+  build:
+    name: Production build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Build assets
+        run: npm run build
+
+      - name: Check that the server starts from the build
+        run: |
+          DRINKIT_ASSETS=built PORT=3999 DRINKIT_ADMIN_PASSWORD="ci-only-passphrase-123" node server.js &
+          for i in $(seq 1 30); do
+            curl -fs http://127.0.0.1:3999/ >/dev/null && break
+            sleep 1
+          done
+          curl -fsS http://127.0.0.1:3999/api/catalogue | head -c 200
+          echo
+          curl -fsSI http://127.0.0.1:3999/ | grep -i "content-security-policy"
+
+  audit:
+    name: Dependency audit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      # The shop has no runtime dependencies, so this should always pass; it guards against one being added unnoticed.
+      - name: Audit production dependencies
+        run: npm audit --omit=dev --audit-level=low

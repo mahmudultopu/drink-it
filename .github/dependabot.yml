@@ -1,0 +1,28 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: build
+      include: scope
+    groups:
+      # linting and formatting tools move together; one pull request is easier to review
+      code-quality:
+        patterns: ['eslint', '@eslint/*', 'globals', 'prettier']
+      # the art pipeline only matters when regenerating images, so keep its updates in one place too
+      art-pipeline:
+        patterns: ['sharp', 'puppeteer-core', 'three', 'opentype.js']
+    ignore:
+      # three.js renders change their look between releases; update deliberately, then re-render the images
+      - dependency-name: three
+        update-types: ['version-update:semver-minor']
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+    commit-message:
+      prefix: ci

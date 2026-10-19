@@ -1,0 +1,52 @@
+name: Bug report
+description: Something on the shop, the API or the admin dashboard does not behave as expected
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report this. For security problems please do **not** use this form;
+        see the [security policy](../blob/main/SECURITY.md) instead.
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: What did you do, what did you expect, and what happened instead?
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Add a 6-pack of ... to the cart
+        2. Open /checkout
+        3. ...
+    validations:
+      required: true
+  - type: input
+    id: where
+    attributes:
+      label: Page or endpoint
+      placeholder: /checkout, POST /api/orders, ...
+  - type: dropdown
+    id: environment
+    attributes:
+      label: Where did you see it?
+      options:
+        - Hosted preview (Vercel)
+        - Running locally (npm start)
+        - Production build (npm run build)
+    validations:
+      required: true
+  - type: input
+    id: browser
+    attributes:
+      label: Browser and device
+      placeholder: Chrome 130 on Android 14
+  - type: textarea
+    id: logs
+    attributes:
+      label: Console or server output
+      description: Anything useful from the browser console or the terminal running the server. Remove personal data first.
+      render: shell
