@@ -36,6 +36,7 @@
     "audit:prod": "npm audit --omit=dev --audit-level=low",
     "build:catalog": "node scripts/build.mjs",
     "build:images": "node scripts/render/derive.mjs",
+    "build:fonts": "node scripts/get-fonts.mjs",
     "render": "node scripts/render/render.mjs all",
     "render:products": "node scripts/render/render.mjs build",
     "render:scenes": "node scripts/render/render.mjs scenes"

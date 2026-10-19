@@ -1,37 +1,46 @@
 /* ==========================================================================
    Drink it — design tokens, reset, typography
-   Palette, type scale and button style follow the "Feezee" food & beverage look:
-   deep green + lime, Young Serif headings, DM Sans body, chunky pill buttons with a teal drop edge.
+   The look is inspired by the Feezee food & beverage theme: deep green and lime, Young Serif headings, DM Sans body
+   text and chunky pill buttons with a teal drop edge. Colours, type and spacing are defined once, as custom
+   properties below, and used everywhere else.
    ========================================================================== */
 :root {
-  --green: #11704b;
-  --green-dark: #0b4f35;
-  --lime: #e0fa63;
-  --lime-text: #daf45b;
-  --teal: #004d51;
-  --ink: #200d07;
-  --crimson: #de114a;
-  --cream: #fdfff0;
+  /* brand palette */
+  --green: #11704b; /* primary: header panels, hero, footer, buttons */
+  --green-dark: #0b4f35; /* text on light green tiles */
+  --lime: #e0fa63; /* accents and the header background */
+  --lime-text: #daf45b; /* lime used for text and icons on green, a touch deeper for legibility */
+  --teal: #004d51; /* the drop edge under buttons and active states */
+  --ink: #200d07; /* body text */
+  --crimson: #de114a; /* the one "attention" colour: sale badges, the hero button */
+  --cream: #fdfff0; /* page and card backgrounds on the second home layout */
   --white: #ffffff;
-  --hill-lime: #d9f35b;
+  --hill-lime: #d9f35b; /* layered hill dividers */
   --hill-mid: #64b74c;
-  --muted: rgba(32, 13, 7, 0.66);
+
+  /* text and borders derived from the ink colour */
+  --muted: rgba(32, 13, 7, 0.66); /* secondary text; 6:1 on white */
   --line: rgba(32, 13, 7, 0.18);
+
+  /* status colours */
   --success: #3ed660;
   --warn: #ee9441;
   --danger: #c0182f;
   --whatsapp: #0d7f56; /* darker than WhatsApp's own green so white text on it reads at 5:1 */
 
+  /* type: each stack ends in a system font, and the Taka fonts only supply the ৳ sign */
   --font-heading: 'Young Serif', 'Taka Serif', Georgia, 'Times New Roman', serif;
   --font-body: 'DM Sans', 'Taka Sans', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
 
+  /* shape and motion */
   --radius: 10px;
   --radius-lg: 30px;
   --btn-shadow: 1.5px 4px 0 0 var(--teal);
   --ease: cubic-bezier(0.4, 0, 0.2, 1);
-  --inset: 10px;
+  --inset: 10px; /* the gap between the page edge and full-width panels */
 
-  --page-bg: #ffffff;
+  /* layout */
+  --page-bg: #ffffff; /* the product page sets this to the can's tint (see pages/product.js) */
   --header-offset: 0px;
   --container: 1440px;
 }

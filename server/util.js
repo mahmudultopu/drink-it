@@ -314,6 +314,7 @@ export const esc = (s) =>
     (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c],
   );
 
+/** A random hex string, for identifiers that must be hard to guess (review and message ids). */
 export const randomId = (bytes = 8) => crypto.randomBytes(bytes).toString('hex');
 
 /**

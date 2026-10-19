@@ -1,6 +1,6 @@
 /* ==========================================================================
-   Inner pages: banner, breadcrumbs, collection, collections index, CTA banner,
-   product, cart, checkout, order, account, blog, content pages
+   Inner pages: breadcrumbs, the banner, the collection page (filters, grid) and collections index, the call-to-action
+   banner, and the placeholders that hold space for script-filled areas
    ========================================================================== */
 .page-main {
   padding-bottom: 20px;

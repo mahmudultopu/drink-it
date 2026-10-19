@@ -1,4 +1,6 @@
-// Product serialisation for the storefront (cards vs. full detail) + review statistics.
+// What the storefront is told about products: the compact "card" shape used by listings, the fuller "detail" shape for
+// a product page, collection summaries, and review statistics. Stored products carry extra fields (art settings,
+// internal ids) that never leave the server.
 import { products, reviews, collections } from './db.js';
 
 // Review statistics per product, rebuilt whenever the reviews table is saved.
@@ -21,14 +23,17 @@ function stats() {
   return statsCache;
 }
 
+/** Average rating (to one decimal), review count and 1-5 star distribution of the approved reviews of a product. */
 export function ratingFor(handle) {
   const s = stats().get(handle);
   if (!s) return { rating: 0, reviewCount: 0, dist: [0, 0, 0, 0, 0] };
   return { rating: Math.round((s.sum / s.count) * 10) / 10, reviewCount: s.count, dist: s.dist };
 }
 
+/** The deal's end time if it is still running, otherwise null (so an expired deal stops showing a countdown). */
 const liveDeal = (p) => (p.dealEndsAt && new Date(p.dealEndsAt).getTime() > Date.now() ? p.dealEndsAt : null);
 
+/** The listing shape: everything a product card, filter or search needs, and nothing else. */
 export function toCard(p) {
   const { rating, reviewCount } = ratingFor(p.handle);
   return {
@@ -61,6 +66,7 @@ export function toCard(p) {
   };
 }
 
+/** The product-page shape: the card plus the long description, tasting notes and rating distribution. */
 export function toDetail(p) {
   const base = toCard(p);
   return {
@@ -74,9 +80,12 @@ export function toDetail(p) {
   };
 }
 
+/** Every product in card shape. */
 export const allCards = () => products.get().map(toCard);
+/** The stored product with this URL handle, or undefined. */
 export const findProduct = (handle) => products.get().find((p) => p.handle === handle);
 
+/** The collections with their current product counts. */
 export function collectionList() {
   const list = products.get();
   return collections.get().map((c) => {

@@ -150,16 +150,19 @@ function cataloguePayload() {
   return catalogue.payload;
 }
 
+// Everything the storefront needs to render: site settings, collections, product cards and article summaries.
 route('GET', '/api/catalogue', (ctx) => {
   sendPayload(ctx.req, ctx.res, cataloguePayload(), { ...CATALOGUE_CACHE, 'X-Content-Type-Options': 'nosniff' });
 });
 
+// One product with its long description and tasting notes (the product page).
 route('GET', '/api/products/:handle', (ctx) => {
   const p = findProduct(ctx.params.handle);
   if (!p) throw new HttpError(404, 'Product not found');
   json(ctx.res, 200, toDetail(p));
 });
 
+// Approved reviews, newest first; `?product=<handle>` limits them to one product and adds its rating statistics.
 route('GET', '/api/reviews', (ctx) => {
   const handle = clean(ctx.url.searchParams.get('product'), 120);
   const list = reviews
@@ -179,6 +182,7 @@ route('GET', '/api/reviews', (ctx) => {
   json(ctx.res, 200, { reviews: list, stats: handle ? ratingFor(handle) : undefined });
 });
 
+// A visitor's review. It is stored unapproved and shown only after an administrator approves it.
 route('POST', '/api/reviews', async (ctx) => {
   limit(ctx, 'review', 8, 3_600_000);
   const b = ctx.body;
@@ -209,6 +213,7 @@ route('POST', '/api/reviews', async (ctx) => {
 
 // ---------------------------------------------------------------- editorial content
 
+// One article with its full text, plus three others to read next.
 route('GET', '/api/posts/:handle', (ctx) => {
   const p = posts.get().find((x) => x.handle === ctx.params.handle);
   if (!p) throw new HttpError(404, 'Article not found');
@@ -221,7 +226,9 @@ route('GET', '/api/posts/:handle', (ctx) => {
       .map(({ body: _body, ...r }) => r),
   });
 });
+// The frequently asked questions.
 route('GET', '/api/faq', (ctx) => json(ctx.res, 200, { faq: faq.get() }));
+// A policy page (shipping, refunds, privacy, terms).
 route('GET', '/api/pages/:handle', (ctx) => {
   const all = pages.get();
   // hasOwn: "constructor" and "__proto__" are not pages, even though plain objects "have" them
@@ -231,6 +238,7 @@ route('GET', '/api/pages/:handle', (ctx) => {
 
 // ---------------------------------------------------------------- cart and orders
 
+// Price a basket without placing an order. An unusable coupon is reported next to the quote instead of failing it.
 route('POST', '/api/quote', (ctx) => {
   limit(ctx, 'quote', 120, 60_000);
   const input = {
@@ -251,6 +259,7 @@ route('POST', '/api/quote', (ctx) => {
   json(ctx.res, 200, { quote: q });
 });
 
+// Place an order. Pricing, stock and the coupon are decided by orders.placeOrder(), never by the request.
 route('POST', '/api/orders', (ctx) => {
   limit(
     ctx,
@@ -300,6 +309,7 @@ route('GET', '/api/activity', (ctx) => {
   json(ctx.res, 200, { activity: recent });
 });
 
+// Newsletter sign-up; replies with the welcome coupon code.
 route('POST', '/api/newsletter', (ctx) => {
   limit(ctx, 'news', 10, 3_600_000);
   const email = clean(ctx.body.email, 120).toLowerCase();
@@ -313,6 +323,7 @@ route('POST', '/api/newsletter', (ctx) => {
   });
 });
 
+// Contact form: stored for the administrator to read in the dashboard.
 route('POST', '/api/contact', (ctx) => {
   limit(ctx, 'contact', 8, 3_600_000);
   const b = ctx.body;
@@ -342,6 +353,7 @@ function startSession(res, user) {
   setCookie(res, SESSION_COOKIE, sign({ typ: 'session', uid: user.id }, THIRTY_DAYS), { maxAge: THIRTY_DAYS });
 }
 
+// Create a customer account and sign in. Phone numbers are not verified, so an account never grants access to orders it did not place.
 route('POST', '/api/auth/register', async (ctx) => {
   limit(ctx, 'register', 10, 3_600_000);
   const b = ctx.body;
@@ -371,6 +383,7 @@ route('POST', '/api/auth/register', async (ctx) => {
   json(ctx.res, 201, { user: publicUser(user) });
 });
 
+// Sign in with a phone number or email. Wrong guesses are limited per account and per visitor (see FailureTracker above).
 route('POST', '/api/auth/login', async (ctx) => {
   limit(ctx, 'login', 30, 600_000, 'Too many login attempts. Please wait a few minutes.');
   const id = clean(ctx.body.id, 120).toLowerCase();
@@ -400,13 +413,16 @@ route('POST', '/api/auth/login', async (ctx) => {
   json(ctx.res, 200, { user: publicUser(user) });
 });
 
+// Forget the session cookie.
 route('POST', '/api/auth/logout', (ctx) => {
   setCookie(ctx.res, SESSION_COOKIE, '', { maxAge: 0 });
   json(ctx.res, 200, { ok: true });
 });
 
+// The signed-in customer, or null. Per visitor, so never cached (the catalogue is fetched separately).
 route('GET', '/api/me', (ctx) => json(ctx.res, 200, { user: publicUser(ctx.user) }));
 
+// Update name, email and saved addresses.
 route('PATCH', '/api/me', (ctx) => {
   needUser(ctx);
   const b = ctx.body;
@@ -452,6 +468,7 @@ route('GET', '/api/me/orders', (ctx) => {
 
 // ---------------------------------------------------------------- admin
 
+// Admin sign-in. Failed attempts are limited per address and logged.
 route('POST', '/api/admin/login', async (ctx) => {
   limit(ctx, 'admin-login', 20, 600_000, 'Too many attempts. Please wait a few minutes.');
   const key = rateKey(ctx.ip);
@@ -467,12 +484,15 @@ route('POST', '/api/admin/login', async (ctx) => {
   });
   json(ctx.res, 200, { ok: true });
 });
+// End the admin session.
 route('POST', '/api/admin/logout', (ctx) => {
   setCookie(ctx.res, ADMIN_COOKIE, '', { maxAge: 0 });
   json(ctx.res, 200, { ok: true });
 });
+// Whether the caller has a valid admin session (the dashboard uses it to choose between login and content).
 route('GET', '/api/admin/session', (ctx) => json(ctx.res, 200, { admin: !!ctx.admin }));
 
+// Dashboard numbers: orders and revenue (Bangladesh calendar day), best sellers, low stock and things waiting for attention.
 route('GET', '/api/admin/stats', (ctx) => {
   needAdmin(ctx);
   const all = orders.all();
@@ -511,6 +531,7 @@ route('GET', '/api/admin/stats', (ctx) => {
   });
 });
 
+// Orders, newest first, optionally filtered by status, awaiting payment check, or a search over number, name, phone and district.
 route('GET', '/api/admin/orders', (ctx) => {
   needAdmin(ctx);
   const sp = ctx.url.searchParams;
@@ -532,6 +553,7 @@ route('GET', '/api/admin/orders', (ctx) => {
   json(ctx.res, 200, { orders: list.slice(0, 300), total: list.length, statuses: STATUS_LABEL });
 });
 
+// Change an order's status, payment status or internal note. Cancelling returns the cans to stock.
 route('PATCH', '/api/admin/orders/:id', (ctx) => {
   needAdmin(ctx);
   const o = orders.find((x) => x.id === ctx.params.id);
@@ -549,6 +571,7 @@ route('PATCH', '/api/admin/orders/:id', (ctx) => {
   json(ctx.res, 200, { order: o });
 });
 
+// All orders as a spreadsheet. Every cell goes through csvCell() so text cannot run as a formula.
 route('GET', '/api/admin/orders.csv', (ctx) => {
   needAdmin(ctx);
   const head = [
@@ -598,6 +621,7 @@ route('GET', '/api/admin/orders.csv', (ctx) => {
   ctx.res.end(csv);
 });
 
+// Products with the fields the price and stock editor needs.
 route('GET', '/api/admin/products', (ctx) => {
   needAdmin(ctx);
   json(ctx.res, 200, {
@@ -617,6 +641,7 @@ route('GET', '/api/admin/products', (ctx) => {
   });
 });
 
+// Edit price, old price, stock and deal end time; pack prices are recalculated from the single-can price.
 route('PATCH', '/api/admin/products/:handle', (ctx) => {
   needAdmin(ctx);
   const list = products.get();
@@ -653,6 +678,7 @@ route('PATCH', '/api/admin/products/:handle', (ctx) => {
   json(ctx.res, 200, { ok: true });
 });
 
+// All reviews, including the ones waiting for approval.
 route('GET', '/api/admin/reviews', (ctx) => {
   needAdmin(ctx);
   const list = reviews
@@ -662,6 +688,7 @@ route('GET', '/api/admin/reviews', (ctx) => {
     .slice(0, 300);
   json(ctx.res, 200, { reviews: list });
 });
+// Approve or hide a review.
 route('PATCH', '/api/admin/reviews/:id', (ctx) => {
   needAdmin(ctx);
   const r = reviews.find((x) => x.id === ctx.params.id);
@@ -670,11 +697,13 @@ route('PATCH', '/api/admin/reviews/:id', (ctx) => {
   reviews.save();
   json(ctx.res, 200, { ok: true });
 });
+// Delete a review.
 route('DELETE', '/api/admin/reviews/:id', (ctx) => {
   needAdmin(ctx);
   reviews.remove((r) => r.id === ctx.params.id);
   json(ctx.res, 200, { ok: true });
 });
+// Contact-form messages, newest first.
 route('GET', '/api/admin/messages', (ctx) => {
   needAdmin(ctx);
   json(ctx.res, 200, {
@@ -684,6 +713,7 @@ route('GET', '/api/admin/messages', (ctx) => {
       .sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1)),
   });
 });
+// Mark a message read or unread.
 route('PATCH', '/api/admin/messages/:id', (ctx) => {
   needAdmin(ctx);
   const m = messages.find((x) => x.id === ctx.params.id);
@@ -692,6 +722,7 @@ route('PATCH', '/api/admin/messages/:id', (ctx) => {
   messages.save();
   json(ctx.res, 200, { ok: true });
 });
+// Newsletter subscribers, newest first.
 route('GET', '/api/admin/subscribers', (ctx) => {
   needAdmin(ctx);
   json(ctx.res, 200, {
@@ -701,6 +732,7 @@ route('GET', '/api/admin/subscribers', (ctx) => {
       .sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1)),
   });
 });
+// Registered customers with their number of orders. Password hashes are never included.
 route('GET', '/api/admin/customers', (ctx) => {
   needAdmin(ctx);
   json(ctx.res, 200, {
