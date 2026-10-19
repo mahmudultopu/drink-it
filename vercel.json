@@ -7,7 +7,7 @@
   "regions": ["sin1"],
   "functions": {
     "api/index.js": {
-      "includeFiles": "{data,partials,views}/**,public/assets/css/parts/**,public/assets/js/boot.js,public/assets/dist/manifest.json"
+      "includeFiles": "{data/**,partials/**,views/**,public/assets/css/parts/**,public/assets/js/boot.js,public/assets/dist/manifest.json}"
     }
   },
   "rewrites": [{ "source": "/(.*)", "destination": "/api" }],
