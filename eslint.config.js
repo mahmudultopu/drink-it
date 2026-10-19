@@ -20,6 +20,11 @@ export default [
     languageOptions: { ...shared, globals: globals.browser },
   },
   {
+    // the browser tests also contain callbacks that run inside the page they drive
+    files: ['test/browser.test.mjs'],
+    languageOptions: { ...shared, globals: { ...globals.node, ...globals.browser } },
+  },
+  {
     rules: {
       eqeqeq: ['error', 'always', { null: 'ignore' }],
       'no-var': 'error',

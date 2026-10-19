@@ -15,6 +15,7 @@ import puppeteer from 'puppeteer-core';
 import sharp from 'sharp';
 import { cutout, frame, packFromCutout, INBOX_EXT } from './ingest.mjs';
 import { derivePackThumbs, deriveScenes } from './derive.mjs';
+import { findChrome } from '../chrome.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
 const MIME = {
@@ -29,23 +30,6 @@ const MIME = {
   '.webp': 'image/webp',
   '.jpg': 'image/jpeg',
 };
-
-export function findChrome() {
-  const c = [
-    process.env.CHROME_PATH,
-    'C:/Program Files/Google/Chrome/Application/chrome.exe',
-    'C:/Program Files (x86)/Google/Chrome/Application/chrome.exe',
-    process.env.LOCALAPPDATA && path.join(process.env.LOCALAPPDATA, 'Google/Chrome/Application/chrome.exe'),
-    'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe',
-    '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
-    '/usr/bin/google-chrome',
-    '/usr/bin/chromium',
-    '/usr/bin/chromium-browser',
-  ].filter(Boolean);
-  const found = c.find((p) => fs.existsSync(p));
-  if (!found) throw new Error('Chrome/Chromium not found. Install Chrome or set CHROME_PATH.');
-  return found;
-}
 
 export async function startRenderer({ gpu = true } = {}) {
   const server = http.createServer((req, res) => {
