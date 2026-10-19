@@ -7,7 +7,15 @@
 <!--@header-->
 
 <div data-product-root>
-  <div class="pdp" style="padding-top:40px"><div class="pdp__grid"><div class="skeleton" style="aspect-ratio:1/.97"></div><div class="stack" style="--gap:18px"><div class="skeleton" style="height:56px;width:70%"></div><div class="skeleton" style="height:26px;width:40%"></div><div class="skeleton" style="height:120px"></div><div class="skeleton" style="height:70px"></div></div></div></div>
+  <!-- A placeholder with the same proportions as the finished page, so nothing jumps when the script replaces it.
+       The main photo is real: it is the largest thing on the page and should not wait for any script. -->
+  <div class="pdp">
+    <div class="crumbs-slot"></div>
+    <div class="pdp__grid">
+      <div class="gallery"><div class="gallery__main"><!--@productImage--></div></div>
+      <div class="stack" style="--gap:18px"><div class="skeleton" style="height:56px;width:70%"></div><div class="skeleton" style="height:26px;width:40%"></div><div class="skeleton" style="height:120px"></div><div class="skeleton" style="height:70px"></div></div>
+    </div>
+  </div>
 </div>
 
 <!-- the call-to-action banner is rendered by the product script, which clones it from here -->

@@ -26,6 +26,58 @@ export function html(strings, ...vals) {
 }
 
 export const $ = (sel, root = document) => root.querySelector(sel);
+
+/** Make `to` carry exactly the attributes of `from`. */
+function copyAttributes(from, to) {
+  for (const { name } of [...to.attributes]) if (!from.hasAttribute(name)) to.removeAttribute(name);
+  for (const { name, value } of [...from.attributes]) if (to.getAttribute(name) !== value) to.setAttribute(name, value);
+}
+
+/**
+ * Replace the content of `root` with `markup`, but leave one element exactly where it already is.
+ *
+ * The server renders the product photo into the page, and it is usually the largest thing on screen. If the script
+ * replaced it with an identical new element, the browser would treat that as a fresh paint and report the page as
+ * "loaded" much later. So the element `live` (and the chain of elements around it) stays in the document, and
+ * everything beside that chain is swapped for the new markup. `selector` finds the matching element in the markup;
+ * if the two do not line up (or point at different images) the content is simply replaced.
+ * @param {Element} root container whose content is replaced
+ * @param {string | { toString(): string }} markup new content (an html`` result or a string)
+ * @param {Element | null} live element currently in `root` that should survive
+ * @param {string} selector selector for its counterpart inside `markup`
+ */
+export function replaceKeeping(root, markup, live, selector) {
+  const next = document.createElement('div');
+  next.innerHTML = String(markup);
+  const target = next.querySelector(selector);
+
+  // walk both trees upwards in step; they must reach `root` and `next` together
+  const pairs = [];
+  let a = live;
+  let b = target;
+  while (a && b && a !== root && b !== next) {
+    pairs.push([a, b]);
+    a = a.parentElement;
+    b = b.parentElement;
+  }
+  const sameShape = a === root && b === next && root.contains(live);
+  if (!sameShape || live.getAttribute('src') !== target.getAttribute('src')) {
+    root.replaceChildren(...next.childNodes);
+    return;
+  }
+
+  for (const [kept, fresh] of pairs) {
+    const parent = kept.parentElement ?? root;
+    const freshParent = fresh.parentNode;
+    const siblings = [...freshParent.childNodes];
+    const at = siblings.indexOf(fresh);
+    for (const old of [...parent.childNodes]) if (old !== kept) old.remove();
+    kept.before(...siblings.slice(0, at));
+    kept.after(...siblings.slice(at + 1));
+    copyAttributes(fresh, kept);
+  }
+  // `root` itself: the chain's top element has been placed, siblings of it were handled in the loop above
+}
 export const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
 
 const nf = new Intl.NumberFormat('en-IN', { maximumFractionDigits: 0 });

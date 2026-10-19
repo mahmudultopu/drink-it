@@ -72,7 +72,7 @@ const partialsStamp = () =>
  *   <!--@name-->        include partials/name.html (recursively)
  *   {{ a.b.c }}         value from the site configuration or the page header, HTML-escaped
  *   {{ a.b | money }}   the same, formatted (৳1,500)
- * `meta`, `preload`, `boot` and `bannerCta` are not files: the server supplies them.
+ * `meta`, `preload`, `boot`, `bannerCta` and `productImage` are not files: the server supplies them.
  */
 function fill(template, { meta = '', preload = '', page = {} } = {}) {
   const ctx = { site: site.get(), year: new Date().getFullYear(), page };
@@ -81,6 +81,10 @@ function fill(template, { meta = '', preload = '', page = {} } = {}) {
     preload,
     boot: `<script>${bootScript}</script>`,
     bannerCta: page.cta ? `<a class="btn btn--lime" href="${esc(page.cta.href)}">${esc(page.cta.label)}</a>` : '',
+    // The product page's main photo, so it is part of the first HTML. The page script later renders the same image.
+    productImage: page.image
+      ? `<img src="${esc(page.image)}" alt="${esc(page.title)}" width="640" height="620" fetchpriority="high">`
+      : '',
   };
   const expand = (text) =>
     text
@@ -246,7 +250,7 @@ export function renderPage(name, pathname, origin) {
   // Header values may contain {{ }} tokens of their own (the delivery page quotes the free-delivery threshold).
   const expandText = (text) =>
     typeof text === 'string' ? text.replace(TOKEN, (_, e) => evaluate(e, { site: site.get() })) : text;
-  const page = { title: info.title, text: expandText(info.text), cta: info.cta };
+  const page = { title: info.title, text: expandText(info.text), cta: info.cta, image: info.preloadImage };
 
   const html = rewriteHtml(
     fill(view.template, {

@@ -14,6 +14,7 @@ import {
   startCountdowns,
   initReveal,
   countdownHtml,
+  replaceKeeping,
 } from '../ui.js';
 import { Store } from '../store.js';
 import { api } from '../api.js';
@@ -107,7 +108,11 @@ export async function init() {
   const thumbOf = (k) => p.images.small?.[k] || (k === 'single' ? p.images.thumb : p.images.card);
   const images = GALLERY.map(([k, label]) => ({ k, label, src: p.images[k], thumb: thumbOf(k) })).filter((i) => i.src);
 
-  root.innerHTML = String(html`
+  // The server already put the main photo into the page (see views/product.html); keep that element rather than
+  // replacing it with an identical one, so the browser does not count the page as painted a second time.
+  replaceKeeping(
+    root,
+    html`
 <div class="pdp">
   ${crumbs([{ label: 'Home', href: '/' }, col ? { label: col.title, href: `/collections/${col.handle}` } : { label: 'All cans', href: '/collections/all' }, { label: p.title }])}
   <div class="pdp__grid">
@@ -220,7 +225,10 @@ export async function init() {
   <div class="stickybar__info"><b>${p.title}</b><span class="price" data-sticky-price></span></div>
   <button class="btn" type="button" data-sticky-add><span>Add to cart</span></button>
   <button class="icon-btn stickybar__x" type="button" aria-label="Close" data-sticky-close>${icon('close')}</button>
-</div>`);
+</div>`,
+    $('.gallery__main > img', root),
+    '[data-g-main]',
+  );
 
   // ---------- behaviour ----------
   const q = (s) => $(s, root);
