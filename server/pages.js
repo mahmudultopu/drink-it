@@ -14,6 +14,7 @@ import { MIME, esc } from './util.js';
 import { Payload } from './encode.js';
 import { rewriteHtml } from './assets.js';
 import { bootScript } from './headers.js';
+import { ratingFor } from './catalog.js';
 
 const VIEWS = path.join(ROOT, 'views'); // page templates, expanded by the server before they are sent
 const PARTIALS = path.join(ROOT, 'partials'); // fragments shared by the templates (head, header, footer, banner...)
@@ -168,6 +169,8 @@ function describePage(name, pathname, front) {
         preloadImage: p.images.single,
         type: 'product',
         canonical,
+        // for the schema.org data; kept here so the cached page is rebuilt when any of it changes
+        product: { brand: p.brand, short: p.short, price: p.price, inStock: p.stock > 0, ...ratingFor(p.handle) },
       };
     }
     case 'collection.html': {
@@ -196,6 +199,29 @@ function describePage(name, pathname, front) {
   }
 }
 
+/** schema.org Product data, which lets search engines show price, availability and rating in results. */
+function productJsonLd(info, origin) {
+  const { brand, short, price, inStock, rating, reviewCount } = info.product;
+  const data = {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: info.title,
+    image: `${origin}${info.image}`,
+    description: short,
+    brand: { '@type': 'Brand', name: brand },
+    offers: {
+      '@type': 'Offer',
+      priceCurrency: 'BDT',
+      price,
+      availability: `https://schema.org/${inStock ? 'InStock' : 'OutOfStock'}`,
+      url: `${origin}${info.canonical}`,
+    },
+    ...(reviewCount ? { aggregateRating: { '@type': 'AggregateRating', ratingValue: rating, reviewCount } } : {}),
+  };
+  // "<" is escaped so that no text in the data can close the script element
+  return `<script type="application/ld+json">${JSON.stringify(data).replace(/</g, '\\u003c')}</script>`;
+}
+
 /** Title, description, canonical link and social-card tags. */
 function metaTags(info, origin) {
   const s = site.get();
@@ -215,6 +241,7 @@ function metaTags(info, origin) {
     url ? `<meta property="og:url" content="${esc(url)}">` : '',
     image ? `<meta property="og:image" content="${esc(image)}">` : '',
     `<meta name="twitter:card" content="${image ? 'summary_large_image' : 'summary'}">`,
+    info.product ? productJsonLd(info, origin) : '',
   ]
     .filter(Boolean)
     .join('\n');

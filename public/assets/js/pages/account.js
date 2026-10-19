@@ -1,4 +1,5 @@
-// Customer account: orders, profile, saved addresses.
+// Customer account: order history, profile and up to five saved addresses (used to pre-fill checkout). Visitors who
+// are not signed in are sent to the login page and brought back.
 import { $, $$, html, esc, money, toast, fmtDate } from '../ui.js';
 import { Store } from '../store.js';
 import { api } from '../api.js';
@@ -30,7 +31,7 @@ export async function init() {
       }
       if (!orders.length)
         return html`<div class="empty"><h3>No orders yet</h3><p>When you place an order it will show up here.</p><a class="btn" href="/collections/all">Start shopping</a></div>`;
-      return html`<div class="orders-list">${orders.map((o) => html`<a class="order-row" href="/orders/${o.number}?phone=${o.customer.phone}"><div><b>${o.number}</b><br><small>${fmtDate(o.createdAt)} · ${o.items.reduce((s, l) => s + l.cans, 0)} cans</small><div class="order-row__thumbs">${o.items.slice(0, 5).map((l) => html`<span style="--tile:${l.tile}"><img src="${l.image}" alt=""></span>`)}</div></div><div style="text-align:right;display:grid;gap:8px;justify-items:end">${statusChip(o.status)}<b>${money(o.pricing.total)}</b></div></a>`)}</div>`;
+      return html`<div class="orders-list">${orders.map((o) => html`<a class="order-row" href="/orders/${o.number}"><div><b>${o.number}</b><br><small>${fmtDate(o.createdAt)} · ${o.items.reduce((s, l) => s + l.cans, 0)} cans</small><div class="order-row__thumbs">${o.items.slice(0, 5).map((l) => html`<span style="--tile:${l.tile}"><img src="${l.image}" alt=""></span>`)}</div></div><div style="text-align:right;display:grid;gap:8px;justify-items:end">${statusChip(o.status)}<b>${money(o.pricing.total)}</b></div></a>`)}</div>`;
     },
     profile() {
       return html`<form class="panel" data-profile novalidate><h2>Profile</h2><div class="fgrid">

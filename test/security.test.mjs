@@ -357,6 +357,17 @@ describe('order privacy', () => {
     assert.equal((await guest.get(`/api/orders/lookup?number=${number}`)).status, 404);
   });
 
+  it('lets a signed-in customer open their own order without the phone number, and nobody else', async () => {
+    const owner = await register('Order Owner', '01720000006');
+    const placed = await owner.post('/api/orders', orderBody('01720000006'));
+    const number = placed.body.order.number;
+    assert.equal((await owner.get(`/api/orders/lookup?number=${number}`)).status, 200);
+
+    const other = await register('Other Customer', '01720000007');
+    assert.equal((await other.get(`/api/orders/lookup?number=${number}`)).status, 404);
+    assert.equal((await anonymous().get(`/api/orders/lookup?number=${number}`)).status, 404);
+  });
+
   it('keeps internal fields out of customer-facing orders', async () => {
     const client = await register('Fields', '01720000004');
     const placed = await client.post('/api/orders', orderBody('01720000004'));

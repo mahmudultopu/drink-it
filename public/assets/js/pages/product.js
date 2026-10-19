@@ -1,4 +1,8 @@
-// Product page: gallery, pack selector, delivery estimate, buy box, details, reviews, recommendations.
+// Product page: gallery, pack selector, buy box, delivery estimate, details, reviews and recommendations.
+//
+// The server sends the page shell with the product's main photo already in it (views/product.html), together with the
+// title, meta tags and schema.org data. This module fetches the details and reviews, renders the full page around that
+// photo and wires up the interactions.
 import {
   $,
   $$,
@@ -15,13 +19,19 @@ import {
   initReveal,
   countdownHtml,
   replaceKeeping,
+  pathSegment,
 } from '../ui.js';
 import { Store } from '../store.js';
 import { api } from '../api.js';
 import { productCard } from '../card.js';
-import { crumbs } from '../sections.js';
+import { crumbs, mountCtas } from '../sections.js';
 import { initTrack } from '../slider.js';
 
+// ---- delivery estimate -------------------------------------------------------------------------------------------
+// Dates are worked out in Bangladesh time (UTC+6) with UTC getters on a shifted Date, so the result does not depend on
+// the visitor's own time zone. Friday is the weekly holiday: nothing ships or arrives on it.
+
+/** 1 -> "1st", 22 -> "22nd", 13 -> "13th". */
 const ord = (n) =>
   n + (n % 10 === 1 && n !== 11 ? 'st' : n % 10 === 2 && n !== 12 ? 'nd' : n % 10 === 3 && n !== 13 ? 'rd' : 'th');
 const MONTH = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
@@ -39,15 +49,19 @@ const MONTH_LONG = [
   'November',
   'December',
 ];
+/** "18th Oct" */
 const short = (d) => `${ord(d.getUTCDate())} ${MONTH[d.getUTCMonth()]}`;
+/** "18th Oct", or "18th–20th Oct" for a span. */
 const range = (a, b) =>
   a.getTime() === b.getTime() ? short(a) : `${ord(a.getUTCDate())}–${ord(b.getUTCDate())} ${MONTH[b.getUTCMonth()]}`;
-const isFriday = (d) => d.getUTCDay() === 5; // weekly holiday in Bangladesh
+const isFriday = (d) => d.getUTCDay() === 5;
+/** `d`, or the Saturday after it when `d` is a Friday. */
 function nextWorkday(d) {
   const r = new Date(d);
   while (isFriday(r)) r.setUTCDate(r.getUTCDate() + 1);
   return r;
 }
+/** The date `n` working days after `d`. */
 function addWorkdays(d, n) {
   const r = new Date(d);
   while (n > 0) {
@@ -57,6 +71,12 @@ function addWorkdays(d, n) {
   return r;
 }
 
+/**
+ * When an order placed now ships and arrives. Orders placed after the daily cut-off hour start shipping on the next
+ * working day; shipping takes a working day, then delivery takes the configured range for the zone.
+ * @param {object} site site configuration (its `delivery` section)
+ * @param {'dhaka' | 'outside'} zone delivery area
+ */
 function estimate(site, zone) {
   const now = new Date(Date.now() + 6 * 3600_000); // Bangladesh time
   const today = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()));
@@ -67,6 +87,7 @@ function estimate(site, zone) {
   return { today, start, shipEnd, from: addWorkdays(start, minD), to: addWorkdays(start, maxD), after };
 }
 
+/** The views offered in the gallery, in order: the key into product.images and the label shown to visitors. */
 const GALLERY = [
   ['single', 'Front view'],
   ['angle', 'Angled view'],
@@ -76,7 +97,7 @@ const GALLERY = [
 ];
 
 export async function init() {
-  const handle = decodeURIComponent(location.pathname.split('/')[2] || '');
+  const handle = pathSegment(2);
   const root = $('[data-product-root]');
   const base = Store.get(handle);
   if (!base) {
@@ -89,7 +110,7 @@ export async function init() {
     revs = { reviews: [], stats: { rating: 0, reviewCount: 0, dist: [0, 0, 0, 0, 0] } };
   try {
     const [d, r] = await Promise.all([
-      api('/products/' + handle),
+      api('/products/' + encodeURIComponent(handle)),
       api('/reviews?product=' + encodeURIComponent(handle)),
     ]);
     p = d;
@@ -103,7 +124,14 @@ export async function init() {
 
   const site = Store.site;
   const col = Store.collections.find((c) => p.collections.includes(c.handle));
-  const state = { pack: 'single', qty: 1, gallery: 0, zone: localStorage.getItem('drinkit.zone') || 'dhaka' };
+  let savedZone = 'dhaka';
+  try {
+    savedZone = localStorage.getItem('drinkit.zone') || 'dhaka';
+  } catch {
+    /* storage unavailable: use the default */
+  }
+  // what the visitor has chosen so far: pack size, quantity, which gallery view is showing, delivery area
+  const state = { pack: 'single', qty: 1, gallery: 0, zone: savedZone };
   // each view has a full-size photo for the main stage and a small copy for its thumbnail button
   const thumbOf = (k) => p.images.small?.[k] || (k === 'single' ? p.images.thumb : p.images.card);
   const images = GALLERY.map(([k, label]) => ({ k, label, src: p.images[k], thumb: thumbOf(k) })).filter((i) => i.src);
@@ -234,6 +262,10 @@ export async function init() {
   const q = (s) => $(s, root);
   const cur = () => Store.pack(p, state.pack);
 
+  /**
+   * Bring everything that depends on the chosen pack and quantity up to date: price and saving, stock message, the
+   * add-to-cart button and its total, the sticky bar, the pack radio buttons, the WhatsApp message and the badges.
+   */
   function renderBuy() {
     const pk = cur();
     const disc = discountPct(pk.price, pk.compareAt);
@@ -276,7 +308,7 @@ export async function init() {
       .join('');
   }
 
-  // gallery
+  // gallery: previous/next arrows, thumbnails and swiping all end up in showImage()
   const main = q('[data-g-main]');
   function showImage(i, animate = true) {
     state.gallery = (i + images.length) % images.length;
@@ -372,7 +404,7 @@ export async function init() {
   });
   syncTools();
 
-  // delivery estimate
+  // delivery estimate: three-step timeline for the chosen area, redrawn when the area changes
   function renderTimeline() {
     const e = estimate(site, state.zone);
     q('[data-timeline]').innerHTML =
@@ -444,7 +476,7 @@ export async function init() {
     }
   });
 
-  // sticky buy bar
+  // sticky buy bar: slides in once the main add-to-cart button has scrolled off the top of the screen
   const bar = q('[data-stickybar]');
   let dismissed = false;
   const target = q('[data-add]');
@@ -477,43 +509,15 @@ export async function init() {
     );
   }
 
-  // structured data for search engines
-  const ld = document.createElement('script');
-  ld.type = 'application/ld+json';
-  ld.textContent = JSON.stringify({
-    '@context': 'https://schema.org',
-    '@type': 'Product',
-    name: p.title,
-    image: location.origin + p.images.single,
-    description: p.short,
-    brand: { '@type': 'Brand', name: p.brand },
-    offers: {
-      '@type': 'Offer',
-      priceCurrency: 'BDT',
-      price: p.price,
-      availability: p.stock > 0 ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock',
-      url: location.href,
-    },
-    ...(revs.stats.reviewCount
-      ? {
-          aggregateRating: {
-            '@type': 'AggregateRating',
-            ratingValue: revs.stats.rating,
-            reviewCount: revs.stats.reviewCount,
-          },
-        }
-      : {}),
-  });
-  document.head.append(ld);
-
   renderBuy();
   Store.on('cart', renderBuy);
+  mountCtas(); // the call-to-action banner sits at the end of the page, after the content above has been rendered
   startCountdowns();
   initReveal();
   if (location.hash) setTimeout(() => document.getElementById(location.hash.slice(1))?.scrollIntoView(), 100);
 }
 
+/** Turn **bold** markers in catalogue text into <strong>, escaping everything else. */
 function boldify(s) {
-  // turn **bold** markers into <strong>, escaping everything else
   return raw(esc(s).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>'));
 }

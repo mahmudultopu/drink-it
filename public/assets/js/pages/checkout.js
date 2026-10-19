@@ -1,10 +1,14 @@
-// Checkout: contact + Bangladeshi delivery address + payment (COD / bKash / Nagad / Rocket) with a live server quote.
+// Checkout: contact details, a Bangladeshi delivery address (division > district > area) and the payment method.
+//
+// The order summary is never calculated here. Whenever the basket, the district or the coupon changes, the page asks
+// POST /api/quote for the real prices; placing the order sends only what to buy and who to deliver to, and the server
+// prices it again. Details from the last order (and a signed-in customer's saved addresses) pre-fill the form.
 import { $, $$, html, esc, money, toast } from '../ui.js';
 import { Store } from '../store.js';
 import { api } from '../api.js';
 import { freeDeliveryHtml } from '../chrome.js';
 
-const PAY_ORDER = ['cod', 'bkash', 'nagad', 'rocket', 'card'];
+const PAY_ORDER = ['cod', 'bkash', 'nagad', 'rocket', 'card']; // the order the methods are offered in
 const PAY_CHIP = { cod: 'COD', bkash: 'bKash', nagad: 'Nagad', rocket: 'Rocket', card: 'Card' };
 
 export function init() {
@@ -91,7 +95,8 @@ export function init() {
   const fval = (n) => form.elements[n]?.value?.trim() || '';
 
   // district list depends on division
-  const fillDistricts = (select, keep) => {
+  /** Fill the district list for the chosen division, selecting `keep` (or the remembered district) if it is there. */
+  const fillDistricts = (keep) => {
     const list = divisions[form.elements.division.value] || [];
     form.elements.district.innerHTML = list
       .map((d) => `<option ${d === (keep || v.district) ? 'selected' : ''}>${esc(d)}</option>`)
@@ -99,7 +104,7 @@ export function init() {
   };
   fillDistricts();
   form.elements.division.addEventListener('change', () => {
-    fillDistricts(null, '');
+    fillDistricts('');
     requote();
   });
   form.elements.district.addEventListener('change', requote);
@@ -109,7 +114,7 @@ export function init() {
     const a = user.addresses[Number(e.target.value)];
     if (!a) return;
     form.elements.division.value = a.division;
-    fillDistricts(null, a.district);
+    fillDistricts(a.district);
     form.elements.area.value = a.area;
     form.elements.address.value = a.address;
     requote();
@@ -132,7 +137,7 @@ export function init() {
     if (e.target.name === 'method') updatePay();
   });
 
-  // summary + live quote
+  // summary + live quote: the numbers on screen are whatever the server last answered
   const itemsPayload = () => Store.cartItems().map((i) => ({ handle: i.handle, pack: i.pack, qty: i.qty }));
   const renderSummary = (q, couponMsg) => {
     $('[data-summary]', root).innerHTML = String(html`<h2>Order summary</h2>
@@ -158,6 +163,7 @@ export function init() {
       }
     });
   };
+  /** Ask the server for the real prices of this basket to this district with this coupon, and redraw the summary. */
   async function requote(showMsg = false) {
     try {
       const { quote } = await api('/quote', {

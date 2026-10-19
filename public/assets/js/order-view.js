@@ -1,6 +1,8 @@
-// Shared order summary + status timeline (confirmation page, tracking page, account).
+// Shared presentation of an order: the status timeline, payment instructions and the summary card. Used by the
+// confirmation page, the order tracking page and the account page.
 import { html, raw, esc, money, icon, fmtDate } from './ui.js';
 
+/** The stages of a normal order, in sequence: [status, label, icon]. (A cancelled order is shown separately.) */
 export const STEPS = [
   ['placed', 'Order placed', 'cart'],
   ['confirmed', 'Confirmed', 'check'],
@@ -8,6 +10,7 @@ export const STEPS = [
   ['shipped', 'Out for delivery', 'truck'],
   ['delivered', 'Delivered', 'home'],
 ];
+/** Customer-facing wording for each status; mirrors STATUS_LABEL in server/orders.js. */
 export const STATUS_LABEL = {
   placed: 'Order placed',
   confirmed: 'Confirmed',
@@ -16,6 +19,7 @@ export const STATUS_LABEL = {
   delivered: 'Delivered',
   cancelled: 'Cancelled',
 };
+// Names of the payment methods, and what each payment status means to the customer.
 const PAY_LABEL = { cod: 'Cash on delivery', bkash: 'bKash', nagad: 'Nagad', rocket: 'Rocket' };
 const PAY_STATUS = {
   cod: 'Pay on delivery',
@@ -34,10 +38,12 @@ const when = (iso) =>
     hour12: true,
   });
 
+/** Small coloured pill with the order's status. */
 export function statusChip(status) {
   return html`<span class="chip chip--${status}">${STATUS_LABEL[status] || status}</span>`;
 }
 
+/** Horizontal progress through the order stages, with the time each was reached; a notice for cancelled orders. */
 export function timelineHtml(o) {
   if (o.status === 'cancelled') {
     const at = o.history.find((h) => h.status === 'cancelled');
@@ -50,6 +56,10 @@ export function timelineHtml(o) {
   })}</ol>`;
 }
 
+/**
+ * What the customer should know about paying: keep cash ready for cash on delivery; for mobile money, that the payment
+ * is being verified, or where to send it if they have not paid yet.
+ */
 export function paymentInstructions(o, site) {
   const p = o.payment;
   if (p.method === 'cod')
@@ -61,6 +71,7 @@ export function paymentInstructions(o, site) {
   return html`<div class="form-note form-note--ok"><b>${PAY_LABEL[p.method]} — ${PAY_STATUS[p.status] || p.status}.</b></div>`;
 }
 
+/** The full order summary card: number and date, timeline, payment note, items, totals, address and payment. */
 export function orderCard(o, site, { showPayment = true } = {}) {
   const pr = o.pricing;
   return html`<article class="ocard">

@@ -1,10 +1,12 @@
 // Home V2: oversized flavour name behind a floating can, soft/drink fan, features, reviews table.
-import { $, $$, html, raw, esc, stars, initReveal, startCountdowns } from '../ui.js';
+import { $, $$, html, raw, esc, stars, initReveal, startCountdowns, sized, srcset } from '../ui.js';
 import { Store } from '../store.js';
 import { renderGrid } from '../card.js';
 import { initHero } from '../slider.js';
 import { featured, strips, REVIEWS } from './home.js';
 
+// The three hero slides: the flavour name behind the can, a background wash, and the decorative floating pieces as
+// [artwork, left %, top %, size px, parallax depth].
 const SLIDES = [
   {
     title: 'Coca-Cola',
@@ -50,6 +52,7 @@ const SLIDES = [
   },
 ];
 
+/** Build the hero slides and add the pointer parallax: the floating pieces drift a little as the mouse moves. */
 function heroSlides() {
   const host = $('[data-hero2-slides]');
   host.innerHTML = String(
@@ -78,6 +81,7 @@ function heroSlides() {
   initHero(hero, { autoplay: 7500 });
 }
 
+/** Three cans fanned out beside the "soft drink" feature. */
 function fan() {
   const el = $('[data-fan]');
   const list = ['sprite-250ml-can', 'coca-cola-original-250ml-can', 'fanta-orange-250ml-can']
@@ -86,6 +90,7 @@ function fan() {
   el.innerHTML = list.map((p) => `<img src="${esc(p.images.card)}" alt="" loading="lazy">`).join('');
 }
 
+/** Four short reviews in a table-style row. */
 function reviewsTable() {
   const el = $('[data-reviews-table]');
   const cards = REVIEWS.slice(0, 4)
@@ -96,16 +101,22 @@ function reviewsTable() {
   );
 }
 
+/** One large article beside two small ones. */
 function blogSplit() {
   const el = $('[data-blog-split]');
   const [a, ...rest] = Store.posts;
+  const image = (p) =>
+    html`<img src="${sized(p.image, 480)}" srcset="${srcset(p.image, [480], 960)}" sizes="(max-width: 989px) 100vw, 480px" alt="" loading="lazy">`;
+  const more = (p) =>
+    html`<a class="bcard__more" href="/blogs/news/${p.handle}">Read More<span class="sr-only"> about ${p.title}</span></a>`;
   const small = (p) =>
-    html`<article class="bsmall"><a class="bcard__img" href="/blogs/news/${p.handle}"><img src="${p.image}" alt="" loading="lazy"></a><div><span class="pill bcard__tag">${p.tag}</span><h3 class="bcard__title"><a href="/blogs/news/${p.handle}">${p.title}</a></h3><a class="bcard__more" href="/blogs/news/${p.handle}">Read More</a></div></article>`;
+    html`<article class="bsmall"><a class="bcard__img" href="/blogs/news/${p.handle}">${image(p)}</a><div><span class="pill bcard__tag">${p.tag}</span><h3 class="bcard__title"><a href="/blogs/news/${p.handle}">${p.title}</a></h3>${more(p)}</div></article>`;
   el.innerHTML = String(
-    html`<article class="bcard bbig" data-reveal="up"><a class="bcard__img" href="/blogs/news/${a.handle}"><img src="${a.image}" alt="" loading="lazy"></a><span class="pill bcard__tag">${a.tag}</span><h3 class="bcard__title"><a href="/blogs/news/${a.handle}">${a.title}</a></h3><a class="bcard__more" href="/blogs/news/${a.handle}">Read More</a></article><div class="bside" data-reveal="left">${rest.slice(0, 2).map(small)}</div>`,
+    html`<article class="bcard bbig" data-reveal="up"><a class="bcard__img" href="/blogs/news/${a.handle}">${image(a)}</a><span class="pill bcard__tag">${a.tag}</span><h3 class="bcard__title"><a href="/blogs/news/${a.handle}">${a.title}</a></h3>${more(a)}</article><div class="bside" data-reveal="left">${rest.slice(0, 2).map(small)}</div>`,
   );
 }
 
+/** Home V2: the same shop with a bolder hero. The grids reuse the card and the featured/strips sections of layout 1. */
 export function init() {
   heroSlides();
   fan();

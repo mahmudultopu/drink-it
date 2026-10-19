@@ -1,9 +1,14 @@
 // Sliders: the crossfading hero + simple scroll-snap track sliders with arrow buttons.
 import { $, $$ } from './ui.js';
 
+/** Visitors who ask their system for less motion get no autoplay. */
 const reduceMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-/** Cross-fading hero with arrows, dots and gentle autoplay. */
+/**
+ * Cross-fading hero with arrows, dots and gentle autoplay. Autoplay pauses while the pointer or keyboard focus is
+ * inside the hero or the tab is hidden, and a swipe on touch screens changes slide. Slides that are not showing are
+ * hidden from assistive technology.
+ */
 export function initHero(root = document.querySelector('[data-hero]'), { autoplay = 6500 } = {}) {
   if (!root) return null;
   const slides = $$('.hero__slide, .hero2__slide', root);
@@ -95,7 +100,10 @@ export function initHero(root = document.querySelector('[data-hero]'), { autopla
   return { go, next, stop };
 }
 
-/** Scroll-snap track with prev/next buttons (buttons are found inside `root`). */
+/**
+ * Scroll-snap track with prev/next buttons (found inside `root`). The buttons disable at either end and hide
+ * altogether when everything fits, and each click scrolls by one card plus the gap.
+ */
 export function initTrack(root) {
   const track = $('.slider__track', root);
   if (!track) return;

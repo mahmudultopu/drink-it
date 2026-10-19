@@ -1,3 +1,4 @@
+// Contact page: the form posts to /api/contact (field errors come back keyed by field name) and a FAQ teaser follows.
 import { $, $$, initReveal } from '../ui.js';
 import { api } from '../api.js';
 import { accordionHtml } from '../sections.js';

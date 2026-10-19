@@ -3,7 +3,7 @@
 import { bootstrap } from './api.js';
 import { Store } from './store.js';
 import { initChrome } from './chrome.js';
-import { startCountdowns, initReveal, toast } from './ui.js';
+import { startCountdowns, initReveal, toast, bindPrintButtons } from './ui.js';
 
 // One loader per page, keyed by <body data-page>. The paths are written out (rather than built from the page name) so
 // the bundler can see every module and split each one into its own chunk, loaded only on the pages that need it.
@@ -59,6 +59,7 @@ async function main() {
     return;
   }
   Store.init(boot);
+  bindPrintButtons();
   const chrome = initChrome();
   const page = document.body.dataset.page;
   try {

@@ -1,14 +1,18 @@
-// Client state: catalogue lookup, cart, wishlist, compare, recently viewed (persisted in localStorage).
+// Client-side state: the catalogue for lookups, and the visitor's cart, wishlist, compare list and recently viewed
+// items, which live in localStorage so they survive reloads (and are shared between tabs through the storage event).
+// Prices shown from here are only for display; the server re-prices every order from its own catalogue.
 import { toast } from './ui.js';
 
+// localStorage keys. The version suffix lets a future change of format start from a clean slate.
 const KEYS = {
   cart: 'drinkit.cart.v1',
   wish: 'drinkit.wishlist.v1',
   compare: 'drinkit.compare.v1',
   recent: 'drinkit.recent.v1',
 };
-const bus = new EventTarget();
+const bus = new EventTarget(); // 'cart', 'wish', 'compare', 'recent' and 'cart:added' events
 
+/** Read JSON from localStorage; storage that is unavailable (private mode) or corrupt behaves like an empty one. */
 function read(key, fallback) {
   try {
     const v = JSON.parse(localStorage.getItem(key));
@@ -17,6 +21,7 @@ function read(key, fallback) {
     return fallback;
   }
 }
+/** Write JSON to localStorage, ignoring failures such as private mode or a full disk quota. */
 function write(key, value) {
   try {
     localStorage.setItem(key, JSON.stringify(value));
@@ -25,6 +30,31 @@ function write(key, value) {
   }
 }
 
+/** How well a product matches the search words: 0 if any word is missing, otherwise higher is better. */
+function searchScore(p, terms) {
+  const title = p.title.toLowerCase();
+  const haystack = [
+    p.title,
+    p.brand,
+    p.variant,
+    p.type,
+    p.origin,
+    p.sugar === 'Zero' ? 'zero sugar sugarfree' : '',
+    p.caffeine ? 'energy caffeine' : '',
+    p.collections.join(' '),
+    `${p.canMl}ml ${p.canMl} ml`,
+  ]
+    .join(' ')
+    .toLowerCase();
+  let score = 0;
+  for (const t of terms) {
+    if (!haystack.includes(t)) return 0;
+    score += title.startsWith(t) ? 6 : title.includes(t) ? 4 : 1;
+  }
+  return score + p.sold / 10000;
+}
+
+/** The single shared store. Call Store.init() once with the catalogue before using anything else. */
 export const Store = {
   site: null,
   user: null,
@@ -33,6 +63,10 @@ export const Store = {
   collections: [],
   posts: [],
 
+  /**
+   * Load the catalogue and clean the saved cart of anything that has since disappeared from the shop (a removed
+   * product or pack size), then start listening for changes made in other tabs.
+   */
   init(boot) {
     this.site = boot.site;
     this.user = boot.user;
@@ -54,6 +88,7 @@ export const Store = {
     });
   },
 
+  /** Subscribe to a store event; returns the function that unsubscribes. */
   on(type, fn) {
     bus.addEventListener(type, fn);
     return () => bus.removeEventListener(type, fn);
@@ -65,6 +100,7 @@ export const Store = {
   get(handle) {
     return this.byHandle.get(handle);
   },
+  /** A product's pack by id ('single', 'pack6', ...); falls back to the single can. */
   pack(product, id) {
     return product.packs.find((p) => p.id === id) || product.packs[0];
   },
@@ -79,9 +115,12 @@ export const Store = {
   },
 
   // ---------- cart ----------
+  // The cart stores only { handle, pack, qty }; everything else is looked up from the catalogue when needed.
+  /** Raw cart rows. */
   cartItems() {
     return read(KEYS.cart, []);
   },
+  /** Cart rows joined with their product and pack, with line totals, skipping products that no longer exist. */
   cartLines() {
     return this.cartItems()
       .map((i) => {
@@ -100,13 +139,17 @@ export const Store = {
       })
       .filter(Boolean);
   },
+  /** Number of packs in the cart (what the header badge shows). */
   cartCount() {
     return this.cartItems().reduce((s, i) => s + i.qty, 0);
   },
   cartSubtotal() {
     return this.cartLines().reduce((s, l) => s + l.total, 0);
   },
-  /** max pack-quantity purchasable given stock and what is already in the cart for other packs */
+  /**
+   * The most packs of this size that can be bought: stock (in cans) minus the cans already in the cart as other
+   * pack sizes of the same product, divided by the pack size, and never more than 99.
+   */
   maxQty(handle, packId) {
     const product = this.get(handle);
     if (!product) return 0;
@@ -116,6 +159,10 @@ export const Store = {
       .reduce((s, i) => s + i.qty * this.pack(product, i.pack).qty, 0);
     return Math.max(0, Math.min(99, Math.floor((product.stock - others) / pack.qty)));
   },
+  /**
+   * Add packs to the cart, never beyond what is in stock. Tells the visitor when it had to stop short.
+   * Emits 'cart:added' (which opens the cart drawer) unless `silent`. Returns false if nothing could be added.
+   */
   addToCart(handle, packId = 'single', qty = 1, { silent = false } = {}) {
     const product = this.get(handle);
     if (!product) return false;
@@ -137,6 +184,7 @@ export const Store = {
     if (!silent) this.emit('cart:added');
     return true;
   },
+  /** Set a cart row's quantity, between 1 and what the stock allows. */
   setQty(handle, packId, qty) {
     const cart = this.cartItems();
     const row = cart.find((i) => i.handle === handle && i.pack === packId);
@@ -160,12 +208,14 @@ export const Store = {
   },
 
   // ---------- wishlist / compare / recent ----------
+  // These hold product handles only; handles of products that no longer exist are filtered out when read.
   wishlist() {
     return read(KEYS.wish, []).filter((h) => this.byHandle.has(h));
   },
   inWishlist(handle) {
     return this.wishlist().includes(handle);
   },
+  /** Add or remove a product; returns true when it was added. */
   toggleWishlist(handle) {
     const list = read(KEYS.wish, []);
     const i = list.indexOf(handle);
@@ -178,6 +228,7 @@ export const Store = {
   compareList() {
     return read(KEYS.compare, []).filter((h) => this.byHandle.has(h));
   },
+  /** Add or remove a product from the compare list (at most four): 'added', 'removed' or 'full'. */
   toggleCompare(handle) {
     const list = read(KEYS.compare, []);
     const i = list.indexOf(handle);
@@ -196,6 +247,7 @@ export const Store = {
   recent() {
     return read(KEYS.recent, []).filter((h) => this.byHandle.has(h));
   },
+  /** Remember a viewed product, most recent first, keeping the last twelve. */
   pushRecent(handle) {
     const list = read(KEYS.recent, []).filter((h) => h !== handle);
     list.unshift(handle);
@@ -208,12 +260,31 @@ export const Store = {
   },
 
   // ---------- helpers ----------
+  /** Brands in the catalogue with their number of cans, most cans first. */
   brands() {
     const m = new Map();
     for (const p of this.products)
       if (!m.has(p.brandHandle)) m.set(p.brandHandle, { handle: p.brandHandle, name: p.brand, count: 0 });
     for (const p of this.products) m.get(p.brandHandle).count++;
     return [...m.values()].sort((a, b) => b.count - a.count || a.name.localeCompare(b.name));
+  },
+  /**
+   * Products similar to `product`: shared collections count most, then the same brand, then the same type; ties go to
+   * the better seller.
+   */
+  /**
+   * Products matching every word of `query` - in the name, brand, flavour, type, origin, sugar, caffeine, collections
+   * or can size - best match first. A word at the start of the title scores most, then one inside it, then one only
+   * found elsewhere; ties go to the better seller. Used by the search overlay and the search page, so both agree.
+   */
+  search(query) {
+    const terms = String(query).toLowerCase().split(/\s+/).filter(Boolean);
+    if (!terms.length) return [];
+    return this.products
+      .map((p) => ({ p, score: searchScore(p, terms) }))
+      .filter((hit) => hit.score > 0)
+      .sort((a, b) => b.score - a.score)
+      .map((hit) => hit.p);
   },
   related(product, n = 8) {
     const score = (p) =>

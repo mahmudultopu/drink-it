@@ -1,6 +1,8 @@
+// Compare page: up to four cans side by side, one row per attribute.
 import { $, html, raw, money, stars } from '../ui.js';
 import { Store } from '../store.js';
 
+/** The rows of the comparison table: a label and how to show that attribute of a product. */
 const ROWS = [
   [
     'Price',

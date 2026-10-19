@@ -268,11 +268,15 @@ route('POST', '/api/orders', (ctx) => {
   json(ctx.res, 201, { order: publicOrder(order) });
 });
 
-// Guests track an order with its number *and* the phone it was placed with; neither alone is enough.
+// Guests track an order with its number *and* the phone it was placed with; neither alone is enough. A signed-in
+// customer opening an order placed from their own account does not need to repeat the phone number.
 route('GET', '/api/orders/lookup', (ctx) => {
   limit(ctx, 'lookup', 30, 600_000);
-  const o = findOrderForCustomer(ctx.url.searchParams.get('number'), ctx.url.searchParams.get('phone'));
-  json(ctx.res, 200, { order: publicOrder(o) });
+  const number = ctx.url.searchParams.get('number');
+  const wanted = clean(number, 40).toUpperCase();
+  const own = ctx.user && orders.find((o) => o.userId === ctx.user.id && o.number === wanted);
+  const order = own || findOrderForCustomer(number, ctx.url.searchParams.get('phone'));
+  json(ctx.res, 200, { order: publicOrder(order) });
 });
 
 // Powers the "someone just ordered" pop-ups. Deliberately coarse: product, district and a relative time only.

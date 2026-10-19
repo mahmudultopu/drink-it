@@ -1,5 +1,6 @@
 import { html, fmtDate, sized, srcset } from './ui.js';
 
+/** Card for an article in the blog grid. `date` adds the publication date and reading time (blog index only). */
 export function blogCard(p, { date = false } = {}) {
   return html`<article class="bcard" data-reveal="up">
   <a class="bcard__img" href="/blogs/news/${p.handle}" aria-label="${p.title}"><img src="${sized(p.image, 480)}" srcset="${srcset(p.image, [480], 960)}" sizes="(max-width: 989px) 100vw, 447px" alt="" loading="lazy" width="447" height="268"></a>

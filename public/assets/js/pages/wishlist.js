@@ -1,3 +1,4 @@
+// Wishlist page: the cans the visitor has hearted, with a button to add all of the available ones to the cart.
 import { $, html, startCountdowns, toast } from '../ui.js';
 import { Store } from '../store.js';
 import { productCard } from '../card.js';

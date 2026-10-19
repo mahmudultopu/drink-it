@@ -198,7 +198,46 @@ describe('buying something', { skip }, () => {
     assert.match(page.url(), /\/orders\/DI-\d{6}-[A-Z2-9]{4}$/);
     assert.match(await page.$eval('.thanks h1', (h) => h.textContent), /Thank you, Browser/);
     assert.equal(await page.evaluate(() => JSON.parse(localStorage.getItem('drinkit.cart.v1') || '[]').length), 0);
+
+    // an inline onclick would be blocked by the Content-Security-Policy; the button has to work without one
+    await page.evaluate(() => {
+      window.print = () => {
+        window.__printed = true;
+      };
+    });
+    await page.click('[data-print]');
+    assert.equal(await page.evaluate(() => window.__printed), true, 'the Print button opens the print dialog');
     assert.deepEqual(problems, []);
+    await close();
+  });
+});
+
+describe('search', { skip }, () => {
+  it('finds the same cans, in the same order, from the overlay and from the results page', async () => {
+    const home = await open('/');
+    await home.page.keyboard.press('/'); // the keyboard shortcut for search
+    await home.page.waitForSelector('#search-modal.is-open');
+    // the overlay focuses its input a moment after it opens; typing before that would go nowhere
+    await home.page.waitForFunction(() => document.activeElement?.matches('[data-search-input]'));
+    await home.page.type('[data-search-input]', 'zero sugar');
+    await home.page.waitForSelector('.sres__list .sres');
+    const overlay = await home.page.$$eval('.sres__list .sres b', (els) => els.map((e) => e.textContent));
+    assert.ok(overlay.length >= 2 && overlay.length <= 6, `${overlay.length} suggestions`);
+    await home.close();
+
+    const results = await open('/search?q=zero%20sugar');
+    const titles = await results.page.$$eval('.pcard__title', (els) => els.map((e) => e.textContent.trim()));
+    assert.deepEqual(titles.slice(0, overlay.length), overlay);
+    assert.match(
+      await results.page.$eval('[data-search-title]', (e) => e.textContent),
+      /\d+ results? for “zero sugar”/,
+    );
+    await results.close();
+  });
+
+  it('offers a way out when nothing matches', async () => {
+    const { page, close } = await open('/search?q=zzzz');
+    assert.match(await page.$eval('[data-search-results]', (e) => e.textContent), /No cans found/);
     await close();
   });
 });

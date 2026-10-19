@@ -1,3 +1,4 @@
+// Collections index: one large tile per collection (with its lead can and price range) and a short FAQ.
 import { $, html, money, initReveal } from '../ui.js';
 import { Store } from '../store.js';
 import { api } from '../api.js';

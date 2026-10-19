@@ -6,6 +6,7 @@ import { renderGrid } from '../card.js';
 import { initHero } from '../slider.js';
 import { blogCard } from '../blog-card.js';
 
+// "Our best picks": the cans featured in the first product grid (the second grid shows the best sellers that are left).
 const PICK_HANDLES = [
   'sprite-250ml-can',
   'fanta-orange-250ml-can',
@@ -17,6 +18,7 @@ const PICK_HANDLES = [
   'red-bull-sugarfree-250ml-can',
 ];
 
+// The three cans in the "featured can" slider, with the copy and tasting facts shown beside each.
 const FEATURED = [
   {
     handle: 'coca-cola-original-250ml-can',
@@ -47,6 +49,7 @@ const FEATURED = [
   },
 ];
 
+// Customer quotes for the testimonial strip. They are placeholders: replace them with real reviews before launch.
 export const REVIEWS = [
   {
     name: 'Tanvir Hasan',
@@ -92,6 +95,11 @@ export const REVIEWS = [
   },
 ];
 
+/**
+ * The list of collections as full-width rows. On desktop a tilted can follows the cursor over the rows (a floating
+ * image that eases towards the pointer); on phones each row shows its can instead. The hover can is skipped on touch
+ * devices, where there is no pointer to follow.
+ */
 function collectionRows() {
   const rows = $('[data-collection-rows]');
   if (!rows) return;
@@ -149,6 +157,7 @@ function collectionRows() {
   });
 }
 
+/** The featured-can slider: arrows swap the can, its name and the facts beside it. Removed if none of the cans exist. */
 export function featured() {
   const root = $('[data-featured]');
   if (!root) return;
@@ -190,6 +199,7 @@ export function featured() {
   show(0, false);
 }
 
+/** The animated strip of cans: a row of narrow bars that each show a slice of one wide picture, drifting sideways. */
 export function strips() {
   const box = $('[data-strips-box]');
   const bars = $('[data-strips-bars]');
@@ -234,6 +244,7 @@ export function strips() {
   });
 }
 
+/** Testimonial reels. The set is rendered twice so the CSS marquee can loop it without a gap. */
 function reviews() {
   const el = $('[data-reviews]');
   if (!el) return;
@@ -250,12 +261,14 @@ function reviews() {
   el.innerHTML = String(set) + String(set);
 }
 
+/** The three newest articles. */
 function blog() {
   const grid = $('[data-blog-grid]');
   if (!grid) return;
   grid.innerHTML = String(html`${Store.posts.slice(0, 3).map((p) => blogCard(p))}`);
 }
 
+/** Home page (layout 1). The hero is already in the HTML; everything below it is rendered from the catalogue. */
 export async function init() {
   initHero();
   collectionRows();

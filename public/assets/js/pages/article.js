@@ -1,15 +1,17 @@
-import { $, html, raw, esc, icon, fmtDate, toast, initReveal } from '../ui.js';
+// Article page. The article text is fetched here (it is kept out of the catalogue payload to keep that small);
+// the banner, title and meta tags come from the server.
+import { $, html, raw, esc, icon, fmtDate, toast, initReveal, pathSegment } from '../ui.js';
 import { Store } from '../store.js';
 import { api } from '../api.js';
 import { crumbs } from '../sections.js';
 import { blogCard } from '../blog-card.js';
 
 export async function init() {
-  const handle = decodeURIComponent(location.pathname.split('/')[3] || '');
+  const handle = pathSegment(3);
   const root = $('[data-article-root]');
   let data;
   try {
-    data = await api('/posts/' + handle);
+    data = await api('/posts/' + encodeURIComponent(handle));
   } catch {
     root.innerHTML =
       '<div class="empty"><h3>We couldn’t find that article</h3><a class="btn" href="/blogs/news">Back to the blog</a></div>';

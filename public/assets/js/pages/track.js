@@ -1,3 +1,5 @@
+// Track an order: order number + phone number, prefilled from the query string, the last order of this tab and the
+// signed-in customer's own number.
 import { $ } from '../ui.js';
 import { Store } from '../store.js';
 import { api } from '../api.js';

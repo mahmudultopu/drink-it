@@ -1,3 +1,5 @@
+// Delivery areas: the divisions we deliver to with their delivery times, and the fee table. All figures come from
+// the delivery section of data/site.json, so changing a fee there changes this page too.
 import { $, html, money, initReveal } from '../ui.js';
 import { Store } from '../store.js';
 

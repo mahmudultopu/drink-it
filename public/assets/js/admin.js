@@ -1,8 +1,14 @@
-// Drink it admin dashboard (orders, products, reviews, messages, subscribers, customers).
-import { $, $$, html, raw, esc, money, toast, fmtDate, debounce } from './ui.js';
+// The admin dashboard: orders, products, reviews, messages, subscribers and customers.
+//
+// A separate entry point from the storefront (views/admin.html loads it on its own), so shoppers never download it. It
+// is a small single-page app: boot() checks for an admin session, login() or shell() draws the page, and views[tab]
+// fills the main area. Everything it shows comes from the /api/admin/* endpoints, which check the admin session on the
+// server; hiding the page here is a convenience, not the security boundary.
+import { $, $$, html, raw, esc, money, toast, fmtDate, debounce, bindPrintButtons } from './ui.js';
 import { api } from './api.js';
 
 const root = $('#admin-root');
+// Order statuses in the order an order moves through them, and how the dashboard words them.
 const STATUSES = ['placed', 'confirmed', 'packed', 'shipped', 'delivered', 'cancelled'];
 const STATUS_LABEL = {
   placed: 'Placed',
@@ -13,7 +19,9 @@ const STATUS_LABEL = {
   cancelled: 'Cancelled',
 };
 const PAY_LABEL = { cod: 'Cash on delivery', bkash: 'bKash', nagad: 'Nagad', rocket: 'Rocket' };
+// Payment states an administrator can set (mobile-money payments start as 'awaiting' until the TrxID is checked).
 const PAY_STATUS = ['cod', 'awaiting', 'paid', 'failed', 'refunded'];
+/** Date and time for tables, e.g. "18 Oct 26, 3:05 pm". */
 const when = (iso) =>
   new Date(iso).toLocaleString('en-GB', {
     day: 'numeric',
@@ -25,9 +33,10 @@ const when = (iso) =>
   });
 const chip = (s) => html`<span class="chip chip--${s}">${STATUS_LABEL[s] || s}</span>`;
 
-let tab = location.hash.slice(1) || 'dashboard';
-let stats = null;
+let tab = location.hash.slice(1) || 'dashboard'; // the section shown; kept in the URL hash so a reload stays put
+let stats = null; // dashboard numbers, also used for the badges in the navigation
 
+/** Start: show the dashboard when there is an admin session, the login form otherwise. */
 async function boot() {
   let ok = false;
   try {
@@ -39,6 +48,7 @@ async function boot() {
 }
 
 // ---------------------------------------------------------------- login
+/** The password form. `msg` shows why the previous attempt failed. */
 function login(msg = '') {
   document.title = 'Admin login – Drink it';
   root.innerHTML = String(html`<div class="admin-login"><form class="admin-login__box" data-login novalidate>
@@ -61,6 +71,7 @@ function login(msg = '') {
 }
 
 // ---------------------------------------------------------------- shell
+/** Navigation entries: [view key, label, icon]. */
 const NAV = [
   ['dashboard', 'Dashboard', 'grid'],
   ['orders', 'Orders', 'box'],
@@ -70,6 +81,7 @@ const NAV = [
   ['subscribers', 'Subscribers', 'user'],
   ['customers', 'Customers', 'user'],
 ];
+/** The frame around every view: side navigation with counters, log out, and the area the current view draws into. */
 async function shell() {
   document.title = 'Admin – Drink it';
   try {
@@ -99,11 +111,15 @@ async function shell() {
   await views[tab]?.($('[data-admin-view]'));
 }
 
+/** Page heading with an optional action (for example "Export CSV") on the right. */
 const head = (title, extra = '') => html`<header class="admin-head"><h1>${title}</h1><div>${extra}</div></header>`;
+/** An error message in the site's standard error style. */
 const errBox = (e) => html`<div class="form-note form-note--error">${e.message}</div>`;
 
 // ---------------------------------------------------------------- views
+// One function per navigation entry; each draws into `el`.
 const views = {
+  /** Headline numbers, orders by status, best sellers and products running low. */
   async dashboard(el) {
     const s = stats;
     const card = (label, value, sub = '') =>
@@ -131,6 +147,7 @@ const views = {
       </div>`);
   },
 
+  /** Searchable, filterable order list. Clicking a row opens the order in a dialog (orderModal). */
   async orders(el) {
     let status = '',
       q = '',
@@ -184,6 +201,10 @@ const views = {
     load();
   },
 
+  /**
+   * Price and stock editor. Prices are entered as whole taka, the old (crossed-out) price is optional, and a deal end
+   * time is entered in Bangladesh time. The server recalculates the 6, 12 and 24-can pack prices from the single price.
+   */
   async products(el) {
     el.innerHTML = String(
       html`${head('Products')}<p class="muted" style="margin-bottom:14px">Edit the single-can price and stock. Pack prices (6 / 12 / 24) recalculate automatically.</p><div class="table-wrap"><table class="atable"><thead><tr><th></th><th>Product</th><th>Price ৳</th><th>Old price ৳</th><th>Stock (cans)</th><th>Deal ends</th><th></th></tr></thead><tbody data-rows><tr><td colspan="7">Loading…</td></tr></tbody></table></div>`,
@@ -222,6 +243,7 @@ const views = {
     }
   },
 
+  /** Review moderation: new reviews stay hidden from the shop until approved here. */
   async reviews(el) {
     el.innerHTML = String(html`${head('Reviews')}<div data-list>Loading…</div>`);
     const load = async () => {
@@ -256,6 +278,7 @@ const views = {
     load();
   },
 
+  /** Messages sent through the contact form. */
   async messages(el) {
     el.innerHTML = String(html`${head('Messages')}<div data-list>Loading…</div>`);
     try {
@@ -276,6 +299,7 @@ const views = {
     }
   },
 
+  /** Newsletter sign-ups, with a button to copy all addresses. */
   async subscribers(el) {
     el.innerHTML = String(html`${head('Subscribers')}<div data-list>Loading…</div>`);
     try {
@@ -294,6 +318,7 @@ const views = {
     }
   },
 
+  /** Registered customers (guests who checked out without an account are not listed). */
   async customers(el) {
     el.innerHTML = String(html`${head('Customers')}<div data-list>Loading…</div>`);
     try {
@@ -310,6 +335,11 @@ const views = {
 };
 
 // ---------------------------------------------------------------- order detail modal
+/**
+ * The order dialog: customer, address, payment and items, plus the controls to move the order to its next status,
+ * change the payment status (for example after checking a bKash TrxID) and leave notes. A public note is added to the
+ * history the customer sees; the internal note is private. `refresh` reloads the list behind the dialog.
+ */
 function orderModal(o, refresh) {
   const m = document.createElement('div');
   m.className = 'modal is-open admin-modal';
@@ -331,7 +361,7 @@ function orderModal(o, refresh) {
         <div class="field fgrid__full"><label for="note">Note on this change (shown to customer in history)</label><input class="input" id="note" maxlength="200" placeholder="e.g. Handed to courier"></div>
         <div class="field fgrid__full"><label for="anote">Internal note (private)</label><textarea class="textarea" id="anote" rows="2" maxlength="500">${o.adminNote || ''}</textarea></div>
       </div>
-      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:14px"><button class="btn" type="button" data-save>Save changes</button><button class="btn btn--ghost" type="button" onclick="window.print()">Print slip</button><a class="btn btn--ghost" href="/orders/${o.number}?phone=${o.customer.phone}" target="_blank" rel="noopener">Customer view ↗</a></div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:14px"><button class="btn" type="button" data-save>Save changes</button><button class="btn btn--ghost" type="button" data-print>Print slip</button><a class="btn btn--ghost" href="/orders/${o.number}?phone=${o.customer.phone}" target="_blank" rel="noopener">Customer view ↗</a></div>
       <h3 style="margin-top:22px">History</h3><ul class="hist">${o.history
         .slice()
         .reverse()
@@ -372,4 +402,5 @@ function orderModal(o, refresh) {
   });
 }
 
+bindPrintButtons();
 boot();

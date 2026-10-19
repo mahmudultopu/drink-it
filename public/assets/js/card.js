@@ -2,6 +2,7 @@
 import { html, raw, money, stars, discountPct, countdownHtml, icon, toast, startCountdowns } from './ui.js';
 import { Store } from './store.js';
 
+/** Price of a pack, with the crossed-out old price when it is on offer. */
 export function priceHtml(pk) {
   return html`<span class="price">${money(pk.price)}${pk.compareAt > pk.price ? raw(`<s>${money(pk.compareAt)}</s>`) : ''}</span>`;
 }
@@ -14,6 +15,13 @@ function swatchesHtml(packs, currentId, p) {
   )}</div>`;
 }
 
+/**
+ * Markup for one product card: photo (with sold-out, discount and "new" badges), wishlist and compare buttons, deal
+ * countdown, title, rating, price and pack-size swatches. Interaction is handled once for all cards by bindCards().
+ * @param {object} p product as served by /api/catalogue
+ * @param {{ pack?: string, eager?: boolean, swatches?: boolean }} [options] initial pack, whether its photo should load
+ *   with high priority (above the fold), and whether to show the pack swatches
+ */
 export function productCard(p, { pack = 'single', eager = false, swatches = true } = {}) {
   const pk = Store.pack(p, pack);
   const soldOut = p.stock <= 0 || !pk.available;
@@ -71,6 +79,7 @@ export function renderGrid(el, list, opts = {}) {
   startCountdowns();
 }
 
+/** Switch a card to another pack size: photo, price, discount badge and the add-to-cart button follow. */
 function selectPack(card, packId) {
   const p = Store.get(card.dataset.handle);
   const pk = Store.pack(p, packId);
@@ -95,6 +104,7 @@ function selectPack(card, packId) {
   add.textContent = pk.available ? 'Add to cart' : 'Sold out';
 }
 
+/** Refresh the wishlist and compare buttons of every card on the page (after a change made elsewhere). */
 export function syncCards(root = document) {
   const wish = new Set(Store.wishlist());
   const cmp = new Set(Store.compareList());
@@ -114,6 +124,10 @@ export function syncCards(root = document) {
 }
 
 let bound = false;
+/**
+ * One delegated click handler for all cards on the page, present and future: pack swatches, add to cart, wishlist and
+ * compare. Plus the hover and focus handlers that fetch each card's second photo on demand. Safe to call repeatedly.
+ */
 export function bindCards() {
   if (bound) return;
   bound = true;

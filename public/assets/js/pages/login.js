@@ -1,8 +1,9 @@
-// Sign in / create account.
+// Sign in or create an account (one page, two tabs). After success the visitor is sent on to `?next=`.
 import { $, $$, html } from '../ui.js';
 import { Store } from '../store.js';
 import { api } from '../api.js';
 
+/** Only follow `next` to a path on this site; anything else (https://elsewhere, //elsewhere) goes to the account. */
 const safeNext = (n) => (n && n.startsWith('/') && !n.startsWith('//') ? n : '/account');
 
 export function init() {

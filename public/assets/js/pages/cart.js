@@ -4,6 +4,7 @@ import { Store } from '../store.js';
 import { productCard } from '../card.js';
 import { freeDeliveryHtml } from '../chrome.js';
 
+/** One row of the cart table: product, pack, unit price, quantity stepper, line total and remove. */
 function lineHtml(l) {
   const { product: p, pack, qty } = l;
   return html`<li class="cart-row cline" data-handle="${p.handle}" data-pack="${pack.id}">

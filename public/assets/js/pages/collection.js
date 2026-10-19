@@ -1,22 +1,34 @@
-// Collection page: filters (availability, price, brand, flavour, sugar, origin, size), sorting, view modes,
-// all reflected in the URL so filtered pages can be shared.
-import { $, $$, html, raw, esc, money, icon, lockScroll, debounce } from '../ui.js';
+// Collection page: filters (availability, price, brand, flavour, sugar, origin, size), sorting and view modes.
+// Every choice is mirrored into the URL query string, so a filtered view can be bookmarked or shared and survives a
+// reload. The banner, title and meta tags come from the server; this module renders the tiles, filters and grid.
+import { $, $$, html, raw, esc, money, icon, lockScroll, debounce, pathSegment } from '../ui.js';
 import { Store } from '../store.js';
 import { productCard } from '../card.js';
 import { crumbs } from '../sections.js';
 import { startCountdowns, initReveal } from '../ui.js';
 
-const PAGE_SIZE = 24;
+const PAGE_SIZE = 24; // cards shown before "Show more cans"
+/** Can-size filter: the groups visitors choose from and the millilitre ranges they cover. */
 const SIZE_GROUPS = [
   { id: 'small', label: 'Slim cans (up to 250 ml)', test: (ml) => ml <= 250 },
   { id: 'std', label: 'Standard (320–355 ml)', test: (ml) => ml > 250 && ml < 500 },
   { id: 'large', label: 'Large (500 ml)', test: (ml) => ml >= 500 },
 ];
 
+/** A comma-separated query parameter ("brand=mojo,pepsi") as a Set. */
 const parseSet = (sp, k) => new Set((sp.get(k) || '').split(',').filter(Boolean));
 
+/** Read a saved preference; storage may be blocked or empty. */
+function savedView() {
+  try {
+    return localStorage.getItem('drinkit.view') || '3';
+  } catch {
+    return '3';
+  }
+}
+
 export function init() {
-  const handle = decodeURIComponent(location.pathname.split('/')[2] || 'all');
+  const handle = pathSegment(2) || 'all';
   const sp = new URLSearchParams(location.search);
   const col = Store.collections.find((c) => c.handle === handle);
   const isAll = handle === 'all';
@@ -71,6 +83,8 @@ export function init() {
   );
 
   // ---------- state ----------
+  // Everything the controls decide. The multi-select filters are Sets of the checked values; the rest are plain
+  // values. All of it except `view` and `shown` is written back to the URL by pushUrl().
   const state = {
     brand: parseSet(sp, 'brand'),
     type: parseSet(sp, 'type'),
@@ -82,7 +96,7 @@ export function init() {
     max: sp.get('max') || '',
     sort: sp.get('sort') || 'featured',
     pack: sp.get('pack') || 'single',
-    view: localStorage.getItem('drinkit.view') || '3',
+    view: savedView(),
     shown: PAGE_SIZE,
   };
   const grid = $('[data-grid]');
@@ -141,6 +155,7 @@ export function init() {
   };
 
   // ---------- filtering / sorting / render ----------
+  /** Does a product pass every active filter? Within one filter the choices are alternatives (brand A or B). */
   const matches = (p) => {
     if (state.brand.size && !state.brand.has(p.brandHandle)) return false;
     if (state.type.size && !state.type.has(p.type)) return false;
@@ -154,6 +169,7 @@ export function init() {
     if (state.max !== '' && p.price > Number(state.max)) return false;
     return true;
   };
+  // "Featured" puts what is in stock first, best sellers before the rest
   const sorters = {
     featured: (a, b) => (a.stock <= 0) - (b.stock <= 0) || b.sold - a.sold,
     best: (a, b) => b.sold - a.sold,
@@ -162,6 +178,7 @@ export function init() {
     'title-asc': (a, b) => a.title.localeCompare(b.title),
     new: (a, b) => (a.createdAt < b.createdAt ? 1 : -1),
   };
+  /** Mirror the current filters into the address bar without adding a history entry for every click. */
   const pushUrl = () => {
     const q = new URLSearchParams();
     for (const k of ['brand', 'type', 'sugar', 'origin', 'size']) if (state[k].size) q.set(k, [...state[k]].join(','));
@@ -172,6 +189,7 @@ export function init() {
     if (state.pack !== 'single') q.set('pack', state.pack);
     history.replaceState(null, '', location.pathname + (q.toString() ? '?' + q : ''));
   };
+  /** Re-apply the filters and sort, redraw the grid and the item count, and update the URL. */
   const render = () => {
     const list = base.filter(matches).sort(sorters[state.sort] || sorters.featured);
     $('[data-count]').textContent = `${list.length} ${list.length === 1 ? 'item' : 'items'}`;
@@ -205,6 +223,7 @@ export function init() {
     state.shown = PAGE_SIZE;
     render();
   });
+  // A radio button cannot normally be un-ticked; clicking the one that is already selected clears the filter instead.
   filters.addEventListener('click', (e) => {
     if (e.target.matches('[data-stock]') && e.target.value === state.stock && e.target.dataset.was === '1') {
       state.stock = '';
@@ -252,7 +271,7 @@ export function init() {
     render();
   });
 
-  // mobile filter drawer
+  // mobile filter drawer: below the desktop breakpoint the sidebar becomes a slide-in panel
   const overlay = document.createElement('div');
   overlay.className = 'overlay';
   document.body.append(overlay);

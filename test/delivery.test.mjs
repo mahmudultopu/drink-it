@@ -218,6 +218,44 @@ describe('server-rendered page content', () => {
     }
   });
 
+  it('describes products to search engines with schema.org data', async () => {
+    const res = await rawRequest(server.base, '/products/coca-cola-original-250ml-can');
+    const match = /<script type="application\/ld\+json">([\s\S]*?)<\/script>/.exec(res.body);
+    assert.ok(match, 'JSON-LD block present');
+    const data = JSON.parse(match[1]);
+    assert.equal(data['@type'], 'Product');
+    assert.equal(data.name, 'Coca-Cola Original');
+    assert.equal(data.offers.priceCurrency, 'BDT');
+    assert.equal(data.offers.price, 70);
+    assert.match(data.offers.availability, /InStock$/);
+    assert.equal(data.offers.url, `${server.base}/products/coca-cola-original-250ml-can`);
+    assert.ok(data.aggregateRating.reviewCount > 0);
+  });
+
+  it('keeps that data current when the price or the stock changes', async () => {
+    const login = await fetch(`${server.base}/api/admin/login`, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ password: 'test-admin-passphrase-2026' }),
+    });
+    const cookie = login.headers.getSetCookie()[0].split(';')[0];
+    const patch = (body) =>
+      fetch(`${server.base}/api/admin/products/sprite-250ml-can`, {
+        method: 'PATCH',
+        headers: { 'content-type': 'application/json', cookie },
+        body: JSON.stringify(body),
+      });
+    const offer = async () => {
+      const res = await rawRequest(server.base, '/products/sprite-250ml-can');
+      return JSON.parse(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/.exec(res.body)[1]).offers;
+    };
+    const before = await offer();
+    await patch({ price: before.price + 5 });
+    assert.equal((await offer()).price, before.price + 5);
+    await patch({ stock: 0 });
+    assert.match((await offer()).availability, /OutOfStock$/);
+  });
+
   it('does not leak the page header comment into the output', async () => {
     const res = await rawRequest(server.base, '/pages/contact');
     assert.doesNotMatch(res.body, /<!--page/);

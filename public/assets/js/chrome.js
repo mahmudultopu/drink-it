@@ -1,14 +1,21 @@
-// Site chrome behaviour: announcement bar, sticky header, mega menus, drawers (cart / menu), search,
-// newsletter + activity popups, scroll-to-top and the mobile tab bar.
+// Site chrome: everything that surrounds the page content and is the same on every page - the announcement bar, the
+// sticky header and its menus, the cart and menu drawers, search, the newsletter and "recently ordered" pop-ups, the
+// scroll-to-top button and the mobile tab bar. The markup comes from partials/header.html and partials/footer.html;
+// this module fills in the data-driven parts and wires up the behaviour. initChrome() at the bottom starts it all.
 import { $, $$, html, raw, esc, money, icon, lockScroll, trapFocus, debounce, initReveal } from './ui.js';
 import { Store } from './store.js';
 import { api } from './api.js';
 import { bindCards, syncCards } from './card.js';
-import { mountCtas, initAccordions } from './sections.js';
+import { mountCtas, initAccordions, popularSearches } from './sections.js';
 
+/** The desktop layout starts at 990 px (the same breakpoint the stylesheets use). */
 const isDesktop = () => window.matchMedia('(min-width: 990px)').matches;
 
 // ---------------------------------------------------------------- announcement
+/**
+ * Fill the scrolling announcement bar from site.json. The messages are repeated twice so the CSS marquee, which
+ * translates the track by half its width, loops without a visible seam. A dismissal lasts for the browser session.
+ */
 function initAnnouncement() {
   const bar = $('[data-announcement]');
   if (!bar) return;
@@ -36,11 +43,15 @@ function initAnnouncement() {
 }
 
 // ---------------------------------------------------------------- sticky header
+// On desktop the header scrolls away with the page and slides back in, fixed to the top, once the visitor has scrolled
+// past it. Three numbers drive that: where the header's bottom edge sits on the page, how much space it occupies in
+// the flow (a spacer element takes that space while it is fixed, so the page does not jump), and whether it is stuck.
 let header,
   spacer,
   baseBottom = 0,
   baseSpace = 0,
   stuck = false;
+/** Record where the header sits in the normal flow. Does nothing while it is fixed, when the numbers would be wrong. */
 function measureHeader() {
   if (!header || stuck) return;
   const r = header.getBoundingClientRect();
@@ -122,6 +133,10 @@ function initStickyHeader() {
 }
 
 // ---------------------------------------------------------------- mega menu content
+/**
+ * Fill the desktop mega menus (collections, brands, "best sellers" / "new" / energy lists and four featured cans) from
+ * the catalogue. The menus' static structure lives in partials/header.html; only the product lists come from data.
+ */
 function fillMenus() {
   const cols = Store.collections;
   $$('[data-menu-collections]').forEach((ul) => {
@@ -160,7 +175,12 @@ function fillMenus() {
 }
 
 // ---------------------------------------------------------------- drawers
-const drawers = {};
+const drawers = {}; // id -> controller, so opening one drawer can close the others
+/**
+ * Create a slide-in panel (the cart on the right, the mobile menu on the left) with its dimming overlay.
+ * It behaves like a modal dialog: focus moves into it and is kept there with the Tab key, Escape or a click on the
+ * overlay closes it, and focus returns to the element that opened it. Anything marked `data-close` inside closes it.
+ */
 function makeDrawer(id, { side = 'right', label, cls = '', content }) {
   const overlay = document.createElement('div');
   overlay.className = 'overlay';
@@ -209,6 +229,7 @@ function makeDrawer(id, { side = 'right', label, cls = '', content }) {
 }
 
 // ----- cart drawer -----
+/** One line of the cart: image, title, pack, quantity stepper, line total and a remove button. */
 function cartLineHtml(l) {
   const { product: p, pack, qty } = l;
   return html`<li class="cline" data-handle="${p.handle}" data-pack="${pack.id}">
@@ -225,6 +246,7 @@ function cartLineHtml(l) {
   </li>`;
 }
 
+/** "Add ৳X more for free delivery" with a progress bar, shown in the cart drawer, cart page and checkout. */
 export function freeDeliveryHtml(subtotal) {
   const free = Store.site.delivery.freeOver;
   const left = Math.max(0, free - subtotal);
@@ -232,6 +254,7 @@ export function freeDeliveryHtml(subtotal) {
   return html`<div class="freebar"><p>${left > 0 ? raw(`Add <b>${money(left)}</b> more for <b>free delivery</b>`) : raw('🎉 You’ve unlocked <b>free delivery</b>!')}</p><div class="freebar__track"><span style="width:${pct}%"></span></div></div>`;
 }
 
+/** Redraw the cart drawer from the cart in localStorage (called after every change to the cart). */
 function renderCart() {
   const d = drawers['cart-drawer'];
   if (!d) return;
@@ -254,6 +277,10 @@ function renderCart() {
   $('[data-cart-sub]', d.el).textContent = money(sub);
 }
 
+/**
+ * Build the cart drawer and keep it in sync with the cart. Quantity, remove and quantity-input handling is delegated
+ * to the drawer element, so it keeps working after each redraw. The drawer opens by itself when something is added.
+ */
 function initCartDrawer() {
   const d = makeDrawer('cart-drawer', {
     label: 'Shopping cart',
@@ -299,6 +326,7 @@ function initCartDrawer() {
 }
 
 // ----- mobile menu -----
+/** The left-hand navigation drawer used below the desktop breakpoint. */
 function initMobileMenu() {
   const cols = Store.collections;
   const brands = Store.brands().slice(0, 9);
@@ -321,6 +349,11 @@ function initMobileMenu() {
 }
 
 // ----- search -----
+/**
+ * The search overlay. Typing filters the catalogue in the browser (every word has to match somewhere in the product's
+ * name, brand, flavour, type, origin, sugar status, collections or size), which is instant for a catalogue this size.
+ * With nothing typed it offers popular searches and the recently viewed cans. Pressing "/" opens it from anywhere.
+ */
 function initSearch() {
   const modal = document.createElement('div');
   modal.className = 'modal search-modal';
@@ -351,19 +384,11 @@ function initSearch() {
         .map((h) => Store.get(h))
         .filter(Boolean)
         .slice(0, 5);
-      results.innerHTML =
-        String(html`<div class="sres__chips"><span>Popular:</span>${['Coca-Cola', 'Pepsi', 'Sprite', 'Mojo', 'Energy', 'Zero sugar', 'Imported'].map((t) => raw(`<a class="pill pill--btn" href="/search?q=${encodeURIComponent(t)}">${esc(t)}</a>`))}</div>
+      results.innerHTML = String(html`<div class="sres__chips"><span>Popular:</span>${popularSearches()}</div>
         ${rec.length ? html`<div class="sres__head"><h3>Recently viewed</h3><button type="button" class="link-btn" data-clear-recent>Clear</button></div><div class="sres__list">${rec.map(miniHtml)}</div>` : ''}`);
       return;
     }
-    const terms = q.split(/\s+/);
-    const hits = Store.products
-      .filter((p) => {
-        const hay =
-          `${p.title} ${p.brand} ${p.variant} ${p.type} ${p.origin} ${p.sugar === 'Zero' ? 'zero sugar sugarfree' : ''} ${p.collections.join(' ')} ${p.canMl}ml`.toLowerCase();
-        return terms.every((t) => hay.includes(t));
-      })
-      .slice(0, 6);
+    const hits = Store.search(q).slice(0, 6);
     results.innerHTML = hits.length
       ? String(
           html`<div class="sres__list">${hits.map(miniHtml)}</div><a class="btn btn--block sres__all" href="/search?q=${encodeURIComponent(input.value.trim())}">See all results</a>`,
@@ -404,6 +429,7 @@ function initSearch() {
 }
 
 // ---------------------------------------------------------------- counts + tab bar
+/** Update the little cart and wishlist counters in the header and the mobile tab bar. */
 function updateCounts() {
   const cart = Store.cartCount();
   $$('[data-cart-count]').forEach((el) => {
@@ -414,6 +440,7 @@ function updateCounts() {
     el.textContent = w ? String(w) : '';
   });
 }
+/** Highlight the mobile tab bar entry for the current section of the site. */
 function initTabbar() {
   const p = location.pathname;
   const key =
@@ -432,6 +459,10 @@ function initTabbar() {
 }
 
 // ---------------------------------------------------------------- newsletter (footer + popup)
+/**
+ * Submit a newsletter form. Shows the server's message (which includes the welcome coupon code) or its error, and
+ * remembers a successful sign-up so the pop-up is not offered again. Returns the response, or null on failure.
+ */
 async function subscribe(form, msgEl) {
   const email = form.querySelector('input[type=email]').value.trim();
   msgEl.textContent = '';
@@ -459,6 +490,11 @@ function initNewsletter() {
   });
 }
 
+/**
+ * Offer the newsletter sign-up once, 14 seconds into a visit. It is skipped for people who already subscribed or have
+ * seen it this session, on the pages where it would get in the way (cart, checkout, orders, admin), and while another
+ * dialog is open.
+ */
 function initPopup() {
   let seen = false;
   try {
@@ -518,6 +554,10 @@ function initPopup() {
 }
 
 // ---------------------------------------------------------------- real-order activity toast
+/**
+ * Show one "recently ordered" notice per session, drawn from real orders of the last two days (the API only reveals
+ * the product, the district and how long ago, never who ordered). It stays away from the checkout flow.
+ */
 async function initActivity() {
   if (/^\/(checkout|admin|cart)/.test(location.pathname)) return;
   setTimeout(async () => {
@@ -544,6 +584,7 @@ async function initActivity() {
   }, 22000);
 }
 
+/** The round "back to top" button appears once the visitor has scrolled half a screen or so. */
 function initScrollTop() {
   const btn = $('[data-scroll-top]');
   if (!btn) return;
@@ -554,6 +595,10 @@ function initScrollTop() {
 }
 
 // ---------------------------------------------------------------- boot
+/**
+ * Start everything the page frame needs. Must run after Store.init(), because most of it reads the catalogue.
+ * Returns the cart, menu and search controllers so page modules can open them (for example after "Buy now").
+ */
 export function initChrome() {
   initAnnouncement();
   initStickyHeader();

@@ -1,4 +1,10 @@
 // Thin fetch wrapper for the JSON API.
+
+/**
+ * Call the API (paths are relative to /api) and return the parsed JSON. Failures become Errors carrying a message
+ * that is safe to show: `.status` is the HTTP status (0 when the network failed), `.fields` the per-field messages
+ * of a validation error, `.data` the whole error body.
+ */
 export async function api(path, { method = 'GET', body } = {}) {
   let res;
   try {

@@ -1,3 +1,4 @@
+// Blog index: every article from the catalogue payload, filterable by topic (?tag=) and by search words (?q=).
 import { $, html, raw, esc, initReveal } from '../ui.js';
 import { Store } from '../store.js';
 import { crumbs } from '../sections.js';
